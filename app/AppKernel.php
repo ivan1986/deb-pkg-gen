@@ -19,12 +19,22 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+
+            //сторонние
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+
+            //Свои
+            new Ivan1986\DebBundle\Ivan1986DebBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+        }
+        if (in_array($this->getEnvironment(), array('test'))) {
+            $bundles[] = new Behat\BehatBundle\BehatBundle();
+            $bundles[] = new Behat\MinkBundle\MinkBundle();
         }
 
         return $bundles;
