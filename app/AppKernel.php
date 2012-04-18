@@ -22,6 +22,7 @@ class AppKernel extends Kernel
 
             //сторонние
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Anchovy\CURLBundle\AnchovyCURLBundle(),
 
             //Свои
             new Ivan1986\DebBundle\Ivan1986DebBundle(),

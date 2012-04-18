@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Response;
+use Ivan1986\DebBundle\Entity\GpgKey;
+use Ivan1986\DebBundle\Entity\GpgKeyRepository;
 
 class DefaultController extends Controller
 {
@@ -27,11 +29,9 @@ class DefaultController extends Controller
     {
         //"http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x6831CF9528FA7071"
         //"http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x28FA7071"
-
-
-        $gpg = new \gnupg();
-        //$gpg->
-
+        $keys = $this->getDoctrine()->getRepository('Ivan1986DebBundle:GpgKey');
+        /** @var $keys GpgKeyRepository */
+        $key = $keys->getFromServer($key, 'keyserver.ubuntu.com');
         return new Response($key);
     }
 
