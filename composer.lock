@@ -1,6 +1,11 @@
 {
-    "hash": "e6cfb1fdef632621c1dbdbfcd2373596",
+    "hash": "04ba2fab8f9a19374c5dbcb2c0b2a201",
     "packages": [
+        {
+            "package": "Anchovy/CURLBundle",
+            "version": "dev-master",
+            "source-reference": "961c9551a40205d44f3ad79674f85689b8fa3df8"
+        },
         {
             "package": "alexandresalome/php-selenium",
             "version": "master-dev",
@@ -61,7 +66,7 @@
         {
             "package": "doctrine/orm",
             "version": "2.2.x-dev",
-            "source-reference": "62a72603bd0749dd1da58779c3c8f2e04793f9c7"
+            "source-reference": "159b6f89471ac05f1c1ef2d53cc2c989ce9215a3"
         },
         {
             "package": "jms/aop-bundle",
@@ -91,7 +96,7 @@
         {
             "package": "kriswallsmith/buzz",
             "version": "dev-master",
-            "source-reference": "cbb620a5c79157015bd9b8029417264be03890bc"
+            "source-reference": "83147864bfac8d47a56ac26b901b8f39ef078489"
         },
         {
             "package": "monolog/monolog",
@@ -139,23 +144,21 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "e7470ffebb07d1f09fe80c98670a00236d581563",
+            "source-reference": "85bb43935669eb1e92a5b32f5f20872f34377300",
             "alias": "2.1.9999999.9999999-dev"
         },
         {
             "package": "twig/extensions",
             "version": "dev-master",
-            "source-reference": "4c831657215e51568fcb31bb9142e827f9a69bd5"
+            "source-reference": "446d870272cd87a720e95242eade38a2acf56eaa"
         },
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "5799a889c03e38a2c6d0b475194ab8c0b8904487",
+            "source-reference": "037f86aa550737abf633e991f3606b9de5a69657",
             "alias": "1.7.9999999.9999999-dev"
         }
     ],
     "packages-dev": null,
-    "aliases": [
-
-    ]
+    "aliases": []
 }

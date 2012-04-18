@@ -25,6 +25,7 @@
         "jms/di-extra-bundle": "1.0.1",
 
         "doctrine/doctrine-migrations-bundle": "dev-master",
+        "Anchovy/CURLBundle": "*",
 
         "behat/behat-bundle": "*",
         "behat/mink-bundle": "*",
