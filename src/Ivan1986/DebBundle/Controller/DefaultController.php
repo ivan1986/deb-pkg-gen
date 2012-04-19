@@ -31,7 +31,8 @@ class DefaultController extends Controller
         //"http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x28FA7071"
         $keys = $this->getDoctrine()->getRepository('Ivan1986DebBundle:GpgKey');
         /** @var $keys GpgKeyRepository */
-        $key = $keys->getFromServer($key, 'keyserver.ubuntu.com');
+        $key = $keys->getFromServer('28FA7071', 'keyserver.ubuntu.com');
+
         return new Response($key);
     }
 

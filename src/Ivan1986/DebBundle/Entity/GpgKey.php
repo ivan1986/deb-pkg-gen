@@ -18,19 +18,19 @@ class GpgKey
      * @ORM\Column(name="id", type="string")
      * @ORM\Id
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string gpg data of key
      * @ORM\Column(name="gpg", type="blob")
      */
-    private $data;
+    protected $data;
 
     /**
      * @var string gpg data of key
      * @ORM\Column(name="fingerprint", type="blob")
      */
-    private $fingerprint;
+    protected $fingerprint;
 
     /**
      * Get id
