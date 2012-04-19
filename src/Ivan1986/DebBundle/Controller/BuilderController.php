@@ -37,7 +37,12 @@ class BuilderController extends Controller
         $fs = new Filesystem();
         $fs->mirror($this->path.'/tmpl', $this->path.'/'.$pkgName);
         $dir = $this->path.'/'.$pkgName;
-        $this->render('Ivan1986DebBundle:Builder:control.twig');
+        $templater = $this->get('templating');
+        /** @var $templater \Symfony\Bundle\TwigBundle\TwigEngine */
+        $control = $templater->render('Ivan1986DebBundle:Builder:control.txt.twig', array(
+
+        ));
+        file_put_contents($dir.'/debian/control', $control);
         //$p = new Process('')
 
 
