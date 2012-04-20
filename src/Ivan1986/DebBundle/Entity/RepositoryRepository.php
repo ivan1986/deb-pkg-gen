@@ -26,17 +26,18 @@ class RepositoryRepository extends EntityRepository
     public function createFromAptString($string, $bin=true, $src=true)
     {
         $items = explode(' ', $string);
+        //устраняем лишние пробелы
         foreach($items as $k=>$v)
             if (empty($v))
                 unset($items[$k]);
-        array_values($items);
+        $items = array_values($items);
 
         if (count($items) == 0)
-            throw new ParseRepoStringException('Empty String', 0, $string);
+            throw new ParseRepoStringException($string, 'Empty String', 0);
         if ($items[0] == 'deb' || $items[0] == 'deb-src')
             array_shift($items);
         if (count($items) == 0)
-            throw new ParseRepoStringException('Not Found Url', 1, $string);
+            throw new ParseRepoStringException($string, 'Not Found Url', 1);
 
         $repo = new Repository();
         $repo->setUrl(array_shift($items));
@@ -44,7 +45,7 @@ class RepositoryRepository extends EntityRepository
         $repo->setSrc($src);
 
         if (count($items) == 0)
-            throw new ParseRepoStringException('Not Found Release', 2, $string);
+            throw new ParseRepoStringException($string, 'Not Found Release', 2);
 
         $repo->setRelease(array_shift($items));
 

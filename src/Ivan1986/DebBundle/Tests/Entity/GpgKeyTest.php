@@ -2,25 +2,12 @@
 
 namespace Ivan1986\DebBundle\Tests\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 
-class GpgKeyTest extends WebTestCase
+class GpgKeyTest extends Entity
 {
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $em;
-
-    public function setUp()
-    {
-        $kernel = static::createKernel();
-        $kernel->boot();
-        $this->em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
-    }
-
     public function testGetMyKey()
     {
         $keys = $this->em->getRepository('Ivan1986DebBundle:GpgKey');
