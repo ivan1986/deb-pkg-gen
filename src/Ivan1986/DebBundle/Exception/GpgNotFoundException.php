@@ -2,7 +2,10 @@
 
 namespace Ivan1986\DebBundle\Exception;
 
-class GpgNotFound extends \Exception
+/**
+ * На сервере не найден ключ
+ */
+class GpgNotFoundException extends \Exception
 {
     /** @var string ID ключа */
     private $key;

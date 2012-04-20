@@ -4,7 +4,7 @@ namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Anchovy\CURLBundle\CURL\Curl;
-use Ivan1986\DebBundle\Exception\GpgNotFound;
+use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 use Ivan1986\DebBundle\Entity\GpgKey;
 
 /**
@@ -22,7 +22,7 @@ class GpgKeyRepository extends EntityRepository
      * @param $keyId ID ключа в шеснадцатиричном формате без начального 0x
      * @param $serverName адрес сервера
      * @return GpgKey
-     * @throws \Ivan1986\DebBundle\Exception\GpgNotFound
+     * @throws \Ivan1986\DebBundle\Exception\GpgNotFoundException
      */
     public function getFromServer($keyId, $serverName)
     {
@@ -31,7 +31,7 @@ class GpgKeyRepository extends EntityRepository
         $data = $c->execute();
         $start = strpos($data, '-----BEGIN PGP PUBLIC KEY BLOCK-----');
         if ($start===false)
-            throw new GpgNotFound($keyId);
+            throw new GpgNotFoundException($keyId);
 
         $gpg = new \gnupg();
         $PublicKey = $gpg->import($data);

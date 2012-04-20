@@ -4,6 +4,8 @@ namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
+use Ivan1986\DebBundle\Exception\ParseRepoStringException;
+
 /**
  * RepositoryRepository
  *
@@ -13,9 +15,44 @@ use Doctrine\ORM\EntityRepository;
 class RepositoryRepository extends EntityRepository
 {
 
+    /**
+     * Разбирает строку репозитория
+     *
+     * @param $string строка
+     * @param bool $bin бинарный есть
+     * @param bool $src исходники есть
+     * @throws \Ivan1986\DebBundle\Exception\ParseRepoStringException
+     */
     public function createFromAptString($string, $bin=true, $src=true)
     {
-        //
+        $items = explode(' ', $string);
+        foreach($items as $k=>$v)
+            if (empty($v))
+                unset($items[$k]);
+        array_values($items);
+
+        if (count($items) == 0)
+            throw new ParseRepoStringException('Empty String', 0, $string);
+        if ($items[0] == 'deb' || $items[0] == 'deb-src')
+            array_shift($items);
+        if (count($items) == 0)
+            throw new ParseRepoStringException('Not Found Url', 1, $string);
+
+        $repo = new Repository();
+        $repo->setUrl(array_shift($items));
+        $repo->setBin($bin);
+        $repo->setSrc($src);
+
+        if (count($items) == 0)
+            throw new ParseRepoStringException('Not Found Release', 2, $string);
+
+        $repo->setRelease(array_shift($items));
+
+        //Если нету компонентов, то это упрощенный репозиторий, что тоже нормально
+        if (count($items))
+            $repo->setComponents($items);
+
+        return $repo;
     }
 
 }

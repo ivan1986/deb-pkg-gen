@@ -12,6 +12,7 @@ use Ivan1986\DebBundle\Entity\GpgKeyRepository;
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Filesystem\Filesystem;
+use Ivan1986\DebBundle\Entity\RepositoryRepository;
 
 class BuilderController extends Controller
 {
@@ -30,9 +31,13 @@ class BuilderController extends Controller
     {
         $keys = $this->getDoctrine()->getRepository('Ivan1986DebBundle:GpgKey');
         /** @var $keys GpgKeyRepository */
-        $key = $keys->getFromServer('28FA7071', 'keyserver.ubuntu.com');
+        $key = $keys->getFromServer('B9B60E76', 'keyserver.ubuntu.com');
 
-        $pkgName = 'test';
+        $pkgName = 'psi-plus';
+
+        $repos = $this->getDoctrine()->getRepository('Ivan1986DebBundle:Repository');
+        /** @var $repos RepositoryRepository */
+        $repo = $repos->createFromAptString('deb http://ppa.launchpad.net/psi-plus/ppa/ubuntu oneiric main');
 
         $fs = new Filesystem();
         $fs->mirror($this->path.'/tmpl', $this->path.'/'.$pkgName);

@@ -5,7 +5,7 @@ namespace Ivan1986\DebBundle\Tests\Entity;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;
 use Ivan1986\DebBundle\Entity\GpgKey;
-use Ivan1986\DebBundle\Exception\GpgNotFound;
+use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 
 class GpgKeyTest extends WebTestCase
 {
@@ -34,7 +34,7 @@ class GpgKeyTest extends WebTestCase
     }
 
     /**
-     * @expectedException Ivan1986\DebBundle\Exception\GpgNotFound
+     * @expectedException Ivan1986\DebBundle\Exception\GpgNotFoundException
      */
     public function testGetNotExistKey()
     {
