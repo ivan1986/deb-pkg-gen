@@ -43,10 +43,25 @@ class BuilderController extends Controller
         $repo->setKey($key);
         $repo->setName($pkgName);
 
+        $this->buildPackage($repo);
 
-        $fs = new Filesystem();
-        $fs->mirror($this->path.'/tmpl', $this->path.'/'.$repo->pkgName());
+        return new Response($this->path);
+
+    }
+
+    public function buildPackage(Repository $repo)
+    {
         $dir = $this->path.'/'.$repo->pkgName();
+
+        $lockf = fopen($dir.'.lock', 'w');
+        if (!$lockf)
+            return false;
+        $lock = flock($lockf, LOCK_EX | LOCK_NB);
+        if (!$lock)
+            return false;
+        //Копирование и изменение шаблона
+        $fs = new Filesystem();
+        $fs->mirror($this->path.'/tmpl', $dir);
         $templater = $this->get('templating');
         /** @var $templater \Symfony\Bundle\TwigBundle\TwigEngine */
         $files = array('control', 'changelog', 'install');
@@ -70,10 +85,6 @@ class BuilderController extends Controller
         $p->setWorkingDirectory($dir);
         $p->run();
         $p->getExitCode();
-
-
-        return new Response($this->path);
-
     }
 
 }
