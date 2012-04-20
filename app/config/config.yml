@@ -20,6 +20,10 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        version: %version%
+        host: %host%
+        maintainer: %maintainer%
 
 # Assetic Configuration
 assetic:

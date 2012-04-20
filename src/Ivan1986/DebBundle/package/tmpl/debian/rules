@@ -2,3 +2,7 @@
 
 %:
 	dh $@ 
+
+override_dh_installdeb::
+	dh_installdeb
+	rm debian/*/DEBIAN/conffiles

@@ -1,0 +1,4 @@
+{% if repo.bin %}deb {{ repo.url }} {{ repo.release }} {{ repo.components|join(' ') }}{% endif %}
+
+{% if repo.src %}deb-src {{ repo.url }} {{ repo.release }} {{ repo.components|join(' ') }}{% endif %}
+

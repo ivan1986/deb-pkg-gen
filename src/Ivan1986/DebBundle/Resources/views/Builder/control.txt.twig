@@ -1,13 +1,15 @@
-Source: tmpl
+Source: {{ repo.pkgName }}
 Section: repo/deb
 Priority: extra
-Maintainer: Ivan Borzenkov <ivan1986@list.ru>
+Maintainer: {{ maintainer|raw }}
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.3
-Homepage: http://ya.ru
+Homepage: http://{{ host }}/
 
-Package: tmpl
+Package: {{ repo.pkgName }}
 Architecture: all
 Depends: apt, ${misc:Depends}
-Description: package to install ...
- ......
+Description: package to add {{ repo.url }}
+ add {{ repo.url }} {{ repo.release }} {{ repo.components|join(' ') }}
+ .
+ This package in auto generated

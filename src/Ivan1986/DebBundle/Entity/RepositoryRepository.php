@@ -21,7 +21,8 @@ class RepositoryRepository extends EntityRepository
      * @param $string строка
      * @param bool $bin бинарный есть
      * @param bool $src исходники есть
-     * @throws \Ivan1986\DebBundle\Exception\ParseRepoStringException
+     * @throws ParseRepoStringException
+     * @return Repository
      */
     public function createFromAptString($string, $bin=true, $src=true)
     {
