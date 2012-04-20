@@ -211,6 +211,11 @@ class Repository
         return $this->name;
     }
 
+    public function pkgName()
+    {
+        return 'repo-'.$this->getName();
+    }
+
     /**
      * @var GpgKey $key Ключ
      *

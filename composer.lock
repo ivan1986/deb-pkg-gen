@@ -91,7 +91,7 @@
         {
             "package": "kriswallsmith/assetic",
             "version": "dev-master",
-            "source-reference": "eb3b5eb732e5f172d5aa12dea0af36b7989c18b3"
+            "source-reference": "3acfb6afa50dd1dca387a8dfb641cd3b98a8584d"
         },
         {
             "package": "kriswallsmith/buzz",
@@ -105,7 +105,7 @@
         {
             "package": "sensio/distribution-bundle",
             "version": "dev-master",
-            "source-reference": "38be63ebb45cc1fbeaff3f2bdf6d0ed216305a24"
+            "source-reference": "a2f09ae4b38533d9f16083b740f6a77fb5efd313"
         },
         {
             "package": "sensio/framework-extra-bundle",
@@ -115,7 +115,7 @@
         {
             "package": "sensio/generator-bundle",
             "version": "dev-master",
-            "source-reference": "06d07e0514d310be8d5630bfd93637136991c30c"
+            "source-reference": "5f2ded5e5679f66c604f128d5650715bb81d7d7c"
         },
         {
             "package": "swiftmailer/swiftmailer",
@@ -129,7 +129,7 @@
         {
             "package": "symfony/monolog-bundle",
             "version": "dev-master",
-            "source-reference": "289442e385e7c0fe4aa2e8884d11e774a8f9ad99"
+            "source-reference": "aea0145e5669ed855db430e0f53536fab16b6dd7"
         },
         {
             "package": "symfony/swiftmailer-bridge",
@@ -139,12 +139,12 @@
         {
             "package": "symfony/swiftmailer-bundle",
             "version": "dev-master",
-            "source-reference": "75f8f95c201922a966274547131b33291d15d51b"
+            "source-reference": "1c6b57fe57210e9dcb5b4586d6572f47d17a25d7"
         },
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "85bb43935669eb1e92a5b32f5f20872f34377300",
+            "source-reference": "866b13e5fc2cd906126847f4e527783a0541eee7",
             "alias": "2.1.9999999.9999999-dev"
         },
         {

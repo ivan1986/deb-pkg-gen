@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class RepositoryRepository extends EntityRepository
 {
+
+    public function createFromAptString($string, $bin=true, $src=true)
+    {
+        //
+    }
+
 }
