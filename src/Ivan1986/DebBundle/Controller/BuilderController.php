@@ -53,10 +53,11 @@ class BuilderController extends Controller
     {
         $dir = $this->path.'/'.$repo->pkgName();
 
-        $lockf = fopen($dir.'.lock', 'w');
-        if (!$lockf)
+        $lockf = $dir.'.lock';
+        $lockr = fopen($lockf, 'w');
+        if (!$lockr)
             return false;
-        $lock = flock($lockf, LOCK_EX | LOCK_NB);
+        $lock = flock($lockr, LOCK_EX | LOCK_NB);
         if (!$lock)
             return false;
         //Копирование и изменение шаблона
@@ -84,7 +85,48 @@ class BuilderController extends Controller
         ));
         $p->setWorkingDirectory($dir);
         $p->run();
-        $p->getExitCode();
+        $exit = $p->getExitCode();
+        if ($exit)
+            return false;
+
+        //парсинг файла changes
+        $out = $p->getErrorOutput();
+        $pattern = 'dpkg-genchanges -b >../';
+        $fname = substr($out, strpos($out, $pattern) + strlen($pattern));
+        $fname = trim(substr($fname, 0, strpos($fname, 'dpkg-genchanges')));
+        $info = file($this->path.'/'.$fname);
+        $parse = array();
+        foreach($info as $k=>$line)
+        {
+            $line = trim($line);
+            if (!isset($info[$k+1]))
+                break;
+            $line2 = trim($info[$k+1]);
+            if ($line == 'Checksums-Sha1:')
+                $parse['str-sha1'] = $line2;
+            if ($line == 'Checksums-Sha256:')
+                $parse['str-sha256'] = $line2;
+            if ($line == 'Files:')
+                $parse['str-file'] = $line2;
+        }
+        $info = array();
+        $str = explode(' ',$parse['str-sha1']);
+        $info['SHA1'] = $str[0];
+        $str = explode(' ',$parse['str-sha256']);
+        $info['SHA256'] = $str[0];
+        $str = explode(' ',$parse['str-file']);
+        $info['MD5sum'] = $str[0];
+        $info['Size'] = $str[1];
+        $info['Filename'] = $file = $str[4];
+        $content = file_get_contents($this->path.'/'.$file);
+
+        unlink($this->path.'/'.$file);
+        unlink($this->path.'/'.$fname);
+
+        $fs->remove($dir);
+        flock($lockr, LOCK_UN);
+        fclose($lockr);
+        unlink($lockf);
     }
 
 }

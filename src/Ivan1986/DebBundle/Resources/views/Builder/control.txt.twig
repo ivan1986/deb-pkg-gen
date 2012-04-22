@@ -1,5 +1,5 @@
 Source: {{ repo.pkgName }}
-Section: repo/deb
+Section: main
 Priority: extra
 Maintainer: {{ maintainer|raw }}
 Build-Depends: debhelper (>= 8.0.0)
@@ -8,6 +8,7 @@ Homepage: http://{{ host }}/
 
 Package: {{ repo.pkgName }}
 Architecture: all
+Section: repo
 Depends: apt, ${misc:Depends}
 Description: package to add {{ repo.url }}
  add {{ repo.url }} {{ repo.release }} {{ repo.components|join(' ') }}

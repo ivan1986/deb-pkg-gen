@@ -1,5 +1,5 @@
 Source: tmpl
-Section: repo/deb
+Section: main
 Priority: extra
 Maintainer: Ivan Borzenkov <ivan1986@list.ru>
 Build-Depends: debhelper (>= 8.0.0)
@@ -8,6 +8,7 @@ Homepage: http://ya.ru
 
 Package: tmpl
 Architecture: all
+Section: repo
 Depends: apt, ${misc:Depends}
 Description: package to install ...
  ......
