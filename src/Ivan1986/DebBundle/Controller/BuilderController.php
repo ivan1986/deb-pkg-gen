@@ -14,6 +14,7 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Filesystem\Filesystem;
 use Ivan1986\DebBundle\Entity\RepositoryRepository;
 use Ivan1986\DebBundle\Entity\Repository;
+use Ivan1986\DebBundle\Entity\Package;
 
 class BuilderController extends Controller
 {
@@ -43,12 +44,17 @@ class BuilderController extends Controller
         $repo->setKey($key);
         $repo->setName($pkgName);
 
-        $this->buildPackage($repo);
+        $pkg = $this->buildPackage($repo);
+        return $pkg->getHttpResponse();
 
         return new Response($this->path);
 
     }
 
+    /**
+     * @param Repository $repo
+     * @return bool|Package
+     */
     public function buildPackage(Repository $repo)
     {
         $dir = $this->path.'/'.$repo->pkgName();
@@ -150,7 +156,6 @@ class BuilderController extends Controller
          * для подстановки полного имени файла
          */
 
-
         unlink($this->path.'/'.$file);
         unlink($this->path.'/'.$fname);
 
@@ -158,6 +163,12 @@ class BuilderController extends Controller
         flock($lockr, LOCK_UN);
         fclose($lockr);
         unlink($lockf);
+
+        $package = new Package();
+        $package->setContent($content);
+        $package->setFile($file);
+        $package->setInfo($finfo);
+        return $package;
     }
 
 }
