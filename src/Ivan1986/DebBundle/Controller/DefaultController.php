@@ -22,6 +22,15 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/")
+     * @Template()
+     */
+    public function packageformAction()
+    {
+        return array();
+    }
+
+    /**
      * @Route("/key/{key}")
      * @Template()
      */

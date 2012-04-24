@@ -8,6 +8,10 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+        <footer>
+            <p><a href="https://github.com/ivan1986/deb-pkg-gen">https://github.com/ivan1986/deb-pkg-gen</a></p>
+            <p>{{maintainer}}</p>
+        </footer>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

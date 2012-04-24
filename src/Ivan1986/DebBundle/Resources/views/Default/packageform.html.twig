@@ -1,0 +1,9 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<form action="{{ path('pkg_build') }}" method="post">
+    <p><label>Урл репы: <input type="text" name="url"></label></p>
+    <p><label>Ключ: <input type="text" name="key"></label></p>
+    <p><label>Имя: <input type="text" name="name"></label></p>
+    <p><input type="submit"></p>
+</form>
+{% endblock %}

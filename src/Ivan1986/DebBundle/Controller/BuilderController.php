@@ -27,28 +27,27 @@ class BuilderController extends Controller
     }
 
     /**
-     * @Route("/")
+     * @Route("/pkg/", name="pkg_build")
+     * @Template()
      */
     public function indexAction()
     {
+        $key = $this->getRequest()->get('key');
+        $url = $this->getRequest()->get('url');
+        $name = $this->getRequest()->get('name');
         $keys = $this->getDoctrine()->getRepository('Ivan1986DebBundle:GpgKey');
         /** @var $keys GpgKeyRepository */
-        $key = $keys->getFromServer('B9B60E76', 'keyserver.ubuntu.com');
-
-        $pkgName = 'psi-plus';
+        $key = $keys->getFromServer($key, 'keyserver.ubuntu.com');
 
         $repos = $this->getDoctrine()->getRepository('Ivan1986DebBundle:Repository');
         /** @var $repos RepositoryRepository */
-        $repo = $repos->createFromAptString('deb http://ppa.launchpad.net/psi-plus/ppa/ubuntu oneiric main');
+        $repo = $repos->createFromAptString($url);
         /** @var $repo Repository */
         $repo->setKey($key);
-        $repo->setName($pkgName);
+        $repo->setName($name);
 
         $pkg = $this->buildPackage($repo);
         return $pkg->getHttpResponse();
-
-        return new Response($this->path);
-
     }
 
     /**
