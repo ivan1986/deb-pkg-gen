@@ -26,6 +26,9 @@
 
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "Anchovy/CURLBundle": "*",
+        "sensio/buzz-bundle": "*",
+        "sonata-project/user-bundle": "*",
+        "sonata-project/doctrine-orm-admin-bundle": "*",
 
         "behat/behat-bundle": "*",
         "behat/mink-bundle": "*",
