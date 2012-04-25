@@ -216,6 +216,14 @@ class Repository
         return 'repo-'.$this->getName();
     }
 
+    public function getDebStrings()
+    {
+        $str = $this->getUrl().' '.$this->getRelease().' '.implode(' ', $this->getComponents());
+        return
+            ($this->bin ? ('deb '.$str."\n") : '').
+            ($this->src ? ('deb-src '.$str."\n") : '');
+    }
+
     /**
      * @var GpgKey $key Ключ
      *

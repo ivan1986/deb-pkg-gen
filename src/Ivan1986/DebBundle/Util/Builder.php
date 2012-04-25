@@ -54,9 +54,7 @@ class Builder
                 'repo' => $repo,
             )));
         }
-        file_put_contents($dir.'/'.$repo->pkgName().'.list', $this->t->render('Ivan1986DebBundle:Builder:list.txt.twig', array(
-            'repo' => $repo,
-        )));
+        file_put_contents($dir.'/'.$repo->pkgName().'.list', $repo->getDebStrings());
         file_put_contents($dir.'/'.$repo->pkgName().'.gpg', $repo->getKey()->getData());
 
         $env = array(
