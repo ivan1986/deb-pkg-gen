@@ -24,8 +24,17 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Anchovy\CURLBundle\AnchovyCURLBundle(),
 
+            //пользователи и админка
+            new FOS\UserBundle\FOSUserBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+
             //Свои
             new Ivan1986\DebBundle\Ivan1986DebBundle(),
+            new Ivan1986\UserBundle\Ivan1986UserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
