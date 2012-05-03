@@ -28,6 +28,7 @@
         "Anchovy/CURLBundle": "*",
         "sensio/buzz-bundle": "*",
         "sonata-project/user-bundle": "*",
+        "sonata-project/easy-extends-bundle": "*",
         "sonata-project/doctrine-orm-admin-bundle": "*",
 
         "behat/behat-bundle": "*",

@@ -1,5 +1,5 @@
 {
-    "hash": "087a6f9d8d96cb532f83bf719d34a0d8",
+    "hash": "41eedd79bf8c06323e0e63ba846d1040",
     "packages": [
         {
             "package": "Anchovy/CURLBundle",
@@ -167,6 +167,11 @@
             "source-reference": "9e2ea953d53c0ed9412d30507029dc013851b818"
         },
         {
+            "package": "sonata-project/easy-extends-bundle",
+            "version": "dev-master",
+            "source-reference": "a01068d79ac160105c1d757b9e3e65f74064803c"
+        },
+        {
             "package": "sonata-project/exporter",
             "version": "dev-master",
             "source-reference": "be2921f67b291a22186164af27a3aab9a577db17"
@@ -210,7 +215,7 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "b983fcd5654d2caa285d27ea61fe0089beacdb6e",
+            "source-reference": "b49d611eca0c7fe3e38dc13b0b41a64eab135ea2",
             "alias": "2.1.9999999.9999999-dev"
         },
         {

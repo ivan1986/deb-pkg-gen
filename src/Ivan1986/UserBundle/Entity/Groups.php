@@ -2,6 +2,7 @@
 
 namespace Ivan1986\UserBundle\Entity;
 
+use FOS\UserBundle\Entity\Group as GroupUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Ivan1986\UserBundle\Entity\GroupsRepository")
  */
-class Groups
+class Groups extends GroupUser
 {
     /**
      * @var integer $id
@@ -19,7 +20,7 @@ class Groups
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
 
     /**

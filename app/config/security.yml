@@ -4,6 +4,7 @@ jms_security_extra:
 
 security:
     encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
         Ivan1986\UserBundle\Entity\User: sha512
 
     role_hierarchy:
@@ -11,6 +12,9 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+        chain_provider:
+            chain:
+              providers: [in_memory, fos_userbundle]
         fos_userbundle:
             id: fos_user.user_manager
         in_memory:
@@ -26,7 +30,7 @@ security:
         main:
             pattern: ^/
             form_login:
-                provider: fos_userbundle
+                provider: chain_provider
                 csrf_provider: form.csrf_provider
             logout:       true
             anonymous:    true
@@ -39,6 +43,14 @@ security:
         - { path: ^/profile/, role: ROLE_USER }
 
 fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    db_driver: orm
     firewall_name: main
     user_class: Ivan1986\UserBundle\Entity\User
+    group:
+      group_class: Ivan1986\UserBundle\Entity\Group
+
+sonata_user:
+    security_acl:     false
+    class:
+        user:         Ivan1986\UserBundle\Entity\User
+        group:        Ivan1986\UserBundle\Entity\Groups
