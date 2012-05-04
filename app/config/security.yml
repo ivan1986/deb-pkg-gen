@@ -27,6 +27,21 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        admin:
+            switch_user:        true
+            context:            user
+            pattern:            /admin(.*)
+            form_login:
+                provider:       fos_userbundle
+                login_path:     /admin/login
+                use_forward:    false
+                check_path:     /admin/login_check
+                failure_path:   null
+                use_referer:    true
+            logout:
+                path:           /admin/logout
+                target:         /admin/login
+            anonymous:    true
         main:
             pattern: ^/
             form_login:
@@ -36,6 +51,11 @@ security:
             anonymous:    true
 
     access_control:
+        # -> custom access control for the admin area of the URL
+        - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        # -> end
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
