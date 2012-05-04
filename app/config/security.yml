@@ -4,24 +4,14 @@ jms_security_extra:
 
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
         Ivan1986\UserBundle\Entity\User: sha512
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN:       [ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        chain_provider:
-            chain:
-              providers: [in_memory, fos_userbundle]
         fos_userbundle:
             id: fos_user.user_manager
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
         dev:
@@ -43,12 +33,17 @@ security:
                 target:         /admin/login
             anonymous:    true
         main:
-            pattern: ^/
+            switch_user:        true
+            context:            user
+            pattern:            .*
             form_login:
-                provider: chain_provider
-                csrf_provider: form.csrf_provider
-            logout:       true
-            anonymous:    true
+                provider:       fos_userbundle
+                login_path:     /login
+                use_forward:    false
+                check_path:     /login_check
+                failure_path:   null
+            logout:             true
+            anonymous:          true
 
     access_control:
         # -> custom access control for the admin area of the URL
@@ -61,6 +56,7 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/profile/, role: ROLE_USER }
+        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
 fos_user:
     db_driver: orm
