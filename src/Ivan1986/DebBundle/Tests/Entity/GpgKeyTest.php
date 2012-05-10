@@ -17,7 +17,7 @@ class GpgKeyTest extends Entity
         /** @var $key GpgKey */
         $this->assertEquals($key->getId(), $id);
         $this->assertEquals($key->getFingerprint(), '33C640DA31127882C496917F6831CF9528FA7071');
-        $this->assertEquals(md5($key->getData()), 'd9d1f2cfc30034c1b12b5d9f3d03315b');
+        $this->assertTrue(strpos($key->getData(), 'Ivan Borzenkov <ivan1986@list.ru>')>0);
     }
 
     /**
