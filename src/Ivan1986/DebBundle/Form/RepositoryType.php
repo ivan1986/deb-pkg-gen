@@ -4,6 +4,7 @@ namespace Ivan1986\DebBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use Ivan1986\DebBundle\Form\Type\GpgKeyType;
 
 class RepositoryType extends AbstractType
 {
@@ -16,7 +17,7 @@ class RepositoryType extends AbstractType
             ->add('bin')
             ->add('src')
             ->add('name')
-            ->add('key')
+            ->add('key', 'gpgkey_selector')
         ;
     }
 

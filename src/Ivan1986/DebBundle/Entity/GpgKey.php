@@ -35,7 +35,7 @@ class GpgKey
     /**
      * Get id
      *
-     * @return integer 
+     * @return string
      */
     public function getId()
     {

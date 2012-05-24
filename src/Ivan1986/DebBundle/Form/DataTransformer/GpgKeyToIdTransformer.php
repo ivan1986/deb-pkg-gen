@@ -48,7 +48,13 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      */
     function transform($value)
     {
-        // TODO: Implement transform() method.
+        if ($value == null)
+            return '';
+
+        if ($value == '')
+            return '';
+        // TODO: Implement reverseTransform() method.
+        return $value->getId();
     }
 
     /**
@@ -78,6 +84,7 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      */
     function reverseTransform($value)
     {
+        return new GpgKey();
         // TODO: Implement reverseTransform() method.
     }
 

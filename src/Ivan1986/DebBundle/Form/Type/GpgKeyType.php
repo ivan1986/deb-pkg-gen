@@ -21,6 +21,7 @@ class GpgKeyType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $transformer = new GpgKeyToIdTransformer($this->om);
+        $builder->resetClientTransformers();
         $builder->appendClientTransformer($transformer);
     }
 
