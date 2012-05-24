@@ -12,7 +12,7 @@ class RepositoryType extends AbstractType
         $builder
             ->add('url')
             ->add('release')
-            ->add('components')
+            ->add('components', 'collection')
             ->add('bin')
             ->add('src')
             ->add('name')
