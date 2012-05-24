@@ -4,6 +4,7 @@ namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Ivan1986\DebBundle\Entity\GpgKey;
+use Ivan1986\UserBundle\Entity\User;
 
 /**
  * Ivan1986\DebBundle\Entity\Repository
@@ -224,6 +225,7 @@ class Repository
             ($this->src ? ('deb-src '.$str."\n") : '');
     }
 
+    //<editor-fold defaultstate="collapsed" desc="Ключ">
     /**
      * @var GpgKey $key Ключ
      *
@@ -252,4 +254,39 @@ class Repository
     {
         return $this->key;
     }
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Пользователь">
+    /**
+     * @var User $owner Пользователь, создавший пакет
+     *
+     * @ORM\ManyToOne(targetEntity="Ivan1986\UserBundle\Entity\User")
+     */
+    protected $owner;
+
+
+    /**
+     * Set owner
+     *
+     * @param User $owner
+     * @return Repository
+     */
+    public function setOwner(User $owner = null)
+    {
+        $this->owner = $owner;
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+    //</editor-fold>
+
+
 }

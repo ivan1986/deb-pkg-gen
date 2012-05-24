@@ -16,7 +16,7 @@
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td><a href="{{ path('my_repos_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td><a href="{{ path('repos_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
             <td>{{ entity.url }}</td>
             <td>{{ entity.release }}</td>
             <td>{{ entity.components }}</td>
@@ -26,10 +26,10 @@
             <td>
                 <ul>
                     <li>
-                        <a href="{{ path('my_repos_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('repos_show', { 'id': entity.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('my_repos_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('repos_edit', { 'id': entity.id }) }}">edit</a>
                     </li>
                 </ul>
             </td>
@@ -40,7 +40,7 @@
 
 <ul>
     <li>
-        <a href="{{ path('my_repos_new') }}">
+        <a href="{{ path('repos_new') }}">
             Create a new entry
         </a>
     </li>

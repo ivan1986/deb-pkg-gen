@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Ivan1986\UserBundle\Entity\User;
 
 use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 
@@ -55,6 +56,11 @@ class RepositoryRepository extends EntityRepository
             $repo->setComponents($items);
 
         return $repo;
+    }
+
+    public function getByUser(User $user)
+    {
+        return $this->findBy(array('owner' => $user->getId()));
     }
 
 }

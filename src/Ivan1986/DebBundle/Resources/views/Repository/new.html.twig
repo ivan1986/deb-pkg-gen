@@ -1,6 +1,6 @@
 <h1>Repository creation</h1>
 
-<form action="{{ path('my_repos_create') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('repos_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
         <button type="submit">Create</button>
@@ -9,7 +9,7 @@
 
 <ul class="record_actions">
     <li>
-        <a href="{{ path('my_repos') }}">
+        <a href="{{ path('repos') }}">
             Back to the list
         </a>
     </li>

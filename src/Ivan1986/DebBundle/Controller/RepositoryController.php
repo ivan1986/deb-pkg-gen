@@ -12,21 +12,21 @@ use Ivan1986\DebBundle\Form\RepositoryType;
 /**
  * Repository controller.
  *
- * @Route("/my_repos")
+ * @Route("/profile/repos")
  */
 class RepositoryController extends Controller
 {
     /**
      * Lists all Repository entities.
      *
-     * @Route("/", name="my_repos")
+     * @Route("/", name="repos")
      * @Template()
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('Ivan1986DebBundle:Repository')->findAll();
+        $entities = $em->getRepository('Ivan1986DebBundle:Repository')->getByUser($this->getUser());
 
         return array(
             'entities' => $entities,
@@ -36,7 +36,7 @@ class RepositoryController extends Controller
     /**
      * Finds and displays a Repository entity.
      *
-     * @Route("/{id}/show", name="my_repos_show")
+     * @Route("/{id}/show", name="repos_show")
      * @Template()
      */
     public function showAction($id)
@@ -60,7 +60,7 @@ class RepositoryController extends Controller
     /**
      * Displays a form to create a new Repository entity.
      *
-     * @Route("/new", name="my_repos_new")
+     * @Route("/new", name="repos_new")
      * @Template()
      */
     public function newAction()
@@ -77,7 +77,7 @@ class RepositoryController extends Controller
     /**
      * Creates a new Repository entity.
      *
-     * @Route("/create", name="my_repos_create")
+     * @Route("/create", name="repos_create")
      * @Method("post")
      * @Template("Ivan1986DebBundle:Repository:new.html.twig")
      */
@@ -93,7 +93,7 @@ class RepositoryController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('my_repos_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('repos_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -105,7 +105,7 @@ class RepositoryController extends Controller
     /**
      * Displays a form to edit an existing Repository entity.
      *
-     * @Route("/{id}/edit", name="my_repos_edit")
+     * @Route("/{id}/edit", name="repos_edit")
      * @Template()
      */
     public function editAction($id)
@@ -131,7 +131,7 @@ class RepositoryController extends Controller
     /**
      * Edits an existing Repository entity.
      *
-     * @Route("/{id}/update", name="my_repos_update")
+     * @Route("/{id}/update", name="repos_update")
      * @Method("post")
      * @Template("Ivan1986DebBundle:Repository:edit.html.twig")
      */
@@ -156,7 +156,7 @@ class RepositoryController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('my_repos_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('repos_edit', array('id' => $id)));
         }
 
         return array(
@@ -169,7 +169,7 @@ class RepositoryController extends Controller
     /**
      * Deletes a Repository entity.
      *
-     * @Route("/{id}/delete", name="my_repos_delete")
+     * @Route("/{id}/delete", name="repos_delete")
      * @Method("post")
      */
     public function deleteAction($id)
@@ -191,7 +191,7 @@ class RepositoryController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('my_repos'));
+        return $this->redirect($this->generateUrl('repos'));
     }
 
     private function createDeleteForm($id)
