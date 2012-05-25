@@ -58,9 +58,28 @@ class RepositoryRepository extends EntityRepository
         return $repo;
     }
 
+    /**
+     * Получить репозитории пользователя
+     *
+     * @param User $user
+     * @return array
+     */
     public function getByUser(User $user)
     {
         return $this->findBy(array('owner' => $user->getId()));
     }
+
+    /**
+     * Получить репозиторий по ID с проверкой пользователя
+     *
+     * @param $id ID репозитория
+     * @param User $user пользователь
+     * @return object
+     */
+    public function getByIdAndCheckUser($id, User $user)
+    {
+        return $this->findOneBy(array('id' => $id, 'owner' => $user->getId()));
+    }
+
 
 }

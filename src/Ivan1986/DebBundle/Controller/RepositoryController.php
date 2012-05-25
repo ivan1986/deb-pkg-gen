@@ -43,7 +43,7 @@ class RepositoryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('Ivan1986DebBundle:Repository')->find($id);
+        $entity = $em->getRepository('Ivan1986DebBundle:Repository')->getByIdAndCheckUser($id, $this->getUser());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Repository entity.');
@@ -90,6 +90,7 @@ class RepositoryController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setOwner($this->getUser());
             $em->persist($entity);
             $em->flush();
 
@@ -112,7 +113,7 @@ class RepositoryController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('Ivan1986DebBundle:Repository')->find($id);
+        $entity = $em->getRepository('Ivan1986DebBundle:Repository')->getByIdAndCheckUser($id, $this->getUser());
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Repository entity.');

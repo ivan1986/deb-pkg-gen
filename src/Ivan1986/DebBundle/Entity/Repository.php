@@ -40,35 +40,35 @@ class Repository
     /**
      * @var string $url Адрес репозитория
      *
-     * @ORM\Column(name="url", type="string")
+     * @ORM\Column(name="`url`", type="string")
      */
     protected $url;
 
     /**
      * @var string $name Релиз (stable,testing,sid, natty,oneiric)
      *
-     * @ORM\Column(name="release", type="string")
+     * @ORM\Column(name="`release`", type="string")
      */
     protected $release;
 
     /**
      * @var string $components Компоненты
      *
-     * @ORM\Column(name="components", type="array")
+     * @ORM\Column(name="`components`", type="array")
      */
     protected $components;
 
     /**
      * @var boolean $bin В репозитории есть бинарники
      *
-     * @ORM\Column(name="bin", type="boolean")
+     * @ORM\Column(name="`bin`", type="boolean")
      */
     protected $bin = true;
 
     /**
      * @var boolean $src В репозитории есть исходный код
      *
-     * @ORM\Column(name="src", type="boolean")
+     * @ORM\Column(name="`src`", type="boolean")
      */
     protected $src = true;
 
@@ -186,7 +186,7 @@ class Repository
     /**
      * @var string $name Имя репозитория
      *
-     * @ORM\Column(name="name", type="string")
+     * @ORM\Column(name="`name`", type="string")
      */
     protected $name;
 
