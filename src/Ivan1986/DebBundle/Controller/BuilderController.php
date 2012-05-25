@@ -40,10 +40,8 @@ class BuilderController extends Controller
         /** @var $keys GpgKeyRepository */
         $key = $keys->getFromServer($key, 'keyserver.ubuntu.com');
 
-        $repos = $this->getDoctrine()->getRepository('Ivan1986DebBundle:Repository');
-        /** @var $repos RepositoryRepository */
-        $repo = $repos->createFromAptString($url);
-        /** @var $repo Repository */
+        $repo = new Repository();
+        $repo->setRepoString($url);
         $repo->setKey($key);
         $repo->setName($name);
 

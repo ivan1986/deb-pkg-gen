@@ -34,10 +34,8 @@ class BuilderTest extends WebTestCase
         /** @var $keys GpgKeyRepository */
         $id = '28FA7071';
         $key = $keys->getFromServer($id, 'keyserver.ubuntu.com');
-        $repo = $this->em->getRepository('Ivan1986DebBundle:Repository');
-        /** @var $repo RepositoryRepository */
-        $rep = $repo->createFromAptString('deb http://ppa.launchpad.net/psi-plus/ppa/ubuntu oneiric main');
-        /** @var $rep Repository */
+        $rep = new Repository();
+        $rep->setRepoString('deb http://ppa.launchpad.net/psi-plus/ppa/ubuntu oneiric main');
         $rep->setKey($key);
         $rep->setName('phpunit-test');
 

@@ -24,10 +24,8 @@ class RepositoryTest extends Entity
      */
     public function testPPA($string, $url, $rel)
     {
-        $repo = $this->em->getRepository('Ivan1986DebBundle:Repository');
-        /** @var $repo RepositoryRepository */
-        $r = $repo->createFromAptString($string);
-        /** @var $r Repository */
+        $r = new Repository();
+        $r->setRepoString($string);
         $this->assertTrue($r instanceof Repository);
         $this->assertEquals($r->getUrl(), $url);
         $this->assertEquals($r->getRelease(), $rel);
@@ -53,11 +51,8 @@ class RepositoryTest extends Entity
      */
     public function testStdRepo($string, $rel, $components)
     {
-        $repo = $this->em->getRepository('Ivan1986DebBundle:Repository');
-        /** @var $repo RepositoryRepository */
-        $r = $repo->createFromAptString($string);
-        /** @var $r Repository */
-        $this->assertTrue($r instanceof Repository);
+        $r = new Repository();
+        $r->setRepoString($string);
         $this->assertEquals($r->getUrl(), 'http://repo.ru/');
         $this->assertEquals($r->getRelease(), $rel);
         $this->assertEquals($r->getComponents(), $components);
@@ -82,9 +77,8 @@ class RepositoryTest extends Entity
      */
     public function testParseError($string)
     {
-        $repo = $this->em->getRepository('Ivan1986DebBundle:Repository');
-        /** @var $repo RepositoryRepository */
-        $repo->createFromAptString($string);
+        $r = new Repository();
+        $r->setRepoString($string);
     }
     //</editor-fold>
 
@@ -103,11 +97,8 @@ class RepositoryTest extends Entity
      */
     public function testParseSimple($string)
     {
-        $repo = $this->em->getRepository('Ivan1986DebBundle:Repository');
-        /** @var $repo RepositoryRepository */
-        $r = $repo->createFromAptString($string);
-        /** @var $r Repository */
-        $this->assertTrue($r instanceof Repository);
+        $r = new Repository();
+        $r->setRepoString($string);
         $this->assertEquals($r->getRelease(), './');
         $this->assertEquals($r->getUrl(), 'http://repo.ru/');
     }

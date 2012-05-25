@@ -5,6 +5,7 @@ namespace Ivan1986\DebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\UserBundle\Entity\User;
+use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 
 /**
  * Ivan1986\DebBundle\Entity\Repository
@@ -135,7 +136,7 @@ class Repository
      */
     public function getComponents()
     {
-        return $this->components;
+        return $this->components ? $this->components : array();
     }
 
     /**
@@ -217,12 +218,62 @@ class Repository
         return 'repo-'.$this->getName();
     }
 
+    /**
+     * Строки в файле deb репозитория
+     *
+     * @return string
+     */
     public function getDebStrings()
     {
-        $str = $this->getUrl().' '.$this->getRelease().' '.implode(' ', $this->getComponents());
+        $str = $this->getRepoString();
         return
             ($this->bin ? ('deb '.$str."\n") : '').
             ($this->src ? ('deb-src '.$str."\n") : '');
+    }
+
+    /**
+     * Строка репозитория
+     *
+     * @return string
+     */
+    public function getRepoString()
+    {
+        return trim($this->getUrl().' '.$this->getRelease().' '.implode(' ', $this->getComponents()));
+    }
+
+    /**
+     * Разбирает строку репозитория
+     *
+     * @param string $name
+     * @return Repository
+     */
+    public function setRepoString($string)
+    {
+        $items = explode(' ', $string);
+        //устраняем лишние пробелы
+        foreach($items as $k=>$v)
+            if (empty($v))
+                unset($items[$k]);
+        $items = array_values($items);
+
+        if (count($items) == 0)
+            throw new ParseRepoStringException($string, 'Empty String', 0);
+        if ($items[0] == 'deb' || $items[0] == 'deb-src')
+            array_shift($items);
+        if (count($items) == 0)
+            throw new ParseRepoStringException($string, 'Not Found Url', 1);
+        $this->setUrl(array_shift($items));
+
+        if (count($items) == 0)
+            throw new ParseRepoStringException($string, 'Not Found Release', 2);
+
+        $this->setRelease(array_shift($items));
+
+        //Если нету компонентов, то это упрощенный репозиторий, что тоже нормально
+        if (count($items))
+            $this->setComponents($items);
+
+        return $this;
     }
 
     //<editor-fold defaultstate="collapsed" desc="Ключ">

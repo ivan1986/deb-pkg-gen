@@ -3,17 +3,17 @@
 namespace Ivan1986\DebBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormBuilder;
 use Ivan1986\DebBundle\Form\Type\GpgKeyType;
+use Ivan1986\DebBundle\Form\DataTransformer\RepositoryToStringTransformer;
 
 class RepositoryType extends AbstractType
 {
+
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder
-            ->add('url')
-            ->add('release')
-            ->add('components', 'collection')
+        $builder->add('repoString')
             ->add('bin')
             ->add('src')
             ->add('name')
@@ -25,4 +25,5 @@ class RepositoryType extends AbstractType
     {
         return 'ivan1986_debbundle_repositorytype';
     }
+
 }
