@@ -184,6 +184,7 @@ class Repository
     }
     //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="Название пакете в системе">
     /**
      * @var string $name Имя репозитория
      *
@@ -217,6 +218,9 @@ class Repository
     {
         return 'repo-'.$this->getName();
     }
+    //</editor-fold>
+
+    //<editor-fold defaultstate="collapsed" desc="Строка репозитория">
 
     /**
      * Строки в файле deb репозитория
@@ -275,6 +279,7 @@ class Repository
 
         return $this;
     }
+    //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Ключ">
     /**
@@ -338,6 +343,5 @@ class Repository
         return $this->owner;
     }
     //</editor-fold>
-
 
 }
