@@ -3,7 +3,7 @@
 namespace Ivan1986\DebBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Ivan1986\DebBundle\Form\DataTransformer\GpgKeyToIdTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -18,7 +18,7 @@ class GpgKeyType extends AbstractType
         $this->om = $om;
     }
 
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $transformer = new GpgKeyToIdTransformer($this->om);
         $builder->resetClientTransformers();
@@ -32,7 +32,7 @@ class GpgKeyType extends AbstractType
         );
     }
 
-    public function getParent(array $options)
+    public function getParent()
     {
         return 'text';
     }

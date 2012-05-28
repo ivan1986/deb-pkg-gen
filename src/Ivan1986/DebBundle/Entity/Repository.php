@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\UserBundle\Entity\User;
 use Ivan1986\DebBundle\Exception\ParseRepoStringException;
@@ -343,5 +344,12 @@ class Repository
         return $this->owner;
     }
     //</editor-fold>
+
+    /**
+     * @var DateTime Время редактирования репозитория
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
 
 }

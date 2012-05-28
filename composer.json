@@ -25,6 +25,7 @@
         "jms/di-extra-bundle": "1.0.1",
 
         "doctrine/doctrine-migrations-bundle": "dev-master",
+        "stof/doctrine-extensions-bundle": "*",
         "Anchovy/CURLBundle": "*",
         "sensio/buzz-bundle": "*",
         "sonata-project/user-bundle": "*",

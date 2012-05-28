@@ -4,14 +4,14 @@ namespace Ivan1986\DebBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Ivan1986\DebBundle\Form\Type\GpgKeyType;
 use Ivan1986\DebBundle\Form\DataTransformer\RepositoryToStringTransformer;
 
 class RepositoryType extends AbstractType
 {
 
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('repoString')
             ->add('bin')

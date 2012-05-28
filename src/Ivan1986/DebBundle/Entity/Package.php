@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -35,9 +36,23 @@ class Package
     /**
      * @var string Информация для списка
      *
-     * @ORM\Column(name="info", type="string")
+     * @ORM\Column(name="info", type="text")
      */
     protected $info;
+
+    /**
+     * @var Repository Репозиторий этого пакета
+     *
+     * @ORM\ManyToOne(targetEntity="Ivan1986\DebBundle\Entity\Repository", cascade="all")
+     */
+    protected $repository;
+
+    /**
+     * @var DateTime Время создания пакета
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
 
     /**
      * @var string Имя файла
