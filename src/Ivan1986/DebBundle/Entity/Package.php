@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\PackageRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="pkgType", type="string")
- * @ORM\DiscriminatorMap({"small" = "Package"})
+ * @ORM\DiscriminatorMap({"simple" = "SimplePackage", "sys" = "SysPackage"})
  */
 class Package
 {
@@ -39,13 +39,6 @@ class Package
      * @ORM\Column(name="info", type="text")
      */
     protected $info;
-
-    /**
-     * @var Repository Репозиторий этого пакета
-     *
-     * @ORM\ManyToOne(targetEntity="Ivan1986\DebBundle\Entity\Repository", cascade="all")
-     */
-    protected $repository;
 
     /**
      * @var DateTime Время создания пакета
@@ -157,19 +150,4 @@ class Package
         return $this->created;
     }
 
-    /**
-     * @param \Ivan1986\DebBundle\Entity\Repository $repository
-     */
-    public function setRepository($repository)
-    {
-        $this->repository = $repository;
-    }
-
-    /**
-     * @return \Ivan1986\DebBundle\Entity\Repository
-     */
-    public function getRepository()
-    {
-        return $this->repository;
-    }
 }
