@@ -12,4 +12,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class PackageRepository extends EntityRepository
 {
+
+    public function getSystem()
+    {
+        return $this->findBy(array('repository' => null));
+    }
+
 }

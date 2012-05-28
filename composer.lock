@@ -1,5 +1,5 @@
 {
-    "hash": "105fb1f63d7bbdfcadf8719407dc854a",
+    "hash": "7f19cc4b82f1b280839bd9556f20c0ac",
     "packages": [
         {
             "package": "Anchovy/CURLBundle",
@@ -26,7 +26,8 @@
         },
         {
             "package": "behat/mink",
-            "version": "v1.3.3"
+            "version": "dev-master",
+            "source-reference": "v1.3.3"
         },
         {
             "package": "behat/mink-bundle",
@@ -115,14 +116,14 @@
         {
             "package": "kriswallsmith/assetic",
             "version": "dev-master",
-            "source-reference": "1a1b5f963db158a1065343fab617d25ce351a2dc"
+            "source-reference": "1a1b5f963db158a1065343fab617d25ce351a2dc",
+            "alias-pretty-version": "1.1.x-dev",
+            "alias-version": "1.1.9999999.9999999-dev"
         },
         {
             "package": "kriswallsmith/assetic",
             "version": "dev-master",
-            "source-reference": "1a1b5f963db158a1065343fab617d25ce351a2dc",
-            "alias-pretty-version": "1.1.x-dev",
-            "alias-version": "1.1.9999999.9999999-dev"
+            "source-reference": "1a1b5f963db158a1065343fab617d25ce351a2dc"
         },
         {
             "package": "kriswallsmith/buzz",
@@ -205,6 +206,13 @@
         {
             "package": "swiftmailer/swiftmailer",
             "version": "dev-master",
+            "source-reference": "9895567cec5a13d1a43db5053defbaad260c1b87",
+            "alias-pretty-version": "4.1.x-dev",
+            "alias-version": "4.1.9999999.9999999-dev"
+        },
+        {
+            "package": "swiftmailer/swiftmailer",
+            "version": "dev-master",
             "source-reference": "d33d54cc8a081b0b85734744936ede1ba230dd64"
         },
         {
@@ -227,19 +235,24 @@
         {
             "package": "symfony/swiftmailer-bridge",
             "version": "dev-master",
+            "source-reference": "408eb09f5799d393ddc3d916ec3667857fb3a20d"
+        },
+        {
+            "package": "symfony/swiftmailer-bridge",
+            "version": "dev-master",
             "source-reference": "408eb09f5799d393ddc3d916ec3667857fb3a20d",
             "alias-pretty-version": "2.1.x-dev",
             "alias-version": "2.1.9999999.9999999-dev"
         },
         {
-            "package": "symfony/swiftmailer-bridge",
-            "version": "dev-master",
-            "source-reference": "408eb09f5799d393ddc3d916ec3667857fb3a20d"
-        },
-        {
             "package": "symfony/swiftmailer-bundle",
             "version": "dev-master",
             "source-reference": "71e1789868665cf94dc7831f645625fd0f70aac6"
+        },
+        {
+            "package": "symfony/symfony",
+            "version": "dev-master",
+            "source-reference": "adf07f1e539193ae1975348afc34ed37e1382e0a"
         },
         {
             "package": "symfony/symfony",
@@ -251,7 +264,9 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "adf07f1e539193ae1975348afc34ed37e1382e0a"
+            "source-reference": "ea33d4d377bacd6804ab9c304dbbd70cfc5d2860",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "twig/extensions",
@@ -261,7 +276,7 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "47e9b95c37d20dd40d94ccbb260bc835b6b1d540",
+            "source-reference": "0fa26d642994630b2ec19c090149fa56ce84c789",
             "alias-pretty-version": "1.8.x-dev",
             "alias-version": "1.8.9999999.9999999-dev"
         },
@@ -269,6 +284,13 @@
             "package": "twig/twig",
             "version": "dev-master",
             "source-reference": "47e9b95c37d20dd40d94ccbb260bc835b6b1d540"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "source-reference": "47e9b95c37d20dd40d94ccbb260bc835b6b1d540",
+            "alias-pretty-version": "1.8.x-dev",
+            "alias-version": "1.8.9999999.9999999-dev"
         }
     ],
     "packages-dev": null,

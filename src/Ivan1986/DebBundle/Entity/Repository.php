@@ -201,7 +201,7 @@ class Repository
      */
     public function setName($name)
     {
-        $this->name = $name;
+        $this->name = str_replace('.', '-', $name);
         return $this;
     }
 

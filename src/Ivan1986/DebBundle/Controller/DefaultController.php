@@ -7,8 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use Symfony\Component\HttpFoundation\Response;
+use Ivan1986\DebBundle\Util\Builder;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;
+use Ivan1986\DebBundle\Entity\Repository;
 
 class DefaultController extends Controller
 {
@@ -31,18 +33,27 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/key/{key}")
+     * @Route("/main_repo")
      * @Template()
      */
-    public function getgpgAction($key)
+    public function mainPackageAction()
     {
-        //"http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x6831CF9528FA7071"
-        //"http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x28FA7071"
         $keys = $this->getDoctrine()->getRepository('Ivan1986DebBundle:GpgKey');
         /** @var $keys GpgKeyRepository */
-        $key = $keys->getFromServer('28FA7071', 'keyserver.ubuntu.com');
+        $key = $keys->getFromServer($this->container->getParameter('key'), 'keyserver.ubuntu.com');
 
-        return new Response($key);
+        $repo = new Repository();
+        $repo->setUrl($this->generateUrl('repo', array(), true));
+        $repo->setSrc(false);
+        $repo->setKey($key);
+        $repo->setRelease('stable');
+        $repo->setComponents(array('main'));
+        $repo->setName($this->container->getParameter('host'));
+
+        $builder = new Builder($this->get('templating'));
+        $pkg = $builder->simplePackage($repo);
+
+        return $pkg->getHttpResponse();
     }
 
 }
