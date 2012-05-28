@@ -49,6 +49,7 @@ class Package
 
     /**
      * @var DateTime Время создания пакета
+     *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */

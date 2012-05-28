@@ -343,13 +343,23 @@ class Repository
     {
         return $this->owner;
     }
+
     //</editor-fold>
 
     /**
      * @var DateTime Время редактирования репозитория
-     * @Gedmo\Timestampable(on="update")
+     *
+     * @Gedmo\Timestampable
      * @ORM\Column(type="datetime")
      */
-    private $updated;
+    protected $updated;
+
+    /**
+     * @return \Ivan1986\DebBundle\Entity\DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
 
 }

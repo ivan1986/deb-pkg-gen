@@ -1,5 +1,5 @@
 {
-    "hash": "7f19cc4b82f1b280839bd9556f20c0ac",
+    "hash": "105fb1f63d7bbdfcadf8719407dc854a",
     "packages": [
         {
             "package": "Anchovy/CURLBundle",
@@ -70,7 +70,7 @@
         {
             "package": "friendsofsymfony/user-bundle",
             "version": "dev-master",
-            "source-reference": "e4c3329b2f26bfc2f057a8b4aac7cc1b95836532"
+            "source-reference": "36a41beba7a9d50ae1c76d753270bb97a0132664"
         },
         {
             "package": "gedmo/doctrine-extensions",
@@ -140,7 +140,7 @@
         {
             "package": "sensio/buzz-bundle",
             "version": "dev-master",
-            "source-reference": "c8c0ef65768fddfa28e41cb513b0b9b4dec04ee6"
+            "source-reference": "0754d7dd155efc4f85de60993571b0b6a5aaccb9"
         },
         {
             "package": "sensio/distribution-bundle",
