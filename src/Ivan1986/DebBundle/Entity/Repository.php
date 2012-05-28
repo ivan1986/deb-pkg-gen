@@ -5,7 +5,7 @@ namespace Ivan1986\DebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ivan1986\DebBundle\Entity\GpgKey;
-use Ivan1986\UserBundle\Entity\User;
+use Ivan1986\DebBundle\Entity\User;
 use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 
 /**
@@ -317,7 +317,7 @@ class Repository
     /**
      * @var User $owner Пользователь, создавший пакет
      *
-     * @ORM\ManyToOne(targetEntity="Ivan1986\UserBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     protected $owner;
 
@@ -347,7 +347,7 @@ class Repository
     //</editor-fold>
 
     /**
-     * @var DateTime Время редактирования репозитория
+     * @var \DateTime Время редактирования репозитория
      *
      * @Gedmo\Timestampable
      * @ORM\Column(type="datetime")
@@ -355,7 +355,7 @@ class Repository
     protected $updated;
 
     /**
-     * @return \Ivan1986\DebBundle\Entity\DateTime
+     * @return \DateTime
      */
     public function getUpdated()
     {

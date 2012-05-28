@@ -1,15 +1,15 @@
 <?php
 
-namespace Ivan1986\UserBundle\Entity;
+namespace Ivan1986\DebBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ivan1986\UserBundle\Entity\User
+ * Ivan1986\DebBundle\Entity\User
  *
  * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="Ivan1986\UserBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\UserRepository")
  */
 class User extends BaseUser
 {

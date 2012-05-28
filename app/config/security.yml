@@ -5,7 +5,7 @@ jms_security_extra:
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        Ivan1986\UserBundle\Entity\User: sha512
+        Ivan1986\DebBundle\Entity\User: sha512
 
     role_hierarchy:
         ROLE_ADMIN:       [ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
@@ -67,12 +67,12 @@ security:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: Ivan1986\UserBundle\Entity\User
+    user_class: Ivan1986\DebBundle\Entity\User
     group:
-      group_class: Ivan1986\UserBundle\Entity\Group
+      group_class: Ivan1986\DebBundle\Entity\Group
 
 sonata_user:
     security_acl:     false
     class:
-        user:         Ivan1986\UserBundle\Entity\User
-        group:        Ivan1986\UserBundle\Entity\Groups
+        user:         Ivan1986\DebBundle\Entity\User
+        group:        Ivan1986\DebBundle\Entity\Groups

@@ -1,8 +1,3 @@
-Ivan1986UserBundle:
-    resource: "@Ivan1986UserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 Ivan1986DebBundle:
     resource: "@Ivan1986DebBundle/Controller/"
     type:     annotation

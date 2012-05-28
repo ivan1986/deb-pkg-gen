@@ -39,7 +39,6 @@ class AppKernel extends Kernel
 
             //Свои
             new Ivan1986\DebBundle\Ivan1986DebBundle(),
-            new Ivan1986\UserBundle\Ivan1986UserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -148,4 +148,28 @@ class Package
     {
         return $this->file;
     }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \Ivan1986\DebBundle\Entity\Repository $repository
+     */
+    public function setRepository($repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * @return \Ivan1986\DebBundle\Entity\Repository
+     */
+    public function getRepository()
+    {
+        return $this->repository;
+    }
 }

@@ -1,15 +1,15 @@
 <?php
 
-namespace Ivan1986\UserBundle\Entity;
+namespace Ivan1986\DebBundle\Entity;
 
 use FOS\UserBundle\Entity\Group as GroupUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ivan1986\UserBundle\Entity\Groups
+ * Ivan1986\DebBundle\Entity\Groups
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ivan1986\UserBundle\Entity\GroupsRepository")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\GroupsRepository")
  */
 class Groups extends GroupUser
 {
