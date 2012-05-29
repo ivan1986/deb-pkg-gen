@@ -89,6 +89,11 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      */
     function reverseTransform($value)
     {
+        if (strpos($value, '/'))
+        {
+            $value = explode('/', $value);
+            $value = $value[1];
+        }
         $r = $this->om->getRepository('Ivan1986DebBundle:GpgKey');
         /** @var $r GpgKeyRepository */
         $key = $r->findOneBy(array('id' => $value));
