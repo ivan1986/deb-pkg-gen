@@ -12,15 +12,19 @@ class GpgKeyType extends AbstractType
     /** @var ObjectManager */
     private $om;
 
+    /** @var string */
+    private $server;
+
     /** @param ObjectManager $om */
-    public function __construct(ObjectManager $om)
+    public function __construct(ObjectManager $om, $server)
     {
         $this->om = $om;
+        $this->server = $server;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $transformer = new GpgKeyToIdTransformer($this->om);
+        $transformer = new GpgKeyToIdTransformer($this->om, $this->server);
         $builder->resetClientTransformers();
         $builder->appendClientTransformer($transformer);
     }

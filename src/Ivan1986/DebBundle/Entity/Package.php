@@ -41,7 +41,7 @@ class Package
     protected $info;
 
     /**
-     * @var DateTime Время создания пакета
+     * @var \DateTime Время создания пакета
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
@@ -143,7 +143,7 @@ class Package
     }
 
     /**
-     * @return DateTime
+     * @return \DateTime
      */
     public function getCreated()
     {

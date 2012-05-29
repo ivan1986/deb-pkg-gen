@@ -6,11 +6,13 @@
 
     <parameters>
         <parameter key="ivan1986_deb.gpgkey.class">Ivan1986\DebBundle\Form\Type\GpgKeyType</parameter>
+        <parameter key="ivan1986_deb.gpgkey.server">%key_server%</parameter>
     </parameters>
 
     <services>
         <service id="ivan1986_deb.gpgkey" class="%ivan1986_deb.gpgkey.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%key_server%</argument>
             <tag name="form.type" alias="gpgkey_selector" />
         </service>
     </services>

@@ -47,7 +47,7 @@ class InitCommand extends ContainerAwareCommand
 
         $keys = $doctrine->getRepository('Ivan1986DebBundle:GpgKey');
         /** @var $keys GpgKeyRepository */
-        $key = $keys->getFromServer($this->getContainer()->getParameter('key'), 'keyserver.ubuntu.com');
+        $key = $keys->getFromServer($this->getContainer()->getParameter('key'), $this->getContainer()->getParameter('key_server'));
 
         $repo = new Repository();
         $repo->setUrl('http://'.$this->getContainer()->getParameter('host').$this->getContainer()->get('router')->generate('repo', array()));

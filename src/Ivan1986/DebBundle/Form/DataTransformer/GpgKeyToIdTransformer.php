@@ -13,10 +13,14 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
     /** @var ObjectManager */
     private $om;
 
+    /** @var string */
+    private $server;
+
     /** @param ObjectManager $om */
-    public function __construct(ObjectManager $om)
+    public function __construct(ObjectManager $om, $server)
     {
         $this->om = $om;
+        $this->server = $server;
     }
 
     /**
@@ -90,7 +94,7 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
         $key = $r->findOneBy(array('id' => $value));
         if ($key)
             return $key;
-        $key = $r->getFromServer($value, 'keyserver.ubuntu.com');
+        $key = $r->getFromServer($value, $this->server);
         $this->om->persist($key);
         return $key;
 
