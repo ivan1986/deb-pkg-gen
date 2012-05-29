@@ -8,7 +8,7 @@ use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;
 use Ivan1986\DebBundle\Entity\RepositoryRepository;
 use Ivan1986\DebBundle\Entity\Repository;
-use Ivan1986\DebBundle\Entity\Package;
+use Ivan1986\DebBundle\Entity\SimplePackage;
 use Ivan1986\DebBundle\Util\Builder;
 
 class BuilderTest extends WebTestCase
@@ -41,7 +41,7 @@ class BuilderTest extends WebTestCase
 
         $builder = new Builder($this->tmpl);
         $package = $builder->simplePackage($rep);
-        $this->assertTrue($package instanceof Package);
+        $this->assertTrue($package instanceof SimplePackage);
         $now = new \DateTime();
         $this->assertEquals($package->getFile(), 'repo-phpunit-test_0.'.($now->format('Ymd').'_all.deb'));
         $this->assertTrue(strpos($package->getInfo(), 'http://ppa.launchpad.net/psi-plus/ppa/ubuntu')>0);

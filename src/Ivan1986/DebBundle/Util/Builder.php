@@ -8,7 +8,7 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Filesystem\Filesystem;
 use Ivan1986\DebBundle\Entity\RepositoryRepository;
 use Ivan1986\DebBundle\Entity\Repository;
-use Ivan1986\DebBundle\Entity\Package;
+use Ivan1986\DebBundle\Entity\SimplePackage;
 
 /**
  * Сборщик пакетов
@@ -31,7 +31,7 @@ class Builder
      * Собирает простой пакет из репозитория
      *
      * @param Repository $repo
-     * @return bool|Package
+     * @return bool|SimplePackage
      */
     public function simplePackage(Repository $repo)
     {
@@ -138,10 +138,11 @@ class Builder
         fclose($lockr);
         unlink($lockf);
 
-        $package = new Package();
+        $package = new SimplePackage();
         $package->setContent($content);
         $package->setFile($file);
         $package->setInfo($finfo);
+        $package->setRepository($repo);
         return $package;
     }
 
