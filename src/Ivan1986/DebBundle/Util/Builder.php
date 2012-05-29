@@ -35,6 +35,25 @@ class Builder
      */
     public function simplePackage(Repository $repo)
     {
+        $data = $this->build($repo);
+        if (!$data)
+            return false;
+        $package = new SimplePackage();
+        $package->setContent($data['content']);
+        $package->setFile($data['file']);
+        $package->setInfo($data['finfo']);
+        $package->setRepository($repo);
+        return $package;
+    }
+
+    /**
+     * Собирает произвольный пакет из репозитория
+     *
+     * @param Repository $repo Репозиторий
+     * @return array|bool данные, которые нужно записать в класс пакета
+     */
+    public function build(Repository $repo)
+    {
         $dir = $this->path.'/'.$repo->pkgName();
 
         $lockf = $dir.'.lock';
@@ -138,14 +157,11 @@ class Builder
         fclose($lockr);
         unlink($lockf);
 
-        $package = new SimplePackage();
-        $package->setContent($content);
-        $package->setFile($file);
-        $package->setInfo($finfo);
-        $package->setRepository($repo);
-        return $package;
+        return array(
+            'content' => $content,
+            'file' => $file,
+            'finfo' => $finfo,
+        );
     }
-
-
 
 }

@@ -29,7 +29,7 @@ class Package
     /**
      * @var string содержимое
      *
-     * @ORM\Column(name="content", type="text")
+     * @ORM\Column(name="content", type="blob")
      */
     protected $content;
 
@@ -95,7 +95,7 @@ class Package
      */
     public function getContent()
     {
-        return $this->content;
+        return is_resource($this->content) ? stream_get_contents($this->content) : $this->content;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Ivan1986\DebBundle\Entity\SysPackage;
 
 /**
  * PackageRepository
@@ -13,9 +14,12 @@ use Doctrine\ORM\EntityRepository;
 class PackageRepository extends EntityRepository
 {
 
+    /**
+     * @return SysPackage|null
+     */
     public function getSystem()
     {
-        return $this->findBy(array('repository' => null));
+        return $this->createQueryBuilder('p')->where('p INSTANCE OF Ivan1986\DebBundle\Entity\SysPackage')->andWhere('p.user IS NULL')->getQuery()->getOneOrNullResult();
     }
 
 }

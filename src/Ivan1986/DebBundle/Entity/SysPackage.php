@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Ivan1986\DebBundle\Entity\SysPackage
  *
- * @ORM\Entity()
+ * @ORM\Table("Package")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\PackageRepository")
  */
 class SysPackage extends Package
 {
