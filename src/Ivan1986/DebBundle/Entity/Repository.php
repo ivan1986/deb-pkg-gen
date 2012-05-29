@@ -189,7 +189,7 @@ class Repository
     /**
      * @var string $name Имя репозитория
      *
-     * @ORM\Column(name="`name`", type="string")
+     * @ORM\Column(name="`name`", type="string", unique=true)
      */
     protected $name;
 
