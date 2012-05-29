@@ -37,5 +37,15 @@ class RepositoryRepository extends EntityRepository
         return $this->findOneBy(array('id' => $id, 'owner' => $user->getId()));
     }
 
+    public function getNewAndUpdated()
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb->select('r, p');
+        $qb->leftJoin('r.packages', 'p');
+        $qb->where('p.id IS NULL');
+        $qb->orWhere('p.created < r.updated');
+        return $qb->getQuery()->getResult();
+    }
+
 
 }

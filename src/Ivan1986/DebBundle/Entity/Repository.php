@@ -7,6 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Entity\User;
 use Ivan1986\DebBundle\Exception\ParseRepoStringException;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Ivan1986\DebBundle\Entity\Repository
@@ -360,6 +361,21 @@ class Repository
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="SimplePackage", mappedBy="repository")
+     */
+    protected $packages;
+
+    public function __construct()
+    {
+        $this->packages = new ArrayCollection();
+    }
+
+    public function getPackages()
+    {
+        return $this->packages;
     }
 
 }
