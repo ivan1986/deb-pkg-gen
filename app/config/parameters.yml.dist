@@ -1,0 +1,22 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: '3306'
+    database_name: deb_pkg
+    database_user: root
+    database_password: null
+    mailer_transport: smtp
+    mailer_host: localhost
+    mailer_user: null
+    mailer_password: null
+    locale: ru
+    secret: 23875627562875623875628756823755
+    host: pkg.my
+    maintainer: Ivan Borzenkov <ivan1986@list.ru>
+    version: 1.0
+    key_server: keyserver.ubuntu.com
+    key: 28FA7071
+    key_file: "%kernel.root_dir%/config/key.gpg"
+
+    admins:
+        ivan: { password: iborzenkov, roles: [ 'ROLE_ADMIN' ] }
