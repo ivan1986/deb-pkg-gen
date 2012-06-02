@@ -9,6 +9,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Ivan1986\DebBundle\Entity\RepositoryRepository;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Entity\SimplePackage;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 
 /**
  * Сборщик пакетов
@@ -18,7 +19,7 @@ class Builder
     /** @var string Путь до пакетов */
     private $path;
 
-    /** @var \Symfony\Bundle\TwigBundle\TwigEngine Шаблонизатор */
+    /** @var TwigEngine Шаблонизатор */
     private $t;
 
     public function __construct(\Symfony\Bundle\TwigBundle\TwigEngine $templating)
