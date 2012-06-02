@@ -3,15 +3,47 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('bundles/ivan1986deb/bootstrap/css/bootstrap.min.css') }}" />
+        <style>
+            body {
+                margin: 40px 0;
+            }
+        </style>
+        <link rel="stylesheet" href="{{ asset('bundles/ivan1986deb/bootstrap/css/bootstrap-responsive.min.css') }}" />
+        <script type="text/javascript" src="{{ asset('bundles/ivan1986deb/bootstrap/js/bootstrap.min.js') }}"></script>
+        {#
+        {% javascripts '@Ivan1986DebBundle/Resources/public/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        {% stylesheets '@Ivan1986DebBundle/Resources/public/css/*' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+        #}
+        {% block stylesheets %}
+        {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="{{ url('home') }}">PkgGen</a>
+
+                </div>
+            </div>
+        </div>
+
         {% block body %}{% endblock %}
-        <footer>
-            <p><a href="https://github.com/ivan1986/deb-pkg-gen">https://github.com/ivan1986/deb-pkg-gen</a></p>
-            <p>{{maintainer}}</p>
-        </footer>
-        {% block javascripts %}{% endblock %}
+
+        <div class="navbar navbar-fixed-bottom">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="brand" href="https://github.com/ivan1986/deb-pkg-gen">GitHub</a>
+                    <div class="navbar-text pull-right">Сопровождающий: {{maintainer}}</div>
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}
+        {% endblock %}
     </body>
 </html>
