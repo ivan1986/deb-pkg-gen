@@ -76,7 +76,7 @@ class RepoController extends Controller
         return $r;
     }
 
-    public function getRelease($list)
+    private function getRelease($list)
     {
         $size = strlen($list);
         $md5 = md5($list);
