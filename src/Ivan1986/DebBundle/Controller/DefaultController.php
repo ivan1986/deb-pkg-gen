@@ -16,14 +16,6 @@ use Ivan1986\DebBundle\Entity\PackageRepository;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/hello/{name}")
-     * @Template()
-     */
-    public function indexAction($name)
-    {
-        return array('name' => $name);
-    }
 
     /**
      * @Route("/", name="home")

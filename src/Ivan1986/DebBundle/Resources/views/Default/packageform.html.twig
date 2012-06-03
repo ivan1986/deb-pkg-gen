@@ -1,5 +1,5 @@
-{% extends '::base.html.twig' %}
-{% block body %}
+{% extends 'Ivan1986DebBundle::layout.html.twig' %}
+{% block fos_user_content %}
 <form action="{{ path('pkg_build') }}" method="post">
     <p><label>Урл репы: <input type="text" name="url"></label></p>
     <p><label>Ключ: <input type="text" name="key"></label></p>

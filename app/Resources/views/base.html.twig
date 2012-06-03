@@ -28,7 +28,10 @@
             <div class="navbar-inner">
                 <div class="container">
                     <a class="brand" href="{{ url('home') }}">PkgGen</a>
-
+                    {% block top_nav %}{% endblock %}
+                    <div class="navbar-text pull-right">
+                        {% block login %}{% endblock %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,7 +41,9 @@
         <div class="navbar navbar-fixed-bottom">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="https://github.com/ivan1986/deb-pkg-gen">GitHub</a>
+                    <div class="navbar-text pull-left">
+                        <a href="https://github.com/ivan1986/deb-pkg-gen">исходный код на GitHub</a>
+                    </div>
                     <div class="navbar-text pull-right">Сопровождающий: {{maintainer}}</div>
                 </div>
             </div>
