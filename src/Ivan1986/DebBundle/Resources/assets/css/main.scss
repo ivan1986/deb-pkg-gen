@@ -1,0 +1,28 @@
+
+.login-form {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  width: 460px;
+  margin: -130px 0 0 -250px;
+  box-shadow: 2px 2px 10px #CCC;
+  border: 1px solid #DDD;
+  border-radius: 6px;
+
+  padding-top: 15px;
+
+  .control-group {
+    padding: 0 20px 0 20px;
+  }
+
+  input[type=text], input[type=password] {
+    height: 35px;
+    font-size: 25px;
+    width: 400px;
+  }
+
+  .form-actions {
+    margin-bottom: 0px;
+  }
+
+}

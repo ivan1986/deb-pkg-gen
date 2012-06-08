@@ -9,18 +9,18 @@
                 margin: 40px 0;
             }
         </style>
-        <link rel="stylesheet" href="{{ asset('bundles/ivan1986deb/bootstrap/css/bootstrap-responsive.min.css') }}" />
-        <script type="text/javascript" src="{{ asset('bundles/ivan1986deb/bootstrap/js/bootstrap.min.js') }}"></script>
-        {#
-        {% javascripts '@Ivan1986DebBundle/Resources/public/js/*' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        {% stylesheets '@Ivan1986DebBundle/Resources/public/css/*' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
-        #}
         {% block stylesheets %}
         {% endblock %}
+        <link rel="stylesheet" href="{{ asset('bundles/ivan1986deb/bootstrap/css/bootstrap-responsive.min.css') }}" />
+        {% stylesheets filter="compass" "@Ivan1986DebBundle/Resources/assets/css/*.scss" %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+        <script type="text/javascript" src="{{ asset('bundles/ivan1986deb/bootstrap/js/bootstrap.min.js') }}"></script>
+        {#
+        {% javascripts '@Ivan1986DebBundle/Resources/assets/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        #}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
@@ -35,9 +35,9 @@
                 </div>
             </div>
         </div>
-
+        <div class="container">
         {% block body %}{% endblock %}
-
+        </div>
         <div class="navbar navbar-fixed-bottom">
             <div class="navbar-inner">
                 <div class="container">
