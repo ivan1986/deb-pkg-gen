@@ -1,21 +1,22 @@
 
-.login-form {
+@mixin center-form($x, $y)
+{
   position: absolute;
   left: 50%;
   top: 35%;
-  width: 460px;
-  margin: -130px 0 0 -250px;
+  width: $x;
+  margin: 0;
+  margin-top: -$y/2;
+  margin-left: -$x/2;
   box-shadow: 2px 2px 10px #CCC;
   border: 1px solid #DDD;
   border-radius: 6px;
-
   padding-top: 15px;
 
-  .control-group {
-    padding: 0 20px 0 20px;
-  }
-
-  input[type=text], input[type=password] {
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  {
     height: 35px;
     font-size: 25px;
     width: 400px;
@@ -24,5 +25,21 @@
   .form-actions {
     margin-bottom: 0px;
   }
+}
 
+.login-form {
+  @include center-form(450px, 260px);
+
+  .control-group {
+    padding: 0 20px 0 20px;
+  }
+
+}
+
+.fos_user_registration_register {
+  @include center-form(450px, 260px);
+
+  #fos_user_registration_form {
+    padding-left: 20px;
+  }
 }
