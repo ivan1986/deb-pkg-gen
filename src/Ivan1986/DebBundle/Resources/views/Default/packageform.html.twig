@@ -1,9 +1,37 @@
 {% extends 'Ivan1986DebBundle::layout.html.twig' %}
 {% block fos_user_content %}
-<form action="{{ path('pkg_build') }}" method="post">
-    <p><label>Урл репы: <input type="text" name="url"></label></p>
-    <p><label>Ключ: <input type="text" name="key"></label></p>
-    <p><label>Имя: <input type="text" name="name"></label></p>
-    <p><input type="submit"></p>
+<form action="{{ path('pkg_build') }}" method="post" class="form-vertical pkg-form">
+
+    <fieldset>
+        <div class="control-group">
+            <label class="control-label" for="url">Адрес репозитория</label>
+            <div class="controls">
+                <input type="text" id="url" name="url" class="input-xlarge" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="key">ID gpg ключа</label>
+            <div class="controls">
+                <input type="text" id="key" name="key" class="input-xlarge" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="name">Имя пакета</label>
+            <div class="controls">
+                <input type="text" id="name" name="name" class="input-xlarge" />
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary" value="Сгенерировать deb-пакет" />
+        </div>
+    </fieldset>
 </form>
+
+<div class="hero-unit">
+    <h1>Репозиторий репозиториев</h1>
+    <p>Позволяет подключать сторонние репозитории путем установки пакетов</p>
+    <p>
+        <a class="btn btn-primary btn-large" href="{{ path('main_repo') }}">Пакет для подключения</a>
+    </p>
+</div>
 {% endblock %}

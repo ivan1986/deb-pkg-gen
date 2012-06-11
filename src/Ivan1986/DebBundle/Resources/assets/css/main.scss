@@ -25,15 +25,20 @@
   .form-actions {
     margin-bottom: 0px;
   }
-}
-
-.login-form {
-  @include center-form(450px, 260px);
 
   .control-group {
     padding: 0 20px 0 20px;
   }
 
+}
+
+.pkg-form {
+  @include center-form(450px, 260px);
+  top: 55%;
+}
+
+.login-form {
+  @include center-form(450px, 260px);
 }
 
 .fos_user_registration_register {
