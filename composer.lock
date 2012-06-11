@@ -70,12 +70,12 @@
         {
             "package": "friendsofsymfony/user-bundle",
             "version": "dev-master",
-            "source-reference": "aa7984c7b88463460b8020d31aaf54b668584cc2"
+            "source-reference": "14d5e7a18007c3bd34a7161fa1defd4ac1daa648"
         },
         {
             "package": "gedmo/doctrine-extensions",
             "version": "dev-master",
-            "source-reference": "21d34feefedcfbd26016a0a395ed134677f71fcf"
+            "source-reference": "7b6631fdb4537c5bb46ebd3f73fb81fd94115559"
         },
         {
             "package": "jms/aop-bundle",
@@ -98,24 +98,13 @@
             "version": "1.1.0"
         },
         {
-            "package": "jms/translation-bundle",
-            "version": "dev-master",
-            "source-reference": "019f1032846abec955ef1d2dc2623ecc30477ae3"
-        },
-        {
             "package": "knplabs/knp-menu",
             "version": "1.1.x-dev",
-            "source-reference": "v1.1.1"
+            "source-reference": "v1.1.2"
         },
         {
             "package": "knplabs/knp-menu-bundle",
             "version": "v1.1.0"
-        },
-        {
-            "package": "kriswallsmith/assetic",
-            "version": "dev-master",
-            "alias-pretty-version": "1.1.x-dev",
-            "alias-version": "1.1.9999999.9999999-dev"
         },
         {
             "package": "kriswallsmith/assetic",
@@ -130,10 +119,6 @@
         {
             "package": "monolog/monolog",
             "version": "1.1.0"
-        },
-        {
-            "package": "nikic/php-parser",
-            "version": "v0.9.1"
         },
         {
             "package": "sensio/buzz-bundle",
@@ -153,12 +138,12 @@
         {
             "package": "sensio/generator-bundle",
             "version": "dev-master",
-            "source-reference": "0813379920dcaa4b06361501f654379383d75f16"
+            "source-reference": "55ad81e65a1023ae07c67075ca49c55556e047bf"
         },
         {
             "package": "sonata-project/admin-bundle",
             "version": "dev-master",
-            "source-reference": "984df1a986500da230798627af65d1f31206ccbb"
+            "source-reference": "ce646427b778403e76654fdfc958c376faf2fbf4"
         },
         {
             "package": "sonata-project/block-bundle",
@@ -173,7 +158,7 @@
         {
             "package": "sonata-project/doctrine-orm-admin-bundle",
             "version": "dev-master",
-            "source-reference": "36767018185a841733ed629b22b1407ec2b9b938"
+            "source-reference": "cf174bdadd07168f9f33d418f6fcc95012036d83"
         },
         {
             "package": "sonata-project/easy-extends-bundle",
@@ -193,7 +178,7 @@
         {
             "package": "sonata-project/user-bundle",
             "version": "dev-master",
-            "source-reference": "2a88b089a257cfef73ce648e111ddbe80b36b0bf"
+            "source-reference": "e2cdcbc4c5bd2aac710a0a8cda5eb6dbd1645539"
         },
         {
             "package": "stof/doctrine-extensions-bundle",
@@ -227,12 +212,6 @@
             "source-reference": "408eb09f5799d393ddc3d916ec3667857fb3a20d"
         },
         {
-            "package": "symfony/swiftmailer-bridge",
-            "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
             "package": "symfony/swiftmailer-bundle",
             "version": "dev-master",
             "source-reference": "71e1789868665cf94dc7831f645625fd0f70aac6"
@@ -240,8 +219,7 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
+            "source-reference": "0995b1f28b80f91cfef7b3201840aa3dbcc66ae1"
         },
         {
             "package": "symfony/symfony",
@@ -252,7 +230,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "1541fe26e4d78135ab24ae2edfb1dbc2a9b2fa40"
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "twig/extensions",
@@ -268,7 +247,13 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "6d072640c44f1781049afd2d96060c72da80662a"
+            "source-reference": "d4511d02b45725a56c8cc49127244bca640c9d13"
+        },
+        {
+            "package": "twig/twig",
+            "version": "dev-master",
+            "alias-pretty-version": "1.8.x-dev",
+            "alias-version": "1.8.9999999.9999999-dev"
         }
     ],
     "packages-dev": null,
