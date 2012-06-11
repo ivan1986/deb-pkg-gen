@@ -21,7 +21,7 @@ class DefaultController extends Controller
      * @Route("/", name="home")
      * @Template()
      */
-    public function packageformAction()
+    public function indexAction()
     {
         return array();
     }

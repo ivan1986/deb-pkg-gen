@@ -33,22 +33,34 @@ class BuilderController extends Controller
      */
     public function indexAction()
     {
-        $key = $this->getRequest()->get('key');
-        $url = $this->getRequest()->get('url');
-        $name = $this->getRequest()->get('name');
-        $keys = $this->getDoctrine()->getRepository('Ivan1986DebBundle:GpgKey');
-        /** @var $keys GpgKeyRepository */
-        $key = $keys->getFromServer($key, $this->container->getParameter('key_server'));
+        if ($this->getRequest()->getMethod() == "POST")
+        {
+            $form = $this->getRequest()->get('form');
+            $error = array(
+                'form' => $form,
+            );
+            try {
+                $keys = $this->getDoctrine()->getRepository('Ivan1986DebBundle:GpgKey');
+                /** @var $keys GpgKeyRepository */
+                $key = $keys->getFromServer($form['key'], $this->container->getParameter('key_server'));
 
-        $repo = new Repository();
-        $repo->setRepoString($url);
-        $repo->setKey($key);
-        $repo->setName($name);
+                $repo = new Repository();
+                $repo->setRepoString($form['url']);
+                $repo->setKey($key);
+                $repo->setName($form['name']);
+            }
+            catch (\Exception $e)
+            {
+                $error['e'] = $e;
+                return $error;
+            }
 
-        $builder = new Builder($this->get('templating'));
-        $pkg = $builder->simplePackage($repo);
+            $builder = new Builder($this->get('templating'));
+            $pkg = $builder->simplePackage($repo);
 
-        return $pkg->getHttpResponse();
+            return $pkg->getHttpResponse();
+        }
+        return array();
     }
 
 }

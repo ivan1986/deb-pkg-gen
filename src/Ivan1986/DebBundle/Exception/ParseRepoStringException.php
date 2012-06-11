@@ -17,4 +17,8 @@ class ParseRepoStringException extends \Exception
         parent::__construct($message, $code);
     }
 
+    public function __toString() {
+        return 'Неправильный формат строки репозитория "'.$this->string.'"';
+    }
+
 }

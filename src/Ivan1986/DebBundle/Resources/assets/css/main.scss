@@ -37,6 +37,13 @@
   top: 55%;
 }
 
+.pkg-build-err {
+  position: relative;
+  margin: auto;
+  width: 400px;
+  top: 200px;
+}
+
 .login-form {
   @include center-form(450px, 260px);
 }

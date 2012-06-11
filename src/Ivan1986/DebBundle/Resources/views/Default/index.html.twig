@@ -1,0 +1,13 @@
+{% extends 'Ivan1986DebBundle::layout.html.twig' %}
+{% block fos_user_content %}
+
+{% include 'Ivan1986DebBundle:Builder:packageform.html.twig' %}
+
+<div class="hero-unit">
+    <h1>Репозиторий репозиториев</h1>
+    <p>Позволяет подключать сторонние репозитории путем установки пакетов</p>
+    <p>
+        <a class="btn btn-primary btn-large" href="{{ path('main_repo') }}">Пакет для подключения</a>
+    </p>
+</div>
+{% endblock %}
