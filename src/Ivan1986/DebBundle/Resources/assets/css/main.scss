@@ -37,11 +37,15 @@
   top: 55%;
 }
 
+.container {
+  height: 100%;
+}
+
 .pkg-build-err {
   position: relative;
   margin: auto;
   width: 400px;
-  top: 200px;
+  top: 15%;
 }
 
 .login-form {
