@@ -11,10 +11,6 @@ Ivan1986DebBundle:
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
-fos_user_profile:
-    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
-    prefix: /profile
-
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
     prefix: /register
@@ -43,3 +39,8 @@ sonata_user:
 sonata_user_impersonating:
     pattern:  /
     defaults: { _controller: Ivan1986UserBundle:Default:Index }
+
+sonata_user_profile:
+    resource: "@SonataUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+

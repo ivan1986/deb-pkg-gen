@@ -50,7 +50,7 @@
         {
             "package": "doctrine/doctrine-bundle",
             "version": "dev-master",
-            "source-reference": "f100a7727b89ab5519ed68a72d29e75eb2c85d8b"
+            "source-reference": "3f5149e09d423a42365d59b9b9df4281262c5ce2"
         },
         {
             "package": "doctrine/doctrine-migrations-bundle",
@@ -75,7 +75,7 @@
         {
             "package": "gedmo/doctrine-extensions",
             "version": "dev-master",
-            "source-reference": "7b6631fdb4537c5bb46ebd3f73fb81fd94115559"
+            "source-reference": "03165f515adf6db5c5a0714e1127375d7ecdd15e"
         },
         {
             "package": "jms/aop-bundle",
@@ -109,7 +109,13 @@
         {
             "package": "kriswallsmith/assetic",
             "version": "dev-master",
-            "source-reference": "8c76115503d23340e19b5cf6aa95f86663f7185f"
+            "alias-pretty-version": "1.1.x-dev",
+            "alias-version": "1.1.9999999.9999999-dev"
+        },
+        {
+            "package": "kriswallsmith/assetic",
+            "version": "dev-master",
+            "source-reference": "d6f89a3170c5280ad554347dc113eb25fdf00ad7"
         },
         {
             "package": "kriswallsmith/buzz",
@@ -143,7 +149,7 @@
         {
             "package": "sonata-project/admin-bundle",
             "version": "dev-master",
-            "source-reference": "ce646427b778403e76654fdfc958c376faf2fbf4"
+            "source-reference": "280ea9b2124814f9acc8462939992883c734dd81"
         },
         {
             "package": "sonata-project/block-bundle",
@@ -154,6 +160,11 @@
             "package": "sonata-project/cache-bundle",
             "version": "dev-master",
             "source-reference": "5b966e7350636750df7e45920acb30946415ba6d"
+        },
+        {
+            "package": "sonata-project/doctrine-extensions",
+            "version": "dev-master",
+            "source-reference": "0a316790871e1ea7f019e2313667570eabd270b9"
         },
         {
             "package": "sonata-project/doctrine-orm-admin-bundle",
@@ -188,13 +199,13 @@
         {
             "package": "swiftmailer/swiftmailer",
             "version": "dev-master",
-            "source-reference": "d33d54cc8a081b0b85734744936ede1ba230dd64"
+            "alias-pretty-version": "4.1.x-dev",
+            "alias-version": "4.1.9999999.9999999-dev"
         },
         {
             "package": "swiftmailer/swiftmailer",
             "version": "dev-master",
-            "alias-pretty-version": "4.1.x-dev",
-            "alias-version": "4.1.9999999.9999999-dev"
+            "source-reference": "d33d54cc8a081b0b85734744936ede1ba230dd64"
         },
         {
             "package": "symfony/assetic-bundle",
@@ -219,13 +230,13 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "0995b1f28b80f91cfef7b3201840aa3dbcc66ae1"
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
+            "source-reference": "37550d23c65b15f1455cda91cc6d2efc66a7dbd8"
         },
         {
             "package": "symfony/symfony",
@@ -247,7 +258,7 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "d4511d02b45725a56c8cc49127244bca640c9d13"
+            "source-reference": "ca33207bb22fe6365d13bdaf034f936e30b53560"
         },
         {
             "package": "twig/twig",

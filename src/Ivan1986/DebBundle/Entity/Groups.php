@@ -2,7 +2,7 @@
 
 namespace Ivan1986\DebBundle\Entity;
 
-use FOS\UserBundle\Entity\Group as GroupUser;
+use Sonata\UserBundle\Entity\BaseGroup as GroupUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
