@@ -1,0 +1,22 @@
+{% block checkbox_label %}
+{% spaceless %}
+{% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' checkbox-label')|trim}) %}
+{{ block('form_label') }}
+{% endspaceless %}
+{% endblock %}
+
+{% block checkbox_row %}
+{% spaceless %}
+<div>
+    {{ form_widget(form) }}&nbsp;{{ form_label(form, label|default(null)) }}
+    {#
+    If the child is a compound form, the errors are rendered inside
+    the container. See also block form_rows.
+    #}
+    {% if not compound %}
+    {{ form_errors(form) }}
+    {% endif %}
+</div>
+{% endspaceless %}
+{% endblock %}
+

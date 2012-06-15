@@ -24,13 +24,15 @@ twig:
         version: %version%
         host: %host%
         maintainer: %maintainer%
+    form:
+        resources:
+            - 'Ivan1986DebBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
     use_controller: false
     bundles:        [ ]
-    #java: /usr/bin/java
     filters:
         cssrewrite: ~
         sass:    ~

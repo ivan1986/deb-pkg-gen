@@ -34,30 +34,6 @@ class RepositoryController extends Controller
     }
 
     /**
-     * Finds and displays a Repository entity.
-     *
-     * @Route("/{id}/show", name="repos_show")
-     * @Template()
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('Ivan1986DebBundle:Repository')->getByIdAndCheckUser($id, $this->getUser());
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Repository entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
-
-    /**
      * Displays a form to create a new Repository entity.
      *
      * @Route("/new", name="repos_new")
@@ -94,7 +70,7 @@ class RepositoryController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('repos_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('repos'));
         }
 
         return array(
@@ -183,11 +159,14 @@ class RepositoryController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('Ivan1986DebBundle:Repository')->find($id);
+            /** @var Repository $entity */
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Repository entity.');
             }
-
+            //удаляем пакеты этого репозитория
+            foreach($entity->getPackages() as $pkg)
+                $em->remove($pkg);
             $em->remove($entity);
             $em->flush();
         }
