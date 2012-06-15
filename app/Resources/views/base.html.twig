@@ -28,7 +28,9 @@
             <div class="navbar-inner">
                 <div class="container">
                     <a class="brand" href="{{ url('home') }}">PkgGen</a>
-                    {% block top_nav %}{% endblock %}
+                    <ul class="nav">
+                        {% block top_nav %}{% endblock %}
+                    </ul>
                     <div class="navbar-text pull-right">
                         {% block login %}{% endblock %}
                     </div>

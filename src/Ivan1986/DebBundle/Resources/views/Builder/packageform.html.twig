@@ -4,19 +4,22 @@
         <div class="control-group">
             <label class="control-label" for="url">Адрес репозитория</label>
             <div class="controls">
-                <input type="text" id="url" name="form[url]" value="{{form.url|default("")}}" class="input-xlarge" />
+                <input type="text" id="url" name="form[url]" value="{{form.url|default("")}}" class="input-xlarge" placeholder="http://repo.com/debian/ stable main" />
+                <p class="help-block">Тот адрес который вас просят добавить в sources.list</p>
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="key">ID gpg ключа</label>
+            <label class="control-label" for="key">GPG Key ID</label>
             <div class="controls">
-                <input type="text" id="key" name="form[key]" value="{{form.key|default("")}}" class="input-xlarge" />
+                <input type="text" id="key" name="form[key]" value="{{form.key|default("")}}" class="input-xlarge" placeholder="AA123456"/>
+                <p class="help-block">ID ключа можно обычно найти рядом с адресом репозитория</p>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="name">Имя пакета</label>
             <div class="controls">
-                <input type="text" id="name" name="form[name]" value="{{form.name|default("")}}" class="input-xlarge" />
+                <input type="text" id="name" name="form[name]" value="{{form.name|default("")}}" class="input-xlarge" placeholder="my-package" />
+                <p class="help-block">Совместимое с unix именем (a-z 0-9 и тире)</p>
             </div>
         </div>
         <div class="form-actions">

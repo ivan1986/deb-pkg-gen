@@ -1,47 +1,34 @@
-<h1>Repository list</h1>
+{% extends 'Ivan1986DebBundle::layout.html.twig' %}
+{% block fos_user_content %}
 
-<table class="records_list">
+<div class="page-header">
+<h1>Список добавленных вами репозиториев</h1>
+</div>
+
+<table class="records_list table table-striped table-bordered">
     <thead>
         <tr>
-            <th>Id</th>
             <th>Url</th>
-            <th>Release</th>
-            <th>Components</th>
             <th>Bin</th>
             <th>Src</th>
-            <th>Name</th>
-            <th>Actions</th>
+            <th>Имя</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
     {% for entity in entities %}
         <tr>
-            <td><a href="{{ path('repos_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-            <td>{{ entity.url }}</td>
-            <td>{{ entity.release }}</td>
-            <td>{{ entity.components }}</td>
-            <td>{{ entity.bin }}</td>
-            <td>{{ entity.src }}</td>
+            <td>{{ entity.repoString }}</td>
+            <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.bin ? 'yes' : 'no')~'.png') }}" alt="{{ entity.bin ? 'yes' : 'no' }}" /></td>
+            <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.src ? 'yes' : 'no')~'.png') }}" alt="{{ entity.src ? 'yes' : 'no' }}" /></td>
             <td>{{ entity.name }}</td>
             <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('repos_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('repos_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
+                <a href="{{ path('repos_edit', { 'id': entity.id }) }}">редактировать</a>
             </td>
         </tr>
     {% endfor %}
     </tbody>
 </table>
 
-<ul>
-    <li>
-        <a href="{{ path('repos_new') }}">
-            Create a new entry
-        </a>
-    </li>
-</ul>
+<a class="btn btn-primary" href="{{ path('repos_new') }}">Добавить новый репозиторий</a>
+{% endblock %}
