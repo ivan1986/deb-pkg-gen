@@ -13,11 +13,23 @@ class RepositoryType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('repoString')
-            ->add('bin')
-            ->add('src')
-            ->add('name')
-            ->add('key', 'gpgkey_selector')
+        $builder
+            ->add('repoString', null, array(
+                'label' => 'Адрес репозитория',
+                'attr' => array('class' => 'span5'),
+            ))
+            ->add('bin', null, array(
+                'label' => 'В репозитории есть бинарные пакеты',
+            ))
+            ->add('src', null, array(
+                'label' => 'В репозитории есть пакеты с исходным кодим',
+            ))
+            ->add('name', null, array(
+                'label' => 'Имя пакета для подключения',
+            ))
+            ->add('key', 'gpgkey_selector', array(
+                'label' => 'GPG key ID',
+            ))
         ;
     }
 

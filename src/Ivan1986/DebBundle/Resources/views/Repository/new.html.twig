@@ -1,20 +1,17 @@
 {% extends 'Ivan1986DebBundle::layout.html.twig' %}
 {% block fos_user_content %}
 
-<h1>Repository creation</h1>
+<div class="page-header">
+    <h1>Новый репозиторий</h1>
+</div>
 
 <form action="{{ path('repos_create') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
-        <button type="submit">Create</button>
+        <button class="btn btn-primary" type="submit">Создать</button>
+        <a href="{{ path('repos') }}">Назад к списку</a>
     </p>
 </form>
 
-<ul class="record_actions">
-    <li>
-        <a href="{{ path('repos') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
 {% endblock %}
+
