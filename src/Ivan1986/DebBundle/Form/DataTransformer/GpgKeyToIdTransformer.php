@@ -7,6 +7,7 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;
+use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 
 class GpgKeyToIdTransformer implements DataTransformerInterface
 {
@@ -53,12 +54,8 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      */
     function transform($value)
     {
-        if ($value == null)
+        if ($value == null || $value == '')
             return '';
-
-        if ($value == '')
-            return '';
-        // TODO: Implement reverseTransform() method.
         return $value->getId();
     }
 
@@ -99,12 +96,16 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
         $key = $r->findOneBy(array('id' => $value));
         if ($key)
             return $key;
-        $key = $r->getFromServer($value, $this->server);
+        try
+        {
+            $key = $r->getFromServer($value, $this->server);
+        }
+        catch(GpgNotFoundException $e)
+        {
+            throw new TransformationFailedException();
+        }
         $this->om->persist($key);
         return $key;
-
-        return new GpgKey();
-        // TODO: Implement reverseTransform() method.
     }
 
 }

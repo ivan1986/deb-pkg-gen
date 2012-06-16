@@ -8,6 +8,7 @@ use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Entity\User;
 use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Ivan1986\DebBundle\Entity\Repository
@@ -17,6 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="repoType", type="string")
  * @ORM\DiscriminatorMap({"standart" = "Repository"})
+ * @UniqueEntity({"fields"="name", "message"="Пакет с таким именем уже есть в системе"})
  */
 class Repository
 {

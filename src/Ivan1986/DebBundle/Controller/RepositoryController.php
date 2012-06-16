@@ -6,11 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Ivan1986\DebBundle\Entity\Repository;
-use Ivan1986\DebBundle\Form\RepositoryType;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\FormError;
+use Ivan1986\DebBundle\Entity\Repository;
+use Ivan1986\DebBundle\Form\RepositoryType;
+use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 
 /**
  * Repository controller.
@@ -56,13 +58,20 @@ class RepositoryController extends Controller
 
         if ($this->getRequest()->getMethod() == 'POST')
         {
-            $form->bindRequest($this->getRequest());
-            if ($form->isValid()) {
-                $entity->setOwner($this->getUser());
-                $this->em->persist($entity);
-                $this->em->flush();
+            try
+            {
+                $form->bindRequest($this->getRequest());
+                if ($form->isValid()) {
+                    $entity->setOwner($this->getUser());
+                    $this->em->persist($entity);
+                    $this->em->flush();
 
-                return $this->redirect($this->generateUrl('repos'));
+                    return $this->redirect($this->generateUrl('repos'));
+                }
+            }
+            catch(ParseRepoStringException $e)
+            {
+                $form->addError(new FormError($e->__toString()));
             }
         }
 
@@ -85,12 +94,19 @@ class RepositoryController extends Controller
 
         if ($this->getRequest()->getMethod() == 'POST')
         {
-            $editForm->bindRequest($this->getRequest());
-            if ($editForm->isValid()) {
-                $this->em->persist($entity);
-                $this->em->flush();
+            try
+            {
+                $editForm->bindRequest($this->getRequest());
+                if ($editForm->isValid()) {
+                    $this->em->persist($entity);
+                    $this->em->flush();
 
-                return $this->redirect($this->generateUrl('repos'));
+                    return $this->redirect($this->generateUrl('repos'));
+                }
+            }
+            catch(ParseRepoStringException $e)
+            {
+                $editForm->addError(new FormError($e->__toString()));
             }
         }
 
