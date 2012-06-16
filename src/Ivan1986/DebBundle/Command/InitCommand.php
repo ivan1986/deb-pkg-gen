@@ -50,11 +50,9 @@ class InitCommand extends ContainerAwareCommand
         $key = $keys->getFromServer($this->getContainer()->getParameter('key'), $this->getContainer()->getParameter('key_server'));
 
         $repo = new Repository();
-        $repo->setUrl('http://'.$this->getContainer()->getParameter('host').$this->getContainer()->get('router')->generate('repo', array()));
+        $repo->setRepoString('http://'.$this->getContainer()->getParameter('host').$this->getContainer()->get('router')->generate('repo', array()).' stable main');
         $repo->setSrc(false);
         $repo->setKey($key);
-        $repo->setRelease('stable');
-        $repo->setComponents(array('main'));
         $repo->setName($this->getContainer()->getParameter('host'));
 
         $builder = new Builder($this->getContainer()->get('templating'));

@@ -88,6 +88,8 @@ class RepoController extends Controller
             'size' => $size,
             'md5' => $md5,
             'sha1' => $sha1,
+            //TODO: из-за разного времени генерации - ошибка подписи
+            'date' => date('r'),
         ));
         return $Release;
     }
