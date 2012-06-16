@@ -2,14 +2,16 @@
 
 namespace Ivan1986\DebBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Ivan1986\DebBundle\Tests\Entity\Entity;
+use Ivan1986\DebBundle\Entity\Repository;
 
-class RepositoryControllerTest extends WebTestCase
+class RepositoryControllerTest extends Entity
 {
     public $client;
 
     public function setUp()
     {
+        parent::setUp();
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/login');
         $form = $crawler->selectButton('_submit')->form(array(
@@ -25,12 +27,16 @@ class RepositoryControllerTest extends WebTestCase
         // Create a new entry in the database
         $crawler = $this->client->request('GET', '/profile/repos/');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
-        $crawler = $this->client->click($crawler->selectLink('Create a new entry')->link());
+        $crawler = $this->client->click($crawler->selectLink('Добавить новый репозиторий')->link());
 
-        return;
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
-            'ivan1986_debbundle_repositorytype[field_name]'  => 'Test',
+        $form = $crawler->selectButton('Создать')->form(array(
+            'ivan1986_debbundle_repositorytype[repoString]' =>
+                'http://ppa.launchpad.net/ivan1986/ppa/ubuntu natty main',
+            'ivan1986_debbundle_repositorytype[bin]' => 1,
+            'ivan1986_debbundle_repositorytype[src]' => 1,
+            'ivan1986_debbundle_repositorytype[name]' => 'phpunit-test',
+            'ivan1986_debbundle_repositorytype[key]' => 'B9B60E76',
             // ... other fields to fill
         ));
 
@@ -38,28 +44,20 @@ class RepositoryControllerTest extends WebTestCase
         $crawler = $this->client->followRedirect();
 
         // Check data in the show view
-        $this->assertTrue($crawler->filter('td:contains("Test")')->count() > 0);
+        $this->assertTrue($crawler->filter('td:contains("phpunit-test")')->count() > 0);
 
-        // Edit the entity
-        $crawler = $this->client->click($crawler->selectLink('Edit')->link());
+        $item = $this->em->getRepository("Ivan1986DebBundle:Repository")
+            ->findOneBy(array('name' => 'phpunit-test'));
+        /** @var $item Repository */
+        $id = $item->getId();
+        $crawler = $this->client->request('GET', '/profile/repos/'.$id.'/edit');
+        $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
 
-        $form = $crawler->selectButton('Edit')->form(array(
-            'repository[field_name]'  => 'Foo',
-            // ... other fields to fill
-        ));
-
-        $this->client->submit($form);
+        $crawler = $this->client->click($crawler->selectLink('Удалить')->link());
         $crawler = $this->client->followRedirect();
 
-        // Check the element contains an attribute with value equals "Foo"
-        $this->assertTrue($crawler->filter('[value="Foo"]')->count() > 0);
-
-        // Delete the entity
-        $this->client->submit($crawler->selectButton('Delete')->form());
-        $crawler = $this->client->followRedirect();
-
-        // Check the entity has been delete on the list
-        $this->assertNotRegExp('/Foo/', $this->client->getResponse()->getContent());
+        // Check data in the show view
+        $this->assertTrue($crawler->filter('td:contains("phpunit-test")')->count() == 0);
     }
 
 }
