@@ -5,7 +5,7 @@
     <h1>Редактирование репозитория</h1>
 </div>
 
-<form action="{{ path('repos_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
+<form action="{{ path('repos_edit', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}
     <p>
         <button class="btn btn-primary" type="submit">Обновить</button>

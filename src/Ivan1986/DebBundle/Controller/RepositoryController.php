@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Form\RepositoryType;
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Repository controller.
@@ -16,6 +19,15 @@ use Ivan1986\DebBundle\Form\RepositoryType;
  */
 class RepositoryController extends Controller
 {
+    /** @var ObjectManager */
+    private $em;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $this->em = $this->getDoctrine()->getManager();
+    }
+
     /**
      * Lists all Repository entities.
      *
@@ -24,9 +36,7 @@ class RepositoryController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entities = $em->getRepository('Ivan1986DebBundle:Repository')->getByUser($this->getUser());
+        $entities = $this->em->getRepository('Ivan1986DebBundle:Repository')->getByUser($this->getUser());
 
         return array(
             'entities' => $entities,
@@ -44,33 +54,16 @@ class RepositoryController extends Controller
         $entity = new Repository();
         $form   = $this->createForm(new RepositoryType(), $entity);
 
-        return array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
+        if ($this->getRequest()->getMethod() == 'POST')
+        {
+            $form->bindRequest($this->getRequest());
+            if ($form->isValid()) {
+                $entity->setOwner($this->getUser());
+                $this->em->persist($entity);
+                $this->em->flush();
 
-    /**
-     * Creates a new Repository entity.
-     *
-     * @Route("/create", name="repos_create")
-     * @Method("post")
-     * @Template("Ivan1986DebBundle:Repository:new.html.twig")
-     */
-    public function createAction()
-    {
-        $entity  = new Repository();
-        $request = $this->getRequest();
-        $form    = $this->createForm(new RepositoryType(), $entity);
-        $form->bindRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity->setOwner($this->getUser());
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('repos'));
+                return $this->redirect($this->generateUrl('repos'));
+            }
         }
 
         return array(
@@ -87,59 +80,23 @@ class RepositoryController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('Ivan1986DebBundle:Repository')->getByIdAndCheckUser($id, $this->getUser());
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Repository entity.');
-        }
-
+        $entity = $this->getByID($id);
         $editForm = $this->createForm(new RepositoryType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        );
-    }
+        if ($this->getRequest()->getMethod() == 'POST')
+        {
+            $editForm->bindRequest($this->getRequest());
+            if ($editForm->isValid()) {
+                $this->em->persist($entity);
+                $this->em->flush();
 
-    /**
-     * Edits an existing Repository entity.
-     *
-     * @Route("/{id}/update", name="repos_update")
-     * @Method("post")
-     * @Template("Ivan1986DebBundle:Repository:edit.html.twig")
-     */
-    public function updateAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('Ivan1986DebBundle:Repository')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Repository entity.');
-        }
-
-        $editForm   = $this->createForm(new RepositoryType(), $entity);
-        $deleteForm = $this->createDeleteForm($id);
-
-        $request = $this->getRequest();
-
-        $editForm->bindRequest($request);
-
-        if ($editForm->isValid()) {
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('repos_edit', array('id' => $id)));
+                return $this->redirect($this->generateUrl('repos'));
+            }
         }
 
         return array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
         );
     }
 
@@ -147,38 +104,41 @@ class RepositoryController extends Controller
      * Deletes a Repository entity.
      *
      * @Route("/{id}/delete", name="repos_delete")
-     * @Method("post")
+     * @Method("get")
      */
     public function deleteAction($id)
     {
-        $form = $this->createDeleteForm($id);
-        $request = $this->getRequest();
+        $entity = $this->getByID($id);
+        /** @var Repository $entity */
 
-        $form->bindRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('Ivan1986DebBundle:Repository')->find($id);
-            /** @var Repository $entity */
-
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Repository entity.');
-            }
-            //удаляем пакеты этого репозитория
-            foreach($entity->getPackages() as $pkg)
-                $em->remove($pkg);
-            $em->remove($entity);
-            $em->flush();
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Repository entity.');
         }
+        //удаляем пакеты этого репозитория
+        foreach($entity->getPackages() as $pkg)
+            $this->em->remove($pkg);
+        $this->em->remove($entity);
+        $this->em->flush();
 
         return $this->redirect($this->generateUrl('repos'));
     }
 
-    private function createDeleteForm($id)
+    /**
+     * Получаем репозиторий по ID с проверкой пользователя
+     *
+     * @param $id
+     * @return Repository
+     * @throws NotFoundHttpException
+     */
+    private function getByID($id)
     {
-        return $this->createFormBuilder(array('id' => $id))
-            ->add('id', 'hidden')
-            ->getForm()
-        ;
+        $entity = $this->em->getRepository('Ivan1986DebBundle:Repository')
+            ->getByIdAndCheckUser($id, $this->getUser());
+        /** @var Repository $entity */
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Repository entity.');
+        }
+        return $entity;
     }
+
 }
