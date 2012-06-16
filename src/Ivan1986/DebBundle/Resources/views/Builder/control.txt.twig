@@ -11,6 +11,6 @@ Architecture: all
 Section: repo
 Depends: apt, ${misc:Depends}
 Description: package to add {{ repo.url }}
- add {{ repo.url }} {{ repo.release }} {{ repo.components|join(' ') }}
+ add {{ repo.repoString }}
  .
  This package in auto generated

@@ -9,6 +9,7 @@ use Ivan1986\DebBundle\Entity\User;
 use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ivan1986\DebBundle\Entity\Repository
@@ -41,27 +42,13 @@ class Repository
         return $this->id;
     }
 
-    //<editor-fold defaultstate="collapsed" desc="Основные переменные, описывающие репозиторий">
+    //<editor-fold defaultstate="collapsed" desc="Адрес репозитория">
     /**
      * @var string $url Адрес репозитория
      *
-     * @ORM\Column(name="`url`", type="string")
+     * @ORM\Column(name="`repoString`", type="string")
      */
-    protected $url;
-
-    /**
-     * @var string $name Релиз (stable,testing,sid, natty,oneiric)
-     *
-     * @ORM\Column(name="`release`", type="string")
-     */
-    protected $release;
-
-    /**
-     * @var string $components Компоненты
-     *
-     * @ORM\Column(name="`components`", type="array")
-     */
-    protected $components;
+    protected $repoString;
 
     /**
      * @var boolean $bin В репозитории есть бинарники
@@ -76,72 +63,6 @@ class Repository
      * @ORM\Column(name="`src`", type="boolean")
      */
     protected $src = true;
-
-    /**
-     * Set url
-     *
-     * @param string $url
-     * @return Repository
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
-     * Set release
-     *
-     * @param string $release
-     * @return Repository
-     */
-    public function setRelease($release)
-    {
-        $this->release = $release;
-        return $this;
-    }
-
-    /**
-     * Get release
-     *
-     * @return string
-     */
-    public function getRelease()
-    {
-        return $this->release;
-    }
-
-    /**
-     * Set components
-     *
-     * @param array $components
-     * @return Repository
-     */
-    public function setComponents($components)
-    {
-        $this->components = $components;
-        return $this;
-    }
-
-    /**
-     * Get components
-     *
-     * @return array
-     */
-    public function getComponents()
-    {
-        return $this->components ? $this->components : array();
-    }
 
     /**
      * Set bin
@@ -246,7 +167,13 @@ class Repository
      */
     public function getRepoString()
     {
-        return trim($this->getUrl().' '.$this->getRelease().' '.implode(' ', $this->getComponents()));
+        return $this->repoString;
+    }
+
+    public function getUrl()
+    {
+        $items = explode(' ', $this->repoString);
+        return $items[0];
     }
 
     /**
@@ -263,9 +190,19 @@ class Repository
             if (empty($v))
                 unset($items[$k]);
         $items = array_values($items);
+        if (isset($items[0]) && ($items[0] == 'deb' || $items[0] == 'deb-src'))
+            array_shift($items);
+        $this->repoString = implode(' ', $items);
+        return $this;
+        $items = explode(' ', $string);
+        //устраняем лишние пробелы
+        foreach($items as $k=>$v)
+            if (empty($v))
+                unset($items[$k]);
+        $items = array_values($items);
 
         if (count($items) == 0)
-            throw new ParseRepoStringException($string, 'Empty String', 0);
+            return $this;
         if ($items[0] == 'deb' || $items[0] == 'deb-src')
             array_shift($items);
         if (count($items) == 0)
@@ -283,6 +220,26 @@ class Repository
 
         return $this;
     }
+
+    /**
+     * Проверяет валидность строки репозитория
+     *
+     * @Assert\True(message = "Неверный формат строки репозитория")
+     * @return bool
+     */
+    public function isValidRepoString()
+    {
+        $items = explode(' ', $this->repoString);
+
+        if (count($items) < 2)
+            return false;
+
+        if (filter_var($items[0], FILTER_VALIDATE_URL) != $items[0])
+            return false;
+
+        return true;
+    }
+
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Ключ">

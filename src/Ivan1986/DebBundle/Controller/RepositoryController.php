@@ -58,20 +58,13 @@ class RepositoryController extends Controller
 
         if ($this->getRequest()->getMethod() == 'POST')
         {
-            try
-            {
-                $form->bindRequest($this->getRequest());
-                if ($form->isValid()) {
-                    $entity->setOwner($this->getUser());
-                    $this->em->persist($entity);
-                    $this->em->flush();
+            $form->bindRequest($this->getRequest());
+            if ($form->isValid()) {
+                $entity->setOwner($this->getUser());
+                $this->em->persist($entity);
+                $this->em->flush();
 
-                    return $this->redirect($this->generateUrl('repos'));
-                }
-            }
-            catch(ParseRepoStringException $e)
-            {
-                $form->addError(new FormError($e->__toString()));
+                return $this->redirect($this->generateUrl('repos'));
             }
         }
 
@@ -94,19 +87,12 @@ class RepositoryController extends Controller
 
         if ($this->getRequest()->getMethod() == 'POST')
         {
-            try
-            {
-                $editForm->bindRequest($this->getRequest());
-                if ($editForm->isValid()) {
-                    $this->em->persist($entity);
-                    $this->em->flush();
+            $editForm->bindRequest($this->getRequest());
+            if ($editForm->isValid()) {
+                $this->em->persist($entity);
+                $this->em->flush();
 
-                    return $this->redirect($this->generateUrl('repos'));
-                }
-            }
-            catch(ParseRepoStringException $e)
-            {
-                $editForm->addError(new FormError($e->__toString()));
+                return $this->redirect($this->generateUrl('repos'));
             }
         }
 
