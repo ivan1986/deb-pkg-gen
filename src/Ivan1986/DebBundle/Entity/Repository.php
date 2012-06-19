@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\RepositoryRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="repoType", type="string")
- * @ORM\DiscriminatorMap({"standart" = "Repository"})
+ * @ORM\DiscriminatorMap({"standart" = "Repository", "ppa" = "PpaRepository"})
  * @UniqueEntity({"fields"="name", "message"="Пакет с таким именем уже есть в системе"})
  */
 class Repository
