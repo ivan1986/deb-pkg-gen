@@ -34,7 +34,7 @@ class RepoController extends Controller
      */
     public function PackagesAction($arch)
     {
-        $list = $this->getPkgList();
+        $list = $this->getPkgList($this->getPkgs());
 
         $r = new Response($list);
         $r->headers->set('Content-Type', 'application/octet-stream');
@@ -47,8 +47,8 @@ class RepoController extends Controller
      */
     public function ReleaseAction()
     {
-        $list = $this->getPkgList();
-        $Release = $this->getRelease($list);
+        $pkgs = $this->getPkgs();
+        $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs));
 
         $r = new Response($Release);
         $r->headers->set('Content-Type', 'application/octet-stream');
@@ -61,8 +61,8 @@ class RepoController extends Controller
      */
     public function ReleaseGpgAction()
     {
-        $list = $this->getPkgList();
-        $Release = $this->getRelease($list);
+        $pkgs = $this->getPkgs();
+        $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs));
 
         $gpg = new \gnupg();
         $content = file_get_contents($this->container->getParameter('key_file'));
@@ -76,7 +76,7 @@ class RepoController extends Controller
         return $r;
     }
 
-    private function getRelease($list)
+    private function getRelease($list, $date)
     {
         $size = strlen($list);
         $md5 = md5($list);
@@ -88,17 +88,39 @@ class RepoController extends Controller
             'size' => $size,
             'md5' => $md5,
             'sha1' => $sha1,
-            //TODO: из-за разного времени генерации - ошибка подписи
-            'date' => date('r'),
+            'date' => date('r', $date),
         ));
         return $Release;
     }
 
-    private function getPkgList()
+    /**
+     * Возвращает дату последнего пакета
+     *
+     * @param $packages Список пакетоа
+     * @return integer Timestamp
+     */
+    private function getMaxDate($packages)
+    {
+        if (empty($packages))
+            return time();
+        $date = $packages[0]->getCreated()->getTimestamp();
+        foreach($packages as $package)
+        {
+            /** @var $package Package */
+            $date = max($date, $package->getCreated()->getTimestamp());
+        }
+        return $date;
+    }
+
+    private function getPkgs()
     {
         $rpkgs = $this->getDoctrine()->getRepository('Ivan1986DebBundle:Package');
         /** @var $rpkgs PackageRepository */
-        $pkgs = $rpkgs->findAll();
+        return $rpkgs->mainRepo();
+    }
+
+    private function getPkgList($pkgs)
+    {
         $list = array();
         foreach ($pkgs as $pkg) {
             $info = $pkg->getInfo();
