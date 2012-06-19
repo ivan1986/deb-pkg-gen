@@ -28,7 +28,8 @@ class PackageRepository extends EntityRepository
      */
     public function mainRepo()
     {
-        $data = $this->_em->createQuery('SELECT p FROM Ivan1986\DebBundle\Entity\SimplePackage AS p')->getResult();
+        $data = $this->_em->createQuery('SELECT p FROM Ivan1986\DebBundle\Entity\Package AS p
+            WHERE NOT p INSTANCE OF Ivan1986\DebBundle\Entity\SysPackage')->getResult();
         $data[] = $this->getSystem();
         return $data;
     }
