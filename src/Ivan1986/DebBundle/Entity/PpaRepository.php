@@ -43,6 +43,22 @@ class PpaRepository extends Repository
         return true;
     }
 
+    private function getPpaUrl()
+    {
+        $arr = explode('/', substr($this->repoString, 4));
+        if (count($arr) != 2)
+            return '';
+        return 'http://ppa.launchpad.net/'.$arr[0].'/'.$arr[1].'/ubuntu/';
+    }
+
+    private function getPpaPage()
+    {
+        $arr = explode('/', substr($this->repoString, 4));
+        if (count($arr) != 2)
+            return '';
+        return 'https://launchpad.net/~'.$arr[0].'/+archive/'.$arr[1];
+    }
+
     /**
      * Проверяет валидность строки репозитория
      *
@@ -51,28 +67,25 @@ class PpaRepository extends Repository
      */
     public function isExistRepo()
     {
-        $str = substr($this->repoString, 4);
-        $str = explode('/', $str);
-        if (count($str) != 2)
+        if ($this->getPpaUrl() == '')
             return false;
         $c = new Curl();
-        $c->setURL('http://ppa.launchpad.net/'.$str[0].'/'.$str[1].'/ubuntu/');
+        $c->setURL($this->getPpaUrl());
         $c->execute();
         $info = $c->getInfo();
         //репозиторий существует, заодно получим ключ
-        $url = 'https://launchpad.net/~'.$str[0].'/+archive/'.$str[1];
         if ($info['http_code'] != 200)
             return false;
-        return $this->getKeyFromLaunchpad($url);
+        return $this->getKeyFromLaunchpad();
     }
 
-    private function getKeyFromLaunchpad($url)
+    private function getKeyFromLaunchpad()
     {
         $c = new Curl();
         $c->setOptions(array(
             'CURLOPT_SSL_VERIFYPEER' => false,
         ));
-        $c->setURL($url);
+        $c->setURL($this->getPpaPage());
         $data = $c->execute();
         if (!$data)
             return false;
