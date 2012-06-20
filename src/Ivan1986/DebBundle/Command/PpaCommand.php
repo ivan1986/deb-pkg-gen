@@ -31,7 +31,7 @@ class PpaCommand extends ContainerAwareCommand
 
         $rrepo = $doctrine->getRepository('Ivan1986DebBundle:PpaRepository');
         /** @var $rrepo RepositoryRepository */
-        $repos = $rrepo->getPpaForScan($input->getOption('update'));
+        $repos = $rrepo->getPpaForScan(!$input->getOption('update'));
         $curl = new Curl();
         foreach($repos as $repo)
         {
@@ -44,7 +44,9 @@ class PpaCommand extends ContainerAwareCommand
             $matches = array();
             preg_match_all('#<a href="([a-z]+)/">\1/</a>#i', $page, $matches);
             $dists = $matches[1];
-            var_dump($dists);
+            $distros = $repo->getDistrs();
+            /** @var $distros \Ivan1986\DebBundle\Model\DistList */
+            $repo->setDistrs($distros->update($dists, $this->getContainer()->getParameter('dists')));
         }
         $doctrine->getManager()->flush();
     }

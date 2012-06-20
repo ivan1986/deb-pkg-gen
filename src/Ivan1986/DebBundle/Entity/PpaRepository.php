@@ -121,14 +121,14 @@ class PpaRepository extends Repository
     }
 
     /**
-     * @var DistList $distrs Список дистрибутивов, соответствующих
+     * @var Ivan1986\DebBundle\Model\DistList $distrs Список дистрибутивов, соответствующих
      *
      * @ORM\Column(name="distrs", type="object")
      */
     protected $distrs;
 
     /**
-     * @param DistList $distrs
+     * @param Ivan1986\DebBundle\Model\DistList $distrs
      */
     public function setDistrs($distrs)
     {
@@ -136,11 +136,11 @@ class PpaRepository extends Repository
     }
 
     /**
-     * @return DistList
+     * @return Ivan1986\DebBundle\Model\DistList
      */
     public function getDistrs()
     {
-        return $this->distrs;
+        return $this->distrs ? $this->distrs : new DistList();
     }
 
 }
