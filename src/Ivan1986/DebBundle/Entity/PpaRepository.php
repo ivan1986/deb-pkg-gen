@@ -3,6 +3,8 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Ivan1986\DebBundle\Exception\GpgNotFoundException;
+use Ivan1986\DebBundle\Model\GpgLoader;
 use Anchovy\CURLBundle\CURL\Curl;
 use Symfony\Component\Validator\Constraints\True;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -13,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Ivan1986\DebBundle\Entity\PpaRepository
  *
  * @ORM\Entity()
+ * @ORM\HasLifecycleCallbacks()
  */
 class PpaRepository extends Repository
 {
@@ -57,12 +60,45 @@ class PpaRepository extends Repository
         $c->execute();
         $info = $c->getInfo();
         //репозиторий существует, заодно получим ключ
-        $this->getKeyFromLaunchpad();
-        return $info['http_code'] == 200;
+        $url = 'https://launchpad.net/~'.$str[0].'/+archive/'.$str[1];
+        if ($info['http_code'] != 200)
+            return false;
+        return $this->getKeyFromLaunchpad($url);
     }
 
-    private function getKeyFromLaunchpad()
+    private function getKeyFromLaunchpad($url)
     {
+        $c = new Curl();
+        $c->setOptions(array(
+            'CURLOPT_SSL_VERIFYPEER' => false,
+        ));
+        $c->setURL($url);
+        $data = $c->execute();
+        if (!$data)
+            return false;
+        $matches = array();
+        preg_match('#<code>\d+R/(.*)</code>#is', $data, $matches);
+        if (empty($matches[1]))
+            return false;
+        $keyId = $matches[1];
+
+        $r = $this->container->get('doctrine')->getRepository('Ivan1986DebBundle:GpgKey');
+        $key = $r->findOneBy(array('id' => $keyId));
+        if ($key)
+        {
+            $this->setKey($key);
+            return true;
+        }
+        try {
+            $key = GpgLoader::getFromServer($keyId, 'keyserver.ubuntu.com');
+        } catch(GpgNotFoundException $e) {
+            return false;
+        }
+        $em = $this->container->get('doctrine')->getManager();
+        /** @var $em \Doctrine\ORM\EntityManager */
+        $em->persist($key);
+        $this->setKey($key);
+        return true;
     }
 
     public function getFormClass()

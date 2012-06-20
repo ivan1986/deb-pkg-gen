@@ -55,6 +55,7 @@ class RepositoryController extends Controller
     public function newAction()
     {
         $entity = new Repository();
+        $entity->setContainer($this->container);
         $form   = $this->createForm($entity->getFormClass(), $entity);
 
         if ($this->getRequest()->getMethod() == 'POST')
@@ -85,6 +86,7 @@ class RepositoryController extends Controller
     public function newPpaAction()
     {
         $entity = new PpaRepository();
+        $entity->setContainer($this->container);
         $form   = $this->createForm($entity->getFormClass(), $entity);
 
         if ($this->getRequest()->getMethod() == 'POST')
@@ -115,6 +117,7 @@ class RepositoryController extends Controller
     public function editAction($id)
     {
         $entity = $this->getByID($id);
+        $entity->setContainer($this->container);
         $editForm = $this->createForm($entity->getFormClass(), $entity);
 
         if ($this->getRequest()->getMethod() == 'POST')
@@ -143,6 +146,7 @@ class RepositoryController extends Controller
     public function deleteAction($id)
     {
         $entity = $this->getByID($id);
+        $entity->setContainer($this->container);
         /** @var Repository $entity */
 
         if (!$entity) {

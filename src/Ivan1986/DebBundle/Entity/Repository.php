@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ivan1986\DebBundle\Entity\GpgKey;
@@ -23,7 +24,7 @@ use Ivan1986\DebBundle\Form\RepositoryType;
  * @ORM\DiscriminatorMap({"standart" = "Repository", "ppa" = "PpaRepository"})
  * @UniqueEntity({"fields"="name", "message"="Пакет с таким именем уже есть в системе"})
  */
-class Repository
+class Repository extends ContainerAware
 {
     /**
      * @var integer $id
