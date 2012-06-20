@@ -52,7 +52,7 @@ class InitCommand extends ContainerAwareCommand
         $repo->setRepoString('http://'.$this->getContainer()->getParameter('host').$this->getContainer()->get('router')->generate('repo', array()).' stable main');
         $repo->setSrc(false);
         $repo->setKey($key);
-        $repo->setName($this->getContainer()->getParameter('host'));
+        $repo->setName(str_replace(':','-', $this->getContainer()->getParameter('host')));
 
         $builder = new Builder($this->getContainer()->get('templating'));
         $pkg = $builder->build($repo);
