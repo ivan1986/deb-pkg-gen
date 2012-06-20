@@ -44,7 +44,7 @@ class PpaRepository extends Repository
         return true;
     }
 
-    private function getPpaUrl()
+    public function getPpaUrl()
     {
         $arr = explode('/', substr($this->repoString, 4));
         if (count($arr) != 2)
