@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
+use Ivan1986\DebBundle\Model\GpgLoader;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ivan1986\DebBundle\Entity\GpgKey;
@@ -98,7 +99,7 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
             return $key;
         try
         {
-            $key = $r->getFromServer($value, $this->server);
+            $key = GpgLoader::getFromServer($value, $this->server);
         }
         catch(GpgNotFoundException $e)
         {

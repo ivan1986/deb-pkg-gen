@@ -1,19 +1,19 @@
 <?php
 
-namespace Ivan1986\DebBundle\Tests\Entity;
+namespace Ivan1986\DebBundle\Tests\Model;
 
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;
+use Ivan1986\DebBundle\Model\GpgLoader;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 
-class GpgKeyTest extends Entity
+class GpgKeyTest extends WebTestCase
 {
     public function testGetMyKey()
     {
-        $keys = $this->em->getRepository('Ivan1986DebBundle:GpgKey');
-        /** @var $keys GpgKeyRepository */
         $id = '28FA7071';
-        $key = $keys->getFromServer($id, 'keyserver.ubuntu.com');
+        $key = GpgLoader::getFromServer($id, 'keyserver.ubuntu.com');
         /** @var $key GpgKey */
         $this->assertEquals($key->getId(), $id);
         $this->assertEquals($key->getFingerprint(), '33C640DA31127882C496917F6831CF9528FA7071');
@@ -25,10 +25,8 @@ class GpgKeyTest extends Entity
      */
     public function testGetNotExistKey()
     {
-        $keys = $this->em->getRepository('Ivan1986DebBundle:GpgKey');
-        /** @var $keys GpgKeyRepository */
         $id = 'ffffff';
-        $key = $keys->getFromServer($id, 'keyserver.ubuntu.com');
+        $key = GpgLoader::getFromServer($id, 'keyserver.ubuntu.com');
     }
 
 }

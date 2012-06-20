@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Ivan1986\DebBundle\Entity\PpaRepository;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -43,6 +44,9 @@ class UpdateCommand extends ContainerAwareCommand
                 /** @var $pkg Package */
                 $doctrine->getManager()->remove($pkg);
             }
+            //TODO: генерация ppa
+            if ($repo instanceof PpaRepository)
+                continue;
             $pkg = $builder->simplePackage($repo);
             if (!$pkg)
                 continue;

@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Ivan1986\DebBundle\Model\GpgLoader;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -45,9 +46,7 @@ class InitCommand extends ContainerAwareCommand
                 return;
         }
 
-        $keys = $doctrine->getRepository('Ivan1986DebBundle:GpgKey');
-        /** @var $keys GpgKeyRepository */
-        $key = $keys->getFromServer($this->getContainer()->getParameter('key'), $this->getContainer()->getParameter('key_server'));
+        $key = GpgLoader::getFromServer($this->getContainer()->getParameter('key'), $this->getContainer()->getParameter('key_server'));
 
         $repo = new Repository();
         $repo->setRepoString('http://'.$this->getContainer()->getParameter('host').$this->getContainer()->get('router')->generate('repo', array()).' stable main');

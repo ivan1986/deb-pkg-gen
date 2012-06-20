@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Entity\User;
@@ -10,6 +11,7 @@ use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Ivan1986\DebBundle\Form\RepositoryType;
 
 /**
  * Ivan1986\DebBundle\Entity\Repository
@@ -229,6 +231,11 @@ class Repository
      */
     public function isValidRepoString()
     {
+        return $this->isValid();
+    }
+
+    protected function isValid()
+    {
         $items = explode(' ', $this->repoString);
 
         if (count($items) < 2)
@@ -335,6 +342,16 @@ class Repository
     public function getPackages()
     {
         return $this->packages;
+    }
+
+    /**
+     * Класс формы для этого типа пакета
+     *
+     * @return RepositoryType
+     */
+    public function getFormClass()
+    {
+        return new RepositoryType();
     }
 
 }

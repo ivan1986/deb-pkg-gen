@@ -5,7 +5,7 @@
     <h1>Новый репозиторий</h1>
 </div>
 
-<form action="{{ path('repos_new') }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path(to) }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
         <button class="btn btn-primary" type="submit">Создать</button>

@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormError;
 use Ivan1986\DebBundle\Entity\Repository;
+use Ivan1986\DebBundle\Entity\PpaRepository;
 use Ivan1986\DebBundle\Form\RepositoryType;
 use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 
@@ -54,7 +55,7 @@ class RepositoryController extends Controller
     public function newAction()
     {
         $entity = new Repository();
-        $form   = $this->createForm(new RepositoryType(), $entity);
+        $form   = $this->createForm($entity->getFormClass(), $entity);
 
         if ($this->getRequest()->getMethod() == 'POST')
         {
@@ -69,6 +70,37 @@ class RepositoryController extends Controller
         }
 
         return array(
+            'to' => 'repos_new',
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        );
+    }
+
+    /**
+     * Displays a form to create a new Repository entity.
+     *
+     * @Route("/new_ppa", name="repos_new_ppa")
+     * @Template("Ivan1986DebBundle:Repository:new.html.twig")
+     */
+    public function newPpaAction()
+    {
+        $entity = new PpaRepository();
+        $form   = $this->createForm($entity->getFormClass(), $entity);
+
+        if ($this->getRequest()->getMethod() == 'POST')
+        {
+            $form->bindRequest($this->getRequest());
+            if ($form->isValid()) {
+                $entity->setOwner($this->getUser());
+                $this->em->persist($entity);
+                $this->em->flush();
+
+                return $this->redirect($this->generateUrl('repos'));
+            }
+        }
+
+        return array(
+            'to' => 'repos_new_ppa',
             'entity' => $entity,
             'form'   => $form->createView(),
         );
@@ -83,7 +115,7 @@ class RepositoryController extends Controller
     public function editAction($id)
     {
         $entity = $this->getByID($id);
-        $editForm = $this->createForm(new RepositoryType(), $entity);
+        $editForm = $this->createForm($entity->getFormClass(), $entity);
 
         if ($this->getRequest()->getMethod() == 'POST')
         {

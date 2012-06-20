@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Tests\Util;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Ivan1986\DebBundle\Model\GpgLoader;
 
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;
@@ -33,7 +34,7 @@ class BuilderTest extends WebTestCase
         $keys = $this->em->getRepository('Ivan1986DebBundle:GpgKey');
         /** @var $keys GpgKeyRepository */
         $id = '28FA7071';
-        $key = $keys->getFromServer($id, 'keyserver.ubuntu.com');
+        $key = GpgLoader::getFromServer($id, 'keyserver.ubuntu.com');
         $rep = new Repository();
         $rep->setRepoString('deb http://ppa.launchpad.net/psi-plus/ppa/ubuntu oneiric main');
         $rep->setKey($key);
