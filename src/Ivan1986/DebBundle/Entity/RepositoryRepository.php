@@ -47,5 +47,14 @@ class RepositoryRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    public function getPpaForScan($onlyNew)
+    {
+        $qb = $this->createQueryBuilder('r');
+        $qb->select('r');
+        if ($onlyNew)
+            $qb->where('r.distrs IS NULL');
+        return $qb->getQuery()->getResult();
+    }
+
 
 }

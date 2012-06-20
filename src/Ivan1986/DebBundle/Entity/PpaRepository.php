@@ -10,14 +10,16 @@ use Symfony\Component\Validator\Constraints\True;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Ivan1986\DebBundle\Form\PpaRepositoryType;
 use Symfony\Component\Validator\Constraints as Assert;
+use Ivan1986\DebBundle\Model\DistList;
 
 /**
  * Ivan1986\DebBundle\Entity\PpaRepository
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\RepositoryRepository")
  */
 class PpaRepository extends Repository
 {
+
     public function setRepoString($string)
     {
         if (strpos($string, 'ppa:') !== 0)
@@ -116,6 +118,29 @@ class PpaRepository extends Repository
     public function getFormClass()
     {
         return new PpaRepositoryType();
+    }
+
+    /**
+     * @var DistList $distrs Список дистрибутивов, соответствующих
+     *
+     * @ORM\Column(name="distrs", type="object")
+     */
+    protected $distrs;
+
+    /**
+     * @param DistList $distrs
+     */
+    public function setDistrs($distrs)
+    {
+        $this->distrs = $distrs;
+    }
+
+    /**
+     * @return DistList
+     */
+    public function getDistrs()
+    {
+        return $this->distrs;
     }
 
 }
