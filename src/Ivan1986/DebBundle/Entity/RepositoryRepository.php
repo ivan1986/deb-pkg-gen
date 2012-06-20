@@ -52,7 +52,9 @@ class RepositoryRepository extends EntityRepository
         $qb = $this->createQueryBuilder('r');
         $qb->select('r');
         if ($onlyNew)
-            $qb->where('r.distrs IS NULL');
+            $qb
+                ->where('r.distrs IS NULL')
+                ->orWhere('r.distrs = :null')->setParameter('null', serialize(null));
         return $qb->getQuery()->getResult();
     }
 

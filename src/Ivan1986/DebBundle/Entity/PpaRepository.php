@@ -27,6 +27,8 @@ class PpaRepository extends Repository
         if (strpos($string, '/') === false)
             $string = $string.'/ppa';
         $this->setName(str_replace(array(':', '/'), '-', $string));
+        if ($this->repoString != $string)
+            $this->distrs = null;
         return parent::setRepoString($string);
     }
 
