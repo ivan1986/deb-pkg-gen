@@ -31,7 +31,6 @@ class UpdateCommand extends ContainerAwareCommand
         $doctrine = $this->getContainer()->get('doctrine');
         /** @var $doctrine \Doctrine\Bundle\DoctrineBundle\Registry */
 
-
         $rrepo = $doctrine->getRepository('Ivan1986DebBundle:Repository');
         /** @var $rrepo RepositoryRepository */
         $repos = $rrepo->getNewAndUpdated();
@@ -44,13 +43,7 @@ class UpdateCommand extends ContainerAwareCommand
                 /** @var $pkg Package */
                 $doctrine->getManager()->remove($pkg);
             }
-            //TODO: генерация ppa
-            if ($repo instanceof PpaRepository)
-                continue;
-            $pkg = $builder->simplePackage($repo);
-            if (!$pkg)
-                continue;
-            $doctrine->getManager()->persist($pkg);
+            $repo->buildPackages($builder, $doctrine->getManager());
         }
         $doctrine->getManager()->flush();
     }

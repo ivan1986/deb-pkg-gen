@@ -3,6 +3,8 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Persistence\ObjectManager;
+use Ivan1986\DebBundle\Util\Builder;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -353,6 +355,20 @@ class Repository extends ContainerAware
     public function getFormClass()
     {
         return new RepositoryType();
+    }
+
+    public function buildPackages(Builder $builder, ObjectManager $manager)
+    {
+        $data = $builder->build($this);
+        if (!$data)
+            return false;
+        $package = new SimplePackage();
+        $package->setContent($data['content']);
+        $package->setFile($data['file']);
+        $package->setInfo($data['finfo']);
+        $package->setRepository($this);
+        $manager->persist($package);
+        return true;
     }
 
 }

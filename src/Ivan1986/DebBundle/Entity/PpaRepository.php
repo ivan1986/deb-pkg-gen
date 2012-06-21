@@ -3,6 +3,8 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Persistence\ObjectManager;
+use Ivan1986\DebBundle\Util\Builder;
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 use Ivan1986\DebBundle\Model\GpgLoader;
 use Anchovy\CURLBundle\CURL\Curl;
@@ -32,9 +34,33 @@ class PpaRepository extends Repository
         return parent::setRepoString($string);
     }
 
+    private $status = false;
+
     public function getDebStrings()
     {
-        return parent::getDebStrings();
+        $str = $this->getPpaUrl().' '.($this->distrs->{$this->status}).' main';
+        return
+            ($this->bin ? ('deb '.$str."\n") : '').
+            ($this->src ? ('deb-src '.$str."\n") : '');
+    }
+
+    public function pkgName()
+    {
+        return 'repo-'.$this->getName().'-'.$this->status;
+    }
+
+    public function buildPackages(Builder $builder, ObjectManager $manager)
+    {
+        if (!$this->distrs)
+            return false;
+        foreach(array('lts', 'stable', 'testing') as $v)
+        {
+            $this->status = $v;
+            $res = parent::buildPackages($builder, $manager);
+            if (!$res)
+                return false;
+        }
+        return true;
     }
 
     protected function isValid()

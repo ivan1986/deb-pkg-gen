@@ -4,9 +4,9 @@ namespace Ivan1986\DebBundle\Model;
 
 class DistList
 {
-    public $lts = false;
-    public $stable = false;
-    public $testing = false;
+    public $lts = '';
+    public $stable = '';
+    public $testing = '';
 
     /**
      * Обновляет список текущих дистрибутивов
