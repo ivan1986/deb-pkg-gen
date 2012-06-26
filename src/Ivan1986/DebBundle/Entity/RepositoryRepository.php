@@ -3,7 +3,6 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 
 /**
  * RepositoryRepository

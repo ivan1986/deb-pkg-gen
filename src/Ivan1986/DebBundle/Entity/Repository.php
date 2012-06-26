@@ -10,7 +10,6 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Entity\User;
-use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -198,31 +197,6 @@ class Repository extends ContainerAware
         if (isset($items[0]) && ($items[0] == 'deb' || $items[0] == 'deb-src'))
             array_shift($items);
         $this->repoString = implode(' ', $items);
-        return $this;
-        $items = explode(' ', $string);
-        //устраняем лишние пробелы
-        foreach($items as $k=>$v)
-            if (empty($v))
-                unset($items[$k]);
-        $items = array_values($items);
-
-        if (count($items) == 0)
-            return $this;
-        if ($items[0] == 'deb' || $items[0] == 'deb-src')
-            array_shift($items);
-        if (count($items) == 0)
-            throw new ParseRepoStringException($string, 'Not Found Url', 1);
-        $this->setUrl(array_shift($items));
-
-        if (count($items) == 0)
-            throw new ParseRepoStringException($string, 'Not Found Release', 2);
-
-        $this->setRelease(array_shift($items));
-
-        //Если нету компонентов, то это упрощенный репозиторий, что тоже нормально
-        if (count($items))
-            $this->setComponents($items);
-
         return $this;
     }
 

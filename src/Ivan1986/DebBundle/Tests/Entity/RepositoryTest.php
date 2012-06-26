@@ -4,7 +4,6 @@ namespace Ivan1986\DebBundle\Tests\Entity;
 
 use Ivan1986\DebBundle\Entity\RepositoryRepository;
 use Ivan1986\DebBundle\Entity\Repository;
-use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 
 class RepositoryTest extends Entity
 {

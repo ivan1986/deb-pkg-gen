@@ -13,7 +13,6 @@ use Symfony\Component\Form\FormError;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Entity\PpaRepository;
 use Ivan1986\DebBundle\Form\RepositoryType;
-use Ivan1986\DebBundle\Exception\ParseRepoStringException;
 
 /**
  * Repository controller.
