@@ -32,7 +32,7 @@
         "sonata-project/easy-extends-bundle": "*",
         "sonata-project/doctrine-orm-admin-bundle": "*",
 
-        "behat/behat-bundle": "*",
+        "behat/symfony2-extension": "*",
         "behat/mink-bundle": "*",
         "behat/sahi-client": "*",
         "alexandresalome/php-selenium": "*"
