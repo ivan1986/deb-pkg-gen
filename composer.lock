@@ -1,5 +1,5 @@
 {
-    "hash": "231a2f7a5b6183933aa15e7a8d8ef191",
+    "hash": "6618f6c69c3fa6885b66d5ce6d801f2e",
     "packages": [
         {
             "package": "Anchovy/CURLBundle",
@@ -56,12 +56,6 @@
         {
             "package": "doctrine/doctrine-bundle",
             "version": "dev-master",
-            "alias-pretty-version": "1.0.x-dev",
-            "alias-version": "1.0.9999999.9999999-dev"
-        },
-        {
-            "package": "doctrine/doctrine-bundle",
-            "version": "dev-master",
             "source-reference": "c9ea46d1f0c48bb88bb87b44214fe44e03c0c692",
             "commit-date": "1341405737"
         },
@@ -88,12 +82,6 @@
             "version": "dev-master",
             "source-reference": "73d48c442b1cccd90fbce4e555ac8f580f82d974",
             "commit-date": "1342293032"
-        },
-        {
-            "package": "gedmo/doctrine-extensions",
-            "version": "dev-master",
-            "alias-pretty-version": "2.3.x-dev",
-            "alias-version": "2.3.9999999.9999999-dev"
         },
         {
             "package": "gedmo/doctrine-extensions",
@@ -134,6 +122,12 @@
         {
             "package": "kriswallsmith/assetic",
             "version": "dev-master",
+            "alias-pretty-version": "1.1.x-dev",
+            "alias-version": "1.1.9999999.9999999-dev"
+        },
+        {
+            "package": "kriswallsmith/assetic",
+            "version": "dev-master",
             "source-reference": "d6f89a3170c5280ad554347dc113eb25fdf00ad7",
             "commit-date": "1339515714"
         },
@@ -162,20 +156,8 @@
         {
             "package": "sensio/framework-extra-bundle",
             "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
-            "package": "sensio/framework-extra-bundle",
-            "version": "dev-master",
             "source-reference": "e9ac8f1a911ed29e30296c7f1549f53d4c94eddf",
             "commit-date": "1342084432"
-        },
-        {
-            "package": "sensio/generator-bundle",
-            "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "sensio/generator-bundle",
@@ -258,44 +240,14 @@
         {
             "package": "symfony/assetic-bundle",
             "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
-            "package": "symfony/assetic-bundle",
-            "version": "dev-master",
             "source-reference": "ed933dcfa45f00b6bc6d7727007403f3ff429e5a",
             "commit-date": "1342126277"
         },
         {
             "package": "symfony/monolog-bundle",
             "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
-            "package": "symfony/monolog-bundle",
-            "version": "dev-master",
             "source-reference": "v2.1.0-BETA2",
             "commit-date": "1341078487"
-        },
-        {
-            "package": "symfony/swiftmailer-bridge",
-            "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
-        },
-        {
-            "package": "symfony/swiftmailer-bridge",
-            "version": "dev-master",
-            "source-reference": "d08108975e22417de3136a856d1e912751d7a051",
-            "commit-date": "1342347231"
-        },
-        {
-            "package": "symfony/swiftmailer-bundle",
-            "version": "dev-master",
-            "alias-pretty-version": "2.1.x-dev",
-            "alias-version": "2.1.9999999.9999999-dev"
         },
         {
             "package": "symfony/swiftmailer-bundle",
@@ -335,6 +287,18 @@
         },
         {
             "package": "zendframework/zend-cache",
+            "version": "2.0.0-beta5"
+        },
+        {
+            "package": "zendframework/zend-eventmanager",
+            "version": "2.0.0-beta5"
+        },
+        {
+            "package": "zendframework/zend-servicemanager",
+            "version": "2.0.0-beta5"
+        },
+        {
+            "package": "zendframework/zend-stdlib",
             "version": "2.0.0-beta5"
         }
     ],
