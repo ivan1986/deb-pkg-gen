@@ -2,7 +2,7 @@
 {% block top_nav %} {{ parent() }} {% if app.user %}<li><a href="{{ path('repos') }}">Мои репозитории</a></li>{% endif %}{% endblock %}
 {% block login %}
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-    <a href="{{ path('sonata_user_profile_show') }}">Профиль</a> |
+    {# <a href="{{ path('sonata_user_profile_show') }}">Профиль</a> | #}
     {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
     <a href="{{ path('fos_user_security_logout') }}">
         {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
