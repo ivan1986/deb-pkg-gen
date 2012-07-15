@@ -18,6 +18,10 @@ class PpaRepositoryType extends AbstractType
                 'label' => 'Адрес PPA репозитория',
                 'attr' => array('class' => 'span5'),
             ))
+            ->add('name', null, array(
+                'label' => 'Има пакета',
+                'required' => false,
+            ))
         ;
     }
 

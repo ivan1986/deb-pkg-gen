@@ -18,6 +18,7 @@ use Ivan1986\DebBundle\Model\DistList;
  * Ivan1986\DebBundle\Entity\PpaRepository
  *
  * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\RepositoryRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class PpaRepository extends Repository
 {
@@ -28,10 +29,19 @@ class PpaRepository extends Repository
             $string = 'ppa:'.$string;
         if (strpos($string, '/') === false)
             $string = $string.'/ppa';
-        $this->setName(str_replace(array(':', '/'), '-', $string));
         if ($this->repoString != $string)
             $this->distrs = null;
         return parent::setRepoString($string);
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updName()
+    {
+        if (empty($this->name))
+            $this->setName(str_replace(array(':', '/'), '-', $this->repoString));
     }
 
     private $status = false;
