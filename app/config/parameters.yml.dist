@@ -17,6 +17,7 @@ parameters:
     key_server: keyserver.ubuntu.com
     key: 28FA7071
     key_file: "%kernel.root_dir%/config/key.gpg"
+    cache_dir: "%kernel.root_dir%/cache/zend"
 
     admins:
         ivan: { password: iborzenkov, roles: [ 'ROLE_ADMIN' ] }

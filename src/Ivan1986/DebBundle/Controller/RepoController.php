@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Ivan1986\DebBundle\Entity\PackageRepository;
@@ -12,12 +13,35 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 
+use Zend\Cache\StorageFactory;
+use Zend\Cache\Storage\Adapter\Filesystem;
+use Zend\Cache\Storage\Adapter\FilesystemOptions;
+
 /**
  * @Route("/repo")
  * @Template()
  */
 class RepoController extends Controller
 {
+    /** @var Filesystem */
+    private $cache;
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        parent::setContainer($container);
+        $dir = $this->container->getParameter('cache_dir');
+        if (!is_dir($dir))
+            mkdir($dir, 0777, true);
+        $opt = new FilesystemOptions();
+        $opt->setCacheDir($dir);
+        $opt->setDirPerm(0777);
+        $opt->setFilePerm(0666);
+        $this->cache = StorageFactory::factory(array(
+            'adapter' => 'filesystem',
+        ));
+        $this->cache->setOptions($opt);
+    }
+
 
     /**
      * @Route("/", name="repo")
@@ -34,7 +58,13 @@ class RepoController extends Controller
      */
     public function PackagesAction($arch)
     {
-        $list = $this->getPkgList($this->getPkgs());
+        $key = 'repo_Packages';
+        $list = $this->cache->getItem($key);
+        if (!$list)
+        {
+            $list = $this->getPkgList($this->getPkgs());
+            $this->cache->setItem($key, $list);
+        }
 
         $r = new Response($list);
         $r->headers->set('Content-Type', 'application/octet-stream');
@@ -47,8 +77,14 @@ class RepoController extends Controller
      */
     public function ReleaseAction()
     {
-        $pkgs = $this->getPkgs();
-        $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs));
+        $key = 'repo_Release';
+        $Release = $this->cache->getItem($key);
+        if (!$Release)
+        {
+            $pkgs = $this->getPkgs();
+            $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs));
+            $this->cache->setItem($key, $Release);
+        }
 
         $r = new Response($Release);
         $r->headers->set('Content-Type', 'application/octet-stream');
@@ -61,15 +97,21 @@ class RepoController extends Controller
      */
     public function ReleaseGpgAction()
     {
-        $pkgs = $this->getPkgs();
-        $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs));
+        $key = 'repo_ReleaseGpg';
+        $ReleaseGpg = $this->cache->getItem($key);
+        if (!$ReleaseGpg)
+        {
+            $pkgs = $this->getPkgs();
+            $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs));
 
-        $gpg = new \gnupg();
-        $content = file_get_contents($this->container->getParameter('key_file'));
-        $PrivateKey = $gpg->import($content);
-        $gpg->addsignkey($PrivateKey['fingerprint']);
-        $gpg->setsignmode(\gnupg::SIG_MODE_DETACH);
-        $ReleaseGpg = $gpg->sign($Release);
+            $gpg = new \gnupg();
+            $content = file_get_contents($this->container->getParameter('key_file'));
+            $PrivateKey = $gpg->import($content);
+            $gpg->addsignkey($PrivateKey['fingerprint']);
+            $gpg->setsignmode(\gnupg::SIG_MODE_DETACH);
+            $ReleaseGpg = $gpg->sign($Release);
+            $this->cache->setItem($key, $ReleaseGpg);
+        }
 
         $r = new Response($ReleaseGpg);
         $r->headers->set('Content-Type', 'application/octet-stream');
