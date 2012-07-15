@@ -1,7 +1,6 @@
 Необходимые пакеты
 
-debhelper
-dpkg-dev
+debhelper (+build-essential)
 
 php-gnupg
 

@@ -264,8 +264,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "26c21c98bf592985ba664def3e0d29e07dd09963",
-            "commit-date": "1342359813"
+            "source-reference": "v2.1.0-BETA3",
+            "commit-date": "1342375577"
         },
         {
             "package": "twig/extensions",
