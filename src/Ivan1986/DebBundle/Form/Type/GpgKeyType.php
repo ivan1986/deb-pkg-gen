@@ -39,7 +39,7 @@ class GpgKeyType extends AbstractType
     public function getDefaultOptions()
     {
         return array(
-            'invalid_message' => 'This Key not found in server',
+            'invalid_message' => 'Ошибка загрузки ключа',
         );
     }
 
