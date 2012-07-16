@@ -20,9 +20,11 @@ class RepositoryType extends AbstractType
             ))
             ->add('bin', null, array(
                 'label' => 'В репозитории есть бинарные пакеты',
+                'required' => false,
             ))
             ->add('src', null, array(
                 'label' => 'В репозитории есть пакеты с исходным кодим',
+                'required' => false,
             ))
             ->add('name', null, array(
                 'label' => 'Имя пакета для подключения',
