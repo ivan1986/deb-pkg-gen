@@ -25,8 +25,15 @@ class GpgKeyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $transformer = new GpgKeyToIdTransformer($this->om, $this->server);
-        $builder->resetClientTransformers();
-        $builder->appendClientTransformer($transformer);
+        $builder->add('id', null, array(
+            'label' => 'ID ключа на сервере',
+            'required' => false,
+        ));
+        $builder->add('file', 'file', array(
+            'label' => 'или локальный файл',
+            'required' => false,
+        ));
+        $builder->addViewTransformer($transformer);
     }
 
     public function getDefaultOptions()
@@ -38,7 +45,7 @@ class GpgKeyType extends AbstractType
 
     public function getParent()
     {
-        return 'text';
+        return 'form';
     }
 
     public function getName()

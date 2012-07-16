@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class GpgKeyToIdTransformer implements DataTransformerInterface
 {
@@ -56,8 +57,14 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
     function transform($value)
     {
         if ($value == null || $value == '')
-            return '';
-        return $value->getId();
+            return array(
+                'id' => '',
+                'file' => '',
+            );
+        return array(
+            'id' => $value->getId(),
+            'file' => '',
+        );
     }
 
     /**
@@ -87,19 +94,38 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      */
     function reverseTransform($value)
     {
-        if (strpos($value, '/'))
+        if (!empty($value['file']))
         {
-            $value = explode('/', $value);
-            $value = $value[1];
+            $file = $value['file'];
+            if ($file instanceof UploadedFile)
+            {
+                /** @var $file UploadedFile */
+                try
+                {
+                    $key = GpgLoader::getFromFile($file->getRealPath());
+                }
+                catch(GpgNotFoundException $e)
+                {
+                    throw new TransformationFailedException();
+                }
+                $this->om->persist($key);
+                return $key;
+            }
+        }
+        $id = $value['id'];
+        if (strpos($id, '/'))
+        {
+            $id = explode('/', $id);
+            $id = $id[1];
         }
         $r = $this->om->getRepository('Ivan1986DebBundle:GpgKey');
         /** @var $r GpgKeyRepository */
-        $key = $r->findOneBy(array('id' => $value));
+        $key = $r->findOneBy(array('id' => $id));
         if ($key)
             return $key;
         try
         {
-            $key = GpgLoader::getFromServer($value, $this->server);
+            $key = GpgLoader::getFromServer($id, $this->server);
         }
         catch(GpgNotFoundException $e)
         {

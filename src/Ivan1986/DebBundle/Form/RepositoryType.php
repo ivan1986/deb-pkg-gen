@@ -23,14 +23,14 @@ class RepositoryType extends AbstractType
                 'required' => false,
             ))
             ->add('src', null, array(
-                'label' => 'В репозитории есть пакеты с исходным кодим',
+                'label' => 'В репозитории есть пакеты с исходным кодом',
                 'required' => false,
             ))
             ->add('name', null, array(
                 'label' => 'Имя пакета для подключения',
             ))
             ->add('key', 'gpgkey_selector', array(
-                'label' => 'GPG key ID',
+                'label' => 'GPG ключ',
             ))
         ;
     }
