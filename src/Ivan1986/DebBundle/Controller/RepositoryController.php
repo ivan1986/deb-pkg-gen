@@ -38,9 +38,26 @@ class RepositoryController extends Controller
      */
     public function indexAction()
     {
+        $entities = $this->em->getRepository('Ivan1986DebBundle:Repository')->findAll();
+
+        return array(
+            'all' => true,
+            'entities' => $entities,
+        );
+    }
+
+    /**
+     * Lists my Repository entities.
+     *
+     * @Route("/my", name="repos_my")
+     * @Template("Ivan1986DebBundle:Repository:index.html.twig")
+     */
+    public function myAction()
+    {
         $entities = $this->em->getRepository('Ivan1986DebBundle:Repository')->getByUser($this->getUser());
 
         return array(
+            'all' => false,
             'entities' => $entities,
         );
     }

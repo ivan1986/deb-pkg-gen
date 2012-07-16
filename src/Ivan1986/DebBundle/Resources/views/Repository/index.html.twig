@@ -2,7 +2,11 @@
 {% block fos_user_content %}
 
 <div class="page-header">
+    {% if all %}
+    <h1>Список всех репозиториев</h1>
+    {% else %}
     <h1>Список добавленных вами репозиториев</h1>
+    {% endif %}
 </div>
 
 <table class="records_list table table-striped table-bordered">
@@ -12,7 +16,7 @@
             <th>Bin</th>
             <th>Src</th>
             <th>Имя</th>
-            <th></th>
+            <th>Владелец</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +27,11 @@
             <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.src ? 'yes' : 'no')~'.png') }}" alt="{{ entity.src ? 'yes' : 'no' }}" /></td>
             <td>{{ entity.name }}</td>
             <td>
-                <a href="{{ path('repos_edit', { 'id': entity.id }) }}">редактировать</a>
+                {% if entity.owner.id == app.user.id %}
+                    <a href="{{ path('repos_edit', { 'id': entity.id }) }}">редактировать</a>
+                {% else %}
+                    {{ entity.owner.username }}
+                {% endif %}
             </td>
         </tr>
     {% endfor %}
@@ -32,4 +40,9 @@
 
 <a class="btn btn-primary" href="{{ path('repos_new') }}">Добавить новый репозиторий</a>
 <a class="btn btn-primary" href="{{ path('repos_new_ppa') }}">Добавить новый PPA репозиторий</a>
+{% if all %}
+<a class="btn right" href="{{ path('repos_my') }}">ваши</a>
+{% else %}
+<a class="btn right" href="{{ path('repos') }}">все</a>
+{% endif %}
 {% endblock %}

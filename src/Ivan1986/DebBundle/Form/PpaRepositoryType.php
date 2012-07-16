@@ -19,7 +19,7 @@ class PpaRepositoryType extends AbstractType
                 'attr' => array('class' => 'span5'),
             ))
             ->add('name', null, array(
-                'label' => 'Има пакета',
+                'label' => 'Имя пакета',
                 'required' => false,
             ))
         ;
