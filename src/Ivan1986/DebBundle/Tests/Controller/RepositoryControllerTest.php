@@ -36,7 +36,7 @@ class RepositoryControllerTest extends Entity
             'ivan1986_debbundle_repositorytype[bin]' => 1,
             'ivan1986_debbundle_repositorytype[src]' => 1,
             'ivan1986_debbundle_repositorytype[name]' => 'phpunit-test',
-            'ivan1986_debbundle_repositorytype[key]' => 'B9B60E76',
+            'ivan1986_debbundle_repositorytype[key][id]' => 'B9B60E76',
         ));
 
         $this->client->submit($form);
@@ -122,7 +122,7 @@ class RepositoryControllerTest extends Entity
             'ivan1986_debbundle_repositorytype[bin]' => 1,
             'ivan1986_debbundle_repositorytype[src]' => 1,
             'ivan1986_debbundle_repositorytype[name]' => 'non-exist-key-test',
-            'ivan1986_debbundle_repositorytype[key]' => '1024R/ffffff',
+            'ivan1986_debbundle_repositorytype[key][id]' => '1024R/ffffff',
         ));
 
         $this->client->submit($form);

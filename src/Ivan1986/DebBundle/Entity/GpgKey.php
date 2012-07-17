@@ -75,6 +75,8 @@ class GpgKey
      */
     public function getData()
     {
+        if (is_string($this->data))
+            return $this->data;
         //блоб читается только один раз, поэтому запоминаем его
         $val = stream_get_contents($this->data);
         if ($val)
