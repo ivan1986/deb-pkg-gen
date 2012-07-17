@@ -57,7 +57,7 @@ class GpgKey
     /**
      * Set data
      *
-     * @param blob $data
+     * @param string $data
      * @return GpgKey
      */
     public function setData($data)
@@ -66,14 +66,20 @@ class GpgKey
         return $this;
     }
 
+    protected $stringValOfBlob;
+
     /**
      * Get data
      *
-     * @return blob 
+     * @return string
      */
     public function getData()
     {
-        return $this->data;
+        //блоб читается только один раз, поэтому запоминаем его
+        $val = stream_get_contents($this->data);
+        if ($val)
+            $this->stringValOfBlob = $val;
+        return $this->stringValOfBlob;
     }
 
     /**
