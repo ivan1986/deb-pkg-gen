@@ -108,6 +108,11 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
                 {
                     throw new TransformationFailedException();
                 }
+                $r = $this->om->getRepository('Ivan1986DebBundle:GpgKey');
+                /** @var $r GpgKeyRepository */
+                $exist = $r->findOneBy(array('id' => $key->getId()));
+                if ($exist)
+                    return $exist;
                 $this->om->persist($key);
                 return $key;
             }
