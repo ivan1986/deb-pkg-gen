@@ -9,6 +9,11 @@
     {% endif %}
 </div>
 
+<form class="well form-search" method="get" action="{{ path('repos', {'my': 'all'}) }}">
+    <input type="search" name="search" class="input-medium search-query" placeholder="Искать...">
+    <button type="submit" class="btn">Поиск</button>
+</form>
+
 <table class="records_list table table-striped table-bordered">
     <thead>
         <tr>
@@ -43,8 +48,8 @@
 <a class="btn btn-primary" href="{{ path('repos_new') }}">Добавить новый репозиторий</a>
 <a class="btn btn-primary" href="{{ path('repos_new_ppa') }}">Добавить новый PPA репозиторий</a>
 {% if all %}
-<a class="btn right" href="{{ path('repos_my') }}">ваши</a>
+<a class="btn right" href="{{ path('repos', {'my': 'my'}) }}">ваши</a>
 {% else %}
-<a class="btn right" href="{{ path('repos') }}">все</a>
+<a class="btn right" href="{{ path('repos', {'my': 'all'}) }}">все</a>
 {% endif %}
 {% endblock %}

@@ -29,10 +29,12 @@ class RepositoryRepository extends EntityRepository
      * @param User $user
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function getByUser(User $user)
+    public function getByUser(User $user=null)
     {
-        return $this->createQueryBuilder('r')->where('r.owner = ?1')->setParameter(1, $user->getId());
-        return $this->findBy(array('owner' => $user->getId()));
+        $qb = $this->createQueryBuilder('r');
+        if ($user)
+            $qb->where('r.owner = ?1')->setParameter(1, $user->getId());
+        return $qb;
     }
 
     /**

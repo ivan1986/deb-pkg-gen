@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormError;
@@ -35,28 +36,20 @@ class RepositoryController extends Controller
     /**
      * Lists all Repository entities.
      *
-     * @Route("/", name="repos")
+     * @Route("/{my}/{page}", name="repos", requirements={"my" = "my|all", "page" = "\d+"},
+     *  defaults={"page" = 1, "my"="my"})
+     * @Template()
      */
-    public function indexAction()
+    public function indexAction($my, $page)
     {
-        $entities = $this->em->getRepository('Ivan1986DebBundle:Repository')->getAllQB();
-        return $this->outTableByQuery($entities, true);
-    }
-
-    /**
-     * Lists my Repository entities.
-     *
-     * @Route("/my", name="repos_my")
-     */
-    public function myAction()
-    {
-        $entities = $this->em->getRepository('Ivan1986DebBundle:Repository')->getByUser($this->getUser());
-        return $this->outTableByQuery($entities, false);
-    }
-
-    private function outTableByQuery($query, $all)
-    {
-        $page = $this->getRequest()->query->getInt('page');
+        $search = $this->getRequest()->query->get('search');
+        $query = $this->em->getRepository('Ivan1986DebBundle:Repository')
+            ->getByUser(($my == 'my' && !$search) ? $this->getUser() : null);
+        /** @var $query QueryBuilder */
+        if ($search)
+            $query->andWhere($query->expr()->orX(
+                $query->expr()->like('r.name', '?1'),
+                $query->expr()->like('r.repoString', '?1')))->setParameter(1, '%'.$search.'%');
 
         $adapter = new DoctrineORMAdapter($query);
         $pagerfanta = new Pagerfanta($adapter);
@@ -67,10 +60,10 @@ class RepositoryController extends Controller
             throw new NotFoundHttpException();
         }
 
-        return $this->render("Ivan1986DebBundle:Repository:index.html.twig", array(
-            'all' => $all,
+        return array(
+            'all' => $my != 'my',
             'pagerfanta' => $pagerfanta,
-        ));
+        );
     }
 
     /**
@@ -87,7 +80,7 @@ class RepositoryController extends Controller
 
         if ($this->getRequest()->getMethod() == 'POST')
         {
-            $form->bindRequest($this->getRequest());
+            $form->bind($this->getRequest());
             if ($form->isValid()) {
                 $entity->setOwner($this->getUser());
                 $this->em->persist($entity);
@@ -118,7 +111,7 @@ class RepositoryController extends Controller
 
         if ($this->getRequest()->getMethod() == 'POST')
         {
-            $form->bindRequest($this->getRequest());
+            $form->bind($this->getRequest());
             if ($form->isValid()) {
                 $entity->setOwner($this->getUser());
                 $this->em->persist($entity);
