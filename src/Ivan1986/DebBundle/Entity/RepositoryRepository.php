@@ -14,13 +14,24 @@ class RepositoryRepository extends EntityRepository
 {
 
     /**
+     * Получить все репозитории
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function getAllQB()
+    {
+        return $this->createQueryBuilder('r');
+    }
+
+    /**
      * Получить репозитории пользователя
      *
      * @param User $user
-     * @return array
+     * @return \Doctrine\ORM\QueryBuilder
      */
     public function getByUser(User $user)
     {
+        return $this->createQueryBuilder('r')->where('r.owner = ?1')->setParameter(1, $user->getId());
         return $this->findBy(array('owner' => $user->getId()));
     }
 

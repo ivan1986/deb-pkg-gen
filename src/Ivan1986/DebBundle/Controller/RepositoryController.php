@@ -3,6 +3,8 @@
 namespace Ivan1986\DebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -34,32 +36,41 @@ class RepositoryController extends Controller
      * Lists all Repository entities.
      *
      * @Route("/", name="repos")
-     * @Template()
      */
     public function indexAction()
     {
-        $entities = $this->em->getRepository('Ivan1986DebBundle:Repository')->findAll();
-
-        return array(
-            'all' => true,
-            'entities' => $entities,
-        );
+        $entities = $this->em->getRepository('Ivan1986DebBundle:Repository')->getAllQB();
+        return $this->outTableByQuery($entities, true);
     }
 
     /**
      * Lists my Repository entities.
      *
      * @Route("/my", name="repos_my")
-     * @Template("Ivan1986DebBundle:Repository:index.html.twig")
      */
     public function myAction()
     {
         $entities = $this->em->getRepository('Ivan1986DebBundle:Repository')->getByUser($this->getUser());
+        return $this->outTableByQuery($entities, false);
+    }
 
-        return array(
-            'all' => false,
-            'entities' => $entities,
-        );
+    private function outTableByQuery($query, $all)
+    {
+        $page = $this->getRequest()->query->getInt('page');
+
+        $adapter = new DoctrineORMAdapter($query);
+        $pagerfanta = new Pagerfanta($adapter);
+        $pagerfanta->setMaxPerPage(10);
+        try {
+            $pagerfanta->setCurrentPage($page);
+        } catch (NotValidCurrentPageException $e) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render("Ivan1986DebBundle:Repository:index.html.twig", array(
+            'all' => $all,
+            'pagerfanta' => $pagerfanta,
+        ));
     }
 
     /**

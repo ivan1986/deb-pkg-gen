@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-    {% for entity in entities %}
+    {% for entity in pagerfanta.currentPageResults %}
         <tr>
             <td>{{ entity.repoString }}</td>
             <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.bin ? 'yes' : 'no')~'.png') }}" alt="{{ entity.bin ? 'yes' : 'no' }}" /></td>
@@ -37,6 +37,8 @@
     {% endfor %}
     </tbody>
 </table>
+
+{% if pagerfanta.haveToPaginate %}{{ pagerfanta(pagerfanta, 'twitter_bootstrap') }}{% endif %}
 
 <a class="btn btn-primary" href="{{ path('repos_new') }}">Добавить новый репозиторий</a>
 <a class="btn btn-primary" href="{{ path('repos_new_ppa') }}">Добавить новый PPA репозиторий</a>

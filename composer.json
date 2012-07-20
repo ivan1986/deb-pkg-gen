@@ -36,6 +36,7 @@
         "sonata-project/user-bundle": "*",
         "sonata-project/easy-extends-bundle": "*",
         "sonata-project/doctrine-orm-admin-bundle": "*",
+        "white-october/pagerfanta-bundle": "*",
 
         "zendframework/zend-cache": "*",
         "zendframework/zend-servicemanager": "*",
