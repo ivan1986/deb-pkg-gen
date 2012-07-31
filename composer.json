@@ -38,6 +38,7 @@
         "sonata-project/doctrine-orm-admin-bundle": "*",
         "white-october/pagerfanta-bundle": "*",
         "antimattr/google-bundle": "*",
+        "united-prototype/php-ga": "*",
 
         "zendframework/zend-cache": "*",
         "zendframework/zend-servicemanager": "*",
