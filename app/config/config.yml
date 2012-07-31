@@ -69,3 +69,12 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+
+google:
+    analytics:
+        trackers:
+            default:
+                name:      GAcounterForPkgGen
+                accountId: %gaAcc%
+                domain:    .pkggen.no-ip.org
+                trackPageLoadTime: true

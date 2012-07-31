@@ -36,7 +36,8 @@ class AppKernel extends Kernel
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
 
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new \WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new AntiMattr\GoogleBundle\GoogleBundle(),
 
             //Свои
             new Ivan1986\DebBundle\Ivan1986DebBundle(),
