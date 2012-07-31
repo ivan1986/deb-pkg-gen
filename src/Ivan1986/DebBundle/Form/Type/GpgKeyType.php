@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Ivan1986\DebBundle\Form\DataTransformer\GpgKeyToIdTransformer;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -36,11 +37,12 @@ class GpgKeyType extends AbstractType
         $builder->addViewTransformer($transformer);
     }
 
-    public function getDefaultOptions()
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
+        parent::setDefaultOptions($resolver);
+        $resolver->setDefaults(array(
             'invalid_message' => 'Ошибка загрузки ключа',
-        );
+        ));
     }
 
     public function getParent()
