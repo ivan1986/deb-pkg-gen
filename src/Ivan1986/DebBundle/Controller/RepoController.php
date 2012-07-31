@@ -201,7 +201,7 @@ class RepoController extends Controller
         // (could also get unserialized from database)
         $visitor = new GoogleAnalytics\Visitor();
         $visitor->setIpAddress($this->getRequest()->getClientIp());
-        $visitor->setUserAgent($_SERVER['HTTP_USER_AGENT']);
+        $visitor->setUserAgent($this->getRequest()->server->get('HTTP_USER_AGENT'));
         $visitor->setScreenResolution('80x25');
 
         // Assemble Session information
