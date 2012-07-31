@@ -1,5 +1,5 @@
 {
-    "hash": "506e393bfa1a475965272b02133ff582",
+    "hash": "662da6fb7151c3379e944edd91defb84",
     "packages": [
         {
             "package": "Anchovy/CURLBundle",
@@ -304,6 +304,12 @@
             "version": "dev-master",
             "source-reference": "51c866f415bbee670cd9ba13591307bce8dabdca",
             "commit-date": "1343464333"
+        },
+        {
+            "package": "united-prototype/php-ga",
+            "version": "dev-master",
+            "source-reference": "8b23388596f9b743c9329698d2242863a7729630",
+            "commit-date": "1341930771"
         },
         {
             "package": "white-october/pagerfanta-bundle",
