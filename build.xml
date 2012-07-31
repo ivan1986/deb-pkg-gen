@@ -5,7 +5,6 @@
     <target name="update-all">
         <exec command="php composer.phar self-update" passthru="true" />
         <exec command="php composer.phar update" passthru="true" />
-        <exec command="sed 's/trigger/#trigger/' -i vendor/.composer/autoload.php" passthru="true" />
         <exec command="phpunit -c app/" passthru="true" />
     </target>
 
