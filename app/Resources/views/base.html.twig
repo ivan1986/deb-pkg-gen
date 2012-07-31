@@ -22,6 +22,7 @@
         {% endjavascripts %}
         #}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% include "GoogleBundle:Analytics:async.html.twig" %}
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
@@ -52,6 +53,5 @@
         </div>
         {% block javascripts %}
         {% endblock %}
-        {% include "GoogleBundle:Analytics:async.html.twig" %}
     </body>
 </html>
