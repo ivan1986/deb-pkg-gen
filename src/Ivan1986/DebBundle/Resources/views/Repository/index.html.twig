@@ -1,4 +1,6 @@
 {% extends 'Ivan1986DebBundle::layout.html.twig' %}
+{% block title %}{% if all %}Список репозиториев в системе
+{% else %}Список добавленных вами репозиториев{% endif %}{% endblock %}
 {% block fos_user_content %}
 
 <div class="page-header">
@@ -32,7 +34,7 @@
             <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.src ? 'yes' : 'no')~'.png') }}" alt="{{ entity.src ? 'yes' : 'no' }}" /></td>
             <td>{{ entity.name }}</td>
             <td>
-                {% if entity.owner.id == app.user.id %}
+                {% if app.user and entity.owner.id == app.user.id %}
                     <a href="{{ path('repos_edit', { 'id': entity.id }) }}">редактировать</a>
                 {% else %}
                     {{ entity.owner.username }}
@@ -45,11 +47,13 @@
 
 {% if pagerfanta.haveToPaginate %}{{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated') }}{% endif %}
 
-<a class="btn btn-primary" href="{{ path('repos_new') }}">Добавить новый репозиторий</a>
-<a class="btn btn-primary" href="{{ path('repos_new_ppa') }}">Добавить новый PPA репозиторий</a>
-{% if all %}
-<a class="btn right" href="{{ path('repos', {'my': 'my'}) }}">ваши</a>
-{% else %}
-<a class="btn right" href="{{ path('repos', {'my': 'all'}) }}">все</a>
+{% if app.user %}
+    <a class="btn btn-primary" href="{{ path('repos_new') }}">Добавить новый репозиторий</a>
+    <a class="btn btn-primary" href="{{ path('repos_new_ppa') }}">Добавить новый PPA репозиторий</a>
+    {% if all %}
+    <a class="btn right" href="{{ path('repos', {'my': 'my'}) }}">ваши</a>
+    {% else %}
+    <a class="btn right" href="{{ path('repos', {'my': 'all'}) }}">все</a>
+    {% endif %}
 {% endif %}
 {% endblock %}

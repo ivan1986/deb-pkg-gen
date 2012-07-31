@@ -62,6 +62,9 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/profile/, role: ROLE_USER }
+        - { path: ^/repos/new*, role: ROLE_USER }
+        - { path: ^/repos$, role: ROLE_USER }
+        - { path: ^/repos/my$, role: ROLE_USER }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
 fos_user:

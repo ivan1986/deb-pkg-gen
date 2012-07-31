@@ -1,5 +1,8 @@
 {% extends '::base.html.twig' %}
-{% block top_nav %} {{ parent() }} {% if app.user %}<li><a href="{{ path('repos',{'my': 'my'}) }}">Мои репозитории</a></li>{% endif %}{% endblock %}
+{% block top_nav %} {{ parent() }}
+<li><a href="{{ path('repos',{'my': 'all'}) }}">Все репозитории</a></li>
+{% if app.user %}<li><a href="{{ path('repos',{'my': 'my'}) }}">Мои репозитории</a></li>{% endif %}
+{% endblock %}
 {% block login %}
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     {# <a href="{{ path('sonata_user_profile_show') }}">Профиль</a> | #}

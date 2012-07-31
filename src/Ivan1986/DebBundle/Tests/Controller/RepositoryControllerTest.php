@@ -25,7 +25,7 @@ class RepositoryControllerTest extends Entity
     public function testStdRepo()
     {
         // Create a new entry in the database
-        $crawler = $this->client->request('GET', '/profile/repos/all');
+        $crawler = $this->client->request('GET', '/repos/all');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
         $crawler = $this->client->click($crawler->selectLink('Добавить новый репозиторий')->link());
 
@@ -49,7 +49,7 @@ class RepositoryControllerTest extends Entity
             ->findOneBy(array('name' => 'phpunit-test'));
         /** @var $item Repository */
         $id = $item->getId();
-        $crawler = $this->client->request('GET', '/profile/repos/'.$id.'/edit');
+        $crawler = $this->client->request('GET', '/repos/'.$id.'/edit');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
 
         $crawler = $this->client->click($crawler->selectLink('Удалить')->link());
@@ -62,7 +62,7 @@ class RepositoryControllerTest extends Entity
     public function testPPARepo()
     {
         // Create a new entry in the database
-        $crawler = $this->client->request('GET', '/profile/repos/all');
+        $crawler = $this->client->request('GET', '/repos/all');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
         $crawler = $this->client->click($crawler->selectLink('Добавить новый PPA репозиторий')->link());
 
@@ -81,7 +81,7 @@ class RepositoryControllerTest extends Entity
             ->findOneBy(array('name' => 'ppa-libreoffice-ppa'));
         /** @var $item Repository */
         $id = $item->getId();
-        $crawler = $this->client->request('GET', '/profile/repos/'.$id.'/edit');
+        $crawler = $this->client->request('GET', '/repos/'.$id.'/edit');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
 
         $crawler = $this->client->click($crawler->selectLink('Удалить')->link());
@@ -94,7 +94,7 @@ class RepositoryControllerTest extends Entity
     public function testNoPPARepo()
     {
         // Create a new entry in the database
-        $crawler = $this->client->request('GET', '/profile/repos/all');
+        $crawler = $this->client->request('GET', '/repos/all');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
         $crawler = $this->client->click($crawler->selectLink('Добавить новый PPA репозиторий')->link());
 
@@ -111,7 +111,7 @@ class RepositoryControllerTest extends Entity
     public function testStdRepoNoKey()
     {
         // Create a new entry in the database
-        $crawler = $this->client->request('GET', '/profile/repos/all');
+        $crawler = $this->client->request('GET', '/repos/all');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
         $crawler = $this->client->click($crawler->selectLink('Добавить новый репозиторий')->link());
 

@@ -21,7 +21,7 @@ use Ivan1986\DebBundle\Form\RepositoryType;
 /**
  * Repository controller.
  *
- * @Route("/profile/repos")
+ * @Route("/repos")
  */
 class RepositoryController extends Controller
 {
