@@ -34,8 +34,8 @@ class RepoController extends Controller
             mkdir($dir, 0777, true);
         $opt = new FilesystemOptions();
         $opt->setCacheDir($dir);
-        $opt->setDirPerm(0777);
-        $opt->setFilePerm(0666);
+        $opt->setDirPermission(0777);
+        $opt->setFilePermission(0666);
         $this->cache = StorageFactory::factory(array(
             'adapter' => 'filesystem',
         ));
