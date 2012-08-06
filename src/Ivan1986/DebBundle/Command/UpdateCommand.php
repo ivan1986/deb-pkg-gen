@@ -59,8 +59,8 @@ class UpdateCommand extends ContainerAwareCommand
             mkdir($dir, 0777, true);
         $opt = new FilesystemOptions();
         $opt->setCacheDir($dir);
-        $opt->setDirPerm(0777);
-        $opt->setFilePerm(0666);
+        $opt->setDirPermission(0777);
+        $opt->setFilePermission(0666);
         $cache = StorageFactory::factory(array(
             'adapter' => 'filesystem',
         ));
