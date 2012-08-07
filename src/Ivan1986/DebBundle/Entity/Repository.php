@@ -129,7 +129,11 @@ class Repository extends ContainerAware
      */
     public function setName($name)
     {
-        $this->name = str_replace('.', '-', $name);
+        $name = strtolower($name);
+        $name = str_replace(' ', '-', $name);
+        $name = str_replace('.', '-', $name);
+        $name = preg_replace('/[^a-z0-9-]*/', '', $name);
+        $this->name = $name;
         return $this;
     }
 
