@@ -1,5 +1,5 @@
 {
-    "hash": "662da6fb7151c3379e944edd91defb84",
+    "hash": "51083867f69a5a9fa907f27cdab2437d",
     "packages": [
         {
             "package": "Anchovy/CURLBundle",
@@ -25,7 +25,7 @@
         },
         {
             "package": "behat/gherkin",
-            "version": "v2.2.2"
+            "version": "v2.2.4"
         },
         {
             "package": "behat/mink",
@@ -34,8 +34,8 @@
         {
             "package": "behat/mink-bundle",
             "version": "dev-master",
-            "source-reference": "144c8cbc08e386e70029edae7a73611079e2dca1",
-            "commit-date": "1337850147"
+            "source-reference": "b44df60a8533824469591a8d3b8e2dbc916a1d59",
+            "commit-date": "1344291139"
         },
         {
             "package": "behat/sahi-client",
@@ -62,8 +62,8 @@
         {
             "package": "doctrine/doctrine-bundle",
             "version": "dev-master",
-            "source-reference": "ed8d02b491512f947fdb2f8b665dc8fd72b5879c",
-            "commit-date": "1343657020"
+            "source-reference": "4d9bb0f3af470556983eb41a7d19ede23401ef0b",
+            "commit-date": "1344549563"
         },
         {
             "package": "doctrine/doctrine-migrations-bundle",
@@ -86,14 +86,14 @@
         {
             "package": "friendsofsymfony/user-bundle",
             "version": "dev-master",
-            "source-reference": "93b174df2ca884a70ecd99cd12adc29c378ca053",
-            "commit-date": "1342876759"
+            "source-reference": "7a9d20e69ac0363432fae86523776b14592993d7",
+            "commit-date": "1343834547"
         },
         {
             "package": "gedmo/doctrine-extensions",
             "version": "dev-master",
-            "source-reference": "3881e19cc9497efa132a55e44aebbc62405a05b1",
-            "commit-date": "1343672222"
+            "source-reference": "9bb455ba52d223a47323f4c5832635ccc328f630",
+            "commit-date": "1344437232"
         },
         {
             "package": "jms/aop-bundle",
@@ -117,21 +117,13 @@
         },
         {
             "package": "knplabs/knp-menu",
-            "version": "dev-master",
-            "alias-pretty-version": "2.0.x-dev",
-            "alias-version": "2.0.9999999.9999999-dev"
-        },
-        {
-            "package": "knplabs/knp-menu",
-            "version": "dev-master",
-            "source-reference": "418788056ba5b95f4a2717ba5b4d4ab078aca4ab",
-            "commit-date": "1340209324"
+            "version": "1.1.x-dev",
+            "source-reference": "v1.1.2",
+            "commit-date": "1339345240"
         },
         {
             "package": "knplabs/knp-menu-bundle",
-            "version": "dev-master",
-            "source-reference": "ba1ff625e4b34131106e12ee475eb6397eb5a758",
-            "commit-date": "1341324163"
+            "version": "v1.1.0"
         },
         {
             "package": "kriswallsmith/assetic",
@@ -142,8 +134,8 @@
         {
             "package": "kriswallsmith/assetic",
             "version": "dev-master",
-            "source-reference": "11324294acf2dcf6b7f7cb0c4f35fd77e6f01cb7",
-            "commit-date": "1343684910"
+            "source-reference": "d1d5066d9071a76d771993081ee23137e96216b7",
+            "commit-date": "1344507381"
         },
         {
             "package": "kriswallsmith/buzz",
@@ -170,26 +162,26 @@
         {
             "package": "sensio/distribution-bundle",
             "version": "dev-master",
-            "source-reference": "5886adae1613c0a72fbb95259a83ae798e86c0d3",
-            "commit-date": "1342347850"
+            "source-reference": "57190e5baa0cc1d8ef6095ce57e6719a5eae2b79",
+            "commit-date": "1344240835"
         },
         {
             "package": "sensio/framework-extra-bundle",
             "version": "dev-master",
-            "source-reference": "dbe4432742e16ee9ca550a2f953b059f0a80c53d",
-            "commit-date": "1343637454"
+            "source-reference": "ade2d53b20a9fc3428f04c863b3fd4fca0b62181",
+            "commit-date": "1344072374"
         },
         {
             "package": "sensio/generator-bundle",
             "version": "dev-master",
-            "source-reference": "4436c2e24301123fb413baf3f78cd93bbc016c07",
-            "commit-date": "1343291371"
+            "source-reference": "d8fc1666f3cdb403f1b2d4320c45ddd6adbdf6a5",
+            "commit-date": "1343980150"
         },
         {
             "package": "sonata-project/admin-bundle",
             "version": "dev-master",
-            "source-reference": "3545bc0ffe89215e6f55b096803fcf72ac4d4371",
-            "commit-date": "1343732405"
+            "source-reference": "8e6a04fbdb0544d8c184a0c20510db1a430223d2",
+            "commit-date": "1344293100"
         },
         {
             "package": "sonata-project/block-bundle",
@@ -212,14 +204,14 @@
         {
             "package": "sonata-project/doctrine-orm-admin-bundle",
             "version": "dev-master",
-            "source-reference": "f73b117ce17fd69cd541c92c0c61cc37da31cb88",
-            "commit-date": "1343732868"
+            "source-reference": "533b15f9663eea626b33295fee879f7eaf5e25d5",
+            "commit-date": "1344189658"
         },
         {
             "package": "sonata-project/easy-extends-bundle",
             "version": "dev-master",
-            "source-reference": "643baef65930a9d05844b3ebb095304ad3127978",
-            "commit-date": "1341350670"
+            "source-reference": "4590e4ee970c031deae56c7cd18f71f77aeceb3c",
+            "commit-date": "1343805856"
         },
         {
             "package": "sonata-project/exporter",
@@ -236,8 +228,8 @@
         {
             "package": "sonata-project/user-bundle",
             "version": "dev-master",
-            "source-reference": "481f57bae54b69b01e79bff568d389c5935c622e",
-            "commit-date": "1343688637"
+            "source-reference": "2d94f3db44dda756ff244d7a001315e06a6d65b4",
+            "commit-date": "1344112960"
         },
         {
             "package": "stof/doctrine-extensions-bundle",
@@ -254,14 +246,14 @@
         {
             "package": "swiftmailer/swiftmailer",
             "version": "dev-master",
-            "source-reference": "8b2aa953f87da228ba413e8fb1372e49c1374050",
-            "commit-date": "1342198037"
+            "source-reference": "19045c3692f6f6ddb4abc5ebfaf3f86f1c57d265",
+            "commit-date": "1343980916"
         },
         {
             "package": "symfony/assetic-bundle",
             "version": "dev-master",
-            "source-reference": "24df9ede95084be882aeb557eaef5b761cfa00e0",
-            "commit-date": "1343684934"
+            "source-reference": "ec3a65d3eab342af9e93a3c21af0ac7b78e01c17",
+            "commit-date": "1344507386"
         },
         {
             "package": "symfony/monolog-bundle",
@@ -272,7 +264,7 @@
         {
             "package": "symfony/swiftmailer-bundle",
             "version": "dev-master",
-            "source-reference": "v2.1.0-BETA4",
+            "source-reference": "v2.1.0-RC1",
             "commit-date": "1342684512"
         },
         {
@@ -284,8 +276,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "788e5eb730ad1c0436c519cf0b878fc48b854044",
-            "commit-date": "1343723577"
+            "source-reference": "31536c36ec8875aee1406aa7d7a0b5e38a04af66",
+            "commit-date": "1344599303"
         },
         {
             "package": "twig/extensions",
@@ -302,8 +294,8 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "51c866f415bbee670cd9ba13591307bce8dabdca",
-            "commit-date": "1343464333"
+            "source-reference": "f2f698c820d4396f519ef4175ad6fe79fcfb9ecf",
+            "commit-date": "1344328685"
         },
         {
             "package": "united-prototype/php-ga",
@@ -319,19 +311,19 @@
         },
         {
             "package": "zendframework/zend-cache",
-            "version": "2.0.0-rc1"
+            "version": "2.0.0rc3"
         },
         {
             "package": "zendframework/zend-eventmanager",
-            "version": "2.0.0-rc1"
+            "version": "2.0.0rc3"
         },
         {
             "package": "zendframework/zend-servicemanager",
-            "version": "2.0.0-rc1"
+            "version": "2.0.0rc3"
         },
         {
             "package": "zendframework/zend-stdlib",
-            "version": "2.0.0-rc1"
+            "version": "2.0.0rc3"
         }
     ],
     "packages-dev": null,

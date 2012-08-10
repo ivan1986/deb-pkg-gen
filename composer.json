@@ -41,8 +41,6 @@
         "united-prototype/php-ga": "*",
 
         "zendframework/zend-cache": "*",
-        "zendframework/zend-servicemanager": "*",
-        "zendframework/zend-eventmanager": "*",
 
         "behat/symfony2-extension": "*",
         "behat/mink-bundle": "*",
