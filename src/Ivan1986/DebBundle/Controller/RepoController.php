@@ -195,7 +195,9 @@ class RepoController extends Controller
     private function pingGA($pageUri, $title)
     {
         // Initilize GA Tracker
-        $tracker = new GoogleAnalytics\Tracker($this->container->getParameter('gaAcc'), 'pkggen.no-ip.org');
+        $acc = $this->container->getParameter('gaAcc');
+        $acc = str_replace('UA', 'MO', $acc);
+        $tracker = new GoogleAnalytics\Tracker($acc, 'pkggen.no-ip.org');
 
         // Assemble Visitor information
         // (could also get unserialized from database)
