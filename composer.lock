@@ -145,9 +145,9 @@
         },
         {
             "package": "lunetics/locale-bundle",
-            "version": "2.0.x-dev",
-            "source-reference": "b8fa6acc029c58c780a2caa46e19d08759cb99b7",
-            "commit-date": "1344357453"
+            "version": "dev-master",
+            "source-reference": "bbe7cf86588b687b4cdbae7c8076747385b6ab07",
+            "commit-date": "1345146571"
         },
         {
             "package": "monolog/monolog",
@@ -282,8 +282,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "1996c1fa1dbd580bb6ffaebda57c99c2502d2b53",
-            "commit-date": "1345140626"
+            "source-reference": "d3625b0c2bf96b8d6f8ef6682b4d51be8c213f83",
+            "commit-date": "1345191498"
         },
         {
             "package": "twig/extensions",

@@ -15,9 +15,13 @@ framework:
     session:         ~
 
 lunetics_locale:
-  allowed_languages:
+  allowed_locales:
     - ru
     - en
+  guessing_order:
+    - cookie
+    - router
+    - browser
 
 # Twig Configuration
 twig:
