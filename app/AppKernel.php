@@ -38,6 +38,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new AntiMattr\GoogleBundle\GoogleBundle(),
+            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
 
             //Свои
             new Ivan1986\DebBundle\Ivan1986DebBundle(),

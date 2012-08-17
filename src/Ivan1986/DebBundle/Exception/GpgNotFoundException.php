@@ -15,8 +15,9 @@ class GpgNotFoundException extends \Exception
         $this->key = $key;
     }
 
-    public function __toString() {
-        return 'Ключ с ID '.$this->key.' не найден на сервере';
+    public function __toString()
+    {
+        return $this->key;
     }
 
 }

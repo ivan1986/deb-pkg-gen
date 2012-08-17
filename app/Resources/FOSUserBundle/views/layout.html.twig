@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 {% block top_nav %} {{ parent() }}
-<li><a href="{{ path('repos',{'my': 'all'}) }}">Все репозитории</a></li>
-{% if app.user %}<li><a href="{{ path('repos',{'my': 'my'}) }}">Мои репозитории</a></li>{% endif %}
+<li><a href="{{ path('repos',{'my': 'all'}) }}">{% trans %}Все репозитории{% endtrans %}</a></li>
+{% if app.user %}<li><a href="{{ path('repos',{'my': 'my'}) }}">{% trans %}Мои репозитории{% endtrans %}</a></li>{% endif %}
 {% endblock %}
 {% block login %}
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -11,7 +11,7 @@
         {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
     </a>
 {% else %}
-    <a href="{{ path('fos_user_registration_register') }}">Регистрация</a>
+    <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
     |
     <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
 {% endif %}

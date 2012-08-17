@@ -1,19 +1,19 @@
 {% extends 'Ivan1986DebBundle::layout.html.twig' %}
-{% block title %}{% if all %}Список репозиториев в системе
-{% else %}Список добавленных вами репозиториев{% endif %}{% endblock %}
+{% block title %}{% if all %}{% trans %}Список репозиториев в системе{% endtrans %}
+{% else %}{% trans %}Список добавленных вами репозиториев{% endtrans %}{% endif %}{% endblock %}
 {% block fos_user_content %}
 
 <div class="page-header">
     {% if all %}
-    <h1>Список всех репозиториев</h1>
+    <h1>{% trans %}Список всех репозиториев{% endtrans %}</h1>
     {% else %}
-    <h1>Список добавленных вами репозиториев</h1>
+    <h1>{% trans %}Список добавленных вами репозиториев{% endtrans %}</h1>
     {% endif %}
 </div>
 
 <form class="well form-search" method="get" action="{{ path('repos', {'my': 'all'}) }}">
-    <input type="search" name="search" class="input-medium search-query" placeholder="Искать...">
-    <button type="submit" class="btn">Поиск</button>
+    <input type="search" name="search" class="input-medium search-query" placeholder="{% trans %}Искать...{% endtrans %}">
+    <button type="submit" class="btn">{% trans %}Поиск{% endtrans %}</button>
 </form>
 
 <table class="records_list table table-striped table-bordered">
@@ -22,8 +22,8 @@
             <th>Url</th>
             <th>Bin</th>
             <th>Src</th>
-            <th>Имя</th>
-            <th>Владелец</th>
+            <th>{% trans %}Имя{% endtrans %}</th>
+            <th>{% trans %}Владелец{% endtrans %}</th>
         </tr>
     </thead>
     <tbody>
@@ -35,7 +35,7 @@
             <td>{{ entity.name }}</td>
             <td>
                 {% if app.user and entity.owner.id == app.user.id %}
-                    <a href="{{ path('repos_edit', { 'id': entity.id }) }}">редактировать</a>
+                    <a href="{{ path('repos_edit', { 'id': entity.id }) }}">{% trans %}редактировать{% endtrans %}</a>
                 {% else %}
                     {{ entity.owner.username }}
                 {% endif %}
@@ -48,12 +48,12 @@
 {% if pagerfanta.haveToPaginate %}{{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated') }}{% endif %}
 
 {% if app.user %}
-    <a class="btn btn-primary" href="{{ path('repos_new') }}">Добавить новый репозиторий</a>
-    <a class="btn btn-primary" href="{{ path('repos_new_ppa') }}">Добавить новый PPA репозиторий</a>
+    <a class="btn btn-primary" href="{{ path('repos_new') }}">{% trans %}Добавить новый репозиторий{% endtrans %}</a>
+    <a class="btn btn-primary" href="{{ path('repos_new_ppa') }}">{% trans %}Добавить новый PPA репозиторий{% endtrans %}</a>
     {% if all %}
-    <a class="btn right" href="{{ path('repos', {'my': 'my'}) }}">ваши</a>
+    <a class="btn right" href="{{ path('repos', {'my': 'my'}) }}">{% trans %}ваши{% endtrans %}</a>
     {% else %}
-    <a class="btn right" href="{{ path('repos', {'my': 'all'}) }}">все</a>
+    <a class="btn right" href="{{ path('repos', {'my': 'all'}) }}">{% trans %}все{% endtrans %}</a>
     {% endif %}
 {% endif %}
 {% endblock %}

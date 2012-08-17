@@ -3,7 +3,7 @@
 
 {% if e is defined %}
 <div class="alert alert-error pkg-build-err">
-    <h4 class="alert-heading">Ошибка!</h4>
+    <h4 class="alert-heading">{% trans %}Ошибка{% endtrans %}!</h4>
     {{e}}
 </div>
 {% endif %}

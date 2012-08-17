@@ -1,16 +1,16 @@
 {% extends 'Ivan1986DebBundle::layout.html.twig' %}
-{% block title %}Новый репозиторий{% endblock %}
+{% block title %}{% trans %}Новый репозиторий{% endtrans %}{% endblock %}
 {% block fos_user_content %}
 
 <div class="page-header">
-    <h1>Новый репозиторий</h1>
+    <h1>{% trans %}Новый репозиторий{% endtrans %}</h1>
 </div>
 
 <form action="{{ path(to) }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p>
-        <button class="btn btn-primary" type="submit">Создать</button>
-        <a href="{{ path('repos') }}">Назад к списку</a>
+        <button class="btn btn-primary" type="submit">{% trans %}Создать{% endtrans %}</button>
+        <a href="{{ path('repos') }}">{% trans %}Назад к списку{% endtrans %}</a>
     </p>
 </form>
 

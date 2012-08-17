@@ -39,6 +39,7 @@
         "white-october/pagerfanta-bundle": "*",
         "antimattr/google-bundle": "*",
         "united-prototype/php-ga": "*",
+        "lunetics/locale-bundle": "*",
 
         "zendframework/zend-cache": "*",
 

@@ -12,6 +12,7 @@
     <services>
         <service id="ivan1986_deb.gpgkey" class="%ivan1986_deb.gpgkey.class%">
             <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="translator" />
             <argument>%key_server%</argument>
             <tag name="form.type" alias="gpgkey_selector" />
         </service>

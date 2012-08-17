@@ -1,0 +1,41 @@
+Регистрация: Registration
+ID ключа на сервере: Key ID on server
+или локальный файл: or local file
+Ошибка загрузки ключа: Error load key
+Адрес PPA репозитория: URL of PPA repository
+Имя пакета: Package Name
+Адрес репозитория: URL of repository
+В репозитории есть бинарные пакеты: Repository have binary packages
+В репозитории есть пакеты с исходным кодом: Repository have source packages
+Имя пакета для подключения: Package name
+GPG ключ: GPG key
+
+Ошибка: Error
+Тот адрес который вас просят добавить в sources.list: The address that you are asked to add sources.list
+ID ключа можно обычно найти рядом с адресом репозитория: Key ID can usually be found near the address of the repository
+Совместимое с unix именем (a-z 0-9 и тире): Compatible with unix name (az 0-9 and dash)
+Сгенерировать deb-пакет: Generate deb-package
+Пакет для подключения: Package to connect
+Репозиторий репозиториев: Repository of Repositories
+Позволяет подключать сторонние репозитории путем установки пакетов: Allows you to connect third-party repository by installing the packages
+Ключ с ID %key% не найден на сервере: Key ID %key% not found on server
+
+Редактирование репозитория: Edit repository
+Новый репозиторий: New repository
+Создать: Create
+Удалить: Delete
+Назад к списку: Back to list
+Обновить: Update
+
+Список всех репозиториев: List all repositories
+Список репозиториев в системе: List of repositories in the system
+Список добавленных вами репозиториев: List of repositories you have added
+Добавить новый репозиторий: All new repository
+Добавить новый PPA репозиторий: All new PPA repository
+Искать...: Search...
+Поиск: Search
+Имя: Name
+Владелец: Owner
+редактировать: edit
+ваши: our
+все: all

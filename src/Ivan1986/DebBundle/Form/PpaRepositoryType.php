@@ -5,11 +5,18 @@ namespace Ivan1986\DebBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormBuilderInterface;
-use Ivan1986\DebBundle\Form\Type\GpgKeyType;
-use Ivan1986\DebBundle\Form\DataTransformer\RepositoryToStringTransformer;
+use JMS\DiExtraBundle\Annotation\Inject;
+use JMS\DiExtraBundle\Annotation\FormType;
 
+/**
+ * @FormType
+ */
 class PpaRepositoryType extends AbstractType
 {
+    /**
+     * @Inject
+     */
+    private $translator;
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

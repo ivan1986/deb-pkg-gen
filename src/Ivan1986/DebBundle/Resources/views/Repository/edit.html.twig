@@ -1,17 +1,17 @@
 {% extends 'Ivan1986DebBundle::layout.html.twig' %}
-{% block title %}Редактирование репозитория{% endblock %}
+{% block title %}{% trans %}Редактирование репозитория{% endtrans %}{% endblock %}
 {% block fos_user_content %}
 
 <div class="page-header">
-    <h1>Редактирование репозитория</h1>
+    <h1>{% trans %}Редактирование репозитория{% endtrans %}</h1>
 </div>
 
 <form action="{{ path('repos_edit', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }}>
     {{ form_widget(edit_form) }}
     <p>
-        <button class="btn btn-primary" type="submit">Обновить</button>
-        <a href="{{ path('repos') }}">Назад к списку</a>
-        <a href="{{ path('repos_delete', { 'id': entity.id }) }}" class="btn btn-danger">Удалить</a>
+        <button class="btn btn-primary" type="submit">{% trans %}Обновить{% endtrans %}</button>
+        <a href="{{ path('repos') }}">{% trans %}Назад к списку{% endtrans %}</a>
+        <a href="{{ path('repos_delete', { 'id': entity.id }) }}" class="btn btn-danger">{% trans %}Удалить{% endtrans %}</a>
     </p>
 </form>
 

@@ -14,6 +14,11 @@ framework:
     default_locale:  %locale%
     session:         ~
 
+lunetics_locale:
+  allowed_languages:
+    - ru
+    - en
+
 # Twig Configuration
 twig:
     debug:            %kernel.debug%
@@ -78,3 +83,4 @@ google:
                 accountId: %gaAcc%
                 domain:    .pkggen.no-ip.org
                 trackPageLoadTime: true
+
