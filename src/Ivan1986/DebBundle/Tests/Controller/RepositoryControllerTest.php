@@ -27,10 +27,10 @@ class RepositoryControllerTest extends Entity
         // Create a new entry in the database
         $crawler = $this->client->request('GET', '/repos/all');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
-        $crawler = $this->client->click($crawler->selectLink('Добавить новый репозиторий')->link());
+        $crawler = $this->client->click($crawler->selectLink('Add new repository')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Создать')->form(array(
+        $form = $crawler->selectButton('Create')->form(array(
             'ivan1986_debbundle_repositorytype[repoString]' =>
                 'http://ppa.launchpad.net/ivan1986/ppa/ubuntu natty main',
             'ivan1986_debbundle_repositorytype[bin]' => 1,
@@ -52,7 +52,7 @@ class RepositoryControllerTest extends Entity
         $crawler = $this->client->request('GET', '/repos/'.$id.'/edit');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
 
-        $crawler = $this->client->click($crawler->selectLink('Удалить')->link());
+        $crawler = $this->client->click($crawler->selectLink('Delete')->link());
         $crawler = $this->client->followRedirect();
 
         // Check data in the show view
@@ -64,10 +64,10 @@ class RepositoryControllerTest extends Entity
         // Create a new entry in the database
         $crawler = $this->client->request('GET', '/repos/all');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
-        $crawler = $this->client->click($crawler->selectLink('Добавить новый PPA репозиторий')->link());
+        $crawler = $this->client->click($crawler->selectLink('Add new PPA repository')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Создать')->form(array(
+        $form = $crawler->selectButton('Create')->form(array(
             'ivan1986_debbundle_pparepositorytype[repoString]' => 'ppa:libreoffice/ppa',
         ));
 
@@ -84,7 +84,7 @@ class RepositoryControllerTest extends Entity
         $crawler = $this->client->request('GET', '/repos/'.$id.'/edit');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
 
-        $crawler = $this->client->click($crawler->selectLink('Удалить')->link());
+        $crawler = $this->client->click($crawler->selectLink('Delete')->link());
         $crawler = $this->client->followRedirect();
 
         // Check data in the show view
@@ -96,16 +96,16 @@ class RepositoryControllerTest extends Entity
         // Create a new entry in the database
         $crawler = $this->client->request('GET', '/repos/all');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
-        $crawler = $this->client->click($crawler->selectLink('Добавить новый PPA репозиторий')->link());
+        $crawler = $this->client->click($crawler->selectLink('Add new PPA repository')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Создать')->form(array(
+        $form = $crawler->selectButton('Create')->form(array(
             'ivan1986_debbundle_pparepositorytype[repoString]' => 'non/exist/repo',
         ));
 
         $this->client->submit($form);
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
-        $this->assertTrue($crawler->filter('h1:contains("Новый репозиторий")')->count() > 0);
+        $this->assertTrue($crawler->filter('h1:contains("New repository")')->count() > 0);
     }
 
     public function testStdRepoNoKey()
@@ -113,10 +113,10 @@ class RepositoryControllerTest extends Entity
         // Create a new entry in the database
         $crawler = $this->client->request('GET', '/repos/all');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
-        $crawler = $this->client->click($crawler->selectLink('Добавить новый репозиторий')->link());
+        $crawler = $this->client->click($crawler->selectLink('Add new repository')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Создать')->form(array(
+        $form = $crawler->selectButton('Create')->form(array(
             'ivan1986_debbundle_repositorytype[repoString]' =>
             'http://ya.ru',
             'ivan1986_debbundle_repositorytype[bin]' => 1,
@@ -127,7 +127,7 @@ class RepositoryControllerTest extends Entity
 
         $this->client->submit($form);
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
-        $this->assertTrue($crawler->filter('h1:contains("Новый репозиторий")')->count() > 0);
+        $this->assertTrue($crawler->filter('h1:contains("New repository")')->count() > 0);
     }
 
 }
