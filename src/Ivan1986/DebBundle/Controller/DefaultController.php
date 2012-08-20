@@ -27,7 +27,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/self-repo.deb", name="main_repo")
+     * @Route("/repo-self.deb", name="main_repo")
      */
     public function mainPackageAction()
     {
