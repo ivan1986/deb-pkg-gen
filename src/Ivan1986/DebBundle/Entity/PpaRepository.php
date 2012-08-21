@@ -48,6 +48,17 @@ class PpaRepository extends Repository
 
     public function getDebStrings()
     {
+        if ($this->status == 'all')
+        {
+            $strings = '';
+            foreach ($this->distrs->all as $dist)
+            {
+                $str = $this->getPpaUrl().' '.($dist).' main';
+                $strings .= ($this->bin ? ('deb '.$str."\n") : '').
+                            ($this->src ? ('deb-src '.$str."\n") : '');
+            }
+            return $strings;
+        }
         $str = $this->getPpaUrl().' '.($this->distrs->{$this->status}).' main';
         return
             ($this->bin ? ('deb '.$str."\n") : '').
@@ -63,7 +74,7 @@ class PpaRepository extends Repository
     {
         if (!$this->distrs)
             return false;
-        foreach(array('lts', 'stable', 'testing') as $v)
+        foreach(array('lts', 'stable', 'testing', 'all') as $v)
         {
             $this->status = $v;
             $res = parent::buildPackages($builder, $manager);

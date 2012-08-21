@@ -86,14 +86,14 @@
         {
             "package": "friendsofsymfony/user-bundle",
             "version": "dev-master",
-            "source-reference": "4a9a399ca35de71504fcfe356b161b97b9980620",
-            "commit-date": "1345146070"
+            "source-reference": "5aa50962a4b67e380fe7912cb06defdf448c3f26",
+            "commit-date": "1345421669"
         },
         {
             "package": "gedmo/doctrine-extensions",
             "version": "dev-master",
-            "source-reference": "9bb455ba52d223a47323f4c5832635ccc328f630",
-            "commit-date": "1344437232"
+            "source-reference": "531e2b84737223bc5aa09bc078a6f5beb74f69f9",
+            "commit-date": "1345461376"
         },
         {
             "package": "jms/aop-bundle",
@@ -140,18 +140,18 @@
         {
             "package": "kriswallsmith/buzz",
             "version": "dev-master",
-            "source-reference": "2ba5da13b1b03590f0164b3fb61578078d671fcc",
-            "commit-date": "1341070218"
+            "source-reference": "988bf14201ffbed940f23b42f87302e6adec4c21",
+            "commit-date": "1345206213"
         },
         {
             "package": "lunetics/locale-bundle",
             "version": "dev-master",
-            "source-reference": "bbe7cf86588b687b4cdbae7c8076747385b6ab07",
-            "commit-date": "1345146571"
+            "source-reference": "09c17c912382068742c32bc29b51bf9b8d1ba551",
+            "commit-date": "1345362350"
         },
         {
             "package": "monolog/monolog",
-            "version": "1.1.0"
+            "version": "1.2.0"
         },
         {
             "package": "pagerfanta/pagerfanta",
@@ -198,8 +198,8 @@
         {
             "package": "sonata-project/cache-bundle",
             "version": "dev-master",
-            "source-reference": "a555a92e369d85279a2f1dcdcfd3a97fd513abd3",
-            "commit-date": "1343731563"
+            "source-reference": "1da6e723f47eab51b8a2a1ab22efc832a379bda6",
+            "commit-date": "1345501400"
         },
         {
             "package": "sonata-project/doctrine-extensions",
@@ -240,8 +240,8 @@
         {
             "package": "stof/doctrine-extensions-bundle",
             "version": "dev-master",
-            "source-reference": "f31a0861de08b6594f09430a4cbaf0618e5e11ad",
-            "commit-date": "1343029923"
+            "source-reference": "63c2aa344bd45ca8cf16d778bb8d382bf18b09e3",
+            "commit-date": "1345420848"
         },
         {
             "package": "swiftmailer/swiftmailer",
@@ -282,8 +282,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "d3625b0c2bf96b8d6f8ef6682b4d51be8c213f83",
-            "commit-date": "1345191498"
+            "source-reference": "ef29276c3a1d6ab757d894bd64391fa2ea47db0c",
+            "commit-date": "1345367019"
         },
         {
             "package": "twig/extensions",
@@ -300,8 +300,8 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "f2f698c820d4396f519ef4175ad6fe79fcfb9ecf",
-            "commit-date": "1344328685"
+            "source-reference": "552143062982fd15a1d6fe5a0cdda1f007212154",
+            "commit-date": "1345489844"
         },
         {
             "package": "united-prototype/php-ga",
@@ -317,19 +317,19 @@
         },
         {
             "package": "zendframework/zend-cache",
-            "version": "2.0.0rc3"
+            "version": "2.0.0rc4"
         },
         {
             "package": "zendframework/zend-eventmanager",
-            "version": "2.0.0rc3"
+            "version": "2.0.0rc4"
         },
         {
             "package": "zendframework/zend-servicemanager",
-            "version": "2.0.0rc3"
+            "version": "2.0.0rc4"
         },
         {
             "package": "zendframework/zend-stdlib",
-            "version": "2.0.0rc3"
+            "version": "2.0.0rc4"
         }
     ],
     "packages-dev": null,

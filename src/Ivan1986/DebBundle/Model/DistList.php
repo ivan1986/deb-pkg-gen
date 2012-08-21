@@ -7,6 +7,7 @@ class DistList
     public $lts = '';
     public $stable = '';
     public $testing = '';
+    public $all = array();
 
     /**
      * Обновляет список текущих дистрибутивов
@@ -31,6 +32,7 @@ class DistList
         if ($this->lts != $lts) { $this->lts = $lts; $up = true; }
         if ($this->stable != $stable) { $this->stable = $stable; $up = true; }
         if ($this->testing != $testing) { $this->testing = $testing; $up = true; }
+        if (count(array_diff($this->all, $inPpa)) || count(array_diff($inPpa, $this->all))) { $this->all = $inPpa; $up = true; }
         return $up ? clone $this : $this;
     }
 }
