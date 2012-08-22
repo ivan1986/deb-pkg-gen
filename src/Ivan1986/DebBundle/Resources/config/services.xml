@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="ivan1986_deb.gpgkey.class">Ivan1986\DebBundle\Form\Type\GpgKeyType</parameter>
         <parameter key="ivan1986_deb.gpgkey.server">%key_server%</parameter>
+        <parameter key="ivan1986_deb.gapinger.class">Ivan1986\DebBundle\Model\GAPinger</parameter>
     </parameters>
 
     <services>
@@ -15,6 +16,9 @@
             <argument type="service" id="translator" />
             <argument>%key_server%</argument>
             <tag name="form.type" alias="gpgkey_selector" />
+        </service>
+        <service id="ivan1986_deb.gapinger" class="%ivan1986_deb.gapinger.class%">
+            <argument type="service" id="service_container" />
         </service>
     </services>
 </container>

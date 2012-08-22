@@ -67,8 +67,7 @@ class RepoController extends Controller
             $list = $this->getPkgList($this->getPkgs());
             $this->cache->setItem($key, $list);
         }
-
-        $this->pingGA($this->getRequest()->getRequestUri(), 'Repository');
+        $this->get('ivan1986_deb.gapinger')->pingGA('Repository');
         $r = new Response($list);
         $r->headers->set('Content-Type', 'application/octet-stream');
         return $r;
@@ -188,34 +187,8 @@ class RepoController extends Controller
         /** @var $pkg Package */
         if (!$pkg)
             throw new NotFoundHttpException();
-        $this->pingGA($this->getRequest()->getRequestUri(), $name);
+        $this->get('ivan1986_deb.gapinger')->pingGA($name);
         return $pkg->getHttpResponse();
-    }
-
-    private function pingGA($pageUri, $title)
-    {
-        // Initilize GA Tracker
-        $acc = $this->container->getParameter('gaAcc');
-        $acc = str_replace('UA', 'MO', $acc);
-        $tracker = new GoogleAnalytics\Tracker($acc, 'pkggen.no-ip.org');
-
-        // Assemble Visitor information
-        // (could also get unserialized from database)
-        $visitor = new GoogleAnalytics\Visitor();
-        $visitor->setIpAddress($this->getRequest()->getClientIp());
-        $visitor->setUserAgent($this->getRequest()->server->get('HTTP_USER_AGENT'));
-        $visitor->setScreenResolution('80x25');
-
-        // Assemble Session information
-        // (could also get unserialized from PHP session)
-        $session = new GoogleAnalytics\Session();
-
-        // Assemble Page information
-        $page = new GoogleAnalytics\Page($pageUri);
-        $page->setTitle($title);
-
-        // Track page view
-        $tracker->trackPageview($page, $session, $visitor);
     }
 
 }

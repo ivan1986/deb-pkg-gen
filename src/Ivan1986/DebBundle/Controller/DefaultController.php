@@ -37,6 +37,7 @@ class DefaultController extends Controller
         /** @var $pkg SysPackage */
         if (!$pkg)
             throw new NotFoundHttpException();
+        $this->get('ivan1986_deb.gapinger')->pingGA('Main Package');
         return $pkg->getHttpResponse();
     }
 
