@@ -20,6 +20,7 @@ class PpaRepositoryType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $builder->setAttribute('show_legend', false);
         $builder
             ->add('repoString', null, array(
                 'label' => 'Адрес PPA репозитория',

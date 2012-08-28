@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Anchovy\CURLBundle\AnchovyCURLBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
 
             //пользователи и админка
             new FOS\UserBundle\FOSUserBundle(),

@@ -8,12 +8,8 @@
 {% block checkbox_row %}
 {% spaceless %}
 <div>
-    {{ form_widget(form) }}&nbsp;{{ form_label(form, label|default(null)) }}
-    {#
-    If the child is a compound form, the errors are rendered inside
-    the container. See also block form_rows.
-    #}
-    {% if not compound %}
+{{ form_widget(form) }}
+{% if not compound %}
     {{ form_errors(form) }}
     {% endif %}
 </div>

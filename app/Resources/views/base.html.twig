@@ -1,57 +1,49 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('bundles/ivan1986deb/bootstrap/css/bootstrap.min.css') }}" />
-        <style>
-            body {
-                margin: 40px 0;
-            }
-        </style>
-        {% block stylesheets %}
-        {% endblock %}
-        <link rel="stylesheet" href="{{ asset('bundles/ivan1986deb/bootstrap/css/bootstrap-responsive.min.css') }}" />
-        {% stylesheets filter="compass" "@Ivan1986DebBundle/Resources/assets/css/*.scss" %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
-        <script type="text/javascript" src="{{ asset('bundles/ivan1986deb/bootstrap/js/bootstrap.min.js') }}"></script>
-        {#
-        {% javascripts '@Ivan1986DebBundle/Resources/assets/js/*' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
-        #}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        {% include "GoogleBundle:Analytics:async.html.twig" %}
-    </head>
-    <body>
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand" href="{{ url('home') }}">PkgGen</a>
-                    <ul class="nav">
-                        {% block top_nav %}{% endblock %}
-                    </ul>
-                    <div class="navbar-text pull-right">
-                        {% block login %}{% endblock %}
-                    </div>
+{% extends 'MopaBootstrapBundle::base.html.twig' %}
+{% block title %}Welcome!{% endblock %}
+{% block head_style %}
+    {% stylesheets filter='less' '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less' %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+    {% endstylesheets %}
+    {% stylesheets filter="compass" "@Ivan1986DebBundle/Resources/assets/css/*.scss" %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    <style>
+        body {
+            margin: 40px 0;
+        }
+    </style>
+{% endblock head_style %}
+{% block head_bottom %}
+    {% include "GoogleBundle:Analytics:async.html.twig" %}
+{% endblock head_bottom %}
+{% block body_tag %}
+<body>
+{% endblock body_tag %}
+
+{% block body %}<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="{{ url('home') }}">PkgGen</a>
+                <ul class="nav">
+                    {% block top_nav %}{% endblock %}
+                </ul>
+                <div class="navbar-text pull-right">
+                    {% block login %}{% endblock %}
                 </div>
             </div>
         </div>
-        <div class="container">
-        {% block body %}{% endblock %}
-        </div>
-        <div class="navbar navbar-fixed-bottom">
-            <div class="navbar-inner">
-                <div class="container">
-                    <div class="navbar-text pull-left">
-                        <a href="https://github.com/ivan1986/deb-pkg-gen">{% trans %}исходный код на GitHub{% endtrans %}</a>
-                    </div>
-                    <div class="navbar-text pull-right">{% trans %}Сопровождающий{% endtrans %}: {{maintainer}}</div>
+    </div>
+    <div class="container">
+    {% block content %}{% endblock %}
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="navbar-inner">
+            <div class="container">
+                <div class="navbar-text pull-left">
+                    <a href="https://github.com/ivan1986/deb-pkg-gen">{% trans %}исходный код на GitHub{% endtrans %}</a>
                 </div>
+                <div class="navbar-text pull-right">{% trans %}Сопровождающий{% endtrans %}: {{maintainer}}</div>
             </div>
         </div>
-        {% block javascripts %}
-        {% endblock %}
-    </body>
-</html>
+    </div>
+{% endblock %}

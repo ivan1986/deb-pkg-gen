@@ -33,17 +33,19 @@ twig:
         maintainer: %maintainer%
     form:
         resources:
+            - 'MopaBootstrapBundle:Form:fields.html.twig'
             - 'Ivan1986DebBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ ]
     filters:
         cssrewrite: ~
         sass:    ~
         compass: ~
+        less:
+          apply_to: "\.less$"
 
 # Doctrine Configuration
 doctrine:
@@ -78,6 +80,12 @@ stof_doctrine_extensions:
     orm:
         default:
             timestampable: true
+
+mopa_bootstrap:
+    form:
+        render_required_asterisk: true
+        render_optional_text: false
+        show_legend: false
 
 google:
     analytics:

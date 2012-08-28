@@ -1,5 +1,5 @@
 {
-    "hash": "50ba848c2525b739ccbf0b1fa82d2d84",
+    "hash": "df7a1419b21964b750ac051519668a67",
     "packages": [
         {
             "package": "Anchovy/CURLBundle",
@@ -118,6 +118,18 @@
             "version": "1.2.0"
         },
         {
+            "package": "mopa/bootstrap-bundle",
+            "version": "dev-master",
+            "source-reference": "b1ec82811487d6e4856a218af2a3a0d41d6e4e09",
+            "commit-date": "1345625059"
+        },
+        {
+            "package": "mopa/composer-bridge",
+            "version": "dev-master",
+            "source-reference": "84b8bf537163b4470f14d02554a0e9eb5d300172",
+            "commit-date": "1337596733"
+        },
+        {
             "package": "pagerfanta/pagerfanta",
             "version": "dev-master",
             "source-reference": "12f71d99457b018fb80746f84514dd5b495c5789",
@@ -132,20 +144,38 @@
         {
             "package": "sensio/distribution-bundle",
             "version": "dev-master",
-            "source-reference": "f7e9231c36c3badc43f40d025a0ad12939b91df7",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "sensio/distribution-bundle",
+            "version": "dev-master",
+            "source-reference": "v2.1.0-RC2",
             "commit-date": "1345982505"
         },
         {
             "package": "sensio/framework-extra-bundle",
             "version": "dev-master",
-            "source-reference": "ade2d53b20a9fc3428f04c863b3fd4fca0b62181",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "sensio/framework-extra-bundle",
+            "version": "dev-master",
+            "source-reference": "v2.1.0-RC2",
             "commit-date": "1344072374"
         },
         {
             "package": "sensio/generator-bundle",
             "version": "dev-master",
-            "source-reference": "d8fc1666f3cdb403f1b2d4320c45ddd6adbdf6a5",
-            "commit-date": "1343980150"
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "sensio/generator-bundle",
+            "version": "dev-master",
+            "source-reference": "v2.1.0-RC2",
+            "commit-date": "1346138171"
         },
         {
             "package": "sonata-project/admin-bundle",
@@ -266,6 +296,12 @@
             "version": "dev-master",
             "source-reference": "32c4867f68c1bacc758602d602e18a3ac1598c76",
             "commit-date": "1345916214"
+        },
+        {
+            "package": "twitter/bootstrap",
+            "version": "master",
+            "source-reference": "master",
+            "commit-date": "1345529623"
         },
         {
             "package": "united-prototype/php-ga",

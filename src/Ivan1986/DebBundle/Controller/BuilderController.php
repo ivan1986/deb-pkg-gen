@@ -50,7 +50,7 @@ class BuilderController extends Controller
             }
             catch (\Exception $e)
             {
-                $error['e'] = $this->get('translator')->trans('Ключ с ID %key% не найден на сервере', array('key'=>$e));
+                $error['e'] = $this->get('translator')->trans('Ключ с ID %key% не найден на сервере', array('%key%'=>$e));
                 return $error;
             }
 
