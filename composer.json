@@ -8,10 +8,6 @@
         {
             "type": "composer",
             "url": "http://packages.zendframework.com/"
-        },
-        {
-            "type": "composer",
-            "url": "behat.org"
         }
     ],
     "require": {
@@ -41,12 +37,7 @@
         "united-prototype/php-ga": "*",
         "lunetics/locale-bundle": "*",
 
-        "zendframework/zend-cache": "*",
-
-        "behat/symfony2-extension": "*",
-        "behat/mink-bundle": "*",
-        "behat/sahi-client": "*",
-        "alexandresalome/php-selenium": "*"
+        "zendframework/zend-cache": "*"
     },
     "scripts": {
         "post-install-cmd": [
