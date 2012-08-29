@@ -64,7 +64,7 @@ security:
         - { path: ^/profile/, role: ROLE_USER }
         - { path: ^/repos/new*, role: ROLE_USER }
         - { path: ^/repos$, role: ROLE_USER }
-        - { path: ^/repos/my$, role: ROLE_USER }
+        - { path: ^/repos/my*, role: ROLE_USER }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
 fos_user:
@@ -87,7 +87,7 @@ sonata_user:
         group:        Ivan1986\DebBundle\Entity\Groups
     profile:  # Profile Form (firstname, lastname, etc ...)
       form:
-        type:               sonata.user.profile
+        type:               sonata_user_profile
         handler:            sonata.user.profile.form.handler.default
         name:               sonata_user_profile_form
         validation_groups:  [Profile]
