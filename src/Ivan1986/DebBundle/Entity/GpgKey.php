@@ -3,12 +3,15 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\SerializerBundle\Annotation\ExclusionPolicy;
+use JMS\SerializerBundle\Annotation\Expose;
 
 /**
  * Ivan1986\DebBundle\Entity\GpgKey
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\GpgKeyRepository")
+ * @ExclusionPolicy("all")
  */
 class GpgKey
 {

@@ -1,0 +1,23 @@
+Ivan1986\DebBundle\Entity\Repository:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+    repoString:
+      expose: true
+    bin:
+      expose: true
+    src:
+      expose: true
+    name:
+      expose: true
+  virtual_properties:
+    getKeyId:
+      expose: true
+      serialized_name: key
+    getUserName:
+      expose: true
+      serialized_name: user
+    getType:
+      expose: true
+

@@ -1,5 +1,0 @@
-fos_rest:
-    view:
-        view_response_listener: false
-    routing_loader:
-        default_format: json
