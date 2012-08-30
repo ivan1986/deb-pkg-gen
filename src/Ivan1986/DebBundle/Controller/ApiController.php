@@ -3,6 +3,8 @@
 namespace Ivan1986\DebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Ivan1986\DebBundle\Entity\PpaRepository;
+use Ivan1986\DebBundle\Form\RepositoryType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Ivan1986\DebBundle\Entity\Repository;
@@ -74,17 +76,38 @@ class ApiController extends FOSRestController
 
     public function postReposNewStdAction(Request $request)
     {
-        //TODO: сделать
+        return $this->processForm(new Repository());
     }
 
     public function postReposNewPpaAction(Request $request)
     {
-        //TODO: сделать
+        return $this->processForm(new PpaRepository());
     }
 
     public function putRepoAction(Repository $repo)
     {
-        //TODO: сделать
+        return $this->processForm($repo);
+    }
+
+    private function processForm(Repository $repo)
+    {
+        if (!$repo)
+            throw new NotFoundHttpException();
+        $statusCode = !$repo->getId() ? 201 : 204;
+
+        $form = $this->createForm($repo->getFormClass(), $repo, array( 'csrf_protection'   => false, ));
+        $form->bind($this->getRequest());
+        //var_dump($form);
+
+        if ($form->isValid()) {
+            $repo->setOwner($this->getUser());
+            $this->em->persist($repo);
+            $this->em->flush();
+
+            return $this->handleView($this->view(array('id' => $repo->getId()), $statusCode));
+        }
+
+        return $this->handleView($this->view(array($form->getName()=>$form), 400));
     }
 
     public function deleteRepoAction(Repository $repo)

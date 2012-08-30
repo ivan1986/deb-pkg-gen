@@ -36,7 +36,7 @@ class RepositoryType extends AbstractType
 
     public function getName()
     {
-        return 'ivan1986_debbundle_repositorytype';
+        return 'std';
     }
 
 }
