@@ -167,12 +167,8 @@ class RepositoryController extends Controller
     public function deleteAction($id)
     {
         $entity = $this->getByID($id);
-        $entity->setContainer($this->container);
         /** @var Repository $entity */
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Repository entity.');
-        }
+        $entity->setContainer($this->container);
         //удаляем пакеты этого репозитория
         foreach($entity->getPackages() as $pkg)
             $this->em->remove($pkg);

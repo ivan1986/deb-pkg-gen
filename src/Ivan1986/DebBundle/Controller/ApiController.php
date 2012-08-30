@@ -3,10 +3,15 @@
 namespace Ivan1986\DebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Ivan1986\DebBundle\Entity\Repository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Pagerfanta\Exception\NotValidCurrentPageException;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Prefix,
@@ -37,7 +42,7 @@ class ApiController extends FOSRestController
     }
 
 
-    public function getCountAction()
+    public function getReposCountAction()
     {
         $query = $this->em->getRepository('Ivan1986DebBundle:Repository')
             ->getAllQB();
@@ -47,7 +52,7 @@ class ApiController extends FOSRestController
         return $this->handleView($view);
     }
 
-    public function getPackagesAction()
+    public function getReposListAction()
     {
         $search = $this->getRequest()->query->get('search');
         $query = $this->em->getRepository('Ivan1986DebBundle:Repository')
@@ -66,5 +71,36 @@ class ApiController extends FOSRestController
         return $this->handleView($view);
     }
 
+
+    public function postReposNewStdAction(Request $request)
+    {
+        //TODO: сделать
+    }
+
+    public function postReposNewPpaAction(Request $request)
+    {
+        //TODO: сделать
+    }
+
+    public function putRepoAction(Repository $repo)
+    {
+        //TODO: сделать
+    }
+
+    public function deleteRepoAction(Repository $repo)
+    {
+        if (!$repo)
+            throw new NotFoundHttpException();
+        if ($repo->getOwner() != $this->getUser())
+            throw new AccessDeniedException();
+        /** @var Repository $entity */
+        $repo->setContainer($this->container);
+        //удаляем пакеты этого репозитория
+        foreach($repo->getPackages() as $pkg)
+            $this->em->remove($pkg);
+        $this->em->remove($repo);
+        $this->em->flush();
+        return $this->handleView($this->view(null, 204));
+    }
 
 }
