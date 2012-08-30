@@ -25,6 +25,8 @@ class AppKernel extends Kernel
             new Anchovy\CURLBundle\AnchovyCURLBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new FOS\RestBundle\FOSRestBundle(),
 
             //пользователи и админка
             new FOS\UserBundle\FOSUserBundle(),

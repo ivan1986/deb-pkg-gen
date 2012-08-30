@@ -54,6 +54,7 @@
         "lunetics/locale-bundle": "*",
         "mopa/bootstrap-bundle": "*",
         "twitter/bootstrap": "*",
+        "friendsofsymfony/rest-bundle": "*",
 
         "zendframework/zend-cache": "*"
     },

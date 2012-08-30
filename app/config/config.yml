@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: api.yml }
 
 framework:
     #esi:             ~
@@ -95,4 +96,3 @@ google:
                 accountId: %gaAcc%
                 domain:    .pkggen.no-ip.org
                 trackPageLoadTime: true
-
