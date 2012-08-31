@@ -94,6 +94,7 @@ class ApiController extends FOSRestController
         if (!$repo)
             throw new NotFoundHttpException();
         $statusCode = !$repo->getId() ? 201 : 204;
+        $repo->setContainer($this->container);
 
         $form = $this->createForm($repo->getFormClass(), $repo, array( 'csrf_protection'   => false, ));
         $form->bind($this->getRequest());
