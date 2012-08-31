@@ -105,3 +105,5 @@ fos_rest:
 jms_serializer:
     metadata:
         auto_detection: true
+
+nelmio_api_doc: ~
