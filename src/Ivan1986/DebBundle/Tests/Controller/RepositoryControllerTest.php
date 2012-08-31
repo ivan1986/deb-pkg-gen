@@ -31,12 +31,12 @@ class RepositoryControllerTest extends Entity
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'ivan1986_debbundle_repositorytype[repoString]' =>
+            'std[repoString]' =>
                 'http://ppa.launchpad.net/ivan1986/ppa/ubuntu natty main',
-            'ivan1986_debbundle_repositorytype[bin]' => 1,
-            'ivan1986_debbundle_repositorytype[src]' => 1,
-            'ivan1986_debbundle_repositorytype[name]' => 'phpunit-test',
-            'ivan1986_debbundle_repositorytype[key][id]' => 'B9B60E76',
+            'std[bin]' => 1,
+            'std[src]' => 1,
+            'std[name]' => 'phpunit-test',
+            'std[key][id]' => 'B9B60E76',
         ));
 
         $this->client->submit($form);
@@ -68,7 +68,7 @@ class RepositoryControllerTest extends Entity
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'ivan1986_debbundle_pparepositorytype[repoString]' => 'ppa:libreoffice/ppa',
+            'ppa[repoString]' => 'ppa:libreoffice/ppa',
         ));
 
         $this->client->submit($form);
@@ -100,7 +100,7 @@ class RepositoryControllerTest extends Entity
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'ivan1986_debbundle_pparepositorytype[repoString]' => 'non/exist/repo',
+            'ppa[repoString]' => 'non/exist/repo',
         ));
 
         $this->client->submit($form);
@@ -117,12 +117,12 @@ class RepositoryControllerTest extends Entity
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'ivan1986_debbundle_repositorytype[repoString]' =>
+            'std[repoString]' =>
             'http://ya.ru',
-            'ivan1986_debbundle_repositorytype[bin]' => 1,
-            'ivan1986_debbundle_repositorytype[src]' => 1,
-            'ivan1986_debbundle_repositorytype[name]' => 'non-exist-key-test',
-            'ivan1986_debbundle_repositorytype[key][id]' => '1024R/ffffff',
+            'std[bin]' => 1,
+            'std[src]' => 1,
+            'std[name]' => 'non-exist-key-test',
+            'std[key][id]' => '1024R/ffffff',
         ));
 
         $this->client->submit($form);
