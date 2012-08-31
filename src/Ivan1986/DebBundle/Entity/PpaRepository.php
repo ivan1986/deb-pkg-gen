@@ -191,5 +191,9 @@ class PpaRepository extends Repository
     {
         return $this->distrs ? $this->distrs : new DistList();
     }
+    public function getType()
+    {
+        return "ppa";
+    }
 
 }

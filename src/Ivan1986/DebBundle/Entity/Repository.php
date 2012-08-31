@@ -349,4 +349,17 @@ class Repository extends ContainerAware
         return true;
     }
 
+    public function getUserName()
+    {
+        return $this->getOwner() ? $this->getOwner()->getUsernameCanonical() : "";
+    }
+    public function getKeyId()
+    {
+        return $this->getKey() ? $this->getKey()->getId() : "";
+    }
+    public function getType()
+    {
+        return "standart";
+    }
+
 }

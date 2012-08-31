@@ -44,3 +44,10 @@ sonata_user_profile:
     resource: "@SonataUserBundle/Resources/config/routing/profile.xml"
     prefix: /profile
 
+api_repos:
+    type:     rest
+    resource:  Ivan1986\DebBundle\Controller\ApiController
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

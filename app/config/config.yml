@@ -96,3 +96,14 @@ google:
                 domain:    .pkggen.no-ip.org
                 trackPageLoadTime: true
 
+fos_rest:
+    view:
+        view_response_listener: false
+    routing_loader:
+        default_format: json
+
+jms_serializer:
+    metadata:
+        auto_detection: true
+
+nelmio_api_doc: ~

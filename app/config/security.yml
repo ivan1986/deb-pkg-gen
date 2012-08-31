@@ -22,10 +22,16 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        api:
+            pattern:    ^/api(.*)
+            anonymous: true
+            http_basic:
+                provider:       fos_userbundle
+                realm: "API login"
         admin:
             switch_user:        true
             context:            user
-            pattern:            /admin(.*)
+            pattern:            ^/admin(.*)
             form_login:
                 provider:       in_memory
                 login_path:     /admin/login
@@ -56,6 +62,11 @@ security:
         - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        # -> api
+        - { path: ^/api/doc, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/repos/count, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/repos/list, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api, role: ROLE_USER }
         # -> end
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }

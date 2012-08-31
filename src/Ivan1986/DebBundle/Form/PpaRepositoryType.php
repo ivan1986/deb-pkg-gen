@@ -35,7 +35,7 @@ class PpaRepositoryType extends AbstractType
 
     public function getName()
     {
-        return 'ivan1986_debbundle_pparepositorytype';
+        return 'ppa';
     }
 
 }
