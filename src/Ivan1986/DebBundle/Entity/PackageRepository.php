@@ -19,7 +19,7 @@ class PackageRepository extends EntityRepository
      */
     public function getSystem()
     {
-        return $this->_em->createQuery('SELECT p FROM Ivan1986\DebBundle\Entity\SysPackage AS p WHERE p.user IS NULL')->getOneOrNullResult();
+        return $this->_em->createQuery('SELECT p FROM Ivan1986\DebBundle\Entity\SysPackage AS p')->getOneOrNullResult();
     }
 
     /**
@@ -29,7 +29,7 @@ class PackageRepository extends EntityRepository
     public function mainRepo()
     {
         $data = $this->_em->createQuery('SELECT p FROM Ivan1986\DebBundle\Entity\Package AS p
-            WHERE NOT p INSTANCE OF Ivan1986\DebBundle\Entity\SysPackage')->getResult();
+            WHERE p INSTANCE OF Ivan1986\DebBundle\Entity\SimplePackage')->getResult();
         $data[] = $this->getSystem();
         return $data;
     }

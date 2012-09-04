@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\PackageRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="pkgType", type="string")
- * @ORM\DiscriminatorMap({"simple" = "SimplePackage", "sys" = "SysPackage"})
+ * @ORM\DiscriminatorMap({"simple" = "SimplePackage", "sys" = "SysPackage", "link" = "LinkPackage"})
  */
 class Package
 {

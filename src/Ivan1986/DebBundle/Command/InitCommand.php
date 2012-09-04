@@ -71,7 +71,6 @@ class InitCommand extends ContainerAwareCommand
         $builder = new Builder($t);
         $pkg = $builder->build($repo);
         $package = new SysPackage();
-        $package->setUser(null);
         $package->setContent($pkg['content']);
         $package->setFile($pkg['file']);
         $package->setInfo($pkg['finfo']);
