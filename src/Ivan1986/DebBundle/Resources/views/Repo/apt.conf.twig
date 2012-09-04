@@ -1,0 +1,43 @@
+APT::Get::AllowUnauthenticated true;
+
+// Directory layout
+Dir "{{ dir }}"
+{
+  // Location of the state dir
+  State "state" 
+  {
+     Lists "lists/";
+     status "status";
+     extended_states "extended_states";
+     cdroms "cdroms.list";
+  };
+  
+  // Location of the cache dir
+  Cache "cache" {
+     Archives "archives/";
+     // backup directory created by /etc/cron.daily/apt
+     Backup "backup/"; 
+     srcpkgcache "srcpkgcache.bin";
+     pkgcache "pkgcache.bin";     
+  };
+  
+  // Config files
+  Etc "etc" {
+     Main "apt.conf";
+     Netrc "auth.conf";
+     Parts "apt.conf.d/";
+     Preferences "preferences";
+     PreferencesParts "preferences.d";
+     SourceList "sources.list";
+     SourceParts "sources.list.d";
+     Trusted "trusted.gpg";
+     TrustedParts "trusted.gpg.d";
+  };
+  
+  // Location of the logfile
+  Log "var/log/apt" {
+        Terminal "term.log";
+        History "history.log";
+  };
+
+};

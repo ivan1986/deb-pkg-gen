@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 
 use Ivan1986\DebBundle\Entity\PackageRepository;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;
@@ -29,6 +30,21 @@ class InitCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $key = GpgLoader::getFromServer($this->getContainer()->getParameter('key'), $this->getContainer()->getParameter('key_server'));
+        $repoBase = 'http://'.$this->getContainer()->getParameter('host').$this->getContainer()->get('router')->generate('repo', array());
+
+        //Инициализируем конфигурацию чекера апта
+        $t = $this->getContainer()->get('templating');
+        $kernel = $this->getContainer()->get('kernel');
+        $path = $kernel->locateResource('@Ivan1986DebBundle');
+        /** @var $t TwigEngine Шаблонизатор */
+        file_put_contents($path.'apt/apt.conf', $t->render('Ivan1986DebBundle:Repo:apt.conf.twig', array(
+            'dir' => $path.'apt',
+        )));
+        file_put_contents($path.'apt/etc/trusted.gpg.d/repo-self.gpg', $key->getData());
+        file_put_contents($path.'apt/etc/sources.list', 'deb '.$repoBase.' apttest main');
+
+        //Инициализируем репозитории
         $doctrine = $this->getContainer()->get('doctrine');
         /** @var $doctrine \Doctrine\Bundle\DoctrineBundle\Registry */
 
@@ -46,15 +62,13 @@ class InitCommand extends ContainerAwareCommand
                 return;
         }
 
-        $key = GpgLoader::getFromServer($this->getContainer()->getParameter('key'), $this->getContainer()->getParameter('key_server'));
-
         $repo = new Repository();
-        $repo->setRepoString('http://'.$this->getContainer()->getParameter('host').$this->getContainer()->get('router')->generate('repo', array()).' stable main');
+        $repo->setRepoString($repoBase.' stable main');
         $repo->setSrc(false);
         $repo->setKey($key);
         $repo->setName('self');
 
-        $builder = new Builder($this->getContainer()->get('templating'));
+        $builder = new Builder($t);
         $pkg = $builder->build($repo);
         $package = new SysPackage();
         $package->setUser(null);
@@ -64,6 +78,7 @@ class InitCommand extends ContainerAwareCommand
 
         $doctrine->getManager()->persist($package);
         $doctrine->getManager()->flush();
+
     }
 
 }
