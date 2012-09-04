@@ -67,7 +67,7 @@ class RepoController extends Controller
             $list = $this->getPkgList($this->getPkgs($name));
             $this->cache->setItem($key, $list);
         }
-        $this->get('ivan1986_deb.gapinger')->pingGA('Repository');
+        $this->get('ivan1986_deb.gapinger')->pingGA('Repository - '.$name);
         $r = new Response($list);
         $r->headers->set('Content-Type', 'application/octet-stream');
         return $r;
