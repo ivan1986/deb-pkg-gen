@@ -55,16 +55,16 @@ class RepoController extends Controller
     }
 
     /**
-     * @Route("/dists/stable/main/{arch}/Packages", name="Packages")
+     * @Route("/dists/{name}/main/{arch}/Packages", name="Packages")
      * @Template()
      */
-    public function PackagesAction($arch)
+    public function PackagesAction($name, $arch)
     {
-        $key = 'repo_Packages';
+        $key = 'repo_Packages_'.$name;
         $list = $this->cache->getItem($key);
         if (!$list)
         {
-            $list = $this->getPkgList($this->getPkgs());
+            $list = $this->getPkgList($this->getPkgs($name));
             $this->cache->setItem($key, $list);
         }
         $this->get('ivan1986_deb.gapinger')->pingGA('Repository');
@@ -74,16 +74,16 @@ class RepoController extends Controller
     }
 
     /**
-     * @Route("/dists/stable/Release", name="Release")
+     * @Route("/dists/{name}/Release", name="Release")
      * @Template()
      */
-    public function ReleaseAction()
+    public function ReleaseAction($name)
     {
-        $key = 'repo_Release';
+        $key = 'repo_Release_'.$name;
         $Release = $this->cache->getItem($key);
         if (!$Release)
         {
-            $pkgs = $this->getPkgs();
+            $pkgs = $this->getPkgs($name);
             $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs));
             $this->cache->setItem($key, $Release);
         }
@@ -94,16 +94,16 @@ class RepoController extends Controller
     }
 
     /**
-     * @Route("/dists/stable/Release.gpg", name="ReleaseGpg")
+     * @Route("/dists/{name}/Release.gpg", name="ReleaseGpg")
      * @Template()
      */
-    public function ReleaseGpgAction()
+    public function ReleaseGpgAction($name)
     {
-        $key = 'repo_ReleaseGpg';
+        $key = 'repo_ReleaseGpg_'.$name;
         $ReleaseGpg = $this->cache->getItem($key);
         if (!$ReleaseGpg)
         {
-            $pkgs = $this->getPkgs();
+            $pkgs = $this->getPkgs($name);
             $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs));
 
             $gpg = new \gnupg();
@@ -156,7 +156,11 @@ class RepoController extends Controller
         return $date;
     }
 
-    private function getPkgs()
+    /**
+     * @param string $repoName Имя репозитория
+     * @return \Ivan1986\DebBundle\Entity\Package[]
+     */
+    private function getPkgs($repoName)
     {
         $rpkgs = $this->getDoctrine()->getRepository('Ivan1986DebBundle:Package');
         /** @var $rpkgs PackageRepository */
