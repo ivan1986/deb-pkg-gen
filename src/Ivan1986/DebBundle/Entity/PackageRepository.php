@@ -34,4 +34,31 @@ class PackageRepository extends EntityRepository
         return $data;
     }
 
+
+    /**
+     * Получить для пользователя
+     *
+     * @param User $user
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function getByUser(User $user=null)
+    {
+        $qb = $this->createQueryBuilder('p');
+        if ($user)
+            $qb->andWhere('p.user = ?1')->setParameter(1, $user->getId());
+        return $qb;
+    }
+
+    /**
+     * Получить по ID с проверкой пользователя
+     *
+     * @param $id ID репозитория
+     * @param User $user пользователь
+     * @return object
+     */
+    public function getByIdAndCheckUser($id, User $user)
+    {
+        return $this->findOneBy(array('id' => $id, 'user' => $user->getId()));
+    }
+
 }

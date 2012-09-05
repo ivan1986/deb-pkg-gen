@@ -1,0 +1,58 @@
+{% extends 'Ivan1986DebBundle::layout.html.twig' %}
+{% block title %}{% if all %}{% trans %}Список пакетов в системе{% endtrans %}
+{% else %}{% trans %}Список добавленных вами пакетов{% endtrans %}{% endif %}{% endblock %}
+{% block fos_user_content %}
+
+<div class="page-header">
+    {% if all %}
+    <h1>{% trans %}Список всех пакетов{% endtrans %}</h1>
+    {% else %}
+    <h1>{% trans %}Список добавленных вами пакетов{% endtrans %}</h1>
+    {% endif %}
+</div>
+
+<form class="well form-search" method="get" action="{{ path('packages', {'my': 'all'}) }}">
+    <input type="search" name="search" class="input-medium search-query" placeholder="{% trans %}Искать...{% endtrans %}">
+    <button type="submit" class="btn">{% trans %}Поиск{% endtrans %}</button>
+</form>
+
+<table class="records_list table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Url</th>
+            <th>Bin</th>
+            <th>Src</th>
+            <th>{% trans %}Имя{% endtrans %}</th>
+            <th>{% trans %}Владелец{% endtrans %}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in pagerfanta.currentPageResults %}
+        <tr>
+            {#<td>{{ entity.repoString }}</td>
+            <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.bin ? 'yes' : 'no')~'.png') }}" alt="{{ entity.bin ? 'yes' : 'no' }}" /></td>
+            <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.src ? 'yes' : 'no')~'.png') }}" alt="{{ entity.src ? 'yes' : 'no' }}" /></td>
+            <td>{{ entity.name }}</td>
+            <td>
+                {% if app.user and entity.owner.id == app.user.id %}
+                    <a href="{{ path('packages_edit', { 'id': entity.id }) }}">{% trans %}редактировать{% endtrans %}</a>
+                {% else %}
+                    {{ entity.owner.username }}
+                {% endif %}
+            </td>#}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% if pagerfanta.haveToPaginate %}{{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated') }}{% endif %}
+
+{% if app.user %}
+    <a class="btn btn-primary" href="{{ path('packages_new') }}">{% trans %}Добавить новый пакет{% endtrans %}</a>
+    {% if all %}
+    <a class="btn right" href="{{ path('packages', {'my': 'my'}) }}">{% trans %}ваши{% endtrans %}</a>
+    {% else %}
+    <a class="btn right" href="{{ path('packages', {'my': 'all'}) }}">{% trans %}все{% endtrans %}</a>
+    {% endif %}
+{% endif %}
+{% endblock %}

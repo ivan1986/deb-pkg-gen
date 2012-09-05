@@ -1,0 +1,18 @@
+{% extends 'Ivan1986DebBundle::layout.html.twig' %}
+{% block title %}{% trans %}Новый пакет{% endtrans %}{% endblock %}
+{% block fos_user_content %}
+
+<div class="page-header">
+    <h1>{% trans %}Новый пакет{% endtrans %}</h1>
+</div>
+
+<form action="{{ path(to) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button class="btn btn-primary" type="submit">{% trans %}Создать{% endtrans %}</button>
+        <a href="{{ path('packages') }}">{% trans %}Назад к списку{% endtrans %}</a>
+    </p>
+</form>
+
+{% endblock %}
+
