@@ -39,6 +39,11 @@ class LinkPackage extends Package
      */
     protected $link = '';
 
+    public function __construct()
+    {
+        $this->content = "link";
+    }
+
     /**
      * @param User $user
      */
@@ -90,11 +95,6 @@ class LinkPackage extends Package
     public function getHttpResponse()
     {
         return new RedirectResponse($this->link);
-    }
-
-    public function setContent($content)
-    {
-        return $this;
     }
 
     public function getContent()

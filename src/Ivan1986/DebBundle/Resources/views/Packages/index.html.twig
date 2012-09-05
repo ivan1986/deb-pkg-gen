@@ -20,8 +20,7 @@
     <thead>
         <tr>
             <th>Url</th>
-            <th>Bin</th>
-            <th>Src</th>
+            <th>State</th>
             <th>{% trans %}Имя{% endtrans %}</th>
             <th>{% trans %}Владелец{% endtrans %}</th>
         </tr>
@@ -29,17 +28,16 @@
     <tbody>
     {% for entity in pagerfanta.currentPageResults %}
         <tr>
-            {#<td>{{ entity.repoString }}</td>
-            <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.bin ? 'yes' : 'no')~'.png') }}" alt="{{ entity.bin ? 'yes' : 'no' }}" /></td>
-            <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.src ? 'yes' : 'no')~'.png') }}" alt="{{ entity.src ? 'yes' : 'no' }}" /></td>
-            <td>{{ entity.name }}</td>
+            <td>{{ entity.link }}</td>
+            <td>{{ entity.checked }}</td>
+            <td>{{ entity.file }}</td>
             <td>
-                {% if app.user and entity.owner.id == app.user.id %}
+                {% if app.user and entity.user.id == app.user.id %}
                     <a href="{{ path('packages_edit', { 'id': entity.id }) }}">{% trans %}редактировать{% endtrans %}</a>
                 {% else %}
-                    {{ entity.owner.username }}
+                    {{ entity.user.username }}
                 {% endif %}
-            </td>#}
+            </td>
         </tr>
     {% endfor %}
     </tbody>

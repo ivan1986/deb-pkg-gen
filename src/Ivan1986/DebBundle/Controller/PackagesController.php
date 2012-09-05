@@ -83,7 +83,7 @@ class PackagesController extends Controller
         {
             $form->bind($this->getRequest());
             if ($form->isValid()) {
-                $entity->setOwner($this->getUser());
+                $entity->setUser($this->getUser());
                 $this->em->persist($entity);
                 $this->em->flush();
 
