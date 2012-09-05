@@ -5,6 +5,7 @@ namespace Ivan1986\DebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Ivan1986\DebBundle\Entity\Package
@@ -14,6 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="pkgType", type="string")
  * @ORM\DiscriminatorMap({"simple" = "SimplePackage", "sys" = "SysPackage", "link" = "LinkPackage"})
+ * @UniqueEntity({"fields"="file", "message"="Пакет с таким именем уже есть в системе"})
  */
 class Package
 {
