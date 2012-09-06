@@ -116,9 +116,9 @@ class LinkPackage extends Package
         foreach($strs as $str)
         {
             if (strpos($str, $pkg) !== false)
-                $name.= substr($str, strlen($pkg)+1);
+                $name.= trim(substr($str, strlen($pkg)));
             if (strpos($str, $arc) !== false)
-                $name.= '-'.substr($str, strlen($arc)+1);
+                $name.= '-'.trim(substr($str, strlen($arc)));
         }
         if ($name)
             $name.='.deb';
