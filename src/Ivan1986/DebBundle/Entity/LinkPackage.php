@@ -78,6 +78,18 @@ class LinkPackage extends Package
         return $this->checked;
     }
 
+    public function getStatus()
+    {
+        if ($this->checked == self::NOT_CHECKED)
+            return "Wait";
+        if ($this->checked == self::CHECK_NOW)
+            return "Check now";
+        if ($this->checked == self::CHECK_YES)
+            return "Ok";
+        if ($this->checked == self::CHECK_ERR)
+            return "Error";
+    }
+
     /**
      * @param string $link
      */

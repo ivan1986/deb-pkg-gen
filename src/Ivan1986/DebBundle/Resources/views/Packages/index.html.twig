@@ -29,7 +29,7 @@
     {% for entity in pagerfanta.currentPageResults %}
         <tr>
             <td>{{ entity.link }}</td>
-            <td>{{ entity.checked }}</td>
+            <td>{{ entity.status }}</td>
             <td>{{ entity.file }}</td>
             <td>
                 {% if app.user and entity.user.id == app.user.id %}
