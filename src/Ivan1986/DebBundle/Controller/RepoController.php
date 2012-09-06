@@ -62,7 +62,7 @@ class RepoController extends Controller
     {
         $key = 'repo_Packages_'.$name;
         $list = $this->cache->getItem($key);
-        if (!$list)
+        if (!$list || $name == 'apttest')
         {
             $list = $this->getPkgList($this->getPkgs($name));
             $this->cache->setItem($key, $list);
@@ -81,10 +81,10 @@ class RepoController extends Controller
     {
         $key = 'repo_Release_'.$name;
         $Release = $this->cache->getItem($key);
-        if (!$Release)
+        if (!$Release || $name == 'apttest')
         {
             $pkgs = $this->getPkgs($name);
-            $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs));
+            $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
             $this->cache->setItem($key, $Release);
         }
 
@@ -101,10 +101,10 @@ class RepoController extends Controller
     {
         $key = 'repo_ReleaseGpg_'.$name;
         $ReleaseGpg = $this->cache->getItem($key);
-        if (!$ReleaseGpg)
+        if (!$ReleaseGpg || $name == 'apttest')
         {
             $pkgs = $this->getPkgs($name);
-            $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs));
+            $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
 
             $gpg = new \gnupg();
             $content = file_get_contents($this->container->getParameter('key_file'));
@@ -120,7 +120,7 @@ class RepoController extends Controller
         return $r;
     }
 
-    private function getRelease($list, $date)
+    private function getRelease($list, $date, $name)
     {
         $size = strlen($list);
         $md5 = md5($list);
@@ -133,6 +133,7 @@ class RepoController extends Controller
             'md5' => $md5,
             'sha1' => $sha1,
             'date' => date('r', $date),
+            'name' => $name,
         ));
         return $Release;
     }
@@ -146,7 +147,7 @@ class RepoController extends Controller
     private function getMaxDate($packages)
     {
         if (empty($packages))
-            return time();
+            return time(123456789);
         $date = $packages[0]->getCreated()->getTimestamp();
         foreach($packages as $package)
         {
@@ -164,11 +165,18 @@ class RepoController extends Controller
     {
         $rpkgs = $this->getDoctrine()->getRepository('Ivan1986DebBundle:Package');
         /** @var $rpkgs PackageRepository */
-        return $rpkgs->mainRepo();
+        if ($repoName == 'stable')
+            return $rpkgs->mainRepo();
+        if ($repoName == 'apttest')
+            return $rpkgs->testRepo();
+        if ($repoName == 'link')
+            return $rpkgs->linkRepo();
     }
 
     private function getPkgList($pkgs)
     {
+        if (empty($pkgs))
+            return "";
         $list = array();
         foreach ($pkgs as $pkg) {
             $info = $pkg->getInfo();
