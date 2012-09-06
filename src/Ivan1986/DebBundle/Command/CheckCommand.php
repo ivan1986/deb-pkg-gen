@@ -45,7 +45,7 @@ class CheckCommand extends ContainerAwareCommand
             'PATH' => '/bin:/usr/bin',
             'HOME' => $dir,
         );
-        //Сборка пакета
+        //Проверка аптом корректности работы
         $p = new Process('apt-get -c apt.conf -qq update');
         $p->setEnv($env);
         $p->setWorkingDirectory($dir);
@@ -63,33 +63,6 @@ class CheckCommand extends ContainerAwareCommand
         foreach($files as $file)
             if (is_file($file))
                 unlink($file);
-
-        /*if ($pkg)
-        {
-            if ($input->getOption('clear'))
-            {
-                $doctrine->getManager()->remove($pkg);
-                $doctrine->getManager()->flush();
-            }
-            else
-                return;
-        }
-
-        $repo = new Repository();
-        $repo->setRepoString($repoBase.' stable main');
-        $repo->setSrc(false);
-        $repo->setKey($key);
-        $repo->setName('self');
-
-        $builder = new Builder($t);
-        $pkg = $builder->build($repo);
-        $package = new SysPackage();
-        $package->setContent($pkg['content']);
-        $package->setFile($pkg['file']);
-        $package->setInfo($pkg['finfo']);
-
-        $doctrine->getManager()->persist($package);
-        $doctrine->getManager()->flush();*/
 
     }
 
