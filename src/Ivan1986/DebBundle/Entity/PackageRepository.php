@@ -16,11 +16,11 @@ class PackageRepository extends EntityRepository
 {
 
     /**
-     * @return SysPackage|null
+     * @return Package[]
      */
     public function getSystem()
     {
-        return $this->_em->createQuery('SELECT p FROM Ivan1986\DebBundle\Entity\SysPackage AS p')->getOneOrNullResult();
+        return $this->_em->createQuery('SELECT p FROM Ivan1986\DebBundle\Entity\SysPackage AS p')->getResult();
     }
 
     /**
@@ -31,8 +31,7 @@ class PackageRepository extends EntityRepository
     {
         $data = $this->_em->createQuery('SELECT p FROM Ivan1986\DebBundle\Entity\Package AS p
             WHERE p INSTANCE OF Ivan1986\DebBundle\Entity\SimplePackage')->getResult();
-        $data[] = $this->getSystem();
-        return $data;
+        return array_merge($data, $this->getSystem());
     }
 
     /**
