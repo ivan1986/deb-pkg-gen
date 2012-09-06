@@ -17,9 +17,6 @@ class LinkPackageType extends AbstractType
                 'label' => 'Адрес файла пакета',
                 'attr' => array('class' => 'span8'),
             ))
-            ->add('file', null, array(
-                'label' => 'Имя файла в репозитории',
-            ))
             ->add('info', 'textarea', array(
                 'label' => 'То, что пишется в Packages',
                 'attr' => array('class' => 'span9', 'rows' => 15),

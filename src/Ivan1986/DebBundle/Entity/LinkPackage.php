@@ -4,6 +4,7 @@ namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ivan1986\DebBundle\Entity\LinkPackage
@@ -35,6 +36,7 @@ class LinkPackage extends Package
     /**
      * @var string Адрес пакета
      *
+     * @Assert\Url(protocols={"http", "https", "ftp"})
      * @ORM\Column(name="link", type="string")
      */
     protected $link = '';
@@ -106,6 +108,23 @@ class LinkPackage extends Package
     {
         if ($this->info != $info)
             $this->checked = self::NOT_CHECKED;
+        //Получаем имя для файла пакета
+        $strs = explode("\n", $info);
+        $name = '';
+        $pkg = 'Package:';
+        $arc = 'Architecture:';
+        foreach($strs as $str)
+        {
+            if (strpos($str, $pkg) !== false)
+                $name.= substr($str, strlen($pkg)+1);
+            if (strpos($str, $arc) !== false)
+                $name.= '-'.substr($str, strlen($arc)+1);
+        }
+        if ($name)
+            $name.='.deb';
+        $this->setFile($name);
+        $fileinfo = "Filename: %filename%\n";
+        $info = str_replace("Description:", $fileinfo."Size:", $info);
         return parent::setInfo($info);
     }
 

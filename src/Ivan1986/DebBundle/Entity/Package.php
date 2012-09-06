@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ivan1986\DebBundle\Entity\Package
@@ -53,6 +54,7 @@ class Package
     /**
      * @var string Имя файла
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="file", type="string")
      */
     protected $file;
