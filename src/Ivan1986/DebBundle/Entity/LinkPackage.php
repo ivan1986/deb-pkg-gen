@@ -124,7 +124,7 @@ class LinkPackage extends Package
             $name.='.deb';
         $this->setFile($name);
         $fileinfo = "Filename: %filename%\n";
-        $info = str_replace("Description:", $fileinfo."Size:", $info);
+        $info = str_replace("Description:", $fileinfo."Description:", $info);
         return parent::setInfo($info);
     }
 
