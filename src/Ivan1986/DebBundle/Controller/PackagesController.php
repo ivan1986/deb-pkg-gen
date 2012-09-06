@@ -48,10 +48,10 @@ class PackagesController extends Controller
         $query = $this->em->getRepository('Ivan1986DebBundle:LinkPackage')
             ->getByUser(($my == 'my' && !$search) ? $this->getUser() : null);
         /** @var $query QueryBuilder */
-        /*if ($search)
+        if ($search)
             $query->andWhere($query->expr()->orX(
-                    $query->expr()->like('r.name', '?1'),
-                    $query->expr()->like('r.repoString', '?1')))->setParameter(1, '%'.$search.'%');*/
+                    $query->expr()->like('p.file', '?1'),
+                    $query->expr()->like('p.link', '?1')))->setParameter(1, '%'.$search.'%');
 
         $adapter = new DoctrineORMAdapter($query);
         $pagerfanta = new Pagerfanta($adapter);
