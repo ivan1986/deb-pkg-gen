@@ -121,6 +121,7 @@ class LinkPackage extends Package
         if ($this->info != $info)
             $this->checked = self::NOT_CHECKED;
         //Получаем имя для файла пакета
+        $info = str_replace("\r\n", "\n", $info);
         $strs = explode("\n", $info);
         $name = '';
         $pkg = 'Package:';
@@ -143,6 +144,11 @@ class LinkPackage extends Package
         $info = implode("\n", $info);
         $info = str_replace("Description:", $fileinfo."Description:", $info);
         return parent::setInfo($info);
+    }
+
+    public function getUserName()
+    {
+        return $this->getUser() ? $this->getUser()->getUsernameCanonical() : "";
     }
 
 }

@@ -3,8 +3,10 @@
 namespace Ivan1986\DebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Ivan1986\DebBundle\Entity\LinkPackage;
 use Ivan1986\DebBundle\Entity\PpaRepository;
 use Ivan1986\DebBundle\Form\RepositoryType;
+use Ivan1986\DebBundle\Form\LinkPackageType;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Ivan1986\DebBundle\Entity\Repository;
@@ -47,7 +49,7 @@ class ApiController extends FOSRestController
     /**
      * @param QueryBuilder $query
      */
-    private function addSearch(QueryBuilder $query)
+    private function addRepoSearch(QueryBuilder $query)
     {
         $search = $this->getRequest()->query->get('search');
         if ($search)
@@ -68,7 +70,7 @@ class ApiController extends FOSRestController
         $query = $this->em->getRepository('Ivan1986DebBundle:Repository')
             ->getAllQB();
         /** @var $query QueryBuilder */
-        $this->addSearch($query);
+        $this->addRepoSearch($query);
         $count = $query->select($query->expr()->count('r'))->getQuery()->getSingleScalarResult();
         $view = $this->view(array('count' => $count), 200);
         return $this->handleView($view);
@@ -89,7 +91,7 @@ class ApiController extends FOSRestController
         $query = $this->em->getRepository('Ivan1986DebBundle:Repository')
             ->getAllQB();
         /** @var $query QueryBuilder */
-        $this->addSearch($query);
+        $this->addRepoSearch($query);
         $query->join('r.key', 'k');
         $query->select('r, k');
         $query->setFirstResult($this->getRequest()->query->get('from', 0));
@@ -162,6 +164,116 @@ class ApiController extends FOSRestController
         foreach($repo->getPackages() as $pkg)
             $this->em->remove($pkg);
         $this->em->remove($repo);
+        $this->em->flush();
+        return $this->handleView($this->view(null, 204));
+    }
+
+    /**
+     * @param QueryBuilder $query
+     */
+    private function addPkgSearch(QueryBuilder $query)
+    {
+        $search = $this->getRequest()->query->get('search');
+        if ($search)
+            $query->andWhere($query->expr()->orX(
+                    $query->expr()->like('p.file', '?1'),
+                    $query->expr()->like('p.link', '?1')))->setParameter(1, '%'.$search.'%');
+    }
+
+    /**
+     * @ApiDoc(resource=true, description="Return count packages",
+     * filters={
+     *      {"name"="search", "dataType"="string"}
+     *  }
+     * )
+     */
+    public function getPkgsCountAction()
+    {
+        $query = $this->em->getRepository('Ivan1986DebBundle:LinkPackage')
+            ->getAllQB();
+        /** @var $query QueryBuilder */
+        $this->addPkgSearch($query);
+        $count = $query->select($query->expr()->count('p'))->getQuery()->getSingleScalarResult();
+        $view = $this->view(array('count' => $count), 200);
+        return $this->handleView($view);
+    }
+
+    /**
+     * @ApiDoc(resource=true, description="Return list of packages",
+     * filters={
+     *      {"name"="search", "dataType"="string"},
+     *      {"name"="from", "dataType"="integer"},
+     *      {"name"="count", "dataType"="integer"}
+     *  }
+     * )
+     */
+    public function getPkgsListAction()
+    {
+        $search = $this->getRequest()->query->get('search');
+        $query = $this->em->getRepository('Ivan1986DebBundle:LinkPackage')
+            ->getAllQB();
+        /** @var $query QueryBuilder */
+        $this->addPkgSearch($query);
+        $query->setFirstResult($this->getRequest()->query->get('from', 0));
+        $query->setMaxResults($this->getRequest()->query->get('count', 10));
+        $result = $query->getQuery()->getResult();
+        $view = $this->view($result, 200);
+        return $this->handleView($view);
+    }
+
+    /**
+     * @ApiDoc(resource=true, description="Create new Package")
+     */
+    public function postPkgsNewAction(Request $request)
+    {
+        return $this->processPkgForm(new LinkPackage());
+    }
+
+    /**
+     * @ApiDoc(resource=true, description="Edit Package")
+     */
+    public function putPkgAction(LinkPackage $pkg)
+    {
+        return $this->processPkgForm($pkg);
+    }
+
+    private function processPkgForm(LinkPackage $pkg)
+    {
+        if (!$pkg)
+            throw new NotFoundHttpException();
+        $statusCode = !$pkg->getId() ? 201 : 204;
+
+        $form = $this->createForm(new LinkPackageType(), $pkg, array( 'csrf_protection'   => false, ));
+        $form->bind($this->getRequest());
+
+        if ($form->isValid()) {
+            $pkg->setOwner($this->getUser());
+            $this->em->persist($pkg);
+            $this->em->flush();
+
+            return $this->handleView($this->view(array('id' => $pkg->getId()), $statusCode));
+        }
+
+        return $this->handleView($this->view(array($form->getName()=>$form), 400));
+    }
+
+    /**
+     * @ApiDoc(resource=true, description="Delete Package",
+     *     input="\Ivan1986\DebBundle\Entity\Repository"
+     * )
+     */
+    public function deletePkgAction(LinkPackage $pkg)
+    {
+        if (!$pkg)
+            throw new NotFoundHttpException();
+        if ($pkg->getOwner() != $this->getUser())
+            throw new AccessDeniedException();
+        /** @var Repository $entity */
+        $pkg->setContainer($this->container);
+        //удаляем пакеты этого репозитория
+        foreach($pkg->getPackages() as $pkg)
+            $this->em->remove($pkg);
+        $this->em->remove($pkg);
         $this->em->flush();
         return $this->handleView($this->view(null, 204));
     }

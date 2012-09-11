@@ -16,6 +16,16 @@ class PackageRepository extends EntityRepository
 {
 
     /**
+     * Получить все пакеты
+     *
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function getAllQB()
+    {
+        return $this->createQueryBuilder('p');
+    }
+
+    /**
      * @return Package[]
      */
     public function getSystem()

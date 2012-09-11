@@ -1,0 +1,9 @@
+Ivan1986\DebBundle\Entity\Package:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+    file:
+      expose: true
+    info:
+      expose: true
