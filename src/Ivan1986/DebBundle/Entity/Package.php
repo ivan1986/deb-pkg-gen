@@ -5,6 +5,8 @@ namespace Ivan1986\DebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ivan1986\DebBundle\Entity\Package
@@ -13,7 +15,8 @@ use Symfony\Component\HttpFoundation\Response;
  * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\PackageRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="pkgType", type="string")
- * @ORM\DiscriminatorMap({"simple" = "SimplePackage", "sys" = "SysPackage"})
+ * @ORM\DiscriminatorMap({"simple" = "SimplePackage", "sys" = "SysPackage", "link" = "LinkPackage"})
+ * @UniqueEntity({"fields"="file", "message"="Файл с таким именем уже есть в системе"})
  */
 class Package
 {
@@ -51,6 +54,7 @@ class Package
     /**
      * @var string Имя файла
      *
+     * @Assert\NotBlank()
      * @ORM\Column(name="file", type="string")
      */
     protected $file;

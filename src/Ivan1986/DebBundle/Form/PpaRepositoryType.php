@@ -13,10 +13,6 @@ use JMS\DiExtraBundle\Annotation\FormType;
  */
 class PpaRepositoryType extends AbstractType
 {
-    /**
-     * @Inject
-     */
-    private $translator;
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

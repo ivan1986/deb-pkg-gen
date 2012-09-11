@@ -55,13 +55,15 @@ class InitCommand extends ContainerAwareCommand
         {
             if ($input->getOption('clear'))
             {
-                $doctrine->getManager()->remove($pkg);
+                foreach($pkg as $p)
+                    $doctrine->getManager()->remove($p);
                 $doctrine->getManager()->flush();
             }
             else
                 return;
         }
 
+        //репозитории
         $repo = new Repository();
         $repo->setRepoString($repoBase.' stable main');
         $repo->setSrc(false);
@@ -71,7 +73,23 @@ class InitCommand extends ContainerAwareCommand
         $builder = new Builder($t);
         $pkg = $builder->build($repo);
         $package = new SysPackage();
-        $package->setUser(null);
+        $package->setContent($pkg['content']);
+        $package->setFile($pkg['file']);
+        $package->setInfo($pkg['finfo']);
+
+        $doctrine->getManager()->persist($package);
+        $doctrine->getManager()->flush();
+
+        //пакеты
+        $repo = new Repository();
+        $repo->setRepoString($repoBase.' link main');
+        $repo->setSrc(false);
+        $repo->setKey($key);
+        $repo->setName('link');
+
+        $builder = new Builder($t);
+        $pkg = $builder->build($repo);
+        $package = new SysPackage();
         $package->setContent($pkg['content']);
         $package->setFile($pkg['file']);
         $package->setInfo($pkg['finfo']);

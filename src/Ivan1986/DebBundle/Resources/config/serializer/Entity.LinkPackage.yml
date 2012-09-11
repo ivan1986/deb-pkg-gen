@@ -1,0 +1,15 @@
+Ivan1986\DebBundle\Entity\LinkPackage:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true
+    link:
+      expose: true
+  virtual_properties:
+    getUserName:
+      expose: true
+      serialized_name: user
+    getStatus:
+      expose: true
+      serialized_name: status
+

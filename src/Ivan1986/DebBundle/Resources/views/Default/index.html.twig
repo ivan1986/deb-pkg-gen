@@ -8,7 +8,9 @@
     <h1>{% trans %}Репозиторий репозиториев{% endtrans %}</h1>
     <p>{% trans %}Позволяет подключать сторонние репозитории путем установки пакетов{% endtrans %}</p>
     <p>
-        <a class="btn btn-primary btn-large" href="{{ path('main_repo') }}">{% trans %}Пакет для подключения{% endtrans %}</a>
+        {% trans %}Пакеты для подключения{% endtrans %}:
+        <a class="btn btn-primary btn-large" href="{{ path('main_repo') }}">{% trans %}Репозитории{% endtrans %}</a>
+        <a class="btn btn-primary btn-large" href="{{ path('link_repo') }}">{% trans %}Пакеты{% endtrans %}</a>
     </p>
 </div>
 {% endblock %}

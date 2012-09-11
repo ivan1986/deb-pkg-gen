@@ -3,6 +3,8 @@
 namespace Ivan1986\DebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Ivan1986\DebBundle\Form\LinkPackageType;
+use Ivan1986\DebBundle\Entity\LinkPackage;
 use Pagerfanta\Exception\NotValidCurrentPageException;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
@@ -20,9 +22,9 @@ use Ivan1986\DebBundle\Entity\PpaRepository;
 /**
  * Repository controller.
  *
- * @Route("/repos")
+ * @Route("/packages")
  */
-class RepositoryController extends Controller
+class PackagesController extends Controller
 {
     /** @var ObjectManager */
     private $em;
@@ -34,22 +36,22 @@ class RepositoryController extends Controller
     }
 
     /**
-     * Lists all Repository entities.
+     * Lists all Packages entities.
      *
-     * @Route("/{my}/{page}", name="repos", requirements={"my" = "my|all", "page" = "\d+"},
+     * @Route("/{my}/{page}", name="packages", requirements={"my" = "my|all", "page" = "\d+"},
      *  defaults={"page" = 1, "my"="my"})
      * @Template()
      */
     public function indexAction($my, $page)
     {
         $search = $this->getRequest()->query->get('search');
-        $query = $this->em->getRepository('Ivan1986DebBundle:Repository')
+        $query = $this->em->getRepository('Ivan1986DebBundle:LinkPackage')
             ->getByUser(($my == 'my' && !$search) ? $this->getUser() : null);
         /** @var $query QueryBuilder */
         if ($search)
             $query->andWhere($query->expr()->orX(
-                $query->expr()->like('r.name', '?1'),
-                $query->expr()->like('r.repoString', '?1')))->setParameter(1, '%'.$search.'%');
+                    $query->expr()->like('p.file', '?1'),
+                    $query->expr()->like('p.link', '?1')))->setParameter(1, '%'.$search.'%');
 
         $adapter = new DoctrineORMAdapter($query);
         $pagerfanta = new Pagerfanta($adapter);
@@ -69,60 +71,28 @@ class RepositoryController extends Controller
     /**
      * Displays a form to create a new Repository entity.
      *
-     * @Route("/new", name="repos_new")
+     * @Route("/new", name="packages_new")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Repository();
-        $entity->setContainer($this->container);
-        $form   = $this->createForm($entity->getFormClass(), $entity);
+        $entity = new LinkPackage();
+        $form   = $this->createForm(new LinkPackageType(), $entity);
 
         if ($this->getRequest()->getMethod() == 'POST')
         {
             $form->bind($this->getRequest());
             if ($form->isValid()) {
-                $entity->setOwner($this->getUser());
+                $entity->setUser($this->getUser());
                 $this->em->persist($entity);
                 $this->em->flush();
 
-                return $this->redirect($this->generateUrl('repos'));
+                return $this->redirect($this->generateUrl('packages'));
             }
         }
 
         return array(
-            'to' => 'repos_new',
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        );
-    }
-
-    /**
-     * Displays a form to create a new Repository entity.
-     *
-     * @Route("/new_ppa", name="repos_new_ppa")
-     * @Template("Ivan1986DebBundle:Repository:new.html.twig")
-     */
-    public function newPpaAction()
-    {
-        $entity = new PpaRepository();
-        $entity->setContainer($this->container);
-        $form   = $this->createForm($entity->getFormClass(), $entity);
-
-        if ($this->getRequest()->getMethod() == 'POST')
-        {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $entity->setOwner($this->getUser());
-                $this->em->persist($entity);
-                $this->em->flush();
-
-                return $this->redirect($this->generateUrl('repos'));
-            }
-        }
-
-        return array(
-            'to' => 'repos_new_ppa',
+            'to' => 'packages_new',
             'entity' => $entity,
             'form'   => $form->createView(),
         );
@@ -131,14 +101,13 @@ class RepositoryController extends Controller
     /**
      * Displays a form to edit an existing Repository entity.
      *
-     * @Route("/{id}/edit", name="repos_edit")
+     * @Route("/{id}/edit", name="packages_edit")
      * @Template()
      */
     public function editAction($id)
     {
         $entity = $this->getByID($id);
-        $entity->setContainer($this->container);
-        $editForm = $this->createForm($entity->getFormClass(), $entity);
+        $editForm = $this->createForm(new LinkPackageType(), $entity);
 
         if ($this->getRequest()->getMethod() == 'POST')
         {
@@ -147,7 +116,7 @@ class RepositoryController extends Controller
                 $this->em->persist($entity);
                 $this->em->flush();
 
-                return $this->redirect($this->generateUrl('repos'));
+                return $this->redirect($this->generateUrl('packages'));
             }
         }
 
@@ -160,37 +129,34 @@ class RepositoryController extends Controller
     /**
      * Deletes a Repository entity.
      *
-     * @Route("/{id}/delete", name="repos_delete")
+     * @Route("/{id}/delete", name="packages_delete")
      * @Method("get")
      */
     public function deleteAction($id)
     {
         $entity = $this->getByID($id);
-        /** @var Repository $entity */
-        $entity->setContainer($this->container);
+        /** @var LinkPackage $entity */
         //удаляем пакеты этого репозитория
-        foreach($entity->getPackages() as $pkg)
-            $this->em->remove($pkg);
         $this->em->remove($entity);
         $this->em->flush();
 
-        return $this->redirect($this->generateUrl('repos'));
+        return $this->redirect($this->generateUrl('packages'));
     }
 
     /**
      * Получаем репозиторий по ID с проверкой пользователя
      *
      * @param $id
-     * @return Repository
+     * @return LinkPackage
      * @throws NotFoundHttpException
      */
     private function getByID($id)
     {
-        $entity = $this->em->getRepository('Ivan1986DebBundle:Repository')
+        $entity = $this->em->getRepository('Ivan1986DebBundle:LinkPackage')
             ->getByIdAndCheckUser($id, $this->getUser());
         /** @var Repository $entity */
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Repository entity.');
+            throw $this->createNotFoundException('Unable to find Package entity.');
         }
         return $entity;
     }

@@ -12,26 +12,4 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SysPackage extends Package
 {
-    /**
-     * @var User Репозиторий этого пакета
-     *
-     * @ORM\OneToOne(targetEntity="Ivan1986\DebBundle\Entity\User")
-     */
-    protected $user;
-
-    /**
-     * @param User $user
-     */
-    public function setUser($user)
-    {
-        $this->user = $user;
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }

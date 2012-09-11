@@ -64,6 +64,8 @@ security:
         - { path: ^/admin/login_check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # -> api
         - { path: ^/api/doc, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/pkgs/count, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/pkgs/list, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/repos/count, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/repos/list, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, role: ROLE_USER }

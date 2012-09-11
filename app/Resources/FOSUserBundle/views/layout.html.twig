@@ -1,8 +1,6 @@
 {% extends '::base.html.twig' %}
 {% block top_nav %} {{ parent() }}
-<li><a href="{{ path('repos',{'my': 'all'}) }}">{% trans %}Все репозитории{% endtrans %}</a></li>
-{% if app.user %}<li><a href="{{ path('repos',{'my': 'my'}) }}">{% trans %}Мои репозитории{% endtrans %}</a></li>{% endif %}
-<li><a href="{{ path('nelmio_api_doc_index') }}">{% trans %}API{% endtrans %}</a></li>
+    {{ knp_menu_render('Ivan1986DebBundle:Main:mainMenu') }}
 {% endblock %}
 {% block login %}
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

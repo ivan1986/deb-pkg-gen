@@ -24,7 +24,7 @@ class RepositoryRepository extends EntityRepository
     }
 
     /**
-     * Получить репозитории пользователя
+     * Получить для пользователя
      *
      * @param User $user
      * @return \Doctrine\ORM\QueryBuilder
@@ -38,7 +38,7 @@ class RepositoryRepository extends EntityRepository
     }
 
     /**
-     * Получить репозиторий по ID с проверкой пользователя
+     * Получить по ID с проверкой пользователя
      *
      * @param $id ID репозитория
      * @param User $user пользователь
