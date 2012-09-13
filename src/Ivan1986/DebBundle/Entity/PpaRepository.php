@@ -196,4 +196,14 @@ class PpaRepository extends Repository
         return "ppa";
     }
 
+    public function getForApt() {
+        $links = [];
+        foreach($this->packages as $pkg)
+        {
+            $name = str_replace('repo-'.$this->getName().'-', '', $pkg->getName());
+            $links[] = '<a href="apt'.$pkg->getName().'">'.$name.'</a>';
+        }
+        return join(' ', $links);
+    }
+
 }
