@@ -106,4 +106,6 @@ jms_serializer:
     metadata:
         auto_detection: true
 
-nelmio_api_doc: ~
+nelmio_api_doc:
+    sandbox:
+        endpoint: /
