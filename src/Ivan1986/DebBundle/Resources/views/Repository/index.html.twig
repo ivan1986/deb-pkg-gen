@@ -23,6 +23,7 @@
             <th>Bin</th>
             <th>Src</th>
             <th>{% trans %}Имя{% endtrans %}</th>
+            <th>{% trans %}Установить{% endtrans %} (<a href="https://help.ubuntu.com/community/AptURL">AptURL</a>)</th>
             <th>{% trans %}Владелец{% endtrans %}</th>
         </tr>
     </thead>
@@ -33,6 +34,10 @@
             <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.bin ? 'yes' : 'no')~'.png') }}" alt="{{ entity.bin ? 'yes' : 'no' }}" /></td>
             <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.src ? 'yes' : 'no')~'.png') }}" alt="{{ entity.src ? 'yes' : 'no' }}" /></td>
             <td>{{ entity.name }}</td>
+            <td>{% for pkg in entity.packages %}
+                    <a href="apt:{{ pkg.name }}">{{ pkg.name }}</a><br />
+                {% endfor %}
+            </td>
             <td>
                 {% if app.user and entity.owner.id == app.user.id %}
                     <a href="{{ path('repos_edit', { 'id': entity.id }) }}">{% trans %}редактировать{% endtrans %}</a>

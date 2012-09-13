@@ -154,4 +154,22 @@ class Package
         return $this->created;
     }
 
+    public function getName()
+    {
+        if (!$this->info)
+            return '';
+        $strs = explode("\n", $this->info);
+        $name = '';
+        $pkg = 'Package:';
+        foreach($strs as $str)
+        {
+            if (strpos($str, $pkg) !== false)
+            {
+                $name = trim(substr($str, strlen($pkg)));
+                break;
+            }
+        }
+        return $name;
+    }
+
 }

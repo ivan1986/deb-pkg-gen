@@ -43,6 +43,11 @@
   height: 100%;
 }
 
+.records_list td {
+  white-space: nowrap;
+}
+
+
 .pkg-build-err {
   position: relative;
   margin: auto;

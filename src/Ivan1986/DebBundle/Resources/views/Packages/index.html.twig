@@ -30,7 +30,7 @@
         <tr>
             <td>{{ entity.link }}</td>
             <td>{{ entity.status }}</td>
-            <td>{{ entity.file }}</td>
+            <td><a href="apt:{{ entity.name }}">{{ entity.file }}</a></td>
             <td>
                 {% if app.user and entity.user.id == app.user.id %}
                     <a href="{{ path('packages_edit', { 'id': entity.id }) }}">{% trans %}редактировать{% endtrans %}</a>
