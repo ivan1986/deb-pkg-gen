@@ -108,4 +108,4 @@ jms_serializer:
 
 nelmio_api_doc:
     sandbox:
-        endpoint: /
+        endpoint: http://%host%
