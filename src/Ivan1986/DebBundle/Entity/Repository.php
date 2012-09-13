@@ -364,7 +364,7 @@ class Repository extends ContainerAware
 
     public function getForApt() {
         foreach($this->packages as $pkg)
-            return '<a href="apt'.$pkg->getName().'">'.$pkg->getName().'</a>';
+            return '<a href="apt:'.$pkg->getName().'">'.$pkg->getName().'</a>';
     }
 
 }
