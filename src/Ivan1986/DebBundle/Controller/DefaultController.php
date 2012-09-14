@@ -31,7 +31,7 @@ class DefaultController extends Controller
      */
     public function mainPackageAction()
     {
-        return $this->getSysPkg('main', 'Main Package');
+        return $this->getSysPkg('self', 'Main Package');
     }
 
     /**
