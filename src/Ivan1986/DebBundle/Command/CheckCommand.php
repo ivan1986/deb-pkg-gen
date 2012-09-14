@@ -3,6 +3,9 @@
 namespace Ivan1986\DebBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Zend\Cache\StorageFactory;
+use Zend\Cache\Storage\Adapter\Filesystem;
+use Zend\Cache\Storage\Adapter\FilesystemOptions;
 use Ivan1986\DebBundle\Entity\LinkPackage;
 use Symfony\Component\Process\Process;
 use Ivan1986\DebBundle\Model\GpgLoader;
@@ -63,6 +66,20 @@ class CheckCommand extends ContainerAwareCommand
         foreach($files as $file)
             if (is_file($file))
                 unlink($file);
+
+        $dir = $this->getContainer()->getParameter('cache_dir');
+        if (!is_dir($dir))
+            mkdir($dir, 0777, true);
+        $opt = new FilesystemOptions();
+        $opt->setCacheDir($dir);
+        $opt->setDirPermission(0777);
+        $opt->setFilePermission(0666);
+        $cache = StorageFactory::factory(array(
+                'adapter' => 'filesystem',
+            ));
+        /** @var $cache Filesystem */
+        $cache->setOptions($opt);
+        $cache->clearByPrefix('repo_');
 
     }
 
