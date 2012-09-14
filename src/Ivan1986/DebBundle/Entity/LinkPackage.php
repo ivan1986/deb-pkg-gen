@@ -143,6 +143,7 @@ class LinkPackage extends Package
                 unset($info[$k]);
         $info = implode("\n", $info);
         $info = str_replace("Description:", $fileinfo."Description:", $info);
+        $info = $info . "\n";
         return parent::setInfo($info);
     }
 
