@@ -44,8 +44,7 @@ assetic:
         cssrewrite: ~
         sass:    ~
         compass: ~
-        less:
-          apply_to: "\.less$"
+        less:    ~
 
 # Doctrine Configuration
 doctrine:

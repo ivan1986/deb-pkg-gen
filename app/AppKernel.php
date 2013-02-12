@@ -32,7 +32,6 @@ class AppKernel extends Kernel
             //пользователи и админка
             new FOS\UserBundle\FOSUserBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
-            new Sonata\CacheBundle\SonataCacheBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
