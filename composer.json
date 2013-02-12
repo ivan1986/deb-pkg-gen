@@ -1,77 +1,8 @@
 {
-    "name": "ivan1986/deb-pkg",
-    "minimum-stability": "dev",
     "autoload": {
-        "psr-0": { "": "src/" }
-    },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "http://packages.zendframework.com/"
-        },
-        {
-            "type": "package",
-            "package": {
-                "version": "master",
-                "name": "twitter/bootstrap",
-                "source": {
-                    "url": "https://github.com/twitter/bootstrap.git",
-                    "type": "git",
-                    "reference": "master"
-                },
-                "dist": {
-                    "url": "https://github.com/twitter/bootstrap/zipball/master",
-                    "type": "zip"
-                }
-            }
+        "psr-0":         {
+            "": "src/"
         }
-    ],
-    "require": {
-        "php": ">=5.3.3",
-        "symfony/symfony": "2.1.*",
-        "doctrine/orm": "2.2.*",
-        "doctrine/doctrine-bundle": "dev-master",
-        "twig/extensions": "dev-master",
-        "symfony/assetic-bundle": "dev-master",
-        "symfony/swiftmailer-bundle": "dev-master",
-        "symfony/monolog-bundle": "dev-master",
-        "sensio/distribution-bundle": "*",
-        "sensio/framework-extra-bundle": "*",
-        "sensio/generator-bundle": "*",
-        "jms/security-extra-bundle": "1.1.*",
-        "jms/di-extra-bundle": "1.0.*",
-
-        "doctrine/doctrine-migrations-bundle": "dev-master",
-        "stof/doctrine-extensions-bundle": "*",
-        "Anchovy/CURLBundle": "*",
-        "sensio/buzz-bundle": "*",
-        "sonata-project/user-bundle": "*",
-        "sonata-project/easy-extends-bundle": "*",
-        "sonata-project/doctrine-orm-admin-bundle": "*",
-        "white-october/pagerfanta-bundle": "*",
-        "antimattr/google-bundle": "*",
-        "united-prototype/php-ga": "*",
-        "lunetics/locale-bundle": "*",
-        "mopa/bootstrap-bundle": "*",
-        "twitter/bootstrap": "*",
-        "friendsofsymfony/rest-bundle": "*",
-        "nelmio/api-doc-bundle": "*",
-
-        "zendframework/zend-cache": "*"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-        ],
-        "post-update-cmd": [
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-        ]
     },
     "config": {
         "bin-dir": "bin"
@@ -79,5 +10,74 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"
+    },
+    "minimum-stability": "dev",
+    "name": "ivan1986/deb-pkg",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.zendframework.com/"
+        },
+        {
+            "package":             {
+                "dist":                 {
+                    "type": "zip",
+                    "url": "https://github.com/twitter/bootstrap/zipball/master"
+                },
+                "name": "twitter/bootstrap",
+                "source":                 {
+                    "reference": "master",
+                    "type": "git",
+                    "url": "https://github.com/twitter/bootstrap.git"
+                },
+                "version": "master"
+            },
+            "type": "package"
+        }
+    ],
+    "require": {
+        "Anchovy/CURLBundle": "*",
+        "antimattr/google-bundle": "*",
+        "doctrine/doctrine-bundle": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "doctrine/orm": "2.2.*",
+        "friendsofsymfony/rest-bundle": "*",
+        "jms/di-extra-bundle": "1.0.*",
+        "jms/security-extra-bundle": "1.1.*",
+        "lunetics/locale-bundle": "*",
+        "mopa/bootstrap-bundle": "*",
+        "nelmio/api-doc-bundle": "*",
+        "php": ">=5.3.3",
+        "sensio/buzz-bundle": "*",
+        "sensio/distribution-bundle": "*",
+        "sensio/framework-extra-bundle": "*",
+        "sensio/generator-bundle": "*",
+        "sonata-project/doctrine-orm-admin-bundle": "*",
+        "sonata-project/easy-extends-bundle": "*",
+        "sonata-project/user-bundle": "*",
+        "stof/doctrine-extensions-bundle": "*",
+        "symfony/assetic-bundle": "dev-master",
+        "symfony/monolog-bundle": "dev-master",
+        "symfony/swiftmailer-bundle": "dev-master",
+        "symfony/symfony": "2.1.*",
+        "twig/extensions": "dev-master",
+        "twitter/bootstrap": "*",
+        "united-prototype/php-ga": "*",
+        "white-october/pagerfanta-bundle": "*",
+        "zendframework/zend-cache": "*"
+    },
+    "scripts": {
+        "post-install-cmd": [
+"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+"Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+    ],
+        "post-update-cmd": [
+"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+"Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+    ]
     }
 }
