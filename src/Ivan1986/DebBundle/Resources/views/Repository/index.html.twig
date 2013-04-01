@@ -24,6 +24,7 @@
             <th>Src</th>
             <th>{% trans %}Имя{% endtrans %}</th>
             <th>{% trans %}Установить{% endtrans %} (<a href="https://help.ubuntu.com/community/AptURL">AptURL</a>)</th>
+            <th>{% trans %}Скачать{% endtrans %}</th>
             <th>{% trans %}Владелец{% endtrans %}</th>
         </tr>
     </thead>
@@ -35,6 +36,7 @@
             <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.src ? 'yes' : 'no')~'.png') }}" alt="{{ entity.src ? 'yes' : 'no' }}" /></td>
             <td>{{ entity.name }}</td>
             <td>{{ entity.getForApt|raw }}</td>
+            <td>{{ entity.getLinks(router)|raw }}</td>
             <td>
                 {% if app.user and entity.owner.id == app.user.id %}
                     <a href="{{ path('repos_edit', { 'id': entity.id }) }}">{% trans %}редактировать{% endtrans %}</a>

@@ -206,4 +206,15 @@ class PpaRepository extends Repository
         return join(' ', $links);
     }
 
+    public function getLinks($router)
+    {
+        $links = [];
+        foreach($this->packages as $pkg)
+        {
+            $name = str_replace('repo-'.$this->getName().'-', '', $pkg->getName());
+            $links[] = '<a href="'.$router->generate('Package', array('name' => $pkg->getFile())).'">'.$name.'</a>';
+        }
+        return join(' ', $links);
+    }
+
 }

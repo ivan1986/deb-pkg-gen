@@ -62,6 +62,7 @@ class RepositoryController extends Controller
 
         return array(
             'all' => $my != 'my',
+            'router' => $this->get('router'),
             'pagerfanta' => $pagerfanta,
         );
     }

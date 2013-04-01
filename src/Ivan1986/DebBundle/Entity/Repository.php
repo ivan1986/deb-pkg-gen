@@ -362,9 +362,16 @@ class Repository extends ContainerAware
         return "standart";
     }
 
-    public function getForApt() {
+    public function getForApt()
+    {
         foreach($this->packages as $pkg)
             return '<a href="apt:'.$pkg->getName().'">'.$pkg->getName().'</a>';
+    }
+
+    public function getLinks($router)
+    {
+        foreach($this->packages as $pkg)
+            return '<a href="'.$router->generate('Package', array('name' => $pkg->getFile())).'">'.$pkg->getName().'</a>';
     }
 
 }
