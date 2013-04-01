@@ -1,7 +1,7 @@
 {% extends 'MopaBootstrapBundle::base.html.twig' %}
 {% block title %}Welcome!{% endblock %}
 {% block head_style %}
-    {% stylesheets filter='less' '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less' %}
+    {% stylesheets '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less' %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
     {% endstylesheets %}
     {% stylesheets filter="compass" "@Ivan1986DebBundle/Resources/assets/css/*.scss" %}

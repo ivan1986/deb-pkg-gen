@@ -44,7 +44,9 @@ assetic:
         cssrewrite: ~
         sass:    ~
         compass: ~
-        less:    ~
+        lessphp:
+            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
+            apply_to: "\.less$"
 
 # Doctrine Configuration
 doctrine:
