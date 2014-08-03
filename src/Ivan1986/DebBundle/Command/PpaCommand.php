@@ -48,6 +48,8 @@ class PpaCommand extends ContainerAwareCommand
             $matches = array();
             preg_match_all('#<a href="([a-z]+)/">\1/</a>#i', $page, $matches);
             $dists = $this->checkNotEmpty($repo->getPpaUrl().'dists/', $matches[1]);
+            if (empty($dists))
+                continue;
             $distros = $repo->getDistrs();
             /** @var $distros \Ivan1986\DebBundle\Model\DistList */
             $repo->setDistrs($distros->update($dists, $this->getContainer()->getParameter('dists')));
