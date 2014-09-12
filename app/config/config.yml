@@ -40,13 +40,14 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
+    bundles:
+      - MopaBootstrapBundle
+      - FOSUserBundle
+      - Ivan1986DebBundle
     filters:
         cssrewrite: ~
-        sass:    ~
-        compass: ~
-        lessphp:
-            file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
-            apply_to: "\.less$"
+        compass:
+          apply_to: "\.s[a|c]ss$"
 
 # Doctrine Configuration
 doctrine:
@@ -87,6 +88,7 @@ mopa_bootstrap:
         render_required_asterisk: true
         render_optional_text: false
         show_legend: false
+    menu: ~
 
 google:
     analytics:

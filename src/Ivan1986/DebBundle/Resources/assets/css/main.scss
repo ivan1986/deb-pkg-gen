@@ -11,9 +11,9 @@
   box-shadow: 2px 2px 10px #CCC;
   border: 1px solid #DDD;
   border-radius: 6px;
-  padding-top: 15px;
+  padding: 15px;
 
-  input[type=text],
+  /*input[type=text],
   input[type=password],
   input[type=email],
   {
@@ -29,7 +29,7 @@
 
   .control-group {
     padding: 0 20px 0 20px;
-  }
+  }*/
 
 
 }
@@ -38,7 +38,7 @@
   @include center-form(450px, 260px);
   top: 55%;
 }
-
+/*
 .container {
   height: 100%;
 }
@@ -54,24 +54,16 @@
   width: 400px;
   top: 15%;
 }
-
+*/
 .login-form {
   @include center-form(450px, 260px);
 }
 
 .fos_user_registration_register {
-  @include center-form(450px, 260px);
+  @include center-form(750px, 260px);
 
   #fos_user_registration_form {
     padding-left: 20px;
   }
 
-  legend {
-    padding-left: 20px;
-  }
-
-}
-
-.checkbox-label {
-  display: inline-block;
 }

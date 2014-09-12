@@ -2,9 +2,7 @@
 {% block title %}{% trans %}Репозиторий репозиториев{% endtrans %}{% endblock %}
 {% block fos_user_content %}
 
-{% include 'Ivan1986DebBundle:Builder:packageform.html.twig' %}
-
-<div class="hero-unit">
+<div class="jumbotron">
     <h1>{% trans %}Репозиторий репозиториев{% endtrans %}</h1>
     <p>{% trans %}Позволяет подключать сторонние репозитории путем установки пакетов{% endtrans %}</p>
     <p>
@@ -13,4 +11,7 @@
         <a class="btn btn-primary btn-large" href="{{ path('link_repo') }}">{% trans %}Пакеты{% endtrans %}</a>
     </p>
 </div>
+
+    {% include 'Ivan1986DebBundle:Builder:packageform.html.twig' %}
+
 {% endblock %}

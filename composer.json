@@ -7,11 +7,6 @@
     "config": {
         "bin-dir": "bin"
     },
-    "extra": {
-        "symfony-app-dir": "app",
-        "symfony-web-dir": "web"
-    },
-    "minimum-stability": "dev",
     "name": "ivan1986/deb-pkg",
     "repositories": [
         {
@@ -36,6 +31,7 @@
         }
     ],
     "require": {
+        "php": ">=5.3.3",
         "Anchovy/CURLBundle": "*",
         "antimattr/google-bundle": "*",
         "doctrine/doctrine-bundle": "*",
@@ -46,9 +42,8 @@
         "jms/security-extra-bundle": "*",
         "jms/serializer-bundle": "*",
         "lunetics/locale-bundle": "*",
-        "mopa/bootstrap-bundle": "*",
         "nelmio/api-doc-bundle": "*",
-        "php": ">=5.3.3",
+        "incenteev/composer-parameter-handler": "~2.0",
         "sensio/buzz-bundle": "*",
         "sensio/distribution-bundle": "*",
         "sensio/framework-extra-bundle": "*",
@@ -62,25 +57,36 @@
         "symfony/swiftmailer-bundle": "*",
         "symfony/symfony": "~2.1",
         "twig/extensions": "*",
-        "twitter/bootstrap": "*",
+        "mopa/bootstrap-bundle": "*",
+        "twbs/bootstrap-sass": "*",
         "united-prototype/php-ga": "*",
         "white-october/pagerfanta-bundle": "*",
-        "leafo/scssphp-compass": "*",
-        "leafo/lessphp": "*",
         "zendframework/zend-cache": "*"
     },
     "scripts": {
         "post-install-cmd": [
-"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-"Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-    ],
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass",
+            "cd vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap-sass && rm -f vendor && ln -sf . vendor",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
         "post-update-cmd": [
-"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-"Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-"Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
-    ]
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass",
+            "cd vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap-sass && rm -f vendor && ln -sf . vendor",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        }
     }
 }

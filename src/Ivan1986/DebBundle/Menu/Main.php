@@ -15,7 +15,7 @@ class Main extends ContainerAware
         $translator = $this->container->get('translator');
         /** @var $translator Translator */
         $menu = $factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav');
 
         $menu->addChild($translator->trans('Все репозитории'), array(
                 'route' => 'repos',

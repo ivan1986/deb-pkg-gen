@@ -5,7 +5,7 @@ parameters:
     database_name: deb_pkg
     database_user: root
     database_password: null
-    mailer_transport: smtp
+    mailer_transport: sendmail
     mailer_host: localhost
     mailer_user: null
     mailer_password: null
