@@ -12,7 +12,7 @@
 </div>
 
 <form class="well form-search" method="get" action="{{ path('packages', {'my': 'all'}) }}">
-    <input type="search" name="search" class="input-medium search-query" placeholder="{% trans %}Искать...{% endtrans %}">
+    <input type="search" name="search" class="form-control" placeholder="{% trans %}Искать...{% endtrans %}">
     <button type="submit" class="btn">{% trans %}Поиск{% endtrans %}</button>
 </form>
 
@@ -43,7 +43,7 @@
     </tbody>
 </table>
 
-{% if pagerfanta.haveToPaginate %}{{ pagerfanta(pagerfanta, 'twitter_bootstrap_translated') }}{% endif %}
+{% if pagerfanta.haveToPaginate %}{{ pagerfanta(pagerfanta, 'twitter_bootstrap3_translated') }}{% endif %}
 
 {% if app.user %}
     <a class="btn btn-primary" href="{{ path('packages_new') }}">{% trans %}Добавить новый пакет{% endtrans %}</a>
