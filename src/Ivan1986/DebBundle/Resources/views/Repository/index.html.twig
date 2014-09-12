@@ -11,8 +11,8 @@
     {% endif %}
 </div>
 
-<form class="well form-search" method="get" action="{{ path('repos', {'my': 'all'}) }}">
-    <input type="search" name="search" class="form-control" placeholder="{% trans %}Искать...{% endtrans %}">
+<form class="well form-inline" method="get" action="{{ path('repos', {'my': 'all'}) }}">
+    <input type="search" name="search" class="form-control col-sm-5" placeholder="{% trans %}Искать...{% endtrans %}">
     <button type="submit" class="btn">{% trans %}Поиск{% endtrans %}</button>
 </form>
 
@@ -52,6 +52,7 @@
 {% if pagerfanta.haveToPaginate %}{{ pagerfanta(pagerfanta, 'twitter_bootstrap3_translated') }}{% endif %}
 
 {% if app.user %}
+    <p>
     <a class="btn btn-primary" href="{{ path('repos_new') }}">{% trans %}Добавить новый репозиторий{% endtrans %}</a>
     <a class="btn btn-primary" href="{{ path('repos_new_ppa') }}">{% trans %}Добавить новый PPA репозиторий{% endtrans %}</a>
     {% if all %}
@@ -59,5 +60,6 @@
     {% else %}
     <a class="btn right" href="{{ path('repos', {'my': 'all'}) }}">{% trans %}все{% endtrans %}</a>
     {% endif %}
+    </p>
 {% endif %}
 {% endblock %}

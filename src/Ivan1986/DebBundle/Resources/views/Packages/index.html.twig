@@ -11,7 +11,7 @@
     {% endif %}
 </div>
 
-<form class="well form-search" method="get" action="{{ path('packages', {'my': 'all'}) }}">
+<form class="well form-inline" method="get" action="{{ path('packages', {'my': 'all'}) }}">
     <input type="search" name="search" class="form-control" placeholder="{% trans %}Искать...{% endtrans %}">
     <button type="submit" class="btn">{% trans %}Поиск{% endtrans %}</button>
 </form>
@@ -46,6 +46,7 @@
 {% if pagerfanta.haveToPaginate %}{{ pagerfanta(pagerfanta, 'twitter_bootstrap3_translated') }}{% endif %}
 
 {% if app.user %}
+    <p>
     <a class="btn btn-primary" href="{{ path('packages_new') }}">{% trans %}Добавить новый пакет{% endtrans %}</a>
     {% if all %}
     <a class="btn right" href="{{ path('packages', {'my': 'my'}) }}">{% trans %}ваши{% endtrans %}</a>
@@ -53,5 +54,6 @@
     <a class="btn right" href="{{ path('packages', {'my': 'all'}) }}">{% trans %}все{% endtrans %}</a>
     {% endif %}
     <a href="{{ asset('bundles/ivan1986deb/get.sh') }}">{% trans %}Скрипт для генерации описания{% endtrans %}</a>
+    </p>
 {% endif %}
 {% endblock %}
