@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\FormError;
@@ -40,9 +41,9 @@ class RepositoryController extends Controller
      *  defaults={"page" = 1, "my"="my"})
      * @Template()
      */
-    public function indexAction($my, $page)
+    public function indexAction($my, $page, Request $r)
     {
-        $search = $this->getRequest()->query->get('search');
+        $search = $r->query->get('search');
         $query = $this->em->getRepository('Ivan1986DebBundle:Repository')
             ->getByUser(($my == 'my' && !$search) ? $this->getUser() : null);
         /** @var $query QueryBuilder */
@@ -73,22 +74,19 @@ class RepositoryController extends Controller
      * @Route("/new", name="repos_new")
      * @Template()
      */
-    public function newAction()
+    public function newAction(Request $r)
     {
         $entity = new Repository();
         $entity->setContainer($this->container);
-        $form   = $this->createForm($entity->getFormClass(), $entity);
+        $form = $this->createForm($entity->getFormClass(), $entity);
 
-        if ($this->getRequest()->getMethod() == 'POST')
-        {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $entity->setOwner($this->getUser());
-                $this->em->persist($entity);
-                $this->em->flush();
+        $form->handleRequest($r);
+        if ($form->isValid()) {
+            $entity->setOwner($this->getUser());
+            $this->em->persist($entity);
+            $this->em->flush();
 
-                return $this->redirect($this->generateUrl('repos'));
-            }
+            return $this->redirect($this->generateUrl('repos'));
         }
 
         return array(
@@ -104,22 +102,19 @@ class RepositoryController extends Controller
      * @Route("/new_ppa", name="repos_new_ppa")
      * @Template("Ivan1986DebBundle:Repository:new.html.twig")
      */
-    public function newPpaAction()
+    public function newPpaAction(Request $r)
     {
         $entity = new PpaRepository();
         $entity->setContainer($this->container);
         $form   = $this->createForm($entity->getFormClass(), $entity);
 
-        if ($this->getRequest()->getMethod() == 'POST')
-        {
-            $form->bind($this->getRequest());
-            if ($form->isValid()) {
-                $entity->setOwner($this->getUser());
-                $this->em->persist($entity);
-                $this->em->flush();
+        $form->handleRequest($r);
+        if ($form->isValid()) {
+            $entity->setOwner($this->getUser());
+            $this->em->persist($entity);
+            $this->em->flush();
 
-                return $this->redirect($this->generateUrl('repos'));
-            }
+            return $this->redirect($this->generateUrl('repos'));
         }
 
         return array(
@@ -135,21 +130,18 @@ class RepositoryController extends Controller
      * @Route("/{id}/edit", name="repos_edit")
      * @Template()
      */
-    public function editAction($id)
+    public function editAction($id, Request $r)
     {
         $entity = $this->getByID($id);
         $entity->setContainer($this->container);
         $editForm = $this->createForm($entity->getFormClass(), $entity);
 
-        if ($this->getRequest()->getMethod() == 'POST')
-        {
-            $editForm->bindRequest($this->getRequest());
-            if ($editForm->isValid()) {
-                $this->em->persist($entity);
-                $this->em->flush();
+        $editForm->handleRequest($r);
+        if ($editForm->isValid()) {
+            $this->em->persist($entity);
+            $this->em->flush();
 
-                return $this->redirect($this->generateUrl('repos'));
-            }
+            return $this->redirect($this->generateUrl('repos'));
         }
 
         return array(
