@@ -23,7 +23,7 @@ use Ivan1986\DebBundle\Form\RepositoryType;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="repoType", type="string")
  * @ORM\DiscriminatorMap({"standart" = "Repository", "ppa" = "PpaRepository"})
- * @UniqueEntity({"fields"="name", "message"="Пакет с таким именем уже есть в системе"})
+ * @UniqueEntity(fields="name", message="Пакет с таким именем уже есть в системе")
  */
 class Repository extends ContainerAware
 {

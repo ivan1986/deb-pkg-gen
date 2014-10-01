@@ -21,10 +21,6 @@ sonata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix: /admin
 
-sonata_user_impersonating:
-    pattern:  /
-    defaults: { _controller: Ivan1986UserBundle:Default:Index }
-
 sonata_user_security:
     resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
 
@@ -51,3 +47,7 @@ api_repos:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+
+sonata_user_profile_show:
+    pattern:  /
+    defaults: { _controller: Ivan1986UserBundle:Default:Index }
