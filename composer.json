@@ -61,7 +61,8 @@
         "twbs/bootstrap-sass": "*",
         "united-prototype/php-ga": "*",
         "white-october/pagerfanta-bundle": "*",
-        "zendframework/zend-cache": "*"
+        "zendframework/zend-cache": "*",
+        "elao/error-notifier-bundle": "~1.0@dev"
     },
     "scripts": {
         "post-install-cmd": [

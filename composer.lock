@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5595b14c93b75791d9f2742155c87988",
+    "hash": "5a1b435af1217404b16cd8499f9d27fa",
     "packages": [
         {
             "name": "Anchovy/CURLBundle",
@@ -1019,6 +1019,60 @@
                 "orm"
             ],
             "time": "2014-09-10 16:27:51"
+        },
+        {
+            "name": "elao/error-notifier-bundle",
+            "version": "dev-master",
+            "target-dir": "Elao/ErrorNotifierBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Elao/ErrorNotifierBundle.git",
+                "reference": "059a1a470476b4fe9f8b149f0fcc27081ae19b26"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Elao/ErrorNotifierBundle/zipball/059a1a470476b4fe9f8b149f0fcc27081ae19b26",
+                "reference": "059a1a470476b4fe9f8b149f0fcc27081ae19b26",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "~2.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Elao\\ErrorNotifierBundle": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elao Team",
+                    "homepage": "http://www.elao.com"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "http://github.com/Elao/ErrorNotifierBundle/contributors"
+                }
+            ],
+            "description": "This bundle send html mail when an error appear",
+            "homepage": "http://github.com/Elao/ErrorNotifierBundle",
+            "keywords": [
+                "bundle",
+                "elao",
+                "error",
+                "notifier"
+            ],
+            "time": "2014-02-25 13:32:00"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -4574,7 +4628,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "elao/error-notifier-bundle": 20
+    },
     "prefer-stable": false,
     "platform": {
         "php": ">=5.3.3"

@@ -17,3 +17,9 @@ monolog:
             type:  stream
             path:  %kernel.logs_dir%/%kernel.environment%.log
             level: debug
+
+elao_error_notifier:
+    from: pkg_error@pkggen.ivan1986.tk
+    to: ivan.borzenkov@gmail.com
+    handlePHPErrors: true # catch fatal erros and email them
+    handlePHPWarnings: true # catch warnings and email them
