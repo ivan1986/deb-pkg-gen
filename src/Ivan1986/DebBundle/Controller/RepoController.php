@@ -125,6 +125,7 @@ class RepoController extends Controller
         $size = strlen($list);
         $md5 = md5($list);
         $sha1 = sha1($list);
+        $sha512 = hash('sha512', $list);
 
         $templater = $this->get('templating');
         /** @var $templater TwigEngine */
@@ -132,6 +133,7 @@ class RepoController extends Controller
             'size' => $size,
             'md5' => $md5,
             'sha1' => $sha1,
+            'sha512' => $sha512,
             'date' => date('r', $date),
             'name' => $name,
         ));
