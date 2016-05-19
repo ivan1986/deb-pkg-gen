@@ -1,53 +1,36 @@
 {
+    "name": "ivan1986/deb-pkg",
+    "license": "MIT",
+    "type": "project",
     "autoload": {
-        "psr-0":         {
-            "": "src/"
-        }
+        "psr-4": { "": "src/" },
+        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
+    },
+    "autoload-dev": {
+        "psr-4": { "Tests\\": "tests/" }
     },
     "config": {
-        "bin-dir": "bin"
-    },
-    "name": "ivan1986/deb-pkg",
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "http://packages.zendframework.com/"
-        },
-        {
-            "package":             {
-                "dist":                 {
-                    "type": "zip",
-                    "url": "https://github.com/twitter/bootstrap/zipball/master"
-                },
-                "name": "twitter/bootstrap",
-                "source":                 {
-                    "reference": "master",
-                    "type": "git",
-                    "url": "https://github.com/twitter/bootstrap.git"
-                },
-                "version": "master"
-            },
-            "type": "package"
+        "platform": {
+            "php": "7.0"
         }
-    ],
+    },
     "require": {
-        "php": ">=5.3.3",
-        "Anchovy/CURLBundle": "*",
+        "php": "~7.0",
+        "ext-xml": "*",
         "antimattr/google-bundle": "*",
+        "doctrine/orm": "*",
         "doctrine/doctrine-bundle": "*",
         "doctrine/doctrine-migrations-bundle": "*",
-        "doctrine/orm": "~2.3",
         "friendsofsymfony/rest-bundle": "*",
         "jms/di-extra-bundle": "*",
         "jms/security-extra-bundle": "*",
         "jms/serializer-bundle": "*",
         "lunetics/locale-bundle": "*",
         "nelmio/api-doc-bundle": "*",
-        "incenteev/composer-parameter-handler": "~2.0",
+        "incenteev/composer-parameter-handler": "*",
         "sensio/buzz-bundle": "*",
         "sensio/distribution-bundle": "*",
         "sensio/framework-extra-bundle": "*",
-        "sensio/generator-bundle": "*",
         "sonata-project/doctrine-orm-admin-bundle": "*",
         "sonata-project/easy-extends-bundle": "*",
         "sonata-project/user-bundle": "*",
@@ -55,14 +38,17 @@
         "symfony/assetic-bundle": "*",
         "symfony/monolog-bundle": "*",
         "symfony/swiftmailer-bundle": "*",
-        "symfony/symfony": "~2.1",
+        "symfony/symfony": "~3.0",
         "twig/extensions": "*",
         "mopa/bootstrap-bundle": "*",
         "twbs/bootstrap-sass": "*",
         "united-prototype/php-ga": "*",
         "white-october/pagerfanta-bundle": "*",
-        "zendframework/zend-cache": "*",
-        "elao/error-notifier-bundle": "~1.0@dev"
+        "elao/error-notifier-bundle": "*"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "^3.0",
+        "symfony/phpunit-bridge": "^3.0"
     },
     "scripts": {
         "post-install-cmd": [
@@ -70,24 +56,30 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass",
-            "cd vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap-sass && rm -f vendor && ln -sf . vendor",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrapSass",
-            "cd vendor/mopa/bootstrap-bundle/Mopa/Bundle/BootstrapBundle/Resources/public/bootstrap-sass && rm -f vendor && ln -sf . vendor",
+          "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ]
     },
     "minimum-stability": "dev",
     "extra": {
-        "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
-        }
+      "symfony-app-dir": "app",
+      "symfony-bin-dir": "bin",
+      "symfony-var-dir": "var",
+      "symfony-web-dir": "web",
+      "symfony-tests-dir": "tests",
+      "symfony-assets-install": "relative",
+      "incenteev-parameters": {
+          "file": "app/config/parameters.yml"
+      }
     }
 }

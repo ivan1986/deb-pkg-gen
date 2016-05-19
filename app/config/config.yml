@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: services.yml }
 
 framework:
     #esi:             ~
@@ -31,10 +32,6 @@ twig:
         version: %version%
         host: %host%
         maintainer: %maintainer%
-    form:
-        resources:
-            - 'MopaBootstrapBundle:Form:fields.html.twig'
-            - 'Ivan1986DebBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -47,7 +44,7 @@ assetic:
     filters:
         cssrewrite: ~
         compass:
-          apply_to: "\.s[a|c]ss$"
+          apply_to: "\\.s[a|c]ss$"
 
 # Doctrine Configuration
 doctrine:
