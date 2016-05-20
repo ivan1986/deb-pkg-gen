@@ -96,6 +96,10 @@ google:
                 domain:    .pkggen.no-ip.org
                 trackPageLoadTime: true
 
+endroid_google_analytics:
+    trackers:
+        default: %gaAcc%
+
 fos_rest:
     view:
         view_response_listener: false

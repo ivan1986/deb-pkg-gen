@@ -12,14 +12,14 @@
     </style>
 {% endblock head_style %}
 {% block head_bottom %}
-    {% include "GoogleBundle:Analytics:async.html.twig" %}
+    {{ google_analytics_tracker('default') }}
 {% endblock head_bottom %}
 {% block body_tag %}
 <body>
 {% endblock body_tag %}
 
 {% block body %}
-    {% embed '@MopaBootstrap/Navbar/navbar.html.twig' with { fixedTop: true, inverse: true } %}
+    {% embed 'MopaBootstrapBundle:Navbar:navbar.html.twig' with { fixedTop: true, inverse: true } %}
         {% block brand %}
             <a class="navbar-brand" href="{{ url('home') }}">PkgGen</a>
         {% endblock %}
