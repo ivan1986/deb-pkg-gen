@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\DiscriminatorMap({"simple" = "SimplePackage", "sys" = "SysPackage", "link" = "LinkPackage"})
  * @UniqueEntity({"fields"="file", "message"="Файл с таким именем уже есть в системе"})
  */
-class Package
+abstract class Package
 {
     /**
      * @var integer $id

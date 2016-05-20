@@ -8,7 +8,6 @@ use Ivan1986\DebBundle\Util\Builder;
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 use Ivan1986\DebBundle\Model\GpgLoader;
 use Anchovy\CURLBundle\CURL\Curl;
-use Symfony\Component\Validator\Constraints\True;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Ivan1986\DebBundle\Form\PpaRepositoryType;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -112,7 +111,7 @@ class PpaRepository extends Repository
     /**
      * Проверяет валидность строки репозитория
      *
-     * @Assert\True(message = "Такого репозитория нет на launchpad.net")
+     * @Assert\IsTrue(message = "Такого репозитория нет на launchpad.net")
      * @return bool
      */
     public function isExistRepo()

@@ -50,4 +50,4 @@ NelmioApiDocBundle:
 
 sonata_user_profile_show:
     path:  /
-    defaults: { _controller: Ivan1986UserBundle:Default:Index }
+    defaults: { _controller: Ivan1986DebBundle:Default:Index }

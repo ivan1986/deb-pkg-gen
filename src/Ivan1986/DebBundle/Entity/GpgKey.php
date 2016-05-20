@@ -18,7 +18,7 @@ class GpgKey
     /**
      * @var string $id
      *
-     * @ORM\Column(name="id", type="string")
+     * @ORM\Column(name="id", type="string", length=40)
      * @ORM\Id
      */
     protected $id;

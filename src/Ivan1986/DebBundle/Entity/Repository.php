@@ -119,7 +119,7 @@ class Repository
     /**
      * @var string $name Имя репозитория
      *
-     * @ORM\Column(name="`name`", type="string", unique=true)
+     * @ORM\Column(name="`name`", type="string", length=150, unique=true)
      */
     protected $name;
 
@@ -209,7 +209,7 @@ class Repository
     /**
      * Проверяет валидность строки репозитория
      *
-     * @Assert\True(message = "Неверный формат строки репозитория")
+     * @Assert\IsTrue(message = "Неверный формат строки репозитория")
      * @return bool
      */
     public function isValidRepoString()
