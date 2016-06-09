@@ -5,11 +5,6 @@
     {% stylesheets filter="compass" "@Ivan1986DebBundle/Resources/assets/css/main.scss" %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
-    <style>
-        body {
-            margin: 40px 0;
-        }
-    </style>
 {% endblock head_style %}
 {% block head_bottom %}
     {{ google_analytics_tracker('default') }}
@@ -19,7 +14,7 @@
 {% endblock body_tag %}
 
 {% block body %}
-    {% embed 'MopaBootstrapBundle:Navbar:navbar.html.twig' with { fixedTop: true, inverse: true } %}
+    {% embed 'MopaBootstrapBundle:Navbar:navbar.html.twig' with { inverse: true } %}
         {% block brand %}
             <a class="navbar-brand" href="{{ url('home') }}">PkgGen</a>
         {% endblock %}
