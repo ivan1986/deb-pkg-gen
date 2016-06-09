@@ -78,7 +78,7 @@ class PackagesController extends Controller
     public function newAction(Request $r)
     {
         $entity = new LinkPackage();
-        $form   = $this->createForm(new LinkPackageType(), $entity);
+        $form   = $this->createForm(LinkPackageType::class, $entity);
 
         $form->handleRequest($r);
         if ($form->isValid()) {
@@ -105,7 +105,7 @@ class PackagesController extends Controller
     public function editAction($id, Request $r)
     {
         $entity = $this->getByID($id);
-        $editForm = $this->createForm(new LinkPackageType(), $entity);
+        $editForm = $this->createForm(LinkPackageType::class, $entity);
 
         $editForm->handleRequest($r);
         if ($editForm->isValid()) {

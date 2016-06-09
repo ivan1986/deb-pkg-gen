@@ -2,6 +2,7 @@
 
 namespace Ivan1986\DebBundle\Form;
 
+use Ivan1986\DebBundle\Form\Type\GpgKeyType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +29,7 @@ class RepositoryType extends AbstractType
             ->add('name', null, array(
                 'label' => 'Имя пакета для подключения',
             ))
-            ->add('key', 'gpgkey_selector', array(
+            ->add('key', GpgKeyType::class, array(
                 'label' => 'GPG ключ',
             ))
         ;

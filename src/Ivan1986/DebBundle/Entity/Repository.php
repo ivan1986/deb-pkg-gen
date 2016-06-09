@@ -330,11 +330,11 @@ class Repository
     /**
      * Класс формы для этого типа пакета
      *
-     * @return RepositoryType
+     * @return string
      */
     public function getFormClass()
     {
-        return new RepositoryType();
+        return RepositoryType::class;
     }
 
     public function buildPackages(Builder $builder, ObjectManager $manager)

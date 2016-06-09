@@ -165,7 +165,7 @@ class PpaRepository extends Repository
 
     public function getFormClass()
     {
-        return new PpaRepositoryType();
+        return PpaRepositoryType::class;
     }
 
     /**

@@ -28,6 +28,7 @@ class Main implements ContainerAwareInterface
                 'route' => 'repos',
                 'routeParameters' => array('my' => 'my')
             ));
+        /*
         $menu->addChild($translator->trans('Все пакеты'), array(
                 'route' => 'packages',
                 'routeParameters' => array('my' => 'all')
@@ -36,6 +37,7 @@ class Main implements ContainerAwareInterface
                 'route' => 'packages',
                 'routeParameters' => array('my' => 'my')
             ));
+        */
         // ... add more children
         $menu->addChild($translator->trans('API'), array(
                 'route' => 'nelmio_api_doc_index',
