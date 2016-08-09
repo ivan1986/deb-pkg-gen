@@ -1,10 +1,19 @@
 web/bundles/
-app/bootstrap.php.cache
-app/cache/*
-app/logs/*
-bin/
 vendor/
-var/
+
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+
+
 composer.phar
 
 /app/config/parameters.yml
