@@ -61,6 +61,14 @@ doctrine:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
 
+doctrine_cache:
+    providers:
+        repo_cache:
+            type: file_system
+            file_system:
+              directory: "%kernel.cache_dir%/../fileCache"
+              umask: 0
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: %mailer_transport%

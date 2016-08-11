@@ -18,7 +18,6 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
-            //new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
             //сторонние
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
@@ -27,6 +26,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
 
             //пользователи и админка
             new FOS\UserBundle\FOSUserBundle(),
