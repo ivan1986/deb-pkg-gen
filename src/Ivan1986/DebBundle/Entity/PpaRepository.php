@@ -118,24 +118,19 @@ class PpaRepository extends Repository
     {
         if ($this->getPpaUrl() == '')
             return false;
-        $c = new Curl();
-        $c->setURL($this->getPpaUrl());
-        $c->execute();
-        $info = $c->getInfo();
+        $client = new \GuzzleHttp\Client();
         //репозиторий существует, заодно получим ключ
-        if ($info['http_code'] != 200)
+        if ($client->get($this->getPpaUrl())->getStatusCode() != 200)
             return false;
         return $this->getKeyFromLaunchpad();
     }
 
     private function getKeyFromLaunchpad()
     {
-        $c = new Curl();
-        $c->setOptions(array(
-            'CURLOPT_SSL_VERIFYPEER' => false,
-        ));
-        $c->setURL($this->getPpaPage());
-        $data = $c->execute();
+        $client = new \GuzzleHttp\Client(['defaults' => [
+            'verify' => 'false'
+        ]]);
+        $data = $client->get($this->getPpaPage())->getBody();
         if (!$data)
             return false;
         $matches = array();

@@ -6,13 +6,13 @@
     <h1>{% trans %}Новый репозиторий{% endtrans %}</h1>
 </div>
 
-<form action="{{ path(to) }}" method="post" {{ form_enctype(form) }}>
+{{ form_start(form) }}
     {{ form_widget(form) }}
     <p>
         <button class="btn btn-primary" type="submit">{% trans %}Создать{% endtrans %}</button>
         <a href="{{ path('repos') }}">{% trans %}Назад к списку{% endtrans %}</a>
     </p>
-</form>
+{{ form_end(form) }}
 
 {% endblock %}
 

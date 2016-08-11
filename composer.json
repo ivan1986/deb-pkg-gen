@@ -46,7 +46,8 @@
         "white-october/pagerfanta-bundle": "*",
         "elao/error-notifier-bundle": "*",
         "happyr/google-analytics-bundle": "*",
-        "endroid/google-analytics-bundle": "^1.0"
+        "endroid/google-analytics-bundle": "^1.0",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
