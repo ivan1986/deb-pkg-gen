@@ -33,7 +33,6 @@ class CheckCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
         //Инициализируем репозитории
         $doctrine = $this->getContainer()->get('doctrine');
         /** @var $doctrine \Doctrine\Bundle\DoctrineBundle\Registry */

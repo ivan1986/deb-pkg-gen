@@ -4,14 +4,12 @@ namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Persistence\ObjectManager;
+use Ivan1986\DebBundle\Model\DistList;
 use Ivan1986\DebBundle\Util\Builder;
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 use Ivan1986\DebBundle\Model\GpgLoader;
-use Anchovy\CURLBundle\CURL\Curl;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Ivan1986\DebBundle\Form\PpaRepositoryType;
 use Symfony\Component\Validator\Constraints as Assert;
-use Ivan1986\DebBundle\Model\DistList;
 
 /**
  * Ivan1986\DebBundle\Entity\PpaRepository
@@ -164,14 +162,14 @@ class PpaRepository extends Repository
     }
 
     /**
-     * @var Ivan1986\DebBundle\Model\DistList $distrs Список дистрибутивов, соответствующих
+     * @var DistList $distrs Список дистрибутивов, соответствующих
      *
      * @ORM\Column(name="distrs", type="object")
      */
     protected $distrs;
 
     /**
-     * @param Ivan1986\DebBundle\Model\DistList $distrs
+     * @param DistList $distrs
      */
     public function setDistrs($distrs)
     {
@@ -179,7 +177,7 @@ class PpaRepository extends Repository
     }
 
     /**
-     * @return Ivan1986\DebBundle\Model\DistList
+     * @return DistList
      */
     public function getDistrs()
     {

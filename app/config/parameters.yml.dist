@@ -24,6 +24,6 @@ parameters:
         ivan: { password: iborzenkov, roles: [ 'ROLE_ADMIN' ] }
 
     dists:
-        lts: precise
-        stable: precise
-        testing: quantal
+        lts: xenial
+        stable: xenial
+        testing: yakkety
