@@ -37,7 +37,7 @@ class PackageRepository extends EntityRepository
      */
     public function mainRepo()
     {
-        return $this->_em->createQuery('SELECT p FROM Ivan1986\DebBundle\Entity\Package')->getResult();
+        return $this->_em->createQuery('SELECT p FROM Ivan1986\DebBundle\Entity\Package AS p')->getResult();
     }
 
     /**
