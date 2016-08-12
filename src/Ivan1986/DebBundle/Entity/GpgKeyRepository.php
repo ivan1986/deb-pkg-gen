@@ -3,9 +3,6 @@
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use Anchovy\CURLBundle\CURL\Curl;
-use Ivan1986\DebBundle\Exception\GpgNotFoundException;
-use Ivan1986\DebBundle\Entity\GpgKey;
 
 /**
  * GpgKeyRepository

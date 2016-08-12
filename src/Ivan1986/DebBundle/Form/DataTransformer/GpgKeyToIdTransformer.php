@@ -51,7 +51,6 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      *
      * @return string The value in the transformed representation
      *
-     * @throws UnexpectedTypeException   when the argument is not a string
      * @throws TransformationFailedException  when the transformation fails
      */
     function transform($value)
@@ -89,7 +88,6 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      *
      * @return GpgKey The value in the original representation
      *
-     * @throws UnexpectedTypeException   when the argument is not of the expected type
      * @throws TransformationFailedException  when the transformation fails
      */
     function reverseTransform($value)

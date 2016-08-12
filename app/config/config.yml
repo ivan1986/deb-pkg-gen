@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: services.yml }
 
 framework:
     #esi:             ~
@@ -31,10 +32,6 @@ twig:
         version: %version%
         host: %host%
         maintainer: %maintainer%
-    form:
-        resources:
-            - 'MopaBootstrapBundle:Form:fields.html.twig'
-            - 'Ivan1986DebBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -47,7 +44,7 @@ assetic:
     filters:
         cssrewrite: ~
         compass:
-          apply_to: "\.s[a|c]ss$"
+          apply_to: "\\.s[a|c]ss$"
 
 # Doctrine Configuration
 doctrine:
@@ -63,6 +60,14 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
+
+doctrine_cache:
+    providers:
+        repo_cache:
+            type: file_system
+            file_system:
+              directory: "%kernel.cache_dir%/../fileCache"
+              umask: 0
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -98,6 +103,10 @@ google:
                 accountId: %gaAcc%
                 domain:    .pkggen.no-ip.org
                 trackPageLoadTime: true
+
+endroid_google_analytics:
+    trackers:
+        default: %gaAcc%
 
 fos_rest:
     view:

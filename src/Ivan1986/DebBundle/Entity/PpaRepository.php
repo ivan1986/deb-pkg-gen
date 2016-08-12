@@ -4,15 +4,12 @@ namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Persistence\ObjectManager;
+use Ivan1986\DebBundle\Model\DistList;
 use Ivan1986\DebBundle\Util\Builder;
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 use Ivan1986\DebBundle\Model\GpgLoader;
-use Anchovy\CURLBundle\CURL\Curl;
-use Symfony\Component\Validator\Constraints\True;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Ivan1986\DebBundle\Form\PpaRepositoryType;
 use Symfony\Component\Validator\Constraints as Assert;
-use Ivan1986\DebBundle\Model\DistList;
 
 /**
  * Ivan1986\DebBundle\Entity\PpaRepository
@@ -112,31 +109,26 @@ class PpaRepository extends Repository
     /**
      * Проверяет валидность строки репозитория
      *
-     * @Assert\True(message = "Такого репозитория нет на launchpad.net")
+     * @Assert\IsTrue(message = "Такого репозитория нет на launchpad.net")
      * @return bool
      */
     public function isExistRepo()
     {
         if ($this->getPpaUrl() == '')
             return false;
-        $c = new Curl();
-        $c->setURL($this->getPpaUrl());
-        $c->execute();
-        $info = $c->getInfo();
+        $client = new \GuzzleHttp\Client();
         //репозиторий существует, заодно получим ключ
-        if ($info['http_code'] != 200)
+        if ($client->get($this->getPpaUrl())->getStatusCode() != 200)
             return false;
         return $this->getKeyFromLaunchpad();
     }
 
     private function getKeyFromLaunchpad()
     {
-        $c = new Curl();
-        $c->setOptions(array(
-            'CURLOPT_SSL_VERIFYPEER' => false,
-        ));
-        $c->setURL($this->getPpaPage());
-        $data = $c->execute();
+        $client = new \GuzzleHttp\Client(['defaults' => [
+            'verify' => 'false'
+        ]]);
+        $data = $client->get($this->getPpaPage())->getBody();
         if (!$data)
             return false;
         $matches = array();
@@ -166,18 +158,18 @@ class PpaRepository extends Repository
 
     public function getFormClass()
     {
-        return new PpaRepositoryType();
+        return PpaRepositoryType::class;
     }
 
     /**
-     * @var Ivan1986\DebBundle\Model\DistList $distrs Список дистрибутивов, соответствующих
+     * @var DistList $distrs Список дистрибутивов, соответствующих
      *
      * @ORM\Column(name="distrs", type="object")
      */
     protected $distrs;
 
     /**
-     * @param Ivan1986\DebBundle\Model\DistList $distrs
+     * @param DistList $distrs
      */
     public function setDistrs($distrs)
     {
@@ -185,7 +177,7 @@ class PpaRepository extends Repository
     }
 
     /**
-     * @return Ivan1986\DebBundle\Model\DistList
+     * @return DistList
      */
     public function getDistrs()
     {

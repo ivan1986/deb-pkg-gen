@@ -5,7 +5,7 @@ namespace Ivan1986\DebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ivan1986\DebBundle\Util\Builder;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ivan1986\DebBundle\Entity\GpgKey;
@@ -25,8 +25,10 @@ use Ivan1986\DebBundle\Form\RepositoryType;
  * @ORM\DiscriminatorMap({"standart" = "Repository", "ppa" = "PpaRepository"})
  * @UniqueEntity(fields="name", message="Пакет с таким именем уже есть в системе")
  */
-class Repository extends ContainerAware
+class Repository
 {
+    use ContainerAwareTrait;
+
     /**
      * @var integer $id
      *
@@ -117,7 +119,7 @@ class Repository extends ContainerAware
     /**
      * @var string $name Имя репозитория
      *
-     * @ORM\Column(name="`name`", type="string", unique=true)
+     * @ORM\Column(name="`name`", type="string", length=150, unique=true)
      */
     protected $name;
 
@@ -207,7 +209,7 @@ class Repository extends ContainerAware
     /**
      * Проверяет валидность строки репозитория
      *
-     * @Assert\True(message = "Неверный формат строки репозитория")
+     * @Assert\IsTrue(message = "Неверный формат строки репозитория")
      * @return bool
      */
     public function isValidRepoString()
@@ -328,11 +330,11 @@ class Repository extends ContainerAware
     /**
      * Класс формы для этого типа пакета
      *
-     * @return RepositoryType
+     * @return string
      */
     public function getFormClass()
     {
-        return new RepositoryType();
+        return RepositoryType::class;
     }
 
     public function buildPackages(Builder $builder, ObjectManager $manager)

@@ -7,6 +7,7 @@ use Ivan1986\DebBundle\Model\GpgLoader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Ivan1986\DebBundle\Util\Builder;
 use Ivan1986\DebBundle\Entity\GpgKey;
@@ -32,11 +33,11 @@ class BuilderController extends Controller
      * @Route("/pkg/", name="pkg_build")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $r)
     {
-        if ($this->getRequest()->getMethod() == "POST")
+        if ($r->getMethod() == "POST")
         {
-            $form = $this->getRequest()->get('form');
+            $form = $r->get('form');
             $error = array(
                 'form' => $form,
             );

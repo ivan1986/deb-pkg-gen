@@ -4,23 +4,21 @@ namespace Ivan1986\DebBundle\Model;
 
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 use Ivan1986\DebBundle\Entity\GpgKey;
-use Anchovy\CURLBundle\CURL\Curl;
 
 class GpgLoader
 {
     /**
      * Получает ключ с сервера
      *
-     * @param $keyId ID ключа в шеснадцатиричном формате без начального 0x
-     * @param $serverName адрес сервера
+     * @param string $keyId ID ключа в шеснадцатиричном формате без начального 0x
+     * @param string $serverName адрес сервера
      * @return GpgKey
      * @throws \Ivan1986\DebBundle\Exception\GpgNotFoundException
      */
     public static function getFromServer($keyId, $serverName)
     {
-        $c = new Curl();
-        $c->setURL('http://'.$serverName.':11371/pks/lookup?op=get&search=0x'.$keyId);
-        $data = $c->execute();
+        $client = new \GuzzleHttp\Client();
+        $data = $client->get('http://'.$serverName.':11371/pks/lookup?op=get&search=0x'.$keyId)->getBody();
         $start = strpos($data, '-----BEGIN PGP PUBLIC KEY BLOCK-----');
         if ($start===false)
             throw new GpgNotFoundException($keyId);

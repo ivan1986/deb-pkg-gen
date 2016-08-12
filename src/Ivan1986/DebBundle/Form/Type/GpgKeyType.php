@@ -3,7 +3,8 @@
 namespace Ivan1986\DebBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Form;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Ivan1986\DebBundle\Form\DataTransformer\GpgKeyToIdTransformer;
@@ -28,6 +29,14 @@ class GpgKeyType extends AbstractType
         $this->server = $server;
     }
 
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
+        $resolver->setDefaults(array(
+            'invalid_message' => $this->translator->trans('Ошибка загрузки ключа'),
+        ));
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $transformer = new GpgKeyToIdTransformer($this->om, $this->server);
@@ -40,19 +49,6 @@ class GpgKeyType extends AbstractType
             'required' => false,
         ));
         $builder->addViewTransformer($transformer);
-    }
-
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        parent::setDefaultOptions($resolver);
-        $resolver->setDefaults(array(
-            'invalid_message' => $this->translator->trans('Ошибка загрузки ключа'),
-        ));
-    }
-
-    public function getParent()
-    {
-        return 'form';
     }
 
     public function getName()

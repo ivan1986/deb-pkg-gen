@@ -15,10 +15,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\PackageRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="pkgType", type="string")
- * @ORM\DiscriminatorMap({"simple" = "SimplePackage", "sys" = "SysPackage", "link" = "LinkPackage"})
+ * @ORM\DiscriminatorMap({"simple" = "SimplePackage", "sys" = "SysPackage"})
  * @UniqueEntity({"fields"="file", "message"="Файл с таким именем уже есть в системе"})
  */
-class Package
+abstract class Package
 {
     /**
      * @var integer $id

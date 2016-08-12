@@ -3,15 +3,18 @@
 namespace Ivan1986\DebBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use Ivan1986\DebBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class Main extends ContainerAware
+class Main implements ContainerAwareInterface
 {
+    use ContainerAwareTrait;
+
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-        $auth = $this->container->get('security.context')->getToken()->getUser() instanceof User;
+        $auth = $this->container->get('security.token_storage')->getToken()->getUser() instanceof User;
         $translator = $this->container->get('translator');
         /** @var $translator Translator */
         $menu = $factory->createItem('root');
@@ -25,6 +28,7 @@ class Main extends ContainerAware
                 'route' => 'repos',
                 'routeParameters' => array('my' => 'my')
             ));
+        /*
         $menu->addChild($translator->trans('Все пакеты'), array(
                 'route' => 'packages',
                 'routeParameters' => array('my' => 'all')
@@ -33,6 +37,7 @@ class Main extends ContainerAware
                 'route' => 'packages',
                 'routeParameters' => array('my' => 'my')
             ));
+        */
         // ... add more children
         $menu->addChild($translator->trans('API'), array(
                 'route' => 'nelmio_api_doc_index',

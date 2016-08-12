@@ -13,17 +13,17 @@ parameters:
     secret: 23875627562875623875628756823755
     host: pkg.my
     maintainer: Ivan Borzenkov <ivan1986@list.ru>
-    version: 1.0
+    version: '1.0'
     key_server: keyserver.ubuntu.com
     key: 28FA7071
     key_file: "%kernel.root_dir%/config/key.gpg"
     cache_dir: "%kernel.root_dir%/cache/zend"
-    gaAcc:             UA-xxxxxxxxx-x
+    gaAcc: UA-xxxxxxxxx-x
 
     admins:
         ivan: { password: iborzenkov, roles: [ 'ROLE_ADMIN' ] }
 
     dists:
-        lts: precise
-        stable: precise
-        testing: quantal
+        lts: xenial
+        stable: xenial
+        testing: yakkety

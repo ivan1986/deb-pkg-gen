@@ -25,26 +25,6 @@ use UnitedPrototype\GoogleAnalytics;
  */
 class RepoController extends Controller
 {
-    /** @var Filesystem */
-    private $cache;
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        parent::setContainer($container);
-        $dir = $this->container->getParameter('cache_dir');
-        if (!is_dir($dir))
-            mkdir($dir, 0777, true);
-        $opt = new FilesystemOptions();
-        $opt->setCacheDir($dir);
-        $opt->setDirPermission(0777);
-        $opt->setFilePermission(0666);
-        $this->cache = StorageFactory::factory(array(
-            'adapter' => 'filesystem',
-        ));
-        $this->cache->setOptions($opt);
-    }
-
-
     /**
      * @Route("/", name="repo")
      * @Template()
@@ -61,11 +41,11 @@ class RepoController extends Controller
     public function PackagesAction($name, $arch)
     {
         $key = 'repo_Packages_'.$name;
-        $list = $this->cache->getItem($key);
+        $list = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
         if (!$list || $name == 'apttest')
         {
             $list = $this->getPkgList($this->getPkgs($name));
-            $this->cache->setItem($key, $list);
+            $this->get('doctrine_cache.providers.repo_cache')->save($key, $list);
         }
         $this->get('ivan1986_deb.gapinger')->pingGA('Repository - '.$name);
         $r = new Response($list);
@@ -80,12 +60,12 @@ class RepoController extends Controller
     public function ReleaseAction($name)
     {
         $key = 'repo_Release_'.$name;
-        $Release = $this->cache->getItem($key);
+        $Release = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
         if (!$Release || $name == 'apttest')
         {
             $pkgs = $this->getPkgs($name);
             $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
-            $this->cache->setItem($key, $Release);
+            $this->get('doctrine_cache.providers.repo_cache')->save($key, $Release);
         }
 
         $r = new Response($Release);
@@ -100,7 +80,7 @@ class RepoController extends Controller
     public function ReleaseGpgAction($name)
     {
         $key = 'repo_ReleaseGpg_'.$name;
-        $ReleaseGpg = $this->cache->getItem($key);
+        $ReleaseGpg = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
         if (!$ReleaseGpg || $name == 'apttest')
         {
             $pkgs = $this->getPkgs($name);
@@ -112,7 +92,7 @@ class RepoController extends Controller
             $gpg->addsignkey($PrivateKey['fingerprint']);
             $gpg->setsignmode(\gnupg::SIG_MODE_DETACH);
             $ReleaseGpg = $gpg->sign($Release);
-            $this->cache->setItem($key, $ReleaseGpg);
+            $this->get('doctrine_cache.providers.repo_cache')->save($key, $ReleaseGpg);
         }
 
         $r = new Response($ReleaseGpg);
@@ -169,10 +149,6 @@ class RepoController extends Controller
         /** @var $rpkgs PackageRepository */
         if ($repoName == 'stable')
             return $rpkgs->mainRepo();
-        if ($repoName == 'apttest')
-            return $rpkgs->testRepo();
-        if ($repoName == 'link')
-            return $rpkgs->linkRepo();
     }
 
     private function getPkgList($pkgs)

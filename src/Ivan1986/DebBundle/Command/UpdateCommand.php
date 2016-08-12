@@ -41,6 +41,7 @@ class UpdateCommand extends ContainerAwareCommand
         $repos = $rrepo->getNewAndUpdated();
         if (!count($repos))
             return;
+
         $builder = new Builder($this->getContainer()->get('templating'));
         foreach($repos as $repo)
         {
@@ -54,20 +55,7 @@ class UpdateCommand extends ContainerAwareCommand
         }
         $doctrine->getManager()->flush();
 
-        $dir = $this->getContainer()->getParameter('cache_dir');
-        if (!is_dir($dir))
-            mkdir($dir, 0777, true);
-        $opt = new FilesystemOptions();
-        $opt->setCacheDir($dir);
-        $opt->setDirPermission(0777);
-        $opt->setFilePermission(0666);
-        $cache = StorageFactory::factory(array(
-            'adapter' => 'filesystem',
-        ));
-        /** @var $cache Filesystem */
-        $cache->setOptions($opt);
-        $cache->clearByPrefix('repo_');
-
+        $this->getContainer()->get('doctrine_cache.providers.repo_cache')->flushAll();
     }
 
 }

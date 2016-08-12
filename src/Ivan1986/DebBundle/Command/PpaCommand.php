@@ -3,11 +3,8 @@
 namespace Ivan1986\DebBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Anchovy\CURLBundle\CURL\Curl;
-use Ivan1986\DebBundle\Entity\Package;
-use Ivan1986\DebBundle\Util\Builder;
+
 use Ivan1986\DebBundle\Entity\PpaRepository;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -15,7 +12,7 @@ use Ivan1986\DebBundle\Entity\RepositoryRepository;
 
 class PpaCommand extends ContainerAwareCommand
 {
-    /** @var Curl */
+    /** @var \GuzzleHttp\Client() */
     protected $curl;
 
     protected function configure()
@@ -35,18 +32,15 @@ class PpaCommand extends ContainerAwareCommand
         $rrepo = $doctrine->getRepository('Ivan1986DebBundle:PpaRepository');
         /** @var $rrepo RepositoryRepository */
         $repos = $rrepo->getPpaForScan(!$input->getOption('update'));
-        $this->curl = new Curl();
+        $this->curl = new \GuzzleHttp\Client();
         foreach($repos as $repo)
         {
             /** @var $repo PpaRepository */
-            $this->curl->setURL($repo->getPpaUrl().'dists/');
-            $this->curl->setOption('CURLOPT_HEADER', false);
-            $page = $this->curl->execute();
-            $info = $this->curl->getInfo();
-            if ($info['http_code']!=200)
+            $res = $this->curl->get($repo->getPpaUrl().'dists/');
+            if ($res->getStatusCode() != 200)
                 continue;
             $matches = array();
-            preg_match_all('#<a href="([a-z]+)/">\1/</a>#i', $page, $matches);
+            preg_match_all('#<a href="([a-z]+)/">\1/</a>#i', $res->getBody(), $matches);
             $dists = $this->checkNotEmpty($repo->getPpaUrl().'dists/', $matches[1]);
             if (empty($dists))
                 continue;
@@ -59,12 +53,10 @@ class PpaCommand extends ContainerAwareCommand
 
     protected function checkNotEmpty($base, $dists)
     {
-        $this->curl->setOption('CURLOPT_HEADER', true);
         foreach($dists as $k=>$dist)
         {
-            $this->curl->setURL($base.$dist.'/main/binary-i386/Packages');
-            $info = $this->curl->getInfo();
-            if ($info['size_download'] == 0)
+            $res = $this->curl->get($base.$dist.'/main/binary-amd64/Packages.gz');
+            if ($res->getHeaderLine('Content-Length') < 50)
                 unset($dists[$k]);
         }
         return array_values($dists);
