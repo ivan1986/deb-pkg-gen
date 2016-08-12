@@ -14,7 +14,6 @@ use Doctrine\ORM\QueryBuilder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Form\FormError;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Entity\PpaRepository;
 
@@ -45,7 +44,10 @@ class RepositoryController extends Controller
     {
         $search = $r->query->get('search');
         $query = $this->em->getRepository('Ivan1986DebBundle:Repository')
-            ->getByUser(($my == 'my' && !$search) ? $this->getUser() : null);
+            ->getByUser(($my == 'my' && !$search) ? $this->getUser() : null)
+            ->leftJoin('r.packages', 'p')
+            ->select('r, p')
+        ;
         /** @var $query QueryBuilder */
         if ($search)
             $query->andWhere($query->expr()->orX(
