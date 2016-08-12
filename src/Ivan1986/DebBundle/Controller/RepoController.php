@@ -149,10 +149,6 @@ class RepoController extends Controller
         /** @var $rpkgs PackageRepository */
         if ($repoName == 'stable')
             return $rpkgs->mainRepo();
-        if ($repoName == 'apttest')
-            return $rpkgs->testRepo();
-        if ($repoName == 'link')
-            return $rpkgs->linkRepo();
     }
 
     private function getPkgList($pkgs)
