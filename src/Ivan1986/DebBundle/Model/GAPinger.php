@@ -20,13 +20,14 @@ class GAPinger
         // Initilize GA Tracker
         $acc = $this->c->getParameter('gaAcc');
         $acc = str_replace('UA', 'MO', $acc);
+        $request = $this->c->get('request_stack')->getCurrentRequest();
         $tracker = new GoogleAnalytics\Tracker($acc, 'pkggen.no-ip.org');
 
         // Assemble Visitor information
         // (could also get unserialized from database)
         $visitor = new GoogleAnalytics\Visitor();
-        $visitor->setIpAddress($this->c->get('request')->getClientIp());
-        $visitor->setUserAgent($this->c->get('request')->server->get('HTTP_USER_AGENT'));
+        $visitor->setIpAddress($request->getClientIp());
+        $visitor->setUserAgent($request->server->get('HTTP_USER_AGENT'));
         $visitor->setScreenResolution('80x25');
 
         // Assemble Session information
@@ -34,7 +35,7 @@ class GAPinger
         $session = new GoogleAnalytics\Session();
 
         // Assemble Page information
-        $page = new GoogleAnalytics\Page($this->c->get('request')->getRequestUri());
+        $page = new GoogleAnalytics\Page($request->getRequestUri());
         $page->setTitle($title);
 
         // Track page view

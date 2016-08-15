@@ -47,7 +47,7 @@ class RepoController extends Controller
             $list = $this->getPkgList($this->getPkgs($name));
             $this->get('doctrine_cache.providers.repo_cache')->save($key, $list);
         }
-        //$this->get('ivan1986_deb.gapinger')->pingGA('Repository - '.$name);
+        $this->get('ivan1986_deb.gapinger')->pingGA('Repository - '.$name);
         $r = new Response($list);
         $r->headers->set('Content-Type', 'application/octet-stream');
         return $r;
@@ -177,7 +177,7 @@ class RepoController extends Controller
         /** @var $pkg Package */
         if (!$pkg)
             throw new NotFoundHttpException();
-        //$this->get('ivan1986_deb.gapinger')->pingGA($name);
+        $this->get('ivan1986_deb.gapinger')->pingGA($name);
         return $pkg->getHttpResponse();
     }
 

@@ -43,7 +43,7 @@ class ApiController extends FOSRestController
     {
         parent::setContainer($container);
         $this->em = $this->getDoctrine()->getManager();
-        //$this->get('ivan1986_deb.gapinger')->pingGA('API');
+        $this->get('ivan1986_deb.gapinger')->pingGA('API');
     }
 
     /**
