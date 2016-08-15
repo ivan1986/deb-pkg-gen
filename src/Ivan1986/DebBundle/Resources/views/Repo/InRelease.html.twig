@@ -1,0 +1,16 @@
+Origin: {{ host }}
+Label: {{ host }} repository list
+Suite: {{ name }}
+Date: {{ date }}
+Architectures: i386 amd64
+Components: main
+Description: {{ host }} repository list
+MD5Sum:
+ {{ md5 }} {{ size }} main/binary-i386/Packages
+ {{ md5 }} {{ size }} main/binary-amd64/Packages
+SHA1:
+ {{ sha1 }} {{ size }} main/binary-i386/Packages
+ {{ sha1 }} {{ size }} main/binary-amd64/Packages
+SHA512:
+ {{ sha512 }} {{ size }} main/binary-i386/Packages
+ {{ sha512 }} {{ size }} main/binary-amd64/Packages

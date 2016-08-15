@@ -100,6 +100,32 @@ class RepoController extends Controller
         return $r;
     }
 
+    /**
+     * @Route("/dists/{name}/InRelease", name="InRelease")
+     * @Template()
+     */
+    public function InReleaseAction($name)
+    {
+        $key = 'repo_InRelease_'.$name;
+        $InRelease = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
+        if (!$InRelease || $name == 'apttest')
+        {
+            $pkgs = $this->getPkgs($name);
+            $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
+
+            $gpg = new \gnupg();
+            $content = file_get_contents($this->container->getParameter('key_file'));
+            $PrivateKey = $gpg->import($content);
+            $gpg->addsignkey($PrivateKey['fingerprint']);
+            $gpg->setsignmode(\gnupg::SIG_MODE_CLEAR);
+            $InRelease = $gpg->sign($Release);
+            $this->get('doctrine_cache.providers.repo_cache')->save($key, $InRelease);
+        }
+
+        $r = new Response($InRelease);
+        return $r;
+    }
+
     private function getRelease($list, $date, $name)
     {
         $size = strlen($list);
@@ -123,7 +149,7 @@ class RepoController extends Controller
     /**
      * Возвращает дату последнего пакета
      *
-     * @param $packages Список пакетоа
+     * @param array $packages Список пакетов
      * @return integer Timestamp
      */
     private function getMaxDate($packages)
