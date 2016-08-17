@@ -17,7 +17,7 @@ class GpgLoader
      */
     public static function getFromServer($keyId, $serverName)
     {
-        $client = new \GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client(['http_errors' => false]);
         $data = $client->get('http://'.$serverName.':11371/pks/lookup?op=get&search=0x'.$keyId)->getBody();
         $start = strpos($data, '-----BEGIN PGP PUBLIC KEY BLOCK-----');
         if ($start===false)

@@ -116,7 +116,7 @@ class PpaRepository extends Repository
     {
         if ($this->getPpaUrl() == '')
             return false;
-        $client = new \GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client(['http_errors' => false]);
         //репозиторий существует, заодно получим ключ
         if ($client->get($this->getPpaUrl())->getStatusCode() != 200)
             return false;

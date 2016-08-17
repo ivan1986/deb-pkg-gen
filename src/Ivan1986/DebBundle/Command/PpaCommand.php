@@ -32,7 +32,7 @@ class PpaCommand extends ContainerAwareCommand
         $rrepo = $doctrine->getRepository('Ivan1986DebBundle:PpaRepository');
         /** @var $rrepo RepositoryRepository */
         $repos = $rrepo->getPpaForScan(!$input->getOption('update'));
-        $this->curl = new \GuzzleHttp\Client();
+        $this->curl = new \GuzzleHttp\Client(['http_errors' => false]);
         foreach($repos as $repo)
         {
             /** @var $repo PpaRepository */
