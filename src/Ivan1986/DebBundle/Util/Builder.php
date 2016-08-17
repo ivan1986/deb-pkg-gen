@@ -90,12 +90,10 @@ class Builder
         if ($exit)
             return false;
 
-        //парсинг файла changes
-        $out = $p->getErrorOutput();
-        $pattern = 'dpkg-genchanges -b >../';
-        $fname = substr($out, strpos($out, $pattern) + strlen($pattern));
-        $fname = trim(substr($fname, 0, strpos($fname, 'dpkg-genchanges')));
+        //файл changes
+        $fname = basename(glob($dir.'*.changes')[0]);
         $finfo = file($this->path.'/'.$fname);
+
         $parse = array();
         foreach($finfo as $k=>$line)
         {
