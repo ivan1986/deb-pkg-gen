@@ -1,6 +1,6 @@
 <?php
 
-namespace Ivan1986\DebBundle\Tests\Controller;
+namespace Tests\Ivan1986\DebBundle\Controller;
 
 use Ivan1986\DebBundle\Tests\Entity\Entity;
 use Ivan1986\DebBundle\Entity\Repository;

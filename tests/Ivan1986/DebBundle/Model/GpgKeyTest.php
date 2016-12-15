@@ -1,6 +1,6 @@
 <?php
 
-namespace Ivan1986\DebBundle\Tests\Model;
+namespace Tests\Ivan1986\DebBundle\Model;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ivan1986\DebBundle\Tests\Entity;
+namespace Tests\Ivan1986\DebBundle\Entity;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

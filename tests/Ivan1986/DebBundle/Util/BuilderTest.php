@@ -1,6 +1,6 @@
 <?php
 
-namespace Ivan1986\DebBundle\Tests\Util;
+namespace Tests\Ivan1986\DebBundle\Util;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Ivan1986\DebBundle\Model\GpgLoader;
