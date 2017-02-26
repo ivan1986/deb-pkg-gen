@@ -84,7 +84,8 @@ class Builder
         //Сборка пакета
         $p = new Process('dpkg-buildpackage -b -uc -tc');
         $p->setEnv($env);
-        $p->setWorkingDirectory($dir);
+	$p->setWorkingDirectory($dir);
+	$p->setTimeout(600);
         $p->run();
         $exit = $p->getExitCode();
         if ($exit)
