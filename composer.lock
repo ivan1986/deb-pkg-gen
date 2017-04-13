@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a4139bba98d9ef6c233fb9567e70e0ee",
-    "content-hash": "84e7232e31c237281ec2117be7eca8f0",
+    "hash": "f35c37efc5d46d8aae15969e2f8d634a",
+    "content-hash": "eee0bc41ecae71561e594258fc5718d7",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3735,37 +3735,38 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "dev-master",
+            "version": "3.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "257f38cfa0464d7e94f939d34c206711bc9cbdbc"
+                "reference": "472b339cf0c82f3a033b29f85d9d9cada3cd1a9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/257f38cfa0464d7e94f939d34c206711bc9cbdbc",
-                "reference": "257f38cfa0464d7e94f939d34c206711bc9cbdbc",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/472b339cf0c82f3a033b29f85d9d9cada3cd1a9c",
+                "reference": "472b339cf0c82f3a033b29f85d9d9cada3cd1a9c",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.2",
-                "symfony/config": "^3.2",
-                "symfony/dependency-injection": "~3.0",
-                "symfony/framework-bundle": "^3.1",
-                "symfony/http-kernel": "^3.1"
+                "symfony/dependency-injection": "~2.3|~3.0",
+                "symfony/framework-bundle": "~2.3|~3.0"
             },
             "require-dev": {
-                "doctrine/doctrine-bundle": "^1.5",
-                "doctrine/orm": "^2.4.5",
-                "symfony/browser-kit": "~3.0",
-                "symfony/dom-crawler": "~3.0",
-                "symfony/expression-language": "~3.0",
-                "symfony/finder": "~3.0",
+                "doctrine/doctrine-bundle": "~1.5",
+                "doctrine/orm": "~2.4,>=2.4.5",
+                "symfony/asset": "~2.7|~3.0",
+                "symfony/browser-kit": "~2.3|~3.0",
+                "symfony/dom-crawler": "~2.3|~3.0",
+                "symfony/expression-language": "~2.4|~3.0",
+                "symfony/finder": "~2.3|~3.0",
                 "symfony/phpunit-bridge": "~3.2",
                 "symfony/psr-http-message-bridge": "^0.3",
-                "symfony/security-bundle": "~3.0",
-                "symfony/twig-bundle": "~3.0",
-                "symfony/yaml": "~3.0",
+                "symfony/security-bundle": "~2.4|~3.0",
+                "symfony/templating": "~2.3|~3.0",
+                "symfony/translation": "~2.3|~3.0",
+                "symfony/twig-bundle": "~2.3|~3.0",
+                "symfony/yaml": "~2.3|~3.0",
                 "twig/twig": "~1.12|~2.0",
                 "zendframework/zend-diactoros": "^1.3"
             },
@@ -3777,7 +3778,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0.x-dev"
+                    "dev-master": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -3800,7 +3801,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-03-02 20:12:17"
+            "time": "2017-03-21 23:34:44"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -5247,12 +5248,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "46fc0b93637a78e0a9925a09830663a3d6ff1ca3"
+                "reference": "8e4e741a8f60cf2265d83687880e764f15b6ee9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/46fc0b93637a78e0a9925a09830663a3d6ff1ca3",
-                "reference": "46fc0b93637a78e0a9925a09830663a3d6ff1ca3",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/8e4e741a8f60cf2265d83687880e764f15b6ee9f",
+                "reference": "8e4e741a8f60cf2265d83687880e764f15b6ee9f",
                 "shasum": ""
             },
             "require": {
@@ -5393,7 +5394,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-04-12 20:43:31"
+            "time": "2017-04-13 11:49:54"
         },
         {
             "name": "twbs/bootstrap-sass",
@@ -8511,7 +8512,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "sonata-project/user-bundle": 20
+        "sonata-project/user-bundle": 20,
+        "united-prototype/php-ga": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
