@@ -53,15 +53,10 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      *
      * @throws TransformationFailedException  when the transformation fails
      */
-    function transform($value)
+    public function transform($value)
     {
-        if ($value == null || $value == '')
-            return array(
-                'id' => '',
-                'file' => '',
-            );
         return array(
-            'id' => $value->getId(),
+            'id' => $value ? $value->getId() : '',
             'file' => '',
         );
     }
@@ -90,7 +85,7 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      *
      * @throws TransformationFailedException  when the transformation fails
      */
-    function reverseTransform($value)
+    public function reverseTransform($value)
     {
         if (!empty($value['file']))
         {
