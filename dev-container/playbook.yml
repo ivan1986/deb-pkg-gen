@@ -1,0 +1,15 @@
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - common_system_deb
+    - mariadb_deb
+    - symfony2-site
+  tasks:
+    - name: Install packages
+      apt: pkg={{item}} state=latest update_cache=yes autoremove=yes
+      with_items:
+          - php-gnupg
+          - ruby-compass
+- hosts: all
