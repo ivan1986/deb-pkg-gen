@@ -101,7 +101,7 @@ google:
             default:
                 includeNamePrefix: false
                 accountId: %gaAcc%
-                domain:    .pkggen.no-ip.org
+                domain:    .pkggen.ivan1986.tk
                 trackPageLoadTime: true
 
 endroid_google_analytics:
