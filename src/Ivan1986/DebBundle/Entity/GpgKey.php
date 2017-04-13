@@ -4,10 +4,9 @@ namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
 
 /**
- * Ivan1986\DebBundle\Entity\GpgKey
+ * Ivan1986\DebBundle\Entity\GpgKey.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\GpgKeyRepository")
@@ -16,7 +15,7 @@ use JMS\Serializer\Annotation\Expose;
 class GpgKey
 {
     /**
-     * @var string $id
+     * @var string
      *
      * @ORM\Column(name="id", type="string", length=40)
      * @ORM\Id
@@ -36,7 +35,7 @@ class GpgKey
     protected $fingerprint;
 
     /**
-     * Get id
+     * Get id.
      *
      * @return string
      */
@@ -46,63 +45,72 @@ class GpgKey
     }
 
     /**
-     * Set id
+     * Set id.
      *
      * @param string $id
+     *
      * @return GpgKey
      */
     public function setId($id)
     {
         $this->id = $id;
+
         return $this;
     }
 
     /**
-     * Set data
+     * Set data.
      *
      * @param string $data
+     *
      * @return GpgKey
      */
     public function setData($data)
     {
         $this->data = $data;
+
         return $this;
     }
 
     protected $stringValOfBlob;
 
     /**
-     * Get data
+     * Get data.
      *
      * @return string
      */
     public function getData()
     {
-        if (is_string($this->data))
+        if (is_string($this->data)) {
             return $this->data;
+        }
         //блоб читается только один раз, поэтому запоминаем его
         $val = stream_get_contents($this->data);
-        if ($val)
+        if ($val) {
             $this->stringValOfBlob = $val;
+        }
+
         return $this->stringValOfBlob;
     }
 
     /**
-     * Set fingerprint
+     * Set fingerprint.
      *
      * @param blob $fingerprint
+     *
      * @return GpgKey
      */
     public function setFingerprint($fingerprint)
     {
         $this->fingerprint = $fingerprint;
+
         return $this;
     }
 
     /**
-     * Get fingerprint
+     * Get fingerprint.
      *
-     * @return blob 
+     * @return blob
      */
     public function getFingerprint()
     {

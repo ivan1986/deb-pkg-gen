@@ -1,12 +1,11 @@
 <?php
 
-
 namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ivan1986\DebBundle\Entity\SimplePackage
+ * Ivan1986\DebBundle\Entity\SimplePackage.
  *
  * @ORM\Entity()
  */
@@ -35,5 +34,4 @@ class SimplePackage extends Package
     {
         return $this->repository;
     }
-
 }

@@ -30,5 +30,4 @@ class RepoControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', '/repo/dists/stable/Release.gpg');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
     }
-
 }

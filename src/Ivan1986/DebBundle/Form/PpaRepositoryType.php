@@ -2,30 +2,27 @@
 
 namespace Ivan1986\DebBundle\Form;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormBuilderInterface;
-use JMS\DiExtraBundle\Annotation\Inject;
 use JMS\DiExtraBundle\Annotation\FormType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * @FormType
  */
 class PpaRepositoryType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->setAttribute('show_legend', false);
         $builder
-            ->add('repoString', null, array(
+            ->add('repoString', null, [
                 'label' => 'Адрес PPA репозитория',
-                'attr' => array('class' => 'span5'),
-            ))
-            ->add('name', null, array(
+                'attr' => ['class' => 'span5'],
+            ])
+            ->add('name', null, [
                 'label' => 'Имя пакета',
                 'required' => false,
-            ))
+            ])
         ;
     }
 
@@ -33,5 +30,4 @@ class PpaRepositoryType extends AbstractType
     {
         return 'ppa';
     }
-
 }

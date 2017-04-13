@@ -3,7 +3,7 @@
 namespace Ivan1986\DebBundle\Exception;
 
 /**
- * На сервере не найден ключ
+ * На сервере не найден ключ.
  */
 class GpgNotFoundException extends \Exception
 {
@@ -19,5 +19,4 @@ class GpgNotFoundException extends \Exception
     {
         return $this->key;
     }
-
 }

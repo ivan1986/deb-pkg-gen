@@ -1,9 +1,11 @@
 <?php
+
 // src/Acme/DemoBundle/Menu/Builder.php
+
 namespace Ivan1986\DebBundle\Menu;
 
-use Knp\Menu\FactoryInterface;
 use Ivan1986\DebBundle\Entity\User;
+use Knp\Menu\FactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
@@ -20,14 +22,16 @@ class Main implements ContainerAwareInterface
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
 
-        $menu->addChild($translator->trans('Все репозитории'), array(
+        $menu->addChild($translator->trans('Все репозитории'), [
                 'route' => 'repos',
-                'routeParameters' => array('my' => 'all')
-            ));
-        if ($auth) $menu->addChild($translator->trans('Мои репозитории'), array(
+                'routeParameters' => ['my' => 'all'],
+            ]);
+        if ($auth) {
+            $menu->addChild($translator->trans('Мои репозитории'), [
                 'route' => 'repos',
-                'routeParameters' => array('my' => 'my')
-            ));
+                'routeParameters' => ['my' => 'my'],
+            ]);
+        }
         /*
         $menu->addChild($translator->trans('Все пакеты'), array(
                 'route' => 'packages',
@@ -39,9 +43,9 @@ class Main implements ContainerAwareInterface
             ));
         */
         // ... add more children
-        $menu->addChild($translator->trans('API'), array(
+        $menu->addChild($translator->trans('API'), [
                 'route' => 'nelmio_api_doc_index',
-            ));
+            ]);
 
         return $menu;
     }

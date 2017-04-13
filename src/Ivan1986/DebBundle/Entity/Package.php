@@ -4,12 +4,12 @@ namespace Ivan1986\DebBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Ivan1986\DebBundle\Entity\Package
+ * Ivan1986\DebBundle\Entity\Package.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\PackageRepository")
@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 abstract class Package
 {
     /**
-     * @var integer $id
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -61,19 +61,19 @@ abstract class Package
 
     public function getHttpResponse()
     {
-        $headers = array(
-            'Content-Type'        => 'application/x-debian-package',
+        $headers = [
+            'Content-Type' => 'application/x-debian-package',
             'Content-Disposition' => sprintf('attachment; filename="%s"',
                 $this->getFile()),
-        );
+        ];
+
         return new Response($this->getContent(), 200, $headers);
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -81,19 +81,21 @@ abstract class Package
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
+     *
      * @return Package
      */
     public function setContent($content)
     {
         $this->content = $content;
+
         return $this;
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string
      */
@@ -103,21 +105,23 @@ abstract class Package
     }
 
     /**
-     * Set info
+     * Set info.
      *
      * @param string $info
+     *
      * @return Package
      */
     public function setInfo($info)
     {
         $this->info = $info;
+
         return $this;
     }
 
     /**
-     * Get info
+     * Get info.
      *
-     * @return string 
+     * @return string
      */
     public function getInfo()
     {
@@ -125,21 +129,23 @@ abstract class Package
     }
 
     /**
-     * Set file
+     * Set file.
      *
      * @param string $file
+     *
      * @return Package
      */
     public function setFile($file)
     {
         $this->file = $file;
+
         return $this;
     }
 
     /**
-     * Get file
+     * Get file.
      *
-     * @return string 
+     * @return string
      */
     public function getFile()
     {
@@ -156,20 +162,19 @@ abstract class Package
 
     public function getName()
     {
-        if (!$this->info)
+        if (!$this->info) {
             return '';
+        }
         $strings = explode("\n", $this->info);
         $name = '';
         $pkg = 'Package:';
-        foreach($strings as $str)
-        {
-            if (strpos($str, $pkg) !== false)
-            {
+        foreach ($strings as $str) {
+            if (strpos($str, $pkg) !== false) {
                 $name = trim(substr($str, strlen($pkg)));
                 break;
             }
         }
+
         return $name;
     }
-
 }

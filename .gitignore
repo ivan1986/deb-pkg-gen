@@ -22,6 +22,7 @@ composer.phar
 /app/config/key.gpg
 
 /*.log
+/.php_cs.cache
 
 src/Ivan1986/DebBundle/apt/etc/sources.list
 src/Ivan1986/DebBundle/apt/etc/trusted.gpg.d/repo-self.gpg

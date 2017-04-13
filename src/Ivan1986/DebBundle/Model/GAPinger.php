@@ -2,8 +2,8 @@
 
 namespace Ivan1986\DebBundle\Model;
 
-use UnitedPrototype\GoogleAnalytics;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use UnitedPrototype\GoogleAnalytics;
 
 class GAPinger
 {
@@ -41,5 +41,4 @@ class GAPinger
         // Track page view
         $tracker->trackPageview($page, $session, $visitor);
     }
-
 }

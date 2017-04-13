@@ -2,8 +2,8 @@
 
 namespace Tests\Ivan1986\DebBundle\Controller;
 
-use Ivan1986\DebBundle\Tests\Entity\Entity;
 use Ivan1986\DebBundle\Entity\Repository;
+use Ivan1986\DebBundle\Tests\Entity\Entity;
 
 class RepositoryControllerTest extends Entity
 {
@@ -14,10 +14,10 @@ class RepositoryControllerTest extends Entity
         parent::setUp();
         $this->client = static::createClient();
         $crawler = $this->client->request('GET', '/login');
-        $form = $crawler->selectButton('_submit')->form(array(
-            '_username'  => 'test',
-            '_password'  => 'test',
-        ));
+        $form = $crawler->selectButton('_submit')->form([
+            '_username' => 'test',
+            '_password' => 'test',
+        ]);
 
         $this->client->submit($form);
     }
@@ -30,14 +30,13 @@ class RepositoryControllerTest extends Entity
         $crawler = $this->client->click($crawler->selectLink('Add new repository')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
-            'std[repoString]' =>
-                'http://ppa.launchpad.net/ivan1986/ppa/ubuntu natty main',
+        $form = $crawler->selectButton('Create')->form([
+            'std[repoString]' => 'http://ppa.launchpad.net/ivan1986/ppa/ubuntu natty main',
             'std[bin]' => 1,
             'std[src]' => 1,
             'std[name]' => 'phpunit-test',
             'std[key][id]' => 'B9B60E76',
-        ));
+        ]);
 
         $this->client->submit($form);
         $crawler = $this->client->followRedirect();
@@ -45,8 +44,8 @@ class RepositoryControllerTest extends Entity
         // Check data in the show view
         $this->assertTrue($crawler->filter('td:contains("phpunit-test")')->count() > 0);
 
-        $item = $this->em->getRepository("Ivan1986DebBundle:Repository")
-            ->findOneBy(array('name' => 'phpunit-test'));
+        $item = $this->em->getRepository('Ivan1986DebBundle:Repository')
+            ->findOneBy(['name' => 'phpunit-test']);
         /** @var $item Repository */
         $id = $item->getId();
         $crawler = $this->client->request('GET', '/repos/'.$id.'/edit');
@@ -67,9 +66,9 @@ class RepositoryControllerTest extends Entity
         $crawler = $this->client->click($crawler->selectLink('Add new PPA repository')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
+        $form = $crawler->selectButton('Create')->form([
             'ppa[repoString]' => 'ppa:libreoffice/ppa',
-        ));
+        ]);
 
         $this->client->submit($form);
         $crawler = $this->client->followRedirect();
@@ -77,8 +76,8 @@ class RepositoryControllerTest extends Entity
         // Check data in the show view
         $this->assertTrue($crawler->filter('td:contains("libreoffice/ppa")')->count() > 0);
 
-        $item = $this->em->getRepository("Ivan1986DebBundle:Repository")
-            ->findOneBy(array('name' => 'ppa-libreoffice-ppa'));
+        $item = $this->em->getRepository('Ivan1986DebBundle:Repository')
+            ->findOneBy(['name' => 'ppa-libreoffice-ppa']);
         /** @var $item Repository */
         $id = $item->getId();
         $crawler = $this->client->request('GET', '/repos/'.$id.'/edit');
@@ -99,9 +98,9 @@ class RepositoryControllerTest extends Entity
         $crawler = $this->client->click($crawler->selectLink('Add new PPA repository')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
+        $form = $crawler->selectButton('Create')->form([
             'ppa[repoString]' => 'non/exist/repo',
-        ));
+        ]);
 
         $this->client->submit($form);
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
@@ -116,18 +115,16 @@ class RepositoryControllerTest extends Entity
         $crawler = $this->client->click($crawler->selectLink('Add new repository')->link());
 
         // Fill in the form and submit it
-        $form = $crawler->selectButton('Create')->form(array(
-            'std[repoString]' =>
-            'http://ya.ru',
+        $form = $crawler->selectButton('Create')->form([
+            'std[repoString]' => 'http://ya.ru',
             'std[bin]' => 1,
             'std[src]' => 1,
             'std[name]' => 'non-exist-key-test',
             'std[key][id]' => '1024R/ffffff',
-        ));
+        ]);
 
         $this->client->submit($form);
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
         $this->assertTrue($crawler->filter('h1:contains("New repository")')->count() > 0);
     }
-
 }

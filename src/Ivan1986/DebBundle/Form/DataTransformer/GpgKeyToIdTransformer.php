@@ -2,13 +2,13 @@
 
 namespace Ivan1986\DebBundle\Form\DataTransformer;
 
-use Symfony\Component\Form\DataTransformerInterface;
-use Ivan1986\DebBundle\Model\GpgLoader;
-use Symfony\Component\Form\Exception\TransformationFailedException;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ivan1986\DebBundle\Entity\GpgKey;
 use Ivan1986\DebBundle\Entity\GpgKeyRepository;
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
+use Ivan1986\DebBundle\Model\GpgLoader;
+use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class GpgKeyToIdTransformer implements DataTransformerInterface
@@ -51,14 +51,14 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      *
      * @return string The value in the transformed representation
      *
-     * @throws TransformationFailedException  when the transformation fails
+     * @throws TransformationFailedException when the transformation fails
      */
     public function transform($value)
     {
-        return array(
+        return [
             'id' => $value ? $value->getId() : '',
             'file' => '',
-        );
+        ];
     }
 
     /**
@@ -83,54 +83,48 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      *
      * @return GpgKey The value in the original representation
      *
-     * @throws TransformationFailedException  when the transformation fails
+     * @throws TransformationFailedException when the transformation fails
      */
     public function reverseTransform($value)
     {
-        if (!empty($value['file']))
-        {
+        if (!empty($value['file'])) {
             $file = $value['file'];
-            if ($file instanceof UploadedFile)
-            {
-                /** @var $file UploadedFile */
-                try
-                {
+            if ($file instanceof UploadedFile) {
+                /* @var $file UploadedFile */
+                try {
                     $key = GpgLoader::getFromFile($file->getRealPath());
-                }
-                catch(GpgNotFoundException $e)
-                {
+                } catch (GpgNotFoundException $e) {
                     throw new TransformationFailedException();
                 }
                 $r = $this->om->getRepository('Ivan1986DebBundle:GpgKey');
                 /** @var $r GpgKeyRepository */
-                $exist = $r->findOneBy(array('id' => $key->getId()));
-                if ($exist)
+                $exist = $r->findOneBy(['id' => $key->getId()]);
+                if ($exist) {
                     return $exist;
+                }
                 $this->om->persist($key);
+
                 return $key;
             }
         }
         $id = $value['id'];
-        if (strpos($id, '/'))
-        {
+        if (strpos($id, '/')) {
             $id = explode('/', $id);
             $id = $id[1];
         }
         $r = $this->om->getRepository('Ivan1986DebBundle:GpgKey');
         /** @var $r GpgKeyRepository */
-        $key = $r->findOneBy(array('id' => $id));
-        if ($key)
+        $key = $r->findOneBy(['id' => $id]);
+        if ($key) {
             return $key;
-        try
-        {
-            $key = GpgLoader::getFromServer($id, $this->server);
         }
-        catch(GpgNotFoundException $e)
-        {
+        try {
+            $key = GpgLoader::getFromServer($id, $this->server);
+        } catch (GpgNotFoundException $e) {
             throw new TransformationFailedException();
         }
         $this->om->persist($key);
+
         return $key;
     }
-
 }
