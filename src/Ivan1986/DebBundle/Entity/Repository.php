@@ -19,7 +19,7 @@ use Ivan1986\DebBundle\Form\RepositoryType;
  * Ivan1986\DebBundle\Entity\Repository
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\RepositoryRepository")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\RepositoryRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="repoType", type="string")
  * @ORM\DiscriminatorMap({"standart" = "Repository", "ppa" = "PpaRepository"})

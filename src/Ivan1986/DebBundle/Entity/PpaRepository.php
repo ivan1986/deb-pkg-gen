@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Ivan1986\DebBundle\Entity\PpaRepository
  *
- * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\RepositoryRepository")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\RepositoryRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class PpaRepository extends Repository

@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Ivan1986\DebBundle\Entity\Package
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\PackageRepository")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\PackageRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="pkgType", type="string")
  * @ORM\DiscriminatorMap({"simple" = "SimplePackage", "sys" = "SysPackage"})
@@ -158,10 +158,10 @@ abstract class Package
     {
         if (!$this->info)
             return '';
-        $strs = explode("\n", $this->info);
+        $strings = explode("\n", $this->info);
         $name = '';
         $pkg = 'Package:';
-        foreach($strs as $str)
+        foreach($strings as $str)
         {
             if (strpos($str, $pkg) !== false)
             {

@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Expose;
  * Ivan1986\DebBundle\Entity\GpgKey
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\GpgKeyRepository")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\GpgKeyRepository")
  * @ExclusionPolicy("all")
  */
 class GpgKey

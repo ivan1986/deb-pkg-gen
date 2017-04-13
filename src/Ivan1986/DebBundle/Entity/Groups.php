@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Ivan1986\DebBundle\Entity\Groups
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\GroupsRepository")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\GroupsRepository")
  */
 class Groups extends GroupUser
 {
