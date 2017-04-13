@@ -69,6 +69,7 @@
   },
   "require-dev": {
     "sensio/generator-bundle": "^3.0",
+    "friendsofphp/php-cs-fixer": "~2.1",
     "symfony/phpunit-bridge": "^3",
     "codeception/codeception": "~2.2",
     "codeception/c3": "~2",

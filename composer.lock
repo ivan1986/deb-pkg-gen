@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f35c37efc5d46d8aae15969e2f8d634a",
-    "content-hash": "eee0bc41ecae71561e594258fc5718d7",
+    "hash": "3a33de2302f7516e0bb5385518f43e3d",
+    "content-hash": "9ff2ad282fb92b49d3157d311184da40",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3854,12 +3854,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "5c3bdb3b2ae1bea18faadd6963fe754f9652ebba"
+                "reference": "24cec8a401148773f9c7d95e86faa1dd8b64a05e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/5c3bdb3b2ae1bea18faadd6963fe754f9652ebba",
-                "reference": "5c3bdb3b2ae1bea18faadd6963fe754f9652ebba",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/24cec8a401148773f9c7d95e86faa1dd8b64a05e",
+                "reference": "24cec8a401148773f9c7d95e86faa1dd8b64a05e",
                 "shasum": ""
             },
             "require": {
@@ -3945,7 +3945,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2017-04-12 19:58:47"
+            "time": "2017-04-13 15:24:35"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -5248,12 +5248,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "8e4e741a8f60cf2265d83687880e764f15b6ee9f"
+                "reference": "64b715bb255b40480305bc92e2ec836290322a9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/8e4e741a8f60cf2265d83687880e764f15b6ee9f",
-                "reference": "8e4e741a8f60cf2265d83687880e764f15b6ee9f",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/64b715bb255b40480305bc92e2ec836290322a9e",
+                "reference": "64b715bb255b40480305bc92e2ec836290322a9e",
                 "shasum": ""
             },
             "require": {
@@ -5394,7 +5394,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-04-13 11:49:54"
+            "time": "2017-04-13 15:01:38"
         },
         {
             "name": "twbs/bootstrap-sass",
@@ -6314,31 +6314,63 @@
             "time": "2017-03-22 10:56:03"
         },
         {
-            "name": "fitbug/symfony-yaml-serializer-encoder-decoder",
-            "version": "v0.1.1",
+            "name": "friendsofphp/php-cs-fixer",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fitbug/symfony-yaml-serializer-encoder-decoder.git",
-                "reference": "de3279ae69a80ddcef2559dbdb89a72f33caf5b1"
+                "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
+                "reference": "eb54981b77cdfea93621e7c311f8a8e6fd979713"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fitbug/symfony-yaml-serializer-encoder-decoder/zipball/de3279ae69a80ddcef2559dbdb89a72f33caf5b1",
-                "reference": "de3279ae69a80ddcef2559dbdb89a72f33caf5b1",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/eb54981b77cdfea93621e7c311f8a8e6fd979713",
+                "reference": "eb54981b77cdfea93621e7c311f8a8e6fd979713",
                 "shasum": ""
             },
             "require": {
-                "symfony/serializer": "^v2.0.0 || ^3.0.0",
-                "symfony/yaml": "^v2.0.0 || ^3.0.0"
+                "doctrine/annotations": "^1.2",
+                "ext-tokenizer": "*",
+                "php": "^5.3.6 || >=7.0 <7.2",
+                "sebastian/diff": "^1.1",
+                "symfony/console": "^2.4 || ^3.0",
+                "symfony/event-dispatcher": "^2.1 || ^3.0",
+                "symfony/filesystem": "^2.4 || ^3.0",
+                "symfony/finder": "^2.2 || ^3.0",
+                "symfony/options-resolver": "^2.6 || ^3.0",
+                "symfony/polyfill-php54": "^1.0",
+                "symfony/polyfill-php55": "^1.3",
+                "symfony/polyfill-php70": "^1.0",
+                "symfony/polyfill-xml": "^1.3",
+                "symfony/process": "^2.3 || ^3.0",
+                "symfony/stopwatch": "^2.5 || ^3.0"
+            },
+            "conflict": {
+                "hhvm": "<3.18"
             },
             "require-dev": {
-                "phpspec/phpspec": "^2.0.0 || ^3.0.0",
-                "squizlabs/php_codesniffer": "^2.6"
+                "gecko-packages/gecko-php-unit": "^2.0",
+                "justinrainbow/json-schema": "^5.0",
+                "phpunit/phpunit": "^4.5 || ^5.0",
+                "satooshi/php-coveralls": "^1.0",
+                "symfony/phpunit-bridge": "^3.2.2"
             },
-            "type": "library",
+            "suggest": {
+                "ext-mbstring": "For handling non-UTF8 characters in cache signature.",
+                "ext-xml": "For better performance.",
+                "symfony/polyfill-mbstring": "When enabling `ext-mbstring` is not possible."
+            },
+            "bin": [
+                "php-cs-fixer"
+            ],
+            "type": "application",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
-                    "Fitbug\\SymfonySerializer\\YamlEncoderDecoder\\": "src/"
+                    "PhpCsFixer\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6347,19 +6379,58 @@
             ],
             "authors": [
                 {
-                    "name": "Billie Thompson",
-                    "email": "billie.thompson@fitbug.com"
+                    "name": "Dariusz Rumiński",
+                    "email": "dariusz.ruminski@gmail.com"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 }
             ],
-            "description": "A encoder and decoder for Yaml for the Symfony Serializer Component.",
-            "keywords": [
-                "encoder",
-                "serializer",
-                "symfony",
-                "symfony-serializer",
-                "yaml"
+            "description": "A tool to automatically fix PHP code style",
+            "time": "2017-04-11 20:00:20"
+        },
+        {
+            "name": "ircmaxell/password-compat",
+            "version": "1.0.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ircmaxell/password_compat.git",
+                "reference": "9b99377557a33a4129c9194e60a97a685fab21e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/9b99377557a33a4129c9194e60a97a685fab21e0",
+                "reference": "9b99377557a33a4129c9194e60a97a685fab21e0",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/password.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
             ],
-            "time": "2016-08-12 14:15:24"
+            "authors": [
+                {
+                    "name": "Anthony Ferrara",
+                    "email": "ircmaxell@php.net",
+                    "homepage": "http://blog.ircmaxell.com"
+                }
+            ],
+            "description": "A compatibility library for the proposed simplified password hashing algorithm: https://wiki.php.net/rfc/password_hash",
+            "homepage": "https://github.com/ircmaxell/password_compat",
+            "keywords": [
+                "hashing",
+                "password"
+            ],
+            "time": "2014-11-20 19:18:42"
         },
         {
             "name": "ivan1986/dev-container",
@@ -6475,37 +6546,36 @@
         },
         {
             "name": "jane/open-api",
-            "version": "v1.3.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/janephp/openapi.git",
-                "reference": "4146c2d837669907695107be9cb0ffae529c176e"
+                "reference": "189aafaec2b2ff1ef1519c8d6a2f09ac4b85d4e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/janephp/openapi/zipball/4146c2d837669907695107be9cb0ffae529c176e",
-                "reference": "4146c2d837669907695107be9cb0ffae529c176e",
+                "url": "https://api.github.com/repos/janephp/openapi/zipball/189aafaec2b2ff1ef1519c8d6a2f09ac4b85d4e9",
+                "reference": "189aafaec2b2ff1ef1519c8d6a2f09ac4b85d4e9",
                 "shasum": ""
             },
             "require": {
                 "doctrine/inflector": "^1.0",
-                "fitbug/symfony-yaml-serializer-encoder-decoder": "^0.1.1",
-                "jane/jane": "^1.5",
-                "jane/openapi-runtime": "^1.0",
+                "jane/jane": "^1.2.0",
                 "nikic/php-parser": "^1.4|^2.0",
+                "php-http/httplug": "^1.0",
+                "php-http/message-factory": "^1.0",
                 "symfony/console": "^2.3|^3.0",
-                "symfony/yaml": "^2.8.2 | ^3.0"
+                "symfony/options-resolver": "^2.7|^3.0"
             },
             "conflict": {
-                "friendsofphp/php-cs-fixer": "<2.0.0-alpha|>2.0.0-alpha"
+                "fabpot/php-cs-fixer": "<2.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "v2.0.0-alpha",
-                "phpunit/phpunit": "^4.7",
-                "sllh/php-cs-fixer-styleci-bridge": "^2.1"
+                "fabpot/php-cs-fixer": "^2.0@dev",
+                "phpunit/phpunit": "^4.7"
             },
             "suggest": {
-                "friendsofphp/php-cs-fixer": "To have a nice formatting of the generated files"
+                "fabpot/php-cs-fixer": "To have a nice formatting of the generated files"
             },
             "bin": [
                 "bin/jane-openapi"
@@ -6539,50 +6609,7 @@
                 "openapi",
                 "swagger"
             ],
-            "time": "2016-09-08 13:14:02"
-        },
-        {
-            "name": "jane/openapi-runtime",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/janephp/openapi-runtime.git",
-                "reference": "1ee03abfa7d6ed00e4b025b20bdb220ea15770e9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/janephp/openapi-runtime/zipball/1ee03abfa7d6ed00e4b025b20bdb220ea15770e9",
-                "reference": "1ee03abfa7d6ed00e4b025b20bdb220ea15770e9",
-                "shasum": ""
-            },
-            "require": {
-                "jane/runtime": "^1.0",
-                "php-http/client-common": "^1.1",
-                "php-http/httplug": "^1.0",
-                "php-http/message-factory": "^1.0.2",
-                "symfony/options-resolver": "^2.7|^3.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.7|^5.5"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Joli\\Jane\\OpenApi\\Runtime\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Joel Wurtz",
-                    "email": "jwurtz@jolicode.com"
-                }
-            ],
-            "description": "Jane OpenAPI Runtime Library, dependencies and utility class for a library generated by jane/openapi",
-            "time": "2016-09-01 15:57:08"
+            "time": "2016-04-13 19:16:20"
         },
         {
             "name": "jane/runtime",
@@ -8457,6 +8484,178 @@
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
             "time": "2017-04-12 14:14:56"
+        },
+        {
+            "name": "symfony/polyfill-php54",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php54.git",
+                "reference": "90e085822963fdcc9d1c5b73deb3d2e5783b16a0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php54/zipball/90e085822963fdcc9d1c5b73deb3d2e5783b16a0",
+                "reference": "90e085822963fdcc9d1c5b73deb3d2e5783b16a0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php54\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ],
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 5.4+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2016-11-14 01:06:16"
+        },
+        {
+            "name": "symfony/polyfill-php55",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php55.git",
+                "reference": "03e3f0350bca2220e3623a0e340eef194405fc67"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php55/zipball/03e3f0350bca2220e3623a0e340eef194405fc67",
+                "reference": "03e3f0350bca2220e3623a0e340eef194405fc67",
+                "shasum": ""
+            },
+            "require": {
+                "ircmaxell/password-compat": "~1.0",
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php55\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 5.5+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2016-11-14 01:06:16"
+        },
+        {
+            "name": "symfony/polyfill-xml",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-xml.git",
+                "reference": "64b6a864f18ab4fddad49f5025f805f6781dfabd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-xml/zipball/64b6a864f18ab4fddad49f5025f805f6781dfabd",
+                "reference": "64b6a864f18ab4fddad49f5025f805f6781dfabd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "ext-xml": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Xml\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for xml's utf8_encode and utf8_decode functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2016-11-14 01:06:16"
         },
         {
             "name": "webmozart/assert",
