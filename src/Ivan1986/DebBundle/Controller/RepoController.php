@@ -38,7 +38,7 @@ class RepoController extends Controller
      * @Route("/dists/{name}/main/{arch}/Packages", name="Packages")
      * @Template()
      */
-    public function PackagesAction($name, $arch)
+    public function packagesAction($name, $arch)
     {
         $key = 'repo_Packages_'.$name;
         $list = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
@@ -57,7 +57,7 @@ class RepoController extends Controller
      * @Route("/dists/{name}/Release", name="Release")
      * @Template()
      */
-    public function ReleaseAction($name)
+    public function releaseAction($name)
     {
         $key = 'repo_Release_'.$name;
         $Release = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
@@ -77,7 +77,7 @@ class RepoController extends Controller
      * @Route("/dists/{name}/Release.gpg", name="ReleaseGpg")
      * @Template()
      */
-    public function ReleaseGpgAction($name)
+    public function releaseGpgAction($name)
     {
         $key = 'repo_ReleaseGpg_'.$name;
         $ReleaseGpg = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
@@ -104,7 +104,7 @@ class RepoController extends Controller
      * @Route("/dists/{name}/InRelease", name="InRelease")
      * @Template()
      */
-    public function InReleaseAction($name)
+    public function inReleaseAction($name)
     {
         $key = 'repo_InRelease_'.$name;
         $InRelease = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
@@ -195,7 +195,7 @@ class RepoController extends Controller
      * @Route("/pool/{name}", name="Package")
      * @Template()
      */
-    public function PoolAction($name)
+    public function poolAction($name)
     {
         $pkgs = $this->getDoctrine()->getRepository('Ivan1986DebBundle:Package');
         /** @var $pkgs PackageRepository */
