@@ -2,6 +2,7 @@
     "name": "ivan1986/deb-pkg",
     "license": "MIT",
     "type": "project",
+    "description": "Generate deb packages for repository",
     "autoload": {
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
