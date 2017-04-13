@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: services.yml }
 
 framework:
     #esi:             ~
@@ -121,3 +120,7 @@ jms_serializer:
 nelmio_api_doc:
     sandbox:
         endpoint: http://%host%
+
+services:
+    fos_user.entity_manager:
+        alias: fos_user.object_manager

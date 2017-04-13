@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Ivan1986\DebBundle\Form\RepositoryType;
+use Ivan1986\DebBundle\Form\Type\RepositoryType;
 use Ivan1986\DebBundle\Util\Builder;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;

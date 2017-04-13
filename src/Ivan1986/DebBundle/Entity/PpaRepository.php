@@ -5,7 +5,7 @@ namespace Ivan1986\DebBundle\Entity;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping as ORM;
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
-use Ivan1986\DebBundle\Form\PpaRepositoryType;
+use Ivan1986\DebBundle\Form\Type\PpaRepositoryType;
 use Ivan1986\DebBundle\Model\DistList;
 use Ivan1986\DebBundle\Model\GpgLoader;
 use Ivan1986\DebBundle\Util\Builder;

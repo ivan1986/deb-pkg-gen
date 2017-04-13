@@ -1,6 +1,6 @@
 <?php
 
-namespace Ivan1986\DebBundle\Form;
+namespace Ivan1986\DebBundle\Form\Type;
 
 use JMS\DiExtraBundle\Annotation\FormType;
 use Symfony\Component\Form\AbstractType;

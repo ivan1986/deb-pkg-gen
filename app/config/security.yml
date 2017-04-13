@@ -83,10 +83,12 @@ fos_user:
     user_class: Ivan1986\DebBundle\Entity\User
     group:
       group_class: Ivan1986\DebBundle\Entity\Group
+    registration:  # Authentication Form
+      form:
+        name:               fos_user_registration_form
     profile:  # Authentication Form
       form:
         type:               fos_user_profile
-#        handler:            fos_user.profile.form.handler.default
         name:               fos_user_profile_form
         validation_groups:  [Authentication]
     from_email:
