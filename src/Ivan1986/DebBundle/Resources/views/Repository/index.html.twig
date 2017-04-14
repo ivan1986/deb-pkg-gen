@@ -1,17 +1,10 @@
 {% extends 'Ivan1986DebBundle::layout.html.twig' %}
-{% block title %}{% if all %}{% trans %}Список репозиториев в системе{% endtrans %}
-{% else %}{% trans %}Список добавленных вами репозиториев{% endtrans %}{% endif %}{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block fos_user_content %}
 
-<div class="page-header">
-    {% if all %}
-    <h1>{% trans %}Список всех репозиториев{% endtrans %}</h1>
-    {% else %}
-    <h1>{% trans %}Список добавленных вами репозиториев{% endtrans %}</h1>
-    {% endif %}
-</div>
+<div class="page-header"><h1>{{ header }}</h1></div>
 
-<form class="well form-inline" method="get" action="{{ path('repos', {'my': 'all'}) }}">
+<form class="well form-inline" method="get" action="{{ path('repos', {'my': my}) }}">
     <input type="search" name="search" class="form-control col-sm-5" placeholder="{% trans %}Искать...{% endtrans %}">
     <button type="submit" class="btn">{% trans %}Поиск{% endtrans %}</button>
 </form>
@@ -63,11 +56,7 @@
     <p>
     <a class="btn btn-primary" href="{{ path('repos_new') }}">{% trans %}Добавить новый репозиторий{% endtrans %}</a>
     <a class="btn btn-primary" href="{{ path('repos_new_ppa') }}">{% trans %}Добавить новый PPA репозиторий{% endtrans %}</a>
-    {% if all %}
-    <a class="btn right" href="{{ path('repos', {'my': 'my'}) }}">{% trans %}ваши{% endtrans %}</a>
-    {% else %}
-    <a class="btn right" href="{{ path('repos', {'my': 'all'}) }}">{% trans %}все{% endtrans %}</a>
-    {% endif %}
+    <a class="btn right" href="{{ path('repos', {'my': switch}) }}">{{ switchName }}</a>
     </p>
 {% endif %}
 {% endblock %}

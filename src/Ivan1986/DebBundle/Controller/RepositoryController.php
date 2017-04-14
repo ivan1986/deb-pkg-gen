@@ -65,8 +65,17 @@ class RepositoryController extends Controller
         }
 
         return [
-            'all' => $my != 'my',
-            'router' => $this->get('router'),
+            'my' => $my,
+            'header' => $this->get('translator')->trans(
+                $my ? 'Список добавленных вами репозиториев' : 'Список всех репозиториев'
+            ),
+            'title' => $this->get('translator')->trans(
+                $my ? 'Список добавленных вами репозиториев' : 'Список репозиториев в системе'
+            ),
+            'switch' => $my == 'all' ? 'my' : 'all',
+            'switchName' => $this->get('translator')->trans(
+                $my ? 'все' : 'ваши'
+            ),
             'pagerfanta' => $pagerfanta,
         ];
     }

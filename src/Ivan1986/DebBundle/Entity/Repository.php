@@ -390,7 +390,7 @@ class Repository
     public function getPackagesWithLinks()
     {
         foreach ($this->packages as $pkg) {
-            yield $pkg->getName() => $pkg->getName();
+            yield $pkg->getName() => $pkg;
         }
     }
 }
