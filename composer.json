@@ -2,6 +2,7 @@
   "name": "ivan1986/deb-pkg",
   "license": "MIT",
   "type": "project",
+  "prefer-stable": true,
   "description": "Generate deb packages for repository",
   "autoload": {
     "psr-4": {
@@ -50,6 +51,7 @@
     "sonata-project/easy-extends-bundle": "~2.1",
     "sonata-project/user-bundle": "dev-feature/fos_user_2",
     "sonata-project/exporter": "~1.7",
+    "sonata-project/core-bundle": "3.x-dev",
     "stof/doctrine-extensions-bundle": "~1.2",
     "symfony/assetic-bundle": "~2.8",
     "symfony/monolog-bundle": "~3.0",
