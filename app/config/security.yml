@@ -94,14 +94,3 @@ fos_user:
     from_email:
       address: noreplay@ivan1986.tk
       sender_name: No Replay
-
-sonata_user:
-    security_acl:     false
-    class:
-        user:         Ivan1986\DebBundle\Entity\User
-        group:        Ivan1986\DebBundle\Entity\Groups
-
-doctrine:
-    dbal:
-        types:
-            json: Sonata\Doctrine\Types\JsonType

@@ -124,3 +124,14 @@ nelmio_api_doc:
 services:
     fos_user.entity_manager:
         alias: fos_user.object_manager
+
+sonata_user:
+    security_acl:     false
+    class:
+        user:         Ivan1986\DebBundle\Entity\User
+        group:        Ivan1986\DebBundle\Entity\Groups
+
+doctrine:
+    dbal:
+        types:
+            json: Sonata\Doctrine\Types\JsonType
