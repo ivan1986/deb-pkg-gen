@@ -3,6 +3,8 @@
 namespace Ivan1986\DebBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Ivan1986\DebBundle\Entity\Package;
+use Ivan1986\DebBundle\Entity\User;
 
 /**
  * PackageRepository.
@@ -60,7 +62,7 @@ class PackageRepository extends EntityRepository
     /**
      * Получить по ID с проверкой пользователя.
      *
-     * @param $id ID репозитория
+     * @param integer $id ID репозитория
      * @param User $user пользователь
      *
      * @return object
