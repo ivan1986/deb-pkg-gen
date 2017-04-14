@@ -387,17 +387,10 @@ class Repository
         return 'standart';
     }
 
-    public function getForApt()
+    public function getPackagesWithLinks()
     {
         foreach ($this->packages as $pkg) {
-            return '<a href="apt:'.$pkg->getName().'">'.$pkg->getName().'</a>';
-        }
-    }
-
-    public function getLinks($router)
-    {
-        foreach ($this->packages as $pkg) {
-            return '<a href="'.$router->generate('Package', ['name' => $pkg->getFile()]).'">'.$pkg->getName().'</a>';
+            yield $pkg->getName() => $pkg->getName();
         }
     }
 }
