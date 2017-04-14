@@ -1,7 +1,5 @@
 <?php
 
-// src/Acme/DemoBundle/Menu/Builder.php
-
 namespace Ivan1986\DebBundle\Menu;
 
 use Ivan1986\DebBundle\Entity\User;
@@ -32,17 +30,7 @@ class Main implements ContainerAwareInterface
                 'routeParameters' => ['my' => 'my'],
             ]);
         }
-        /*
-        $menu->addChild($translator->trans('Все пакеты'), array(
-                'route' => 'packages',
-                'routeParameters' => array('my' => 'all')
-            ));
-        if ($auth) $menu->addChild($translator->trans('Мои пакеты'), array(
-                'route' => 'packages',
-                'routeParameters' => array('my' => 'my')
-            ));
-        */
-        // ... add more children
+
         $menu->addChild($translator->trans('API'), [
                 'route' => 'nelmio_api_doc_index',
             ]);

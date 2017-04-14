@@ -46,7 +46,7 @@ class PpaCommand extends ContainerAwareCommand
                 continue;
             }
             $repo->setDistrs($distList->update($dists));
-            $doctrine->getManager()->flush();
+            $doctrine->getManager()->flush($repo);
         }
     }
 

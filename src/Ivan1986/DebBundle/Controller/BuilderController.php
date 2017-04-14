@@ -2,7 +2,6 @@
 
 namespace Ivan1986\DebBundle\Controller;
 
-use Ivan1986\DebBundle\Entity\Package;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Model\GpgLoader;
 use Ivan1986\DebBundle\Util\Builder;
@@ -13,14 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BuilderController extends Controller
 {
-    /** @var string Путь до пакетов */
-    private $path;
-
-    public function __construct()
-    {
-        $this->path = dirname(__DIR__).'/package';
-    }
-
     /**
      * @Route("/pkg/", name="pkg_build")
      * @Template()
