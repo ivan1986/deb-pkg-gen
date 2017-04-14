@@ -5,6 +5,7 @@ namespace Ivan1986\DebBundle\Controller;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Model\GpgLoader;
 use Ivan1986\DebBundle\Util\Builder;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -14,6 +15,7 @@ class BuilderController extends Controller
 {
     /**
      * @Route("/pkg/", name="pkg_build")
+     * @Method({"GET", "POST"})
      * @Template()
      */
     public function indexAction(Request $r)

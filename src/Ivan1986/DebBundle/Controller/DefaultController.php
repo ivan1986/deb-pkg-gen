@@ -2,8 +2,9 @@
 
 namespace Ivan1986\DebBundle\Controller;
 
-use Ivan1986\DebBundle\Entity\PackageRepository;
+use Ivan1986\DebBundle\Repository\PackageRepository;
 use Ivan1986\DebBundle\Entity\SysPackage;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,6 +14,7 @@ class DefaultController extends Controller
 {
     /**
      * @Route("/", name="home")
+     * @Method("GET")
      * @Template()
      */
     public function indexAction()
@@ -22,6 +24,7 @@ class DefaultController extends Controller
 
     /**
      * @Route("/repo-self.deb", name="main_repo")
+     * @Method("GET")
      */
     public function mainPackageAction()
     {

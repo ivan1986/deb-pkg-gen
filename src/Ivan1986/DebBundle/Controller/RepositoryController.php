@@ -38,6 +38,7 @@ class RepositoryController extends Controller
      *
      * @Route("/{my}/{page}", name="repos", requirements={"my" = "my|all", "page" = "\d+"},
      *  defaults={"page" = 1, "my"="my"})
+     * @Method("GET")
      * @Template()
      */
     public function indexAction($my, $page, Request $r)
@@ -84,6 +85,7 @@ class RepositoryController extends Controller
      * Displays a form to create a new Repository entity.
      *
      * @Route("/new", name="repos_new")
+     * @Method({"GET", "POST"})
      * @Template()
      */
     public function newAction(Request $r)
@@ -112,6 +114,7 @@ class RepositoryController extends Controller
      * Displays a form to create a new Repository entity.
      *
      * @Route("/new_ppa", name="repos_new_ppa")
+     * @Method({"GET", "POST"})
      * @Template("Ivan1986DebBundle:Repository:new.html.twig")
      */
     public function newPpaAction(Request $r)
@@ -140,6 +143,7 @@ class RepositoryController extends Controller
      * Displays a form to edit an existing Repository entity.
      *
      * @Route("/{id}/edit", name="repos_edit")
+     * @Method({"GET", "POST"})
      * @Template()
      */
     public function editAction($id, Request $r)

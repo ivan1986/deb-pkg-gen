@@ -3,11 +3,6 @@ Ivan1986DebBundle:
     type:     annotation
     prefix:   /
 
-# Internal routing configuration to handle ESI
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal
-
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin

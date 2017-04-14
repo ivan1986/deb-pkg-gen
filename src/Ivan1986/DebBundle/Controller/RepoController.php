@@ -4,6 +4,7 @@ namespace Ivan1986\DebBundle\Controller;
 
 use Ivan1986\DebBundle\Entity\Package;
 use Ivan1986\DebBundle\Entity\PackageRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,7 +20,7 @@ class RepoController extends Controller
 {
     /**
      * @Route("/", name="repo")
-     * @Template()
+     * @Method("GET")
      */
     public function indexAction()
     {
@@ -28,7 +29,7 @@ class RepoController extends Controller
 
     /**
      * @Route("/dists/{name}/main/{arch}/Packages", name="Packages")
-     * @Template()
+     * @Method("GET")
      */
     public function packagesAction($name, $arch)
     {
@@ -47,7 +48,7 @@ class RepoController extends Controller
 
     /**
      * @Route("/dists/{name}/Release", name="Release")
-     * @Template()
+     * @Method("GET")
      */
     public function releaseAction($name)
     {
@@ -67,7 +68,7 @@ class RepoController extends Controller
 
     /**
      * @Route("/dists/{name}/Release.gpg", name="ReleaseGpg")
-     * @Template()
+     * @Method("GET")
      */
     public function releaseGpgAction($name)
     {
@@ -94,7 +95,7 @@ class RepoController extends Controller
 
     /**
      * @Route("/dists/{name}/InRelease", name="InRelease")
-     * @Template()
+     * @Method("GET")
      */
     public function inReleaseAction($name)
     {
@@ -192,7 +193,7 @@ class RepoController extends Controller
 
     /**
      * @Route("/pool/{name}", name="Package")
-     * @Template()
+     * @Method("GET")
      */
     public function poolAction($name)
     {
