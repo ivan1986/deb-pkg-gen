@@ -56,6 +56,8 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
@@ -131,8 +133,3 @@ sonata_user:
     class:
         user:         Ivan1986\DebBundle\Entity\User
         group:        Ivan1986\DebBundle\Entity\Groups
-
-doctrine:
-    dbal:
-        types:
-            json: Sonata\Doctrine\Types\JsonType

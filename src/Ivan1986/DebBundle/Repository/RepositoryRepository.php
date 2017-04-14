@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Ivan1986\DebBundle\Entity\User;
 
 /**
  * RepositoryRepository.

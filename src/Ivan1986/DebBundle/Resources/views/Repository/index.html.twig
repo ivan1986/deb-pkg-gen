@@ -35,8 +35,10 @@
             <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.bin ? 'yes' : 'no')~'.png') }}" alt="{{ entity.bin ? 'yes' : 'no' }}" /></td>
             <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.src ? 'yes' : 'no')~'.png') }}" alt="{{ entity.src ? 'yes' : 'no' }}" /></td>
             <td>{{ entity.name }}</td>
-            <td>{{ entity.getForApt|raw }}<br />
-            {{ entity.getLinks(router)|raw }}</td>
+            <td>
+                {{ entity.getForApt|raw }}<br />
+            {{ entity.getLinks(router)|raw }}
+            </td>
             <td>
                 {% if app.user and entity.owner.id == app.user.id %}
                     <a href="{{ path('repos_edit', { 'id': entity.id }) }}">{% trans %}редактировать{% endtrans %}</a>

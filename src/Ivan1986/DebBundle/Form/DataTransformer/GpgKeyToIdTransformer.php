@@ -49,9 +49,9 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      *
      * @param GpgKey $value The value in the original representation
      *
-     * @return string The value in the transformed representation
-     *
      * @throws TransformationFailedException when the transformation fails
+     *
+     * @return string The value in the transformed representation
      */
     public function transform($value)
     {
@@ -81,9 +81,9 @@ class GpgKeyToIdTransformer implements DataTransformerInterface
      *
      * @param string $value The value in the transformed representation
      *
-     * @return GpgKey The value in the original representation
-     *
      * @throws TransformationFailedException when the transformation fails
+     *
+     * @return GpgKey The value in the original representation
      */
     public function reverseTransform($value)
     {

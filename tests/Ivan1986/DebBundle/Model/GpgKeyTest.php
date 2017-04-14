@@ -3,6 +3,7 @@
 namespace Tests\Ivan1986\DebBundle\Model;
 
 use Ivan1986\DebBundle\Entity\GpgKey;
+use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 use Ivan1986\DebBundle\Model\GpgLoader;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -18,11 +19,9 @@ class GpgKeyTest extends WebTestCase
         $this->assertTrue(strpos($key->getData(), 'Ivan Borzenkov <ivan1986@list.ru>') > 0);
     }
 
-    /**
-     * @expectedException \Ivan1986\DebBundle\Exception\GpgNotFoundException
-     */
     public function testGetNotExistKey()
     {
+        $this->expectException(GpgNotFoundException::class);
         $id = 'ffffff';
         $key = GpgLoader::getFromServer($id, 'keyserver.ubuntu.com');
     }

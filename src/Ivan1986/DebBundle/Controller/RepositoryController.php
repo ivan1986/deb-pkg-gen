@@ -179,9 +179,9 @@ class RepositoryController extends Controller
      *
      * @param $id
      *
-     * @return Repository
-     *
      * @throws NotFoundHttpException
+     *
+     * @return Repository
      */
     private function getByID($id)
     {

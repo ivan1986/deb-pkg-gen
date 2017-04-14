@@ -13,9 +13,9 @@ class GpgLoader
      * @param string $keyId      ID ключа в шеснадцатиричном формате без начального 0x
      * @param string $serverName адрес сервера
      *
-     * @return GpgKey
-     *
      * @throws \Ivan1986\DebBundle\Exception\GpgNotFoundException
+     *
+     * @return GpgKey
      */
     public static function getFromServer($keyId, $serverName)
     {
