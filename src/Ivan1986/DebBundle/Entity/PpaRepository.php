@@ -49,21 +49,16 @@ class PpaRepository extends Repository
 
     public function getDebStrings()
     {
-        if ($this->status == 'all') {
-            $strings = '';
-            foreach ($this->distrs->all as $dist) {
-                $str = $this->getPpaUrl().' '.($dist).' main';
-                $strings .= ($this->bin ? ('deb '.$str."\n") : '').
-                            ($this->src ? ('deb-src '.$str."\n") : '');
-            }
-
-            return $strings;
+        $strings = [];
+        foreach ($this->getDistrs()[$this->status] as $dist) {
+            $str = $this->getPpaUrl().' '.($dist).' main';
+            if ($this->bin)
+                $strings[] = 'deb '.$str;
+            if ($this->src)
+                $strings[] = 'deb src '.$str;
         }
-        $str = $this->getPpaUrl().' '.($this->distrs->{$this->status}).' main';
 
-        return
-            ($this->bin ? ('deb '.$str."\n") : '').
-            ($this->src ? ('deb-src '.$str."\n") : '');
+        return implode("\n", $strings);
     }
 
     public function pkgName()
@@ -73,10 +68,7 @@ class PpaRepository extends Repository
 
     public function buildPackages(Builder $builder, ObjectManager $manager)
     {
-        if (!$this->distrs) {
-            return false;
-        }
-        foreach (['lts', 'stable', 'testing', 'all'] as $v) {
+        foreach (array_keys($this->getDistrs()) as $v) {
             $this->status = $v;
             $res = parent::buildPackages($builder, $manager);
             if (!$res) {
@@ -182,14 +174,14 @@ class PpaRepository extends Repository
     }
 
     /**
-     * @var DistList Список дистрибутивов, соответствующих
+     * @var array|DistList Список дистрибутивов, соответствующих
      *
      * @ORM\Column(name="distrs", type="object")
      */
     protected $distrs;
 
     /**
-     * @param DistList $distrs
+     * @param array $distrs
      */
     public function setDistrs($distrs)
     {
@@ -197,11 +189,15 @@ class PpaRepository extends Repository
     }
 
     /**
-     * @return DistList
+     * @return array
      */
     public function getDistrs()
     {
-        return $this->distrs ? $this->distrs : new DistList();
+        if ($this->distrs instanceof DistList) {
+            return $this->distrs->convert();
+        }
+
+        return $this->distrs ?: [];
     }
 
     public function getType()

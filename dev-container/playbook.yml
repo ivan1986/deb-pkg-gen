@@ -12,4 +12,6 @@
       with_items:
           - php-gnupg
           - ruby-compass
+          - distro-info
+          - debhelper
 - hosts: all

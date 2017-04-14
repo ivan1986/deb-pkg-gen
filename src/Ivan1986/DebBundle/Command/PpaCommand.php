@@ -3,7 +3,8 @@
 namespace Ivan1986\DebBundle\Command;
 
 use Ivan1986\DebBundle\Entity\PpaRepository;
-use Ivan1986\DebBundle\Entity\RepositoryRepository;
+use Ivan1986\DebBundle\Repository\RepositoryRepository;
+use Ivan1986\DebBundle\Model\DistList;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -31,6 +32,7 @@ class PpaCommand extends ContainerAwareCommand
         /** @var $rrepo RepositoryRepository */
         $repos = $rrepo->getPpaForScan(!$input->getOption('update'));
         $this->curl = new \GuzzleHttp\Client(['http_errors' => false]);
+        $distList = new DistList();
         foreach ($repos as $repo) {
             /** @var $repo PpaRepository */
             $res = $this->curl->get($repo->getPpaUrl().'dists/');
@@ -43,11 +45,9 @@ class PpaCommand extends ContainerAwareCommand
             if (empty($dists)) {
                 continue;
             }
-            $distros = $repo->getDistrs();
-            /* @var $distros \Ivan1986\DebBundle\Model\DistList */
-            $repo->setDistrs($distros->update($dists, $this->getContainer()->getParameter('dists')));
+            $repo->setDistrs($distList->update($dists));
+            $doctrine->getManager()->flush();
         }
-        $doctrine->getManager()->flush();
     }
 
     protected function checkNotEmpty($base, $dists)

@@ -90,6 +90,7 @@ class Builder
         $p->setTimeout(600);
         $p->run();
         $exit = $p->getExitCode();
+
         if ($exit) {
             return false;
         }
