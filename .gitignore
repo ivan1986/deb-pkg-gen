@@ -23,6 +23,7 @@ composer.phar
 
 /*.log
 /.php_cs.cache
+/c3.php
 
 src/Ivan1986/DebBundle/apt/etc/sources.list
 src/Ivan1986/DebBundle/apt/etc/trusted.gpg.d/repo-self.gpg
