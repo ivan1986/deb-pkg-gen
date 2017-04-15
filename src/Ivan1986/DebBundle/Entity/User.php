@@ -2,19 +2,19 @@
 
 namespace Ivan1986\DebBundle\Entity;
 
-use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 
 /**
- * Ivan1986\DebBundle\Entity\User
+ * Ivan1986\DebBundle\Entity\User.
  *
  * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\UserRepository")
  */
 class User extends BaseUser
 {
     /**
-     * @var integer $id
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -22,15 +22,13 @@ class User extends BaseUser
      */
     protected $id;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
-
 }

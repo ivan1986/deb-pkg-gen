@@ -13,7 +13,7 @@ GPG ключ: GPG key
 Ошибка: Error
 Тот адрес который вас просят добавить в sources.list: The address that you are asked to add sources.list
 ID ключа можно обычно найти рядом с адресом репозитория: Key ID can usually be found near the address of the repository
-Совместимое с unix именем (a-z 0-9 и тире): Compatible with unix name (az 0-9 and dash)
+Совместимое с unix именем (a-z 0-9 и тире): Compatible with unix name (a-z 0-9 and dash)
 Сгенерировать deb-пакет: Generate deb-package
 Репозиторий репозиториев: Repository of Repositories
 Позволяет подключать сторонние репозитории путем установки пакетов: Allows you to connect third-party repository by installing the packages

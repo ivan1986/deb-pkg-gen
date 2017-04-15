@@ -2,20 +2,20 @@
 
 namespace Ivan1986\DebBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\QueryBuilder;
+use Ivan1986\DebBundle\Entity\PpaRepository;
+use Ivan1986\DebBundle\Entity\Repository;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Exception\NotValidCurrentPageException;
 use Pagerfanta\Pagerfanta;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\QueryBuilder;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Ivan1986\DebBundle\Entity\Repository;
-use Ivan1986\DebBundle\Entity\PpaRepository;
 
 /**
  * Repository controller.
@@ -38,6 +38,7 @@ class RepositoryController extends Controller
      *
      * @Route("/{my}/{page}", name="repos", requirements={"my" = "my|all", "page" = "\d+"},
      *  defaults={"page" = 1, "my"="my"})
+     * @Method("GET")
      * @Template()
      */
     public function indexAction($my, $page, Request $r)
@@ -48,11 +49,12 @@ class RepositoryController extends Controller
             ->leftJoin('r.packages', 'p')
             ->select('r, p')
         ;
-        /** @var $query QueryBuilder */
-        if ($search)
+        /* @var $query QueryBuilder */
+        if ($search) {
             $query->andWhere($query->expr()->orX(
                 $query->expr()->like('r.name', '?1'),
                 $query->expr()->like('r.repoString', '?1')))->setParameter(1, '%'.$search.'%');
+        }
 
         $adapter = new DoctrineORMAdapter($query);
         $pagerfanta = new Pagerfanta($adapter);
@@ -63,17 +65,27 @@ class RepositoryController extends Controller
             throw new NotFoundHttpException();
         }
 
-        return array(
-            'all' => $my != 'my',
-            'router' => $this->get('router'),
+        return [
+            'my' => $my,
+            'header' => $this->get('translator')->trans(
+                $my ? 'Список добавленных вами репозиториев' : 'Список всех репозиториев'
+            ),
+            'title' => $this->get('translator')->trans(
+                $my ? 'Список добавленных вами репозиториев' : 'Список репозиториев в системе'
+            ),
+            'switch' => $my == 'all' ? 'my' : 'all',
+            'switchName' => $this->get('translator')->trans(
+                $my ? 'все' : 'ваши'
+            ),
             'pagerfanta' => $pagerfanta,
-        );
+        ];
     }
 
     /**
      * Displays a form to create a new Repository entity.
      *
      * @Route("/new", name="repos_new")
+     * @Method({"GET", "POST"})
      * @Template()
      */
     public function newAction(Request $r)
@@ -91,24 +103,25 @@ class RepositoryController extends Controller
             return $this->redirect($this->generateUrl('repos'));
         }
 
-        return array(
+        return [
             'to' => 'repos_new',
             'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
      * Displays a form to create a new Repository entity.
      *
      * @Route("/new_ppa", name="repos_new_ppa")
+     * @Method({"GET", "POST"})
      * @Template("Ivan1986DebBundle:Repository:new.html.twig")
      */
     public function newPpaAction(Request $r)
     {
         $entity = new PpaRepository();
         $entity->setContainer($this->container);
-        $form   = $this->createForm($entity->getFormClass(), $entity);
+        $form = $this->createForm($entity->getFormClass(), $entity);
 
         $form->handleRequest($r);
         if ($form->isValid()) {
@@ -119,17 +132,18 @@ class RepositoryController extends Controller
             return $this->redirect($this->generateUrl('repos'));
         }
 
-        return array(
+        return [
             'to' => 'repos_new_ppa',
             'entity' => $entity,
-            'form'   => $form->createView(),
-        );
+            'form' => $form->createView(),
+        ];
     }
 
     /**
      * Displays a form to edit an existing Repository entity.
      *
      * @Route("/{id}/edit", name="repos_edit")
+     * @Method({"GET", "POST"})
      * @Template()
      */
     public function editAction($id, Request $r)
@@ -146,10 +160,10 @@ class RepositoryController extends Controller
             return $this->redirect($this->generateUrl('repos'));
         }
 
-        return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-        );
+        return [
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
+        ];
     }
 
     /**
@@ -161,11 +175,12 @@ class RepositoryController extends Controller
     public function deleteAction($id)
     {
         $entity = $this->getByID($id);
-        /** @var Repository $entity */
+        /* @var Repository $entity */
         $entity->setContainer($this->container);
         //удаляем пакеты этого репозитория
-        foreach($entity->getPackages() as $pkg)
+        foreach ($entity->getPackages() as $pkg) {
             $this->em->remove($pkg);
+        }
         $this->em->remove($entity);
         $this->em->flush();
 
@@ -173,11 +188,13 @@ class RepositoryController extends Controller
     }
 
     /**
-     * Получаем репозиторий по ID с проверкой пользователя
+     * Получаем репозиторий по ID с проверкой пользователя.
      *
      * @param $id
-     * @return Repository
+     *
      * @throws NotFoundHttpException
+     *
+     * @return Repository
      */
     private function getByID($id)
     {
@@ -187,7 +204,7 @@ class RepositoryController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Repository entity.');
         }
+
         return $entity;
     }
-
 }

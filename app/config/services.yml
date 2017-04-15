@@ -1,3 +1,0 @@
-services:
-    fos_user.entity_manager:
-        alias: fos_user.object_manager

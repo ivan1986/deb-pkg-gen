@@ -2,19 +2,19 @@
 
 namespace Ivan1986\DebBundle\Entity;
 
-use Sonata\UserBundle\Entity\BaseGroup as GroupUser;
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\UserBundle\Entity\BaseGroup as GroupUser;
 
 /**
- * Ivan1986\DebBundle\Entity\Groups
+ * Ivan1986\DebBundle\Entity\Groups.
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\GroupsRepository")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\GroupsRepository")
  */
 class Groups extends GroupUser
 {
     /**
-     * @var integer $id
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -22,11 +22,10 @@ class Groups extends GroupUser
      */
     protected $id;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {

@@ -15,5 +15,4 @@ class Entity extends WebTestCase
         $kernel->boot();
         $this->em = $kernel->getContainer()->get('doctrine.orm.entity_manager');
     }
-
 }

@@ -2,18 +2,16 @@
 
 namespace Tests\Ivan1986\DebBundle\Entity;
 
-use Ivan1986\DebBundle\Entity\RepositoryRepository;
 use Ivan1986\DebBundle\Entity\Repository;
 
 class RepositoryTest extends Entity
 {
-
     public static function providerPPA()
     {
-        return array(
-            array('deb http://ppa.launchpad.net/psi-plus/ppa/ubuntu oneiric main '),
-            array('deb-src http://ppa.launchpad.net/ivan1986/ppa/ubuntu precise main '),
-        );
+        return [
+            ['deb http://ppa.launchpad.net/psi-plus/ppa/ubuntu oneiric main '],
+            ['deb-src http://ppa.launchpad.net/ivan1986/ppa/ubuntu precise main '],
+        ];
     }
 
     /**
@@ -29,16 +27,16 @@ class RepositoryTest extends Entity
 
     public static function providerRepo()
     {
-        return array(
-            array('http://repo.ru/ sid main contrib non-free'),
-            array('deb http://repo.ru/ sid main contrib non-free'),
-            array('deb-src http://repo.ru/ sid main contrib non-free'),
+        return [
+            ['http://repo.ru/ sid main contrib non-free'],
+            ['deb http://repo.ru/ sid main contrib non-free'],
+            ['deb-src http://repo.ru/ sid main contrib non-free'],
 
             //тесты на пробелы
-            array(' deb   http://repo.ru/   sid   main '),
-            array('   deb http://repo.ru/   sid   main        '),
-            array('http://repo.ru/   sid   main', 'sid'),
-        );
+            [' deb   http://repo.ru/   sid   main '],
+            ['   deb http://repo.ru/   sid   main        '],
+            ['http://repo.ru/   sid   main', 'sid'],
+        ];
     }
 
     /**
@@ -54,15 +52,15 @@ class RepositoryTest extends Entity
     //<editor-fold defaultstate="collapsed" desc="Ошибки">
     public static function providerError()
     {
-        return array(
-            array(''),
-            array('deb'),
-            array('deb-src'),
-            array('http://repo.ru/'),
-            array('deb http://repo.ru/'),
-            array('deb-src http://repo.ru/'),
-            array('deb bla bla bla bla'),
-        );
+        return [
+            [''],
+            ['deb'],
+            ['deb-src'],
+            ['http://repo.ru/'],
+            ['deb http://repo.ru/'],
+            ['deb-src http://repo.ru/'],
+            ['deb bla bla bla bla'],
+        ];
     }
 
     /**
@@ -74,19 +72,20 @@ class RepositoryTest extends Entity
         $r->setRepoString($string);
         $this->assertFalse($r->isValidRepoString());
     }
+
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Простой старый репозиторий">
     public static function providerSimple()
     {
-        return array(
-            array('http://repo.ru/ ./'),
-            array('deb http://repo.ru/ ./'),
-            array('deb-src http://repo.ru/ ./'),
-            array('file:///home/ ./'),
-            array('deb file:///home/ ./'),
-            array('deb-src file:///home/ ./'),
-        );
+        return [
+            ['http://repo.ru/ ./'],
+            ['deb http://repo.ru/ ./'],
+            ['deb-src http://repo.ru/ ./'],
+            ['file:///home/ ./'],
+            ['deb file:///home/ ./'],
+            ['deb-src file:///home/ ./'],
+        ];
     }
 
     /**
@@ -98,6 +97,6 @@ class RepositoryTest extends Entity
         $r->setRepoString($string);
         $this->assertTrue($r->isValidRepoString());
     }
-    //</editor-fold>
 
+    //</editor-fold>
 }

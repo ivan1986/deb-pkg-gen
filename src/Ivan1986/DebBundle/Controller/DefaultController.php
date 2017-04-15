@@ -2,32 +2,29 @@
 
 namespace Ivan1986\DebBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Ivan1986\DebBundle\Repository\PackageRepository;
+use Ivan1986\DebBundle\Entity\SysPackage;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Response;
-use Ivan1986\DebBundle\Util\Builder;
-use Ivan1986\DebBundle\Entity\GpgKey;
-use Ivan1986\DebBundle\Entity\GpgKeyRepository;
-use Ivan1986\DebBundle\Entity\SysPackage;
-use Ivan1986\DebBundle\Entity\PackageRepository;
 
 class DefaultController extends Controller
 {
-
     /**
      * @Route("/", name="home")
+     * @Method("GET")
      * @Template()
      */
     public function indexAction()
     {
-        return array();
+        return [];
     }
 
     /**
      * @Route("/repo-self.deb", name="main_repo")
+     * @Method("GET")
      */
     public function mainPackageAction()
     {
@@ -40,18 +37,19 @@ class DefaultController extends Controller
         /** @var $pkgs PackageRepository */
         $pkg = $pkgs->getSystem();
         $p = false;
-        foreach($pkg as $p)
-        {
+        foreach ($pkg as $p) {
             /** @var $p SysPackage */
-            if (strpos($p->getFile(), $name) !== false)
+            if (strpos($p->getFile(), $name) !== false) {
                 break;
+            }
         }
         $pkg = $p;
         /** @var $pkg SysPackage */
-        if (!$pkg)
+        if (!$pkg) {
             throw new NotFoundHttpException();
+        }
         $this->get('ivan1986_deb.gapinger')->pingGA($GAname);
+
         return $pkg->getHttpResponse();
     }
-
 }

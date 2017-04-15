@@ -2,33 +2,18 @@
 
 namespace Ivan1986\DebBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Ivan1986\DebBundle\Entity\LinkPackage;
-use Ivan1986\DebBundle\Entity\PpaRepository;
-use Ivan1986\DebBundle\Form\RepositoryType;
-use Ivan1986\DebBundle\Form\LinkPackageType;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Ivan1986\DebBundle\Entity\Repository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Pagerfanta\Exception\NotValidCurrentPageException;
-use Pagerfanta\Pagerfanta;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-
-use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Controller\Annotations\Prefix,
-    FOS\RestBundle\Controller\Annotations\NamePrefix,
-    FOS\RestBundle\Controller\Annotations\View,
-    FOS\RestBundle\View\RouteRedirectView,
-    FOS\RestBundle\View\View AS FOSView,
-    FOS\RestBundle\Controller\Annotations\QueryParam,
-    FOS\RestBundle\Request\ParamFetcherInterface;
-
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\QueryBuilder;
+use FOS\RestBundle\Controller\Annotations\NamePrefix;
+use FOS\RestBundle\Controller\Annotations\Prefix;
+use FOS\RestBundle\Controller\FOSRestController;
+use Ivan1986\DebBundle\Entity\PpaRepository;
+use Ivan1986\DebBundle\Entity\Repository;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Prefix("api")
@@ -52,10 +37,11 @@ class ApiController extends FOSRestController
     private function addRepoSearch(Request $r, QueryBuilder $query)
     {
         $search = $r->query->get('search');
-        if ($search)
+        if ($search) {
             $query->andWhere($query->expr()->orX(
                     $query->expr()->like('r.name', '?1'),
                     $query->expr()->like('r.repoString', '?1')))->setParameter(1, '%'.$search.'%');
+        }
     }
 
     /**
@@ -69,10 +55,11 @@ class ApiController extends FOSRestController
     {
         $query = $this->em->getRepository('Ivan1986DebBundle:Repository')
             ->getAllQB();
-        /** @var $query QueryBuilder */
+        /* @var $query QueryBuilder */
         $this->addRepoSearch($r, $query);
         $count = $query->select($query->expr()->count('r'))->getQuery()->getSingleScalarResult();
-        $view = $this->view(array('count' => $count), 200);
+        $view = $this->view(['count' => $count], 200);
+
         return $this->handleView($view);
     }
 
@@ -89,7 +76,7 @@ class ApiController extends FOSRestController
     {
         $query = $this->em->getRepository('Ivan1986DebBundle:Repository')
             ->getAllQB();
-        /** @var $query QueryBuilder */
+        /* @var $query QueryBuilder */
         $this->addRepoSearch($r, $query);
         $query->join('r.key', 'k');
         $query->select('r, k');
@@ -97,9 +84,9 @@ class ApiController extends FOSRestController
         $query->setMaxResults($r->query->get('count', 10));
         $result = $query->getQuery()->getResult();
         $view = $this->view($result, 200);
+
         return $this->handleView($view);
     }
-
 
     /**
      * @ApiDoc(resource=true, description="Create new Standart Repository")
@@ -127,12 +114,13 @@ class ApiController extends FOSRestController
 
     private function processForm(Request $r, Repository $repo)
     {
-        if (!$repo)
+        if (!$repo) {
             throw new NotFoundHttpException();
+        }
         $statusCode = !$repo->getId() ? 201 : 204;
         $repo->setContainer($this->container);
 
-        $form = $this->createForm($repo->getFormClass(), $repo, array( 'csrf_protection'   => false, ));
+        $form = $this->createForm($repo->getFormClass(), $repo, ['csrf_protection' => false]);
         $form->handleRequest($r);
 
         if ($form->isValid()) {
@@ -140,10 +128,10 @@ class ApiController extends FOSRestController
             $this->em->persist($repo);
             $this->em->flush();
 
-            return $this->handleView($this->view(array('id' => $repo->getId()), $statusCode));
+            return $this->handleView($this->view(['id' => $repo->getId()], $statusCode));
         }
 
-        return $this->handleView($this->view(array($form->getName()=>$form), 400));
+        return $this->handleView($this->view([$form->getName() => $form], 400));
     }
 
     /**
@@ -153,17 +141,21 @@ class ApiController extends FOSRestController
      */
     public function deleteRepoAction(Repository $repo)
     {
-        if (!$repo)
+        if (!$repo) {
             throw new NotFoundHttpException();
-        if ($repo->getOwner() != $this->getUser())
+        }
+        if ($repo->getOwner() != $this->getUser()) {
             throw new AccessDeniedException();
-        /** @var Repository $entity */
+        }
+        /* @var Repository $entity */
         $repo->setContainer($this->container);
         //удаляем пакеты этого репозитория
-        foreach($repo->getPackages() as $pkg)
+        foreach ($repo->getPackages() as $pkg) {
             $this->em->remove($pkg);
+        }
         $this->em->remove($repo);
         $this->em->flush();
+
         return $this->handleView($this->view(null, 204));
     }
 }

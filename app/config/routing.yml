@@ -3,11 +3,6 @@ Ivan1986DebBundle:
     type:     annotation
     prefix:   /
 
-# Internal routing configuration to handle ESI
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal
-
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin
@@ -17,28 +12,17 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
-sonata_user:
+sonata_admin_security:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix: /admin
 
-sonata_user_security:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_2.xml"
+sonata_admin_reset:
+    resource: '@SonataUserBundle/Resources/config/routing/admin_resetting.xml'
+    prefix: /admin
 
-sonata_user_resetting:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_2.xml"
-    prefix: /resetting
-
-sonata_user_profile:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_2.xml"
-    prefix: /profile
-
-sonata_user_register:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_2.xml"
-    prefix: /register
-
-sonata_user_change_password:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_2.xml"
-    prefix: /profile
+fos_user:
+    resource: '@FOSUserBundle/Resources/config/routing/all.xml'
+    prefix: /
 
 api_repos:
     type:     rest

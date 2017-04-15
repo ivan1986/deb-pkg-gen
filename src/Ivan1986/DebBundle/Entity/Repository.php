@@ -2,24 +2,21 @@
 
 namespace Ivan1986\DebBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Persistence\ObjectManager;
-use Ivan1986\DebBundle\Util\Builder;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
-use Symfony\Component\Validator\Mapping\ClassMetadata;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Ivan1986\DebBundle\Entity\GpgKey;
-use Ivan1986\DebBundle\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Ivan1986\DebBundle\Form\Type\RepositoryType;
+use Ivan1986\DebBundle\Util\Builder;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Validator\Constraints as Assert;
-use Ivan1986\DebBundle\Form\RepositoryType;
 
 /**
- * Ivan1986\DebBundle\Entity\Repository
+ * Ivan1986\DebBundle\Entity\Repository.
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Entity\RepositoryRepository")
+ * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\RepositoryRepository")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="repoType", type="string")
  * @ORM\DiscriminatorMap({"standart" = "Repository", "ppa" = "PpaRepository"})
@@ -30,7 +27,7 @@ class Repository
     use ContainerAwareTrait;
 
     /**
-     * @var integer $id
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -39,9 +36,9 @@ class Repository
     protected $id;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -50,42 +47,44 @@ class Repository
 
     //<editor-fold defaultstate="collapsed" desc="Адрес репозитория">
     /**
-     * @var string $url Адрес репозитория
+     * @var string Адрес репозитория
      *
      * @ORM\Column(name="`repoString`", type="string")
      */
     protected $repoString;
 
     /**
-     * @var boolean $bin В репозитории есть бинарники
+     * @var bool В репозитории есть бинарники
      *
      * @ORM\Column(name="`bin`", type="boolean")
      */
     protected $bin = true;
 
     /**
-     * @var boolean $src В репозитории есть исходный код
+     * @var bool В репозитории есть исходный код
      *
      * @ORM\Column(name="`src`", type="boolean")
      */
     protected $src = true;
 
     /**
-     * Set bin
+     * Set bin.
      *
-     * @param boolean $bin
+     * @param bool $bin
+     *
      * @return Repository
      */
     public function setBin($bin)
     {
         $this->bin = $bin;
+
         return $this;
     }
 
     /**
-     * Get bin
+     * Get bin.
      *
-     * @return boolean
+     * @return bool
      */
     public function getBin()
     {
@@ -93,40 +92,44 @@ class Repository
     }
 
     /**
-     * Set src
+     * Set src.
      *
-     * @param boolean $src
+     * @param bool $src
+     *
      * @return Repository
      */
     public function setSrc($src)
     {
         $this->src = $src;
+
         return $this;
     }
 
     /**
-     * Get src
+     * Get src.
      *
-     * @return boolean
+     * @return bool
      */
     public function getSrc()
     {
         return $this->src;
     }
+
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Название пакете в системе">
     /**
-     * @var string $name Имя репозитория
+     * @var string Имя репозитория
      *
      * @ORM\Column(name="`name`", type="string", length=150, unique=true)
      */
     protected $name;
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Repository
      */
     public function setName($name)
@@ -136,11 +139,12 @@ class Repository
         $name = str_replace('.', '-', $name);
         $name = preg_replace('/[^a-z0-9-]*/', '', $name);
         $this->name = $name;
+
         return $this;
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -153,25 +157,27 @@ class Repository
     {
         return 'repo-'.$this->getName();
     }
+
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Строка репозитория">
 
     /**
-     * Строки в файле deb репозитория
+     * Строки в файле deb репозитория.
      *
      * @return string
      */
     public function getDebStrings()
     {
         $str = $this->getRepoString();
+
         return
             ($this->bin ? ('deb '.$str."\n") : '').
             ($this->src ? ('deb-src '.$str."\n") : '');
     }
 
     /**
-     * Строка репозитория
+     * Строка репозитория.
      *
      * @return string
      */
@@ -183,33 +189,40 @@ class Repository
     public function getUrl()
     {
         $items = explode(' ', $this->repoString);
+
         return $items[0];
     }
 
     /**
-     * Разбирает строку репозитория
+     * Разбирает строку репозитория.
      *
      * @param string $name
+     *
      * @return Repository
      */
     public function setRepoString($string)
     {
         $items = explode(' ', $string);
         //устраняем лишние пробелы
-        foreach($items as $k=>$v)
-            if (empty($v))
+        foreach ($items as $k => $v) {
+            if (empty($v)) {
                 unset($items[$k]);
+            }
+        }
         $items = array_values($items);
-        if (isset($items[0]) && ($items[0] == 'deb' || $items[0] == 'deb-src'))
+        if (isset($items[0]) && ($items[0] == 'deb' || $items[0] == 'deb-src')) {
             array_shift($items);
+        }
         $this->repoString = implode(' ', $items);
+
         return $this;
     }
 
     /**
-     * Проверяет валидность строки репозитория
+     * Проверяет валидность строки репозитория.
      *
      * @Assert\IsTrue(message = "Неверный формат строки репозитория")
+     *
      * @return bool
      */
     public function isValidRepoString()
@@ -221,11 +234,13 @@ class Repository
     {
         $items = explode(' ', $this->repoString);
 
-        if (count($items) < 2)
+        if (count($items) < 2) {
             return false;
+        }
 
-        if (filter_var($items[0], FILTER_VALIDATE_URL) != $items[0])
+        if (filter_var($items[0], FILTER_VALIDATE_URL) != $items[0]) {
             return false;
+        }
 
         return true;
     }
@@ -234,26 +249,28 @@ class Repository
 
     //<editor-fold defaultstate="collapsed" desc="Ключ">
     /**
-     * @var GpgKey $key Ключ
+     * @var GpgKey Ключ
      *
      * @ORM\OneToOne(targetEntity="GpgKey")
      */
     protected $key;
 
     /**
-     * Set key
+     * Set key.
      *
      * @param GpgKey $key
+     *
      * @return Repository
      */
     public function setKey(GpgKey $key = null)
     {
         $this->key = $key;
+
         return $this;
     }
 
     /**
-     * Get key
+     * Get key.
      *
      * @return GpgKey
      */
@@ -261,31 +278,33 @@ class Repository
     {
         return $this->key;
     }
+
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Пользователь">
     /**
-     * @var User $owner Пользователь, создавший пакет
+     * @var User Пользователь, создавший пакет
      *
      * @ORM\ManyToOne(targetEntity="User")
      */
     protected $owner;
 
-
     /**
-     * Set owner
+     * Set owner.
      *
      * @param User $owner
+     *
      * @return Repository
      */
     public function setOwner(User $owner = null)
     {
         $this->owner = $owner;
+
         return $this;
     }
 
     /**
-     * Get owner
+     * Get owner.
      *
      * @return User
      */
@@ -328,7 +347,7 @@ class Repository
     }
 
     /**
-     * Класс формы для этого типа пакета
+     * Класс формы для этого типа пакета.
      *
      * @return string
      */
@@ -340,40 +359,38 @@ class Repository
     public function buildPackages(Builder $builder, ObjectManager $manager)
     {
         $data = $builder->build($this);
-        if (!$data)
+        if (!$data) {
             return false;
+        }
         $package = new SimplePackage();
         $package->setContent($data['content']);
         $package->setFile($data['file']);
         $package->setInfo($data['finfo']);
         $package->setRepository($this);
         $manager->persist($package);
+
         return true;
     }
 
     public function getUserName()
     {
-        return $this->getOwner() ? $this->getOwner()->getUsernameCanonical() : "";
+        return $this->getOwner() ? $this->getOwner()->getUsernameCanonical() : '';
     }
+
     public function getKeyId()
     {
-        return $this->getKey() ? $this->getKey()->getId() : "";
+        return $this->getKey() ? $this->getKey()->getId() : '';
     }
+
     public function getType()
     {
-        return "standart";
+        return 'standart';
     }
 
-    public function getForApt()
+    public function getPackagesWithLinks()
     {
-        foreach($this->packages as $pkg)
-            return '<a href="apt:'.$pkg->getName().'">'.$pkg->getName().'</a>';
+        foreach ($this->packages as $pkg) {
+            yield $pkg->getName() => $pkg;
+        }
     }
-
-    public function getLinks($router)
-    {
-        foreach($this->packages as $pkg)
-            return '<a href="'.$router->generate('Package', array('name' => $pkg->getFile())).'">'.$pkg->getName().'</a>';
-    }
-
 }

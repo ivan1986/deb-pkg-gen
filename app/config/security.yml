@@ -8,7 +8,7 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_manager
+            id: fos_user.user_provider.username_email
         in_memory:
             memory:
                 users:
@@ -83,26 +83,14 @@ fos_user:
     user_class: Ivan1986\DebBundle\Entity\User
     group:
       group_class: Ivan1986\DebBundle\Entity\Group
+    registration:  # Authentication Form
+      form:
+        name:               fos_user_registration_form
     profile:  # Authentication Form
       form:
         type:               fos_user_profile
-#        handler:            fos_user.profile.form.handler.default
         name:               fos_user_profile_form
         validation_groups:  [Authentication]
-
-sonata_user:
-    security_acl:     false
-    class:
-        user:         Ivan1986\DebBundle\Entity\User
-        group:        Ivan1986\DebBundle\Entity\Groups
-    profile:  # Profile Form (firstname, lastname, etc ...)
-      form:
-        type:               sonata_user_profile
-#        handler:            sonata.user.profile.form.handler.default
-        name:               sonata_user_profile_form
-        validation_groups:  [Profile]
-
-doctrine:
-    dbal:
-        types:
-            json: Sonata\Doctrine\Types\JsonType
+    from_email:
+      address: noreplay@ivan1986.tk
+      sender_name: No Replay

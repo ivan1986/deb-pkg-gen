@@ -1,19 +1,19 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: services.yml }
 
 framework:
     #esi:             ~
-    translator:      { fallback: %locale% }
-    secret:          %secret%
+    translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
     default_locale:  %locale%
-    session:         ~
+    session:
+      name:          "sess"
 
 lunetics_locale:
   allowed_locales:
@@ -49,6 +49,7 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
+        server_version: 15.1
         driver:   %database_driver%
         host:     %database_host%
         port:     %database_port%
@@ -56,6 +57,8 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
@@ -101,7 +104,7 @@ google:
             default:
                 includeNamePrefix: false
                 accountId: %gaAcc%
-                domain:    .pkggen.no-ip.org
+                domain:    .pkggen.ivan1986.tk
                 trackPageLoadTime: true
 
 endroid_google_analytics:
@@ -121,3 +124,13 @@ jms_serializer:
 nelmio_api_doc:
     sandbox:
         endpoint: http://%host%
+
+services:
+    fos_user.entity_manager:
+        alias: fos_user.object_manager
+
+sonata_user:
+    security_acl:     false
+    class:
+        user:         Ivan1986\DebBundle\Entity\User
+        group:        Ivan1986\DebBundle\Entity\Groups
