@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "da837bb3ff559718bea7f4b1cbb1eed0",
-    "content-hash": "b058b0529cdc4b0bf2da3157cd620b74",
+    "hash": "003791b0f7c2421096ecaf8e7aa9004d",
+    "content-hash": "e451fece2192f08c06ef4a6ce8502ee2",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2784,6 +2784,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "3.x-dev"
+                },
+                "patches_applied": {
+                    "path fix": "patch/mopa-bootstrap.patch"
                 }
             },
             "autoload": {
@@ -6084,6 +6087,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.x-dev"
+                },
+                "patches_applied": {
+                    "interface": "patch/robo-implements.patch"
                 }
             },
             "autoload": {
