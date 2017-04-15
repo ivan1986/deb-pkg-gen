@@ -13,5 +13,6 @@
           - php-gnupg
           - ruby-compass
           - distro-info
+          - build-essential
           - debhelper
 - hosts: all

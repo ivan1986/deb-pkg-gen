@@ -75,7 +75,8 @@
     "symfony/phpunit-bridge": "^3",
     "codeception/codeception": "~2.2",
     "codeception/c3": "~2",
-    "ivan1986/dev-container": "~0.3"
+    "ivan1986/dev-container": "~0.3",
+    "consolidation/robo": "~1"
   },
   "scripts": {
     "symfony": [
