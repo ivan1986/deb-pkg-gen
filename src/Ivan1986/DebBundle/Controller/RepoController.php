@@ -3,7 +3,7 @@
 namespace Ivan1986\DebBundle\Controller;
 
 use Ivan1986\DebBundle\Entity\Package;
-use Ivan1986\DebBundle\Entity\PackageRepository;
+use Ivan1986\DebBundle\Repository\PackageRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -33,12 +33,9 @@ class RepoController extends Controller
      */
     public function packagesAction($name, $arch)
     {
-        $key = 'repo_Packages_'.$name;
-        $list = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
-        if (!$list || $name == 'apttest') {
-            $list = $this->getPkgList($this->getPkgs($name));
-            $this->get('doctrine_cache.providers.repo_cache')->save($key, $list);
-        }
+        $list = $this->cache('Packages', $name, function($name) {
+            return $this->getPkgList($this->getPkgs($name));
+        });
         $this->get('ivan1986_deb.gapinger')->pingGA('Repository - '.$name);
         $r = new Response($list);
         $r->headers->set('Content-Type', 'application/octet-stream');
@@ -52,13 +49,10 @@ class RepoController extends Controller
      */
     public function releaseAction($name)
     {
-        $key = 'repo_Release_'.$name;
-        $Release = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
-        if (!$Release || $name == 'apttest') {
+        $Release = $this->cache('Release', $name, function($name) {
             $pkgs = $this->getPkgs($name);
-            $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
-            $this->get('doctrine_cache.providers.repo_cache')->save($key, $Release);
-        }
+            return $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
+        });
 
         $r = new Response($Release);
         $r->headers->set('Content-Type', 'application/octet-stream');
@@ -72,9 +66,7 @@ class RepoController extends Controller
      */
     public function releaseGpgAction($name)
     {
-        $key = 'repo_ReleaseGpg_'.$name;
-        $ReleaseGpg = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
-        if (!$ReleaseGpg || $name == 'apttest') {
+        $ReleaseGpg = $this->cache('ReleaseGpg', $name, function($name) {
             $pkgs = $this->getPkgs($name);
             $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
 
@@ -83,9 +75,8 @@ class RepoController extends Controller
             $PrivateKey = $gpg->import($content);
             $gpg->addsignkey($PrivateKey['fingerprint']);
             $gpg->setsignmode(\gnupg::SIG_MODE_DETACH);
-            $ReleaseGpg = $gpg->sign($Release);
-            $this->get('doctrine_cache.providers.repo_cache')->save($key, $ReleaseGpg);
-        }
+            return $gpg->sign($Release);
+        });
 
         $r = new Response($ReleaseGpg);
         $r->headers->set('Content-Type', 'application/octet-stream');
@@ -99,9 +90,7 @@ class RepoController extends Controller
      */
     public function inReleaseAction($name)
     {
-        $key = 'repo_InRelease_'.$name;
-        $InRelease = $this->get('doctrine_cache.providers.repo_cache')->fetch($key);
-        if (!$InRelease || $name == 'apttest') {
+        $InRelease = $this->cache('InRelease', $name, function($name) {
             $pkgs = $this->getPkgs($name);
             $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
 
@@ -110,13 +99,10 @@ class RepoController extends Controller
             $PrivateKey = $gpg->import($content);
             $gpg->addsignkey($PrivateKey['fingerprint']);
             $gpg->setsignmode(\gnupg::SIG_MODE_CLEAR);
-            $InRelease = $gpg->sign($Release);
-            $this->get('doctrine_cache.providers.repo_cache')->save($key, $InRelease);
-        }
+            return $gpg->sign($Release);
+        });
 
-        $r = new Response($InRelease);
-
-        return $r;
+        return new Response($InRelease);
     }
 
     private function getRelease($list, $date, $name)
@@ -207,5 +193,20 @@ class RepoController extends Controller
         $this->get('ivan1986_deb.gapinger')->pingGA($name);
 
         return $pkg->getHttpResponse();
+    }
+
+    protected function cache($file, $name, callable $func)
+    {
+        $key = implode('_', ['repo',$file, $name]);
+        if ($name == 'apttest') {
+            return $func($name);
+        }
+        $cache = $this->get('doctrine_cache.providers.repo_cache');
+        $data = $cache->fetch($key);
+        if (!$data) {
+            $data = $func($name);
+            $cache->save($key, $data);
+        }
+        return $data;
     }
 }
