@@ -21,7 +21,7 @@ class Builder
 
     public function __construct(\Symfony\Bundle\TwigBundle\TwigEngine $templating)
     {
-        $this->path = dirname(__DIR__).'/package';
+        $this->path = dirname(__DIR__) . '/package';
         $this->t = $templating;
     }
 

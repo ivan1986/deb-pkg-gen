@@ -13,8 +13,8 @@ vendor/
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
 
-/src/Ivan1986/DebBundle/package/
-!/src/Ivan1986/DebBundle/package/tmpl
+/src/DebBundle/package/
+!/src/DebBundle/package/tmpl
 
 composer.phar
 
@@ -25,8 +25,8 @@ composer.phar
 /.php_cs.cache
 /c3.php
 
-src/Ivan1986/DebBundle/apt/etc/sources.list
-src/Ivan1986/DebBundle/apt/etc/trusted.gpg.d/repo-self.gpg
+src/DebBundle/apt/etc/sources.list
+src/DebBundle/apt/etc/trusted.gpg.d/repo-self.gpg
 
 # Created by https://www.gitignore.io/api/phpstorm
 

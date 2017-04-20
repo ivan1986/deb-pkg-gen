@@ -6,7 +6,7 @@
   "description": "Generate deb packages for repository",
   "autoload": {
     "psr-4": {
-      "": "src/"
+      "Ivan1986\\": "src/"
     },
     "classmap": [
       "app/AppKernel.php",
