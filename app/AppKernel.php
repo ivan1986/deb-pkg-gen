@@ -16,8 +16,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            //new JMS\AopBundle\JMSAopBundle(),
-            //new JMS\DiExtraBundle\JMSDiExtraBundle($this),
 
             //сторонние
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
@@ -39,7 +37,6 @@ class AppKernel extends Kernel
 
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
-            new AntiMattr\GoogleBundle\GoogleBundle(),
             new Endroid\Bundle\GoogleAnalyticsBundle\EndroidGoogleAnalyticsBundle(),
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
 

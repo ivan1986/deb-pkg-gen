@@ -98,15 +98,6 @@ mopa_bootstrap:
         show_legend: false
     menu: ~
 
-google:
-    analytics:
-        trackers:
-            default:
-                includeNamePrefix: false
-                accountId: %gaAcc%
-                domain:    .pkggen.ivan1986.tk
-                trackPageLoadTime: true
-
 endroid_google_analytics:
     trackers:
         default: %gaAcc%
