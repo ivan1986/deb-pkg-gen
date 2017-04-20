@@ -26,7 +26,6 @@ security:
                 realm: "API login"
         admin:
             switch_user:        true
-            context:            user
             pattern:            ^/admin(.*)
             form_login:
                 provider:       in_memory
@@ -42,7 +41,6 @@ security:
             anonymous:    true
         main:
             switch_user:        true
-            context:            user
             pattern:            .*
             form_login:
                 provider:       fos_userbundle
