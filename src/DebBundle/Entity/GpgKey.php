@@ -17,13 +17,13 @@ class GpgKey
     /**
      * @var string
      *
-     * @ORM\Column(name="id", type="string", length=40)
+     * @ORM\Column(name="id", type="string")
      * @ORM\Id
      */
     protected $id;
 
     /**
-     * @var string gpg data of key
+     * @var resource gpg data of key
      * @ORM\Column(name="gpg", type="blob")
      */
     protected $data;
@@ -84,6 +84,7 @@ class GpgKey
         if (is_string($this->data)) {
             return $this->data;
         }
+
         //блоб читается только один раз, поэтому запоминаем его
         $val = stream_get_contents($this->data);
         if ($val) {
@@ -96,7 +97,7 @@ class GpgKey
     /**
      * Set fingerprint.
      *
-     * @param blob $fingerprint
+     * @param string $fingerprint
      *
      * @return GpgKey
      */
@@ -110,7 +111,7 @@ class GpgKey
     /**
      * Get fingerprint.
      *
-     * @return blob
+     * @return string
      */
     public function getFingerprint()
     {
