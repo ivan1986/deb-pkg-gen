@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e9b14f1b6fff306954584c61061472da",
-    "content-hash": "0174352602c5ab9d60d1d7a83b41b679",
+    "hash": "af43ae5419563409dcd87b3ea697dccd",
+    "content-hash": "74517db2e1dd606f56c68fdf443055c3",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -5037,50 +5037,6 @@
             "time": "2017-04-21 00:13:02"
         },
         {
-            "name": "united-prototype/php-ga",
-            "version": "dev-composer",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Fran6co/php-ga.git",
-                "reference": "8ef68c423d53e90837143e35d88ba4b4eb3f5562"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Fran6co/php-ga/zipball/8ef68c423d53e90837143e35d88ba4b4eb3f5562",
-                "reference": "8ef68c423d53e90837143e35d88ba4b4eb3f5562",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "UnitedPrototype\\GoogleAnalytics": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "Thomas Bachem",
-                    "email": "mail@thomasbachem.com",
-                    "homepage": "http://blog.unitedprototype.com/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "\"ga.js in PHP\" - Implementation of a generic server-side Google Analytics client in PHP that implements nearly every parameter and tracking feature of the original GA Javascript client.",
-            "homepage": "https://github.com/thomasbachem/php-ga",
-            "keywords": [
-                "analytics",
-                "google",
-                "server"
-            ],
-            "time": "2013-10-06 13:45:38"
-        },
-        {
             "name": "white-october/pagerfanta-bundle",
             "version": "v1.0.8",
             "source": {
@@ -5788,6 +5744,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.x-dev"
+                },
+                "patches_applied": {
+                    "interface": "patch/robo-implements.patch"
                 }
             },
             "autoload": {
@@ -8743,8 +8702,7 @@
     "stability-flags": {
         "sonata-project/user-bundle": 20,
         "sonata-project/core-bundle": 20,
-        "fourlabs/gamp-bundle": 20,
-        "united-prototype/php-ga": 20
+        "fourlabs/gamp-bundle": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

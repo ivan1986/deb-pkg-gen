@@ -54,7 +54,6 @@
     "mopa/bootstrap-bundle": "~3.1",
     "twbs/bootstrap-sass": "~3.3",
     "fourlabs/gamp-bundle": "dev-master",
-    "united-prototype/php-ga": "dev-composer",
     "white-october/pagerfanta-bundle": "~1",
     "elao/error-notifier-bundle": "~1",
     "endroid/google-analytics-bundle": "~1",
