@@ -2,14 +2,13 @@
 
 namespace Ivan1986\DebBundle\Command;
 
-use Ivan1986\DebBundle\Entity\PackageRepository;
+use Ivan1986\DebBundle\Repository\PackageRepository;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Entity\SysPackage;
 use Ivan1986\DebBundle\Model\GpgLoader;
 use Ivan1986\DebBundle\Util\Builder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Bundle\TwigBundle\TwigEngine;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,7 +20,6 @@ class InitCommand extends ContainerAwareCommand
         $this
             ->setName('deb:init')
             ->setDescription('Init repository package')
-            //->addArgument('name', InputArgument::OPTIONAL, 'Who do you want to greet?')
             ->addOption('clear', null, InputOption::VALUE_NONE, 'If set, clear old package')
         ;
     }
