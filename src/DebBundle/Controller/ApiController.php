@@ -28,7 +28,6 @@ class ApiController extends FOSRestController
     {
         parent::setContainer($container);
         $this->em = $this->getDoctrine()->getManager();
-        $this->get('ivan1986_deb.gapinger')->pingGA('API');
     }
 
     /**
@@ -60,6 +59,11 @@ class ApiController extends FOSRestController
         $count = $query->select($query->expr()->count('r'))->getQuery()->getSingleScalarResult();
         $view = $this->view(['count' => $count], 200);
 
+        $this->get('gamp.analytics')
+            ->setEventCategory('API')
+            ->setEventAction('Count')
+            ->sendEvent();
+
         return $this->handleView($view);
     }
 
@@ -85,6 +89,11 @@ class ApiController extends FOSRestController
         $result = $query->getQuery()->getResult();
         $view = $this->view($result, 200);
 
+        $this->get('gamp.analytics')
+            ->setEventCategory('API')
+            ->setEventAction('List')
+            ->sendEvent();
+
         return $this->handleView($view);
     }
 
@@ -93,6 +102,11 @@ class ApiController extends FOSRestController
      */
     public function postReposNewStdAction(Request $r)
     {
+        $this->get('gamp.analytics')
+            ->setEventCategory('API')
+            ->setEventAction('Create')
+            ->sendEvent();
+
         return $this->processForm($r, new Repository());
     }
 
@@ -101,6 +115,11 @@ class ApiController extends FOSRestController
      */
     public function postReposNewPpaAction(Request $r)
     {
+        $this->get('gamp.analytics')
+            ->setEventCategory('API')
+            ->setEventAction('Create PPA')
+            ->sendEvent();
+
         return $this->processForm($r, new PpaRepository());
     }
 
@@ -109,6 +128,11 @@ class ApiController extends FOSRestController
      */
     public function putRepoAction(Request $r, Repository $repo)
     {
+        $this->get('gamp.analytics')
+            ->setEventCategory('API')
+            ->setEventAction('Update')
+            ->sendEvent();
+
         return $this->processForm($r, $repo);
     }
 
@@ -155,6 +179,11 @@ class ApiController extends FOSRestController
         }
         $this->em->remove($repo);
         $this->em->flush();
+
+        $this->get('gamp.analytics')
+            ->setEventCategory('API')
+            ->setEventAction('Delete')
+            ->sendEvent();
 
         return $this->handleView($this->view(null, 204));
     }

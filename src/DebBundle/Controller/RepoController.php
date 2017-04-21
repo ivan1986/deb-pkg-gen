@@ -36,7 +36,12 @@ class RepoController extends Controller
         $list = $this->cache('Packages', $name, function($name) {
             return $this->getPkgList($this->getPkgs($name));
         });
-        $this->get('ivan1986_deb.gapinger')->pingGA('Repository - '.$name);
+
+        $this->get('gamp.analytics')
+            ->setEventCategory('Packages')
+            ->setEventAction($name)
+            ->sendEvent();
+
         $r = new Response($list);
         $r->headers->set('Content-Type', 'application/octet-stream');
 
@@ -190,7 +195,11 @@ class RepoController extends Controller
         if (!$pkg) {
             throw new NotFoundHttpException();
         }
-        $this->get('ivan1986_deb.gapinger')->pingGA($name);
+
+        $this->get('gamp.analytics')
+            ->setEventCategory('Download')
+            ->setEventAction($name)
+            ->sendEvent();
 
         return $pkg->getHttpResponse();
     }

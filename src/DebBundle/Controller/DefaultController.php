@@ -48,7 +48,11 @@ class DefaultController extends Controller
         if (!$pkg) {
             throw new NotFoundHttpException();
         }
-        $this->get('ivan1986_deb.gapinger')->pingGA($GAname);
+
+        $this->get('gamp.analytics')
+            ->setEventCategory('Download')
+            ->setEventAction($GAname)
+            ->sendEvent();
 
         return $pkg->getHttpResponse();
     }
