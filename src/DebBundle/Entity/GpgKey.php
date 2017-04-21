@@ -17,7 +17,7 @@ class GpgKey
     /**
      * @var string
      *
-     * @ORM\Column(name="id", type="string")
+     * @ORM\Column(name="id", type="string", length=100)
      * @ORM\Id
      */
     protected $id;
@@ -30,7 +30,7 @@ class GpgKey
 
     /**
      * @var string gpg data of key
-     * @ORM\Column(name="fingerprint", type="blob")
+     * @ORM\Column(name="fingerprint", type="string")
      */
     protected $fingerprint;
 
