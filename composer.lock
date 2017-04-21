@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6aa593e709e48fd2df1f9c4a5eddd060",
-    "content-hash": "0ed1b06e318a360bf68ab521ce170a82",
+    "hash": "e9b14f1b6fff306954584c61061472da",
+    "content-hash": "0174352602c5ab9d60d1d7a83b41b679",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1229,6 +1229,60 @@
                 "symfony"
             ],
             "time": "2016-02-21 08:49:48"
+        },
+        {
+            "name": "fourlabs/gamp-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fourlabsldn/GampBundle.git",
+                "reference": "607fae14d353cdb33e7ee9bb85212d7b2d2ef2fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fourlabsldn/GampBundle/zipball/607fae14d353cdb33e7ee9bb85212d7b2d2ef2fe",
+                "reference": "607fae14d353cdb33e7ee9bb85212d7b2d2ef2fe",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5",
+                "symfony/framework-bundle": "~2.4 || ~3.0",
+                "theiconic/php-ga-measurement-protocol": "^2.5.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "patches_applied": {
+                    "PR enabled": "https://patch-diff.githubusercontent.com/raw/fourlabsldn/GampBundle/pull/12.diff"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FourLabs\\GampBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Four Labs",
+                    "homepage": "https://fourlabs.co.uk"
+                },
+                {
+                    "name": "Other contributors",
+                    "homepage": "https://github.com/foaly-nr1/FourLabsEsoftBundle/graphs/contributors"
+                }
+            ],
+            "description": "Google Analytics Measurement Protocol bundle for Symfony",
+            "homepage": "https://fourlabs.co.uk",
+            "keywords": [
+                "analytics",
+                "gamp",
+                "google",
+                "tracking"
+            ],
+            "time": "2017-04-03 15:53:43"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -4774,6 +4828,47 @@
             "time": "2017-04-05 12:52:29"
         },
         {
+            "name": "theiconic/php-ga-measurement-protocol",
+            "version": "v2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/theiconic/php-ga-measurement-protocol.git",
+                "reference": "6b9d0a36b5e50e9d134508ccd7e8d6d404bc91e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/theiconic/php-ga-measurement-protocol/zipball/6b9d0a36b5e50e9d134508ccd7e8d6d404bc91e5",
+                "reference": "6b9d0a36b5e50e9d134508ccd7e8d6d404bc91e5",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.7.*",
+                "satooshi/php-coveralls": "1.0.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TheIconic\\Tracking\\GoogleAnalytics\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "THE ICONIC ENGINEERING TEAM",
+                    "email": "engineering@theiconic.com.au"
+                }
+            ],
+            "description": "Send data to Google Analytics from the server using PHP. This library fully implements GA measurement protocol.",
+            "time": "2017-04-10 01:57:30"
+        },
+        {
             "name": "twbs/bootstrap-sass",
             "version": "v3.3.7",
             "source": {
@@ -4880,16 +4975,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.3.1",
+            "version": "v2.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "437efc435619c8e67acacda37b3984344854142c"
+                "reference": "85e8372c451510165c04bf781295f9d922fa524b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/437efc435619c8e67acacda37b3984344854142c",
-                "reference": "437efc435619c8e67acacda37b3984344854142c",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/85e8372c451510165c04bf781295f9d922fa524b",
+                "reference": "85e8372c451510165c04bf781295f9d922fa524b",
                 "shasum": ""
             },
             "require": {
@@ -4939,7 +5034,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-04-18 21:50:11"
+            "time": "2017-04-21 00:13:02"
         },
         {
             "name": "united-prototype/php-ga",
@@ -5693,9 +5788,6 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.x-dev"
-                },
-                "patches_applied": {
-                    "interface": "patch/robo-implements.patch"
                 }
             },
             "autoload": {
@@ -8651,6 +8743,7 @@
     "stability-flags": {
         "sonata-project/user-bundle": 20,
         "sonata-project/core-bundle": 20,
+        "fourlabs/gamp-bundle": 20,
         "united-prototype/php-ga": 20
     },
     "prefer-stable": true,

@@ -37,6 +37,7 @@ class AppKernel extends Kernel
 
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new FourLabs\GampBundle\FourLabsGampBundle(),
             new Endroid\Bundle\GoogleAnalyticsBundle\EndroidGoogleAnalyticsBundle(),
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
 
