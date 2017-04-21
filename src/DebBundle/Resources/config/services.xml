@@ -11,8 +11,5 @@
             <argument>%key_server%</argument>
             <tag name="form.type" />
         </service>
-        <service id="ivan1986_deb.gapinger" class="Ivan1986\DebBundle\Model\GAPinger">
-            <argument type="service" id="service_container" />
-        </service>
     </services>
 </container>
