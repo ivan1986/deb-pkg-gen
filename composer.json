@@ -53,6 +53,7 @@
     "twig/extensions": "~1.4",
     "mopa/bootstrap-bundle": "~3.1",
     "twbs/bootstrap-sass": "~3.3",
+    "fourlabs/gamp-bundle": "dev-master",
     "united-prototype/php-ga": "dev-composer",
     "white-october/pagerfanta-bundle": "~1",
     "elao/error-notifier-bundle": "~1",
@@ -99,6 +100,9 @@
       "file": "app/config/parameters.yml"
     },
     "patches": {
+      "fourlabs/gamp-bundle": {
+        "PR enabled": "https://patch-diff.githubusercontent.com/raw/fourlabsldn/GampBundle/pull/12.diff"
+      },
       "sonata-project/core-bundle": {
         "Symfony 3.3 fix": "https://patch-diff.githubusercontent.com/raw/sonata-project/SonataCoreBundle/pull/396.diff"
       },

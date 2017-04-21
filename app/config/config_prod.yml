@@ -23,3 +23,6 @@ elao_error_notifier:
     to: ivan.borzenkov@gmail.com
     handlePHPErrors: true # catch fatal erros and email them
     handlePHPWarnings: true # catch warnings and email them
+
+four_labs_gamp:
+    enabled: true
