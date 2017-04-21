@@ -36,4 +36,25 @@ class RoboFile extends \Robo\Tasks
             ->exec($symfony)
             ->run();
     }
+
+    /**
+     * Dump database from production
+     */
+    public function dumpProd()
+    {
+        $this->taskSshExec('ivan1986.tk')
+            ->user('web')
+            ->remoteDir('/srv/web')
+            ->exec('mysqldump -uroot pkggen > pkggen.sql')
+            ->run();
+        $this->taskRsync()
+            ->fromPath('web@ivan1986.tk:~/pkggen.sql')
+            ->toPath('pkggen.sql')
+            ->run();
+        $this->taskSshExec('ivan1986.tk')
+            ->user('web')
+            ->remoteDir('/srv/web')
+            ->exec('rm pkggen.sql')
+            ->run();
+    }
 }
