@@ -98,6 +98,7 @@ mopa_bootstrap:
 
 four_labs_gamp:
     tracking_id: %gaAcc%
+    sandbox: true
 
 endroid_google_analytics:
     trackers:

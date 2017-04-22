@@ -25,4 +25,4 @@ elao_error_notifier:
     handlePHPWarnings: true # catch warnings and email them
 
 four_labs_gamp:
-    enabled: true
+    sandbox: false

@@ -39,6 +39,7 @@
     "nelmio/api-doc-bundle": "~2.0",
     "incenteev/composer-parameter-handler": "~2",
     "sensio/distribution-bundle": "~5",
+    "sensio/generator-bundle": "^3.0",
     "sensio/framework-extra-bundle": "~3",
     "sonata-project/doctrine-orm-admin-bundle": "~3.0",
     "sonata-project/easy-extends-bundle": "~2.1",
@@ -62,7 +63,6 @@
     "cweagans/composer-patches": "~1"
   },
   "require-dev": {
-    "sensio/generator-bundle": "^3.0",
     "friendsofphp/php-cs-fixer": "~2.1",
     "symfony/phpunit-bridge": "^3",
     "codeception/codeception": "~2.2",
@@ -99,9 +99,6 @@
       "file": "app/config/parameters.yml"
     },
     "patches": {
-      "fourlabs/gamp-bundle": {
-        "PR enabled": "https://patch-diff.githubusercontent.com/raw/fourlabsldn/GampBundle/pull/12.diff"
-      },
       "sonata-project/core-bundle": {
         "Symfony 3.3 fix": "https://patch-diff.githubusercontent.com/raw/sonata-project/SonataCoreBundle/pull/396.diff"
       },

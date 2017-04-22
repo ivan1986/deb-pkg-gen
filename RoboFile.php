@@ -16,8 +16,8 @@ class RoboFile extends \Robo\Tasks
             ->pull();
 
         $composer = $this->taskComposerInstall()
-            //->noDev()
-            //->optimizeAutoloader()
+            ->noDev()
+            ->optimizeAutoloader()
         ;
 
         $symfony = $this->taskExecStack()

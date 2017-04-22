@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "af43ae5419563409dcd87b3ea697dccd",
-    "content-hash": "74517db2e1dd606f56c68fdf443055c3",
+    "hash": "15bc60beabc60c368a9df2f7eb6e6df1",
+    "content-hash": "2b91e94b03e6cda50290ad1f836123e0",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1236,25 +1236,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fourlabsldn/GampBundle.git",
-                "reference": "607fae14d353cdb33e7ee9bb85212d7b2d2ef2fe"
+                "reference": "3f6164bf27b9a68bcb03cf07bd9f06af7b1fa7cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fourlabsldn/GampBundle/zipball/607fae14d353cdb33e7ee9bb85212d7b2d2ef2fe",
-                "reference": "607fae14d353cdb33e7ee9bb85212d7b2d2ef2fe",
+                "url": "https://api.github.com/repos/fourlabsldn/GampBundle/zipball/3f6164bf27b9a68bcb03cf07bd9f06af7b1fa7cd",
+                "reference": "3f6164bf27b9a68bcb03cf07bd9f06af7b1fa7cd",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5",
                 "symfony/framework-bundle": "~2.4 || ~3.0",
-                "theiconic/php-ga-measurement-protocol": "^2.5.1"
+                "theiconic/php-ga-measurement-protocol": "^2.6"
             },
             "type": "symfony-bundle",
-            "extra": {
-                "patches_applied": {
-                    "PR enabled": "https://patch-diff.githubusercontent.com/raw/fourlabsldn/GampBundle/pull/12.diff"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "FourLabs\\GampBundle\\": ""
@@ -1282,7 +1277,7 @@
                 "google",
                 "tracking"
             ],
-            "time": "2017-04-03 15:53:43"
+            "time": "2017-04-22 14:02:48"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -3256,6 +3251,60 @@
             "time": "2017-03-21 23:34:44"
         },
         {
+            "name": "sensio/generator-bundle",
+            "version": "v3.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
+                "reference": "37f9f4e165b033fb76cc2320838321cc57140e65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/37f9f4e165b033fb76cc2320838321cc57140e65",
+                "reference": "37f9f4e165b033fb76cc2320838321cc57140e65",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/console": "~2.7|~3.0",
+                "symfony/framework-bundle": "~2.7|~3.0",
+                "symfony/process": "~2.7|~3.0",
+                "symfony/yaml": "~2.7|~3.0",
+                "twig/twig": "^1.28.2|^2.0"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.4",
+                "symfony/doctrine-bridge": "~2.7|~3.0",
+                "symfony/filesystem": "~2.7|~3.0",
+                "symfony/phpunit-bridge": "^3.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sensio\\Bundle\\GeneratorBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "This bundle generates code for you",
+            "time": "2017-03-15 01:02:10"
+        },
+        {
             "name": "sensiolabs/security-checker",
             "version": "v4.0.4",
             "source": {
@@ -3938,12 +3987,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jordisala1991/SonataUserBundle.git",
-                "reference": "694c964f0b68ab66c5b673b57e85b815ca8094a7"
+                "reference": "1656cd744a088dd5b694fc0a77f7c0cdd20af89b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jordisala1991/SonataUserBundle/zipball/694c964f0b68ab66c5b673b57e85b815ca8094a7",
-                "reference": "694c964f0b68ab66c5b673b57e85b815ca8094a7",
+                "url": "https://api.github.com/repos/jordisala1991/SonataUserBundle/zipball/1656cd744a088dd5b694fc0a77f7c0cdd20af89b",
+                "reference": "1656cd744a088dd5b694fc0a77f7c0cdd20af89b",
                 "shasum": ""
             },
             "require": {
@@ -4032,7 +4081,7 @@
             "support": {
                 "source": "https://github.com/jordisala1991/SonataUserBundle/tree/feature/fos_user_2"
             },
-            "time": "2017-04-20 20:28:42"
+            "time": "2017-04-21 21:24:06"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -6063,34 +6112,34 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "aff95e090fdaf57c20d32d7728b090f2015bfcef"
+                "reference": "ab8c61329ddd896e287a84c7663d06cf1bed3907"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/aff95e090fdaf57c20d32d7728b090f2015bfcef",
-                "reference": "aff95e090fdaf57c20d32d7728b090f2015bfcef",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/ab8c61329ddd896e287a84c7663d06cf1bed3907",
+                "reference": "ab8c61329ddd896e287a84c7663d06cf1bed3907",
                 "shasum": ""
             },
             "require": {
                 "doctrine/annotations": "^1.2",
                 "ext-tokenizer": "*",
-                "php": "^5.3.6 || >=7.0 <7.2",
-                "sebastian/diff": "^1.1",
-                "symfony/console": "^2.4 || ^3.0",
-                "symfony/event-dispatcher": "^2.1 || ^3.0",
-                "symfony/filesystem": "^2.4 || ^3.0",
-                "symfony/finder": "^2.2 || ^3.0",
-                "symfony/options-resolver": "^2.6 || ^3.0",
+                "php": "^5.6 || >=7.0 <7.2",
+                "sebastian/diff": "^1.4",
+                "symfony/console": "^3.0",
+                "symfony/event-dispatcher": "^3.0",
+                "symfony/filesystem": "^3.0",
+                "symfony/finder": "^3.0",
+                "symfony/options-resolver": "^3.0",
                 "symfony/polyfill-php54": "^1.0",
                 "symfony/polyfill-php55": "^1.3",
                 "symfony/polyfill-php70": "^1.0",
                 "symfony/polyfill-xml": "^1.3",
-                "symfony/process": "^2.3 || ^3.0",
-                "symfony/stopwatch": "^2.5 || ^3.0"
+                "symfony/process": "^3.0",
+                "symfony/stopwatch": "^3.0"
             },
             "conflict": {
                 "hhvm": "<3.18"
@@ -6113,7 +6162,7 @@
             "type": "application",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -6136,7 +6185,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2017-04-07 15:22:27"
+            "time": "2017-04-21 17:17:40"
         },
         {
             "name": "grasmash/yaml-expander",
@@ -8234,60 +8283,6 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2016-10-03 07:35:21"
-        },
-        {
-            "name": "sensio/generator-bundle",
-            "version": "v3.1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "37f9f4e165b033fb76cc2320838321cc57140e65"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/37f9f4e165b033fb76cc2320838321cc57140e65",
-                "reference": "37f9f4e165b033fb76cc2320838321cc57140e65",
-                "shasum": ""
-            },
-            "require": {
-                "symfony/console": "~2.7|~3.0",
-                "symfony/framework-bundle": "~2.7|~3.0",
-                "symfony/process": "~2.7|~3.0",
-                "symfony/yaml": "~2.7|~3.0",
-                "twig/twig": "^1.28.2|^2.0"
-            },
-            "require-dev": {
-                "doctrine/orm": "~2.4",
-                "symfony/doctrine-bridge": "~2.7|~3.0",
-                "symfony/filesystem": "~2.7|~3.0",
-                "symfony/phpunit-bridge": "^3.3"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.1.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Sensio\\Bundle\\GeneratorBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "This bundle generates code for you",
-            "time": "2017-03-15 01:02:10"
         },
         {
             "name": "squizlabs/php_codesniffer",
