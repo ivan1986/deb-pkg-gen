@@ -116,6 +116,7 @@ class RepoController extends Controller
         $md5 = md5($list);
         $sha1 = sha1($list);
         $sha512 = hash('sha512', $list);
+        $date = (new \DateTime('now', new \DateTimeZone('UTC')))->setTimestamp($date);
 
         $templater = $this->get('templating');
         /** @var $templater TwigEngine */
@@ -124,7 +125,7 @@ class RepoController extends Controller
             'md5' => $md5,
             'sha1' => $sha1,
             'sha512' => $sha512,
-            'date' => date('D, M d Y H:i:s e', $date),
+            'date' => $date->format('D, M d Y H:i:s e'),
             'name' => $name,
         ]);
 
@@ -141,7 +142,7 @@ class RepoController extends Controller
     private function getMaxDate($packages)
     {
         if (empty($packages)) {
-            return time(123456789);
+            return time();
         }
         $date = $packages[0]->getCreated()->getTimestamp();
         foreach ($packages as $package) {
