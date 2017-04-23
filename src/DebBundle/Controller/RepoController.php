@@ -125,7 +125,7 @@ class RepoController extends Controller
             'md5' => $md5,
             'sha1' => $sha1,
             'sha512' => $sha512,
-            'date' => $date->format('D, M d Y H:i:s e'),
+            'date' => $date->format('D, d M Y H:i:s e'),
             'name' => $name,
         ]);
 
