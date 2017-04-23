@@ -38,8 +38,8 @@ class RepoController extends Controller
         });
 
         $this->get('gamp.analytics')
-            ->setEventCategory('Packages')
-            ->setEventAction($name)
+            ->setEventCategory($name)
+            ->setEventAction('Packages')
             ->sendEvent();
 
         $r = new Response($list);
@@ -58,6 +58,11 @@ class RepoController extends Controller
             $pkgs = $this->getPkgs($name);
             return $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
         });
+
+        $this->get('gamp.analytics')
+            ->setEventCategory($name)
+            ->setEventAction('Release')
+            ->sendEvent();
 
         $r = new Response($Release);
         $r->headers->set('Content-Type', 'application/octet-stream');
@@ -83,6 +88,11 @@ class RepoController extends Controller
             return $gpg->sign($Release);
         });
 
+        $this->get('gamp.analytics')
+            ->setEventCategory($name)
+            ->setEventAction('Release.gpg')
+            ->sendEvent();
+
         $r = new Response($ReleaseGpg);
         $r->headers->set('Content-Type', 'application/octet-stream');
 
@@ -106,6 +116,11 @@ class RepoController extends Controller
             $gpg->setsignmode(\gnupg::SIG_MODE_CLEAR);
             return $gpg->sign($Release);
         });
+
+        $this->get('gamp.analytics')
+            ->setEventCategory($name)
+            ->setEventAction('InRelease')
+            ->sendEvent();
 
         return new Response($InRelease);
     }
