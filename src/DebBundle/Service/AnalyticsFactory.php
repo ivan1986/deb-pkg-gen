@@ -15,9 +15,9 @@ class AnalyticsFactory extends BaseAnalyticsFactory
         $anonymize,
         $async,
         $debug,
-        $enabled)
+        $sandbox)
     {
-        $analytics = parent::createAnalytics($requestStack, $version, $trackingId, $ssl, $anonymize, $async, $debug, $enabled);
+        $analytics = parent::createAnalytics($requestStack, $version, $trackingId, $ssl, $anonymize, $async, $debug, $sandbox);
 
         $request = $requestStack->getCurrentRequest();
         if (is_null($request) || !$request->cookies->has('_ga')) {
