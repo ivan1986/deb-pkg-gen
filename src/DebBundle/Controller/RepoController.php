@@ -124,7 +124,7 @@ class RepoController extends Controller
             'md5' => $md5,
             'sha1' => $sha1,
             'sha512' => $sha512,
-            'date' => date('r', $date),
+            'date' => date('D, M d Y H:i:s e', $date),
             'name' => $name,
         ]);
 
