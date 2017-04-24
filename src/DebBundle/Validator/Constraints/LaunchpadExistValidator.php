@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Ivan1986\DebBundle\Validator\Constraints;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
@@ -80,5 +79,4 @@ class LaunchpadExistValidator extends ConstraintValidator
     {
         $this->context->addViolation($this->message);
     }
-
 }

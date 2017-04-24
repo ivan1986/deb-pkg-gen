@@ -8,7 +8,6 @@ use Ivan1986\DebBundle\Model\GpgLoader;
 use Ivan1986\DebBundle\Repository\PackageRepository;
 use Ivan1986\DebBundle\Service\Builder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
