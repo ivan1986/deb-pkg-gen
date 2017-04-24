@@ -2,8 +2,6 @@
 
 namespace Tests\Ivan1986\DebBundle\Util;
 
-use Ivan1986\DebBundle\Entity\GpgKey;
-use Ivan1986\DebBundle\Entity\GpgKeyRepository;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Entity\SimplePackage;
 use Ivan1986\DebBundle\Model\GpgLoader;

@@ -7,7 +7,7 @@
 class RoboFile extends \Robo\Tasks
 {
     /**
-     * Deploy to prod
+     * Deploy to prod.
      */
     public function deploy()
     {
@@ -38,7 +38,7 @@ class RoboFile extends \Robo\Tasks
     }
 
     /**
-     * Dump database from production
+     * Dump database from production.
      */
     public function dumpProd()
     {

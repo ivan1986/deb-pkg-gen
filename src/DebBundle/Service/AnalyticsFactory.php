@@ -2,8 +2,8 @@
 
 namespace Ivan1986\DebBundle\Service;
 
-use Symfony\Component\HttpFoundation\RequestStack;
 use FourLabs\GampBundle\Service\AnalyticsFactory as BaseAnalyticsFactory;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class AnalyticsFactory extends BaseAnalyticsFactory
 {
@@ -20,11 +20,10 @@ class AnalyticsFactory extends BaseAnalyticsFactory
         $analytics = parent::createAnalytics($requestStack, $version, $trackingId, $ssl, $anonymize, $async, $debug, $sandbox);
 
         $request = $requestStack->getCurrentRequest();
-        if (is_null($request) || !$request->cookies->has('_ga')) {
-            $analytics->setClientId(mt_rand(1e10, 1e11 - 1) . '.' . mt_rand(1e10, 1e11 - 1));
+        if (null === $request || !$request->cookies->has('_ga')) {
+            $analytics->setClientId(mt_rand(1e10, 1e11 - 1).'.'.mt_rand(1e10, 1e11 - 1));
         }
 
         return $analytics;
     }
-
 }

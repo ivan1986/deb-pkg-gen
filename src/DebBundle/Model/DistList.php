@@ -21,7 +21,7 @@ class DistList
     /**
      * Обновляет список текущих дистрибутивов.
      *
-     * @param array $inPpa Что есть в репозитории
+     * @param array $inPpa   Что есть в репозитории
      * @param array $current Текущие дистрибутивы
      *
      * @return array
@@ -77,6 +77,7 @@ class DistList
         if ($this->all) {
             $data['all'] = $this->all;
         }
+
         return $data;
     }
 

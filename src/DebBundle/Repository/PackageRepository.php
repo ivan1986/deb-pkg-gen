@@ -62,7 +62,7 @@ class PackageRepository extends EntityRepository
     /**
      * Получить по ID с проверкой пользователя.
      *
-     * @param integer $id ID репозитория
+     * @param int  $id   ID репозитория
      * @param User $user пользователь
      *
      * @return object

@@ -33,7 +33,7 @@ class RepoController extends Controller
      */
     public function packagesAction($name, $arch)
     {
-        $list = $this->cache('Packages', $name, function($name) {
+        $list = $this->cache('Packages', $name, function ($name) {
             return $this->getPkgList($this->getPkgs($name));
         });
 
@@ -54,8 +54,9 @@ class RepoController extends Controller
      */
     public function releaseAction($name)
     {
-        $Release = $this->cache('Release', $name, function($name) {
+        $Release = $this->cache('Release', $name, function ($name) {
             $pkgs = $this->getPkgs($name);
+
             return $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
         });
 
@@ -76,7 +77,7 @@ class RepoController extends Controller
      */
     public function releaseGpgAction($name)
     {
-        $ReleaseGpg = $this->cache('ReleaseGpg', $name, function($name) {
+        $ReleaseGpg = $this->cache('ReleaseGpg', $name, function ($name) {
             $pkgs = $this->getPkgs($name);
             $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
 
@@ -85,6 +86,7 @@ class RepoController extends Controller
             $PrivateKey = $gpg->import($content);
             $gpg->addsignkey($PrivateKey['fingerprint']);
             $gpg->setsignmode(\gnupg::SIG_MODE_DETACH);
+
             return $gpg->sign($Release);
         });
 
@@ -105,7 +107,7 @@ class RepoController extends Controller
      */
     public function inReleaseAction($name)
     {
-        $InRelease = $this->cache('InRelease', $name, function($name) {
+        $InRelease = $this->cache('InRelease', $name, function ($name) {
             $pkgs = $this->getPkgs($name);
             $Release = $this->getRelease($this->getPkgList($pkgs), $this->getMaxDate($pkgs), $name);
 
@@ -114,6 +116,7 @@ class RepoController extends Controller
             $PrivateKey = $gpg->import($content);
             $gpg->addsignkey($PrivateKey['fingerprint']);
             $gpg->setsignmode(\gnupg::SIG_MODE_CLEAR);
+
             return $gpg->sign($Release);
         });
 
@@ -222,7 +225,7 @@ class RepoController extends Controller
 
     protected function cache($file, $name, callable $func)
     {
-        $key = implode('_', ['repo',$file, $name]);
+        $key = implode('_', ['repo', $file, $name]);
         if ($name == 'apttest') {
             return $func($name);
         }
@@ -232,6 +235,7 @@ class RepoController extends Controller
             $data = $func($name);
             $cache->save($key, $data);
         }
+
         return $data;
     }
 }

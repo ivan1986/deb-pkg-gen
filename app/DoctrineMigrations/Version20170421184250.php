@@ -23,7 +23,6 @@ class Version20170421184250 extends AbstractMigration
         $this->addSql('ALTER TABLE GpgKey CHANGE id id VARCHAR(100) NOT NULL');
         $this->addSql('ALTER TABLE GpgKey CHANGE fingerprint fingerprint VARCHAR(255) NOT NULL');
         $this->addSql('ALTER TABLE Repository ADD CONSTRAINT FK_13A3541DD145533 FOREIGN KEY (key_id) REFERENCES GpgKey (id)');
-
     }
 
     /**

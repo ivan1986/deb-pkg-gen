@@ -52,10 +52,12 @@ class PpaRepository extends Repository
         $strings = [];
         foreach ($this->getDistrs()[$this->status] as $dist) {
             $str = $this->getPpaUrl().' '.($dist).' main';
-            if ($this->bin)
+            if ($this->bin) {
                 $strings[] = 'deb '.$str;
-            if ($this->src)
+            }
+            if ($this->src) {
                 $strings[] = 'deb src '.$str;
+            }
         }
 
         return implode("\n", $strings);
