@@ -161,10 +161,10 @@ class Builder
         unlink($this->path.'/'.$file);
         unlink($this->path.'/'.$fname);
 
-        $fs->remove($dir);
         flock($lockr, LOCK_UN);
         fclose($lockr);
-        unlink($lockf);
+
+        $fs->remove(glob($dir.'*'));
 
         return [
             'content' => $content,

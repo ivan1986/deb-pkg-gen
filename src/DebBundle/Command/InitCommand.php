@@ -30,15 +30,10 @@ class InitCommand extends ContainerAwareCommand
         $repoBase = 'http://'.$this->getContainer()->getParameter('host').$this->getContainer()->get('router')->generate('repo', []);
 
         //Инициализируем конфигурацию чекера апта
-        $t = $this->getContainer()->get('templating');
         $kernel = $this->getContainer()->get('kernel');
-        $path = $kernel->locateResource('@Ivan1986DebBundle');
-        /* @var $t TwigEngine Шаблонизатор */
-        file_put_contents($path.'apt/apt.conf', $t->render('Ivan1986DebBundle:Repo:apt.conf.twig', [
-            'dir' => $path.'apt',
-        ]));
-        file_put_contents($path.'apt/etc/trusted.gpg.d/repo-self.gpg', $key->getData());
-        file_put_contents($path.'apt/etc/sources.list', 'deb '.$repoBase.' apttest main');
+        $path = $kernel->locateResource('@Ivan1986DebBundle/apt');
+        file_put_contents($path.'/etc/trusted.gpg.d/repo-self.gpg', $key->getData());
+        file_put_contents($path.'/etc/sources.list', 'deb '.$repoBase.' apttest main');
 
         //Инициализируем репозитории
         $doctrine = $this->getContainer()->get('doctrine');
