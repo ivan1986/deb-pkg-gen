@@ -6,7 +6,6 @@ use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Entity\SysPackage;
 use Ivan1986\DebBundle\Model\GpgLoader;
 use Ivan1986\DebBundle\Repository\PackageRepository;
-use Ivan1986\DebBundle\Service\Builder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

@@ -5,7 +5,6 @@ namespace Ivan1986\DebBundle\Command;
 use Ivan1986\DebBundle\Entity\Package;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Repository\RepositoryRepository;
-use Ivan1986\DebBundle\Service\Builder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
