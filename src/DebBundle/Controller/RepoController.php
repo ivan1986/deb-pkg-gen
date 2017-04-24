@@ -3,6 +3,7 @@
 namespace Ivan1986\DebBundle\Controller;
 
 use Ivan1986\DebBundle\Entity\Package;
+use Ivan1986\DebBundle\Model\BinResponse;
 use Ivan1986\DebBundle\Repository\PackageRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -19,15 +20,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class RepoController extends Controller
 {
     /**
-     * @Route("/", name="repo")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        return false;
-    }
-
-    /**
      * @Route("/dists/{name}/main/{arch}/Packages", name="Packages")
      * @Method("GET")
      */
@@ -42,10 +34,7 @@ class RepoController extends Controller
             ->setEventAction('Packages')
             ->sendEvent();
 
-        $r = new Response($list);
-        $r->headers->set('Content-Type', 'application/octet-stream');
-
-        return $r;
+        return new BinResponse($list);
     }
 
     /**
@@ -65,10 +54,7 @@ class RepoController extends Controller
             ->setEventAction('Release')
             ->sendEvent();
 
-        $r = new Response($Release);
-        $r->headers->set('Content-Type', 'application/octet-stream');
-
-        return $r;
+        return new BinResponse($Release);
     }
 
     /**
@@ -95,10 +81,7 @@ class RepoController extends Controller
             ->setEventAction('Release.gpg')
             ->sendEvent();
 
-        $r = new Response($ReleaseGpg);
-        $r->headers->set('Content-Type', 'application/octet-stream');
-
-        return $r;
+        return new BinResponse($ReleaseGpg);
     }
 
     /**
