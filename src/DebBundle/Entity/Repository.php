@@ -273,7 +273,7 @@ class Repository
     /**
      * @var User Пользователь, создавший пакет
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="repositories")
      */
     protected $owner;
 

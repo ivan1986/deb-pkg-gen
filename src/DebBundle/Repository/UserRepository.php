@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class UserRepository extends EntityRepository
 {
+    public function getInactive()
+    {
+        return $this->createQueryBuilder('u')
+            ->leftJoin('u.repositories', 'r')
+            ->where('u.updatedAt < :date')->setParameter('date', new \DateTime('1 year ago'))
+            ->addGroupBy('u')
+            ->having('count(r) = 0')
+            ->getQuery();
+    }
 }

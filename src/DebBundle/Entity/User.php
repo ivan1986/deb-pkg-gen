@@ -31,4 +31,9 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Repository", mappedBy="owner")
+     */
+    protected $repositories;
 }
