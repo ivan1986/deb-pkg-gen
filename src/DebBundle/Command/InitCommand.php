@@ -6,7 +6,7 @@ use Ivan1986\DebBundle\Repository\PackageRepository;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Entity\SysPackage;
 use Ivan1986\DebBundle\Model\GpgLoader;
-use Ivan1986\DebBundle\Util\Builder;
+use Ivan1986\DebBundle\Service\Builder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Console\Input\InputInterface;
@@ -64,8 +64,7 @@ class InitCommand extends ContainerAwareCommand
         $repo->setKey($key);
         $repo->setName('self');
 
-        $builder = new Builder($t);
-        $pkg = $builder->build($repo);
+        $pkg = $this->getContainer()->get('ivan1986_deb.builder')->build($repo);
         $package = new SysPackage();
         $package->setContent($pkg['content']);
         $package->setFile($pkg['file']);
@@ -81,8 +80,7 @@ class InitCommand extends ContainerAwareCommand
         $repo->setKey($key);
         $repo->setName('link');
 
-        $builder = new Builder($t);
-        $pkg = $builder->build($repo);
+        $pkg = $this->getContainer()->get('ivan1986_deb.builder')->build($repo);
         $package = new SysPackage();
         $package->setContent($pkg['content']);
         $package->setFile($pkg['file']);

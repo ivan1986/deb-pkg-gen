@@ -4,7 +4,7 @@ namespace Ivan1986\DebBundle\Controller;
 
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Model\GpgLoader;
-use Ivan1986\DebBundle\Util\Builder;
+use Ivan1986\DebBundle\Service\Builder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -38,8 +38,7 @@ class BuilderController extends Controller
                 return $error;
             }
 
-            $builder = new Builder($this->get('templating'));
-            $pkg = $builder->simplePackage($repo);
+            $pkg = $this->get('ivan1986_deb.builder')->simplePackage($repo);
 
             return $pkg->getHttpResponse();
         }

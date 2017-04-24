@@ -11,5 +11,9 @@
             <argument>%key_server%</argument>
             <tag name="form.type" />
         </service>
+        <service id="ivan1986_deb.builder" class="Ivan1986\DebBundle\Service\Builder">
+            <argument id="file_locator" type="service"/>
+            <argument id="templating" type="service"/>
+        </service>
     </services>
 </container>

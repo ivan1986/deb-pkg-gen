@@ -1,11 +1,12 @@
 <?php
 
-namespace Ivan1986\DebBundle\Util;
+namespace Ivan1986\DebBundle\Service;
 
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Entity\SimplePackage;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpKernel\Config\FileLocator;
 use Symfony\Component\Process\Process;
 
 /**
@@ -19,9 +20,9 @@ class Builder
     /** @var TwigEngine Шаблонизатор */
     private $t;
 
-    public function __construct(\Symfony\Bundle\TwigBundle\TwigEngine $templating)
+    public function __construct(FileLocator $locator, TwigEngine $templating)
     {
-        $this->path = dirname(__DIR__) . '/package';
+        $this->path = $locator->locate('@Ivan1986DebBundle/package');
         $this->t = $templating;
     }
 

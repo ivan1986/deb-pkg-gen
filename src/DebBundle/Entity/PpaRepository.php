@@ -8,7 +8,7 @@ use Ivan1986\DebBundle\Exception\GpgNotFoundException;
 use Ivan1986\DebBundle\Form\Type\PpaRepositoryType;
 use Ivan1986\DebBundle\Model\DistList;
 use Ivan1986\DebBundle\Model\GpgLoader;
-use Ivan1986\DebBundle\Util\Builder;
+use Ivan1986\DebBundle\Service\Builder;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**

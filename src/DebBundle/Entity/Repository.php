@@ -7,7 +7,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ivan1986\DebBundle\Form\Type\RepositoryType;
-use Ivan1986\DebBundle\Util\Builder;
+use Ivan1986\DebBundle\Service\Builder;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -45,14 +45,7 @@ class Repository
         return $this->id;
     }
 
-    //<editor-fold defaultstate="collapsed" desc="Адрес репозитория">
-    /**
-     * @var string Адрес репозитория
-     *
-     * @ORM\Column(name="`repoString`", type="string")
-     */
-    protected $repoString;
-
+    //<editor-fold defaultstate="collapsed" desc="Bin Src флаги">
     /**
      * @var bool В репозитории есть бинарники
      *
@@ -163,6 +156,13 @@ class Repository
     //<editor-fold defaultstate="collapsed" desc="Строка репозитория">
 
     /**
+     * @var string Адрес репозитория
+     *
+     * @ORM\Column(name="`repoString`", type="string")
+     */
+    protected $repoString;
+
+    /**
      * Строки в файле deb репозитория.
      *
      * @return string
@@ -188,9 +188,7 @@ class Repository
 
     public function getUrl()
     {
-        $items = explode(' ', $this->repoString);
-
-        return $items[0];
+        return explode(' ', $this->repoString)[0];
     }
 
     /**
@@ -202,14 +200,7 @@ class Repository
      */
     public function setRepoString($string)
     {
-        $items = explode(' ', $string);
-        //устраняем лишние пробелы
-        foreach ($items as $k => $v) {
-            if (empty($v)) {
-                unset($items[$k]);
-            }
-        }
-        $items = array_values($items);
+        $items = array_values(array_filter(explode(' ', $string)));
         if (isset($items[0]) && ($items[0] == 'deb' || $items[0] == 'deb-src')) {
             array_shift($items);
         }

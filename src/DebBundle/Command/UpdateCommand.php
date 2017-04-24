@@ -5,7 +5,7 @@ namespace Ivan1986\DebBundle\Command;
 use Ivan1986\DebBundle\Entity\Package;
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Entity\RepositoryRepository;
-use Ivan1986\DebBundle\Util\Builder;
+use Ivan1986\DebBundle\Service\Builder;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -22,6 +22,7 @@ class UpdateCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $builder = $this->getContainer()->get('ivan1986_deb.builder');
         $doctrine = $this->getContainer()->get('doctrine');
         /** @var $doctrine \Doctrine\Bundle\DoctrineBundle\Registry */
         $rrepo = $doctrine->getRepository('Ivan1986DebBundle:Repository');
@@ -31,7 +32,6 @@ class UpdateCommand extends ContainerAwareCommand
             return;
         }
 
-        $builder = new Builder($this->getContainer()->get('templating'));
         foreach ($repos as $repo) {
             /** @var $repo Repository */
             foreach ($repo->getPackages() as $pkg) {
