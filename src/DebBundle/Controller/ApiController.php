@@ -142,7 +142,6 @@ class ApiController extends FOSRestController
             throw new NotFoundHttpException();
         }
         $statusCode = !$repo->getId() ? 201 : 204;
-        $repo->setContainer($this->container);
 
         $form = $this->createForm($repo->getFormClass(), $repo, ['csrf_protection' => false]);
         $form->handleRequest($r);
@@ -172,7 +171,6 @@ class ApiController extends FOSRestController
             throw new AccessDeniedException();
         }
         /* @var Repository $entity */
-        $repo->setContainer($this->container);
         //удаляем пакеты этого репозитория
         foreach ($repo->getPackages() as $pkg) {
             $this->em->remove($pkg);

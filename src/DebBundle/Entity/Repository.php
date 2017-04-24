@@ -9,7 +9,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Ivan1986\DebBundle\Form\Type\RepositoryType;
 use Ivan1986\DebBundle\Service\Builder;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -24,8 +23,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Repository
 {
-    use ContainerAwareTrait;
-
     /**
      * @var int
      *

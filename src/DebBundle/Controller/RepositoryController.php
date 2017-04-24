@@ -91,7 +91,6 @@ class RepositoryController extends Controller
     public function newAction(Request $r)
     {
         $entity = new Repository();
-        $entity->setContainer($this->container);
         $form = $this->createForm($entity->getFormClass(), $entity);
 
         $form->handleRequest($r);
@@ -120,7 +119,6 @@ class RepositoryController extends Controller
     public function newPpaAction(Request $r)
     {
         $entity = new PpaRepository();
-        $entity->setContainer($this->container);
         $form = $this->createForm($entity->getFormClass(), $entity);
 
         $form->handleRequest($r);
@@ -149,7 +147,6 @@ class RepositoryController extends Controller
     public function editAction($id, Request $r)
     {
         $entity = $this->getByID($id);
-        $entity->setContainer($this->container);
         $editForm = $this->createForm($entity->getFormClass(), $entity);
 
         $editForm->handleRequest($r);
@@ -176,7 +173,6 @@ class RepositoryController extends Controller
     {
         $entity = $this->getByID($id);
         /* @var Repository $entity */
-        $entity->setContainer($this->container);
         //удаляем пакеты этого репозитория
         foreach ($entity->getPackages() as $pkg) {
             $this->em->remove($pkg);

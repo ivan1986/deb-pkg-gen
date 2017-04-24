@@ -15,5 +15,9 @@
             <argument id="file_locator" type="service"/>
             <argument id="templating" type="service"/>
         </service>
+        <service id="ivan1986_deb.launchpad_validator" class="Ivan1986\DebBundle\Validator\Constraints\LaunchpadExistValidator">
+            <argument id="doctrine" type="service"/>
+            <tag name="validator.constraint_validator" alias="launchpad_validator" />
+        </service>
     </services>
 </container>

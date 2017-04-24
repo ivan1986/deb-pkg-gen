@@ -26,6 +26,8 @@ composer.phar
 /.php_cs.cache
 /c3.php
 
+src/DebBundle/apt/cache
+src/DebBundle/apt/state
 src/DebBundle/apt/etc/sources.list
 src/DebBundle/apt/etc/trusted.gpg.d/repo-self.gpg
 

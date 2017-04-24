@@ -9,6 +9,7 @@ use Ivan1986\DebBundle\Form\Type\PpaRepositoryType;
 use Ivan1986\DebBundle\Model\DistList;
 use Ivan1986\DebBundle\Model\GpgLoader;
 use Ivan1986\DebBundle\Service\Builder;
+use Ivan1986\DebBundle\Validator\Constraints as DebAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -16,6 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity(repositoryClass="Ivan1986\DebBundle\Repository\RepositoryRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @DebAssert\LaunchpadExist()
  */
 class PpaRepository extends Repository
 {
@@ -103,7 +105,7 @@ class PpaRepository extends Repository
         return 'http://ppa.launchpad.net/'.$arr[0].'/'.$arr[1].'/ubuntu/';
     }
 
-    private function getPpaPage()
+    public function getPpaPage()
     {
         $arr = explode('/', substr($this->repoString, 4));
         if (count($arr) != 2) {
@@ -111,63 +113,6 @@ class PpaRepository extends Repository
         }
 
         return 'https://launchpad.net/~'.$arr[0].'/+archive/'.$arr[1];
-    }
-
-    /**
-     * Проверяет валидность строки репозитория.
-     *
-     * @Assert\IsTrue(message = "Такого репозитория нет на launchpad.net")
-     *
-     * @return bool
-     */
-    public function isExistRepo()
-    {
-        if ($this->getPpaUrl() == '') {
-            return false;
-        }
-        $client = new \GuzzleHttp\Client(['http_errors' => false]);
-        //репозиторий существует, заодно получим ключ
-        if ($client->get($this->getPpaUrl())->getStatusCode() != 200) {
-            return false;
-        }
-
-        return $this->getKeyFromLaunchpad();
-    }
-
-    private function getKeyFromLaunchpad()
-    {
-        $client = new \GuzzleHttp\Client(['defaults' => [
-            'verify' => 'false',
-        ]]);
-        $data = $client->get($this->getPpaPage())->getBody();
-        if (!$data) {
-            return false;
-        }
-        $matches = [];
-        preg_match('#<code>\d+R/(.*)</code>#is', $data, $matches);
-        if (empty($matches[1])) {
-            return false;
-        }
-        $keyId = $matches[1];
-
-        $r = $this->container->get('doctrine')->getRepository('Ivan1986DebBundle:GpgKey');
-        $key = $r->findOneBy(['id' => $keyId]);
-        if ($key) {
-            $this->setKey($key);
-
-            return true;
-        }
-        try {
-            $key = GpgLoader::getFromServer($keyId, 'keyserver.ubuntu.com');
-        } catch (GpgNotFoundException $e) {
-            return false;
-        }
-        $em = $this->container->get('doctrine')->getManager();
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em->persist($key);
-        $this->setKey($key);
-
-        return true;
     }
 
     public function getFormClass()
