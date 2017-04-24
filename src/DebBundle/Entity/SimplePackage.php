@@ -14,7 +14,7 @@ class SimplePackage extends Package
     /**
      * @var Repository Репозиторий этого пакета
      *
-     * @ORM\ManyToOne(targetEntity="Repository", cascade="all", inversedBy="packages")
+     * @ORM\ManyToOne(targetEntity="Repository", inversedBy="packages")
      * @ORM\JoinColumn(name="repository_id", referencedColumnName="id")
      */
     protected $repository;

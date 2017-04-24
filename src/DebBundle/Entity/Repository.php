@@ -320,7 +320,7 @@ class Repository
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="SimplePackage", mappedBy="repository")
+     * @ORM\OneToMany(targetEntity="SimplePackage", mappedBy="repository", cascade={"remove"})
      */
     protected $packages;
 
