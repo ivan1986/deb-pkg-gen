@@ -27,6 +27,5 @@ class CleanUsersCommand extends ContainerAwareCommand
         }
 
         $doctrine->getManager()->flush();
-        $output->writeln('Command result.');
     }
 }
