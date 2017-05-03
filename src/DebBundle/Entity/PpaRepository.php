@@ -55,7 +55,7 @@ class PpaRepository extends Repository
                 $strings[] = 'deb '.$str;
             }
             if ($this->src) {
-                $strings[] = 'deb src '.$str;
+                $strings[] = 'deb-src '.$str;
             }
         }
 
