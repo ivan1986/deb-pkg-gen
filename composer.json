@@ -99,9 +99,6 @@
       "file": "app/config/parameters.yml"
     },
     "patches": {
-      "sonata-project/core-bundle": {
-        "Symfony 3.3 fix": "https://patch-diff.githubusercontent.com/raw/sonata-project/SonataCoreBundle/pull/396.diff"
-      },
       "mopa/bootstrap-bundle": {
         "path fix": "patch/mopa-bootstrap.patch"
       },
