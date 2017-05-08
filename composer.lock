@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "db06b6af894a323a68067ac417d550d6",
-    "content-hash": "011c4b2e0387117a09d9f8cc0fee8a8a",
+    "hash": "7a433454f64bf520d898cea00c3588ac",
+    "content-hash": "a8a4fdd400cedcfc3e0e6a794560661a",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1228,16 +1228,16 @@
         },
         {
             "name": "fourlabs/gamp-bundle",
-            "version": "dev-master",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fourlabsldn/GampBundle.git",
-                "reference": "62fd91ca3ea85967814e2d425f869cfff46caa29"
+                "reference": "3b302ff8e3f4a5ef2da78e2d19b05b24536c7ebb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fourlabsldn/GampBundle/zipball/62fd91ca3ea85967814e2d425f869cfff46caa29",
-                "reference": "62fd91ca3ea85967814e2d425f869cfff46caa29",
+                "url": "https://api.github.com/repos/fourlabsldn/GampBundle/zipball/3b302ff8e3f4a5ef2da78e2d19b05b24536c7ebb",
+                "reference": "3b302ff8e3f4a5ef2da78e2d19b05b24536c7ebb",
                 "shasum": ""
             },
             "require": {
@@ -1273,20 +1273,20 @@
                 "google",
                 "tracking"
             ],
-            "time": "2017-05-02 17:00:55"
+            "time": "2017-05-02 16:58:10"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
-            "version": "2.1.1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "5a399bb434045c2b579cfe55472fff100373f4ec"
+                "reference": "d62a6c0f4bc699f899865d7e7bc7a4186aef9a86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/5a399bb434045c2b579cfe55472fff100373f4ec",
-                "reference": "5a399bb434045c2b579cfe55472fff100373f4ec",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/d62a6c0f4bc699f899865d7e7bc7a4186aef9a86",
+                "reference": "d62a6c0f4bc699f899865d7e7bc7a4186aef9a86",
                 "shasum": ""
             },
             "require": {
@@ -1316,12 +1316,13 @@
                 "phpoption/phpoption": "^1.1",
                 "psr/http-message": "^1.0",
                 "sensio/framework-extra-bundle": "^3.0.13",
+                "symfony/asset": "^2.7|^3.0",
                 "symfony/browser-kit": "^2.7|^3.0",
                 "symfony/css-selector": "^2.7|^3.0",
                 "symfony/dependency-injection": "^2.7|^3.0",
                 "symfony/expression-language": "~2.7|^3.0",
                 "symfony/form": "^2.7|^3.0",
-                "symfony/phpunit-bridge": "~2.7|^3.0",
+                "symfony/phpunit-bridge": "^3.2",
                 "symfony/security-bundle": "^2.7|^3.0",
                 "symfony/serializer": "^2.7.11|^3.0.4",
                 "symfony/twig-bundle": "^2.7|^3.0",
@@ -1339,13 +1340,16 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
                     "FOS\\RestBundle\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1370,7 +1374,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2016-11-23 12:09:05"
+            "time": "2017-04-06 12:55:03"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -3581,16 +3585,16 @@
         },
         {
             "name": "sonata-project/core-bundle",
-            "version": "3.x-dev",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataCoreBundle.git",
-                "reference": "f29e20644fd377095303fdfb24deac795f219bf1"
+                "reference": "d8f17c0edf01f2f2a253d4d74f9138680b811218"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/f29e20644fd377095303fdfb24deac795f219bf1",
-                "reference": "f29e20644fd377095303fdfb24deac795f219bf1",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/d8f17c0edf01f2f2a253d4d74f9138680b811218",
+                "reference": "d8f17c0edf01f2f2a253d4d74f9138680b811218",
                 "shasum": ""
             },
             "require": {
@@ -3599,7 +3603,6 @@
                 "sonata-project/datagrid-bundle": "^2.0",
                 "symfony/config": "^2.3 || ^3.0",
                 "symfony/form": "^2.3.5 || ^3.0",
-                "symfony/framework-bundle": "^2.3 || ^3.0",
                 "symfony/http-foundation": "^2.3 || ^3.0",
                 "symfony/property-access": "^2.3 || ^3.0",
                 "symfony/security": "^2.3 || ^3.0",
@@ -3656,7 +3659,7 @@
             "keywords": [
                 "sonata"
             ],
-            "time": "2017-04-28 00:45:07"
+            "time": "2017-03-23 12:43:08"
         },
         {
             "name": "sonata-project/datagrid-bundle",
@@ -3980,16 +3983,16 @@
         },
         {
             "name": "sonata-project/user-bundle",
-            "version": "dev-feature/fos_user_2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jordisala1991/SonataUserBundle.git",
-                "reference": "6716a81b184a0bb0e6b96d0b1bd02fff5abd4fc6"
+                "url": "https://github.com/sonata-project/SonataUserBundle.git",
+                "reference": "d1729c7f663938fc5e6f6d684f10d503a702a49e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jordisala1991/SonataUserBundle/zipball/6716a81b184a0bb0e6b96d0b1bd02fff5abd4fc6",
-                "reference": "6716a81b184a0bb0e6b96d0b1bd02fff5abd4fc6",
+                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/d1729c7f663938fc5e6f6d684f10d503a702a49e",
+                "reference": "d1729c7f663938fc5e6f6d684f10d503a702a49e",
                 "shasum": ""
             },
             "require": {
@@ -4049,11 +4052,7 @@
                     "Tests/"
                 ]
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Sonata\\UserBundle\\Tests\\": "Tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -4075,10 +4074,7 @@
                 "sonata",
                 "user"
             ],
-            "support": {
-                "source": "https://github.com/jordisala1991/SonataUserBundle/tree/feature/fos_user_2"
-            },
-            "time": "2017-05-02 08:15:45"
+            "time": "2017-05-08 09:00:43"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -5176,16 +5172,16 @@
         },
         {
             "name": "willdurand/negotiation",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/willdurand/Negotiation.git",
-                "reference": "1f210db45723b21edd69f39794662b8d64656b93"
+                "reference": "2ba90aa46b5e77f87b55f149cfd544b8434941d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/1f210db45723b21edd69f39794662b8d64656b93",
-                "reference": "1f210db45723b21edd69f39794662b8d64656b93",
+                "url": "https://api.github.com/repos/willdurand/Negotiation/zipball/2ba90aa46b5e77f87b55f149cfd544b8434941d9",
+                "reference": "2ba90aa46b5e77f87b55f149cfd544b8434941d9",
                 "shasum": ""
             },
             "require": {
@@ -5197,7 +5193,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2-dev"
+                    "dev-master": "2.3-dev"
                 }
             },
             "autoload": {
@@ -5224,7 +5220,7 @@
                 "header",
                 "negotiation"
             ],
-            "time": "2016-10-14 09:17:47"
+            "time": "2017-05-04 12:15:48"
         },
         {
             "name": "zendframework/zend-code",
@@ -8692,9 +8688,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "sonata-project/user-bundle": 20,
-        "sonata-project/core-bundle": 20,
-        "fourlabs/gamp-bundle": 20
+        "sonata-project/user-bundle": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
