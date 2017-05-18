@@ -111,6 +111,12 @@ class RepoController extends Controller
         return new Response($InRelease);
     }
 
+    /**
+     * @param string $list
+     * @param integer $date
+     * @param string $name
+     * @return string
+     */
     private function getRelease($list, $date, $name)
     {
         $size = strlen($list);
@@ -206,6 +212,14 @@ class RepoController extends Controller
         return $pkg->getHttpResponse();
     }
 
+    /**
+     * Cache repo files
+     *
+     * @param string $file
+     * @param string $name
+     * @param callable $func
+     * @return false|mixed
+     */
     protected function cache($file, $name, callable $func)
     {
         $key = implode('_', ['repo', $file, $name]);

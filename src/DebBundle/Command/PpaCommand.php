@@ -50,15 +50,22 @@ class PpaCommand extends ContainerAwareCommand
         }
     }
 
-    protected function checkNotEmpty($base, $dists)
+    /**
+     * Filter distributions without packages
+     *
+     * @param string $base
+     * @param array $distributions
+     * @return array
+     */
+    protected function checkNotEmpty($base, $distributions)
     {
-        foreach ($dists as $k => $dist) {
+        foreach ($distributions as $k => $dist) {
             $res = $this->curl->get($base.$dist.'/main/binary-amd64/Packages.gz');
             if ($res->getHeaderLine('Content-Length') < 50) {
-                unset($dists[$k]);
+                unset($distributions[$k]);
             }
         }
 
-        return array_values($dists);
+        return array_values($distributions);
     }
 }

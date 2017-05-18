@@ -108,6 +108,9 @@ class PpaRepository extends Repository
         return 'https://launchpad.net/~'.$arr[0].'/+archive/'.$arr[1];
     }
 
+    /**
+     * @return string
+     */
     public function getFormClass()
     {
         return PpaRepositoryType::class;

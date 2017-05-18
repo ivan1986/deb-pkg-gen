@@ -192,12 +192,11 @@ class Repository
      * Разбирает строку репозитория.
      *
      * @param string $name
-     *
      * @return Repository
      */
-    public function setRepoString($string)
+    public function setRepoString($name)
     {
-        $items = array_values(array_filter(explode(' ', $string)));
+        $items = array_values(array_filter(explode(' ', $name)));
         if (isset($items[0]) && ($items[0] == 'deb' || $items[0] == 'deb-src')) {
             array_shift($items);
         }
