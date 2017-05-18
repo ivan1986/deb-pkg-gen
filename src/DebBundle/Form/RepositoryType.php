@@ -1,7 +1,8 @@
 <?php
 
-namespace Ivan1986\DebBundle\Form\Type;
+namespace Ivan1986\DebBundle\Form;
 
+use Ivan1986\DebBundle\Form\Type\GpgKeyType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
