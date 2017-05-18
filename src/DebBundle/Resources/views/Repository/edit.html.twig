@@ -11,8 +11,16 @@
     {{ form_widget(edit_form) }}
     <p>
         <button class="btn btn-primary" type="submit">{% trans %}Обновить{% endtrans %}</button>
-        <a href="{{ path('repos_delete', { 'id': entity.id }) }}" class="btn btn-danger">{% trans %}Удалить{% endtrans %}</a>
     </p>
 {{ form_end(edit_form) }}
 
+
+<form action="{{ path('repos_delete', { 'id': entity.id }) }}" method="post" class="row">
+    <div class="col-sm-6">
+        <input type="text" name="name" class="form-control" value="" placeholder="{% trans %}Введите имя пакета для подтверждения{% endtrans %}">
+    </div>
+    <div class="col-sm-6">
+        <input type="submit" class="btn btn-danger" value="{% trans %}Удалить{% endtrans %}">
+    </div>
+</form>
 {% endblock %}

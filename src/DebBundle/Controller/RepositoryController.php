@@ -167,12 +167,17 @@ class RepositoryController extends Controller
      * Deletes a Repository entity.
      *
      * @Route("/{id}/delete", name="repos_delete")
-     * @Method("get")
+     * @Method("POST")
      */
-    public function deleteAction($id)
+    public function deleteAction($id, Request $r)
     {
         $entity = $this->getByID($id);
         /* @var Repository $entity */
+
+        if ($entity->getName() != $r->get('name')) {
+            return $this->redirect($this->generateUrl('repos_edit', ['id' => $id]));
+        }
+
         //удаляем пакеты этого репозитория
         foreach ($entity->getPackages() as $pkg) {
             $this->em->remove($pkg);
