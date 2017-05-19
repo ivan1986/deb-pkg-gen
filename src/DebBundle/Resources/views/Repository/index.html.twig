@@ -9,46 +9,7 @@
     <button type="submit" class="btn">{% trans %}Поиск{% endtrans %}</button>
 </form>
 
-<table class="records_list table table-striped table-bordered">
-    <thead>
-        <tr>
-            <th>Url</th>
-            <th>Bin</th>
-            <th>Src</th>
-            <th>{% trans %}Имя{% endtrans %}</th>
-            <th>{% trans %}Установить{% endtrans %} (<a href="https://help.ubuntu.com/community/AptURL">AptURL</a>)</th>
-            <th>{% trans %}Скачать{% endtrans %}</th>
-            <th>{% trans %}Владелец{% endtrans %}</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for entity in pagerfanta.currentPageResults %}
-        <tr>
-            <td>{{ entity.repoString }}</td>
-            <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.bin ? 'yes' : 'no')~'.png') }}" alt="{{ entity.bin ? 'yes' : 'no' }}" /></td>
-            <td><img src="{{ asset('bundles/ivan1986deb/images/'~(entity.src ? 'yes' : 'no')~'.png') }}" alt="{{ entity.src ? 'yes' : 'no' }}" /></td>
-            <td>{{ entity.name }}</td>
-            <td>
-                {% for name, package in entity.packagesWithLinks %}
-                    <a href="apt:{{ package.name }}">{{ name }}</a>
-                {% endfor %}
-            </td>
-            <td>
-                {% for name, package in entity.packagesWithLinks %}
-                    <a href="{{ path('Package', {'name': package.file}) }}">{{ name }}</a>
-                {% endfor %}
-            </td>
-            <td>
-                {% if app.user and entity.owner == app.user %}
-                    <a href="{{ path('repos_edit', { 'id': entity.id }) }}">{% trans %}редактировать{% endtrans %}</a>
-                {% else %}
-                    {{ entity.owner.username }}
-                {% endif %}
-            </td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% include '@Ivan1986Deb/Repository/table.html.twig' %}
 
 {% if pagerfanta.haveToPaginate %}{{ pagerfanta(pagerfanta, 'twitter_bootstrap3_translated') }}{% endif %}
 
