@@ -25,7 +25,8 @@ class BuilderController extends Controller
                 'form' => $form,
             ];
             try {
-                $key = GpgLoader::getFromServer($form['key'], $this->container->getParameter('key_server'));
+                $key = $this->getDoctrine()->getRepository('Ivan1986DebBundle:GpgKey')
+                    ->getFromServer($form['key'], $this->container->getParameter('key_server'));
 
                 $repo = new Repository();
                 $repo->setRepoString($form['url']);

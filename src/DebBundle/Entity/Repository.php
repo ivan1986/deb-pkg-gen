@@ -192,6 +192,7 @@ class Repository
      * Разбирает строку репозитория.
      *
      * @param string $name
+     *
      * @return Repository
      */
     public function setRepoString($name)

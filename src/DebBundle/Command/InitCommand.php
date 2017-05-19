@@ -24,7 +24,8 @@ class InitCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $key = GpgLoader::getFromServer($this->getContainer()->getParameter('key'), $this->getContainer()->getParameter('key_server'));
+        $key = $this->getContainer()->get('doctrine')->getRepository('Ivan1986DebBundle:GpgKey')
+            ->getFromServer($this->getContainer()->getParameter('key'), $this->getContainer()->getParameter('key_server'));
         $repoBase = 'http://'.$this->getContainer()->getParameter('host').$this->getContainer()->get('router')->generate('repo', []);
 
         //Инициализируем конфигурацию чекера апта

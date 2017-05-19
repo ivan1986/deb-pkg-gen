@@ -56,20 +56,12 @@ class LaunchpadExistValidator extends ConstraintValidator
         $keyId = $matches[1];
 
         $r = $this->doctrine->getRepository('Ivan1986DebBundle:GpgKey');
-        $key = $r->findOneBy(['id' => $keyId]);
-        if ($key) {
-            $value->setKey($key);
-
-            return true;
-        }
         try {
-            $key = GpgLoader::getFromServer($keyId, 'keyserver.ubuntu.com');
+            $key = $r->getFromServer($keyId, 'keyserver.ubuntu.com');
         } catch (GpgNotFoundException $e) {
             return $this->addMessage();
         }
-        $em = $this->doctrine->getManager();
-        /* @var $em \Doctrine\ORM\EntityManager */
-        $em->persist($key);
+        $this->doctrine->getManager()->persist($key);
         $value->setKey($key);
 
         return true;
