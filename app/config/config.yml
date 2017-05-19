@@ -122,6 +122,8 @@ nelmio_api_doc:
 services:
     fos_user.entity_manager:
         alias: fos_user.object_manager
+    fos_rest.view_handler:
+        alias: fos_rest.view_handler.default
 
 sonata_user:
     security_acl:     false

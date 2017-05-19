@@ -27,10 +27,13 @@ class RepositoryController extends Controller
     /** @var EntityManager */
     private $em;
 
-    public function setContainer(ContainerInterface $container = null)
+    /**
+     * RepositoryController constructor.
+     * @param EntityManager $em
+     */
+    public function __construct(EntityManager $em)
     {
-        parent::setContainer($container);
-        $this->em = $this->getDoctrine()->getManager();
+        $this->em = $em;
     }
 
     /**
