@@ -2,7 +2,6 @@
 
 namespace Ivan1986\DebBundle\Controller;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use FOS\RestBundle\Controller\Annotations\NamePrefix;
@@ -22,7 +21,7 @@ use TheIconic\Tracking\GoogleAnalytics\Analytics;
  */
 class ApiController extends FOSRestController
 {
-    /** @var ObjectManager */
+    /** @var EntityManager */
     protected $em;
 
     /** @var Analytics */
