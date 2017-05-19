@@ -30,8 +30,9 @@ class ApiController extends FOSRestController
 
     /**
      * RepositoryController constructor.
+     *
      * @param EntityManager $em
-     * @param Analytics $analytics
+     * @param Analytics     $analytics
      */
     public function __construct(EntityManager $em, Analytics $analytics)
     {
