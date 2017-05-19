@@ -23,6 +23,12 @@ class RepositoryRepository extends EntityRepository
         return $this->createQueryBuilder('r');
     }
 
+    public function count()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('COUNT(r)')->getQuery()->getSingleScalarResult();
+    }
+
     /**
      * Получить для пользователя.
      *

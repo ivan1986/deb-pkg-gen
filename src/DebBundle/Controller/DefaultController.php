@@ -19,7 +19,12 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return [];
+        return [
+            'repositories' => $this->getDoctrine()
+                ->getRepository('Ivan1986DebBundle:Repository')->count(),
+            'users' => $this->getDoctrine()
+                ->getRepository('Ivan1986DebBundle:User')->count(),
+        ];
     }
 
     /**

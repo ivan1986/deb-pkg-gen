@@ -21,4 +21,10 @@ class UserRepository extends EntityRepository
             ->having('count(r) = 0')
             ->getQuery();
     }
+
+    public function count()
+    {
+        return $this->createQueryBuilder('r')
+            ->select('COUNT(r)')->getQuery()->getSingleScalarResult();
+    }
 }

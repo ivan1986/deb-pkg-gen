@@ -59,3 +59,7 @@ ID ключа можно обычно найти рядом с адресом р
 Пакеты: Packages
 Установить: Setup
 Скачать: Download
+
+stat:
+  repositories: Repositories
+  users: Users

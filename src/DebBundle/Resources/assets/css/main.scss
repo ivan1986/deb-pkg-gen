@@ -13,48 +13,22 @@
   border-radius: 6px;
   padding: 15px;
 
-  /*input[type=text],
-  input[type=password],
-  input[type=email],
-  {
-    height: 35px;
-    line-height: 35px;
-    font-size: 25px;
-    width: 400px;
+}
+
+.stat {
+  .panel {
+    text-align: center;
   }
-
-  .form-actions {
-    margin-bottom: 0px;
+  .panel-body {
+    font-size: 48px;
   }
-
-  .control-group {
-    padding: 0 20px 0 20px;
-  }*/
-
-
 }
 
 .pkg-form {
   @include center-form(450px, 260px);
   top: 55%;
 }
-/*
-.container {
-  height: 100%;
-}
 
-.records_list td {
-  white-space: nowrap;
-}
-
-
-.pkg-build-err {
-  position: relative;
-  margin: auto;
-  width: 400px;
-  top: 15%;
-}
-*/
 .login-form {
   @include center-form(450px, 260px);
 }
