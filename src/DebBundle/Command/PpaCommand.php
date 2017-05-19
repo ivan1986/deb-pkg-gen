@@ -51,10 +51,11 @@ class PpaCommand extends ContainerAwareCommand
     }
 
     /**
-     * Filter distributions without packages
+     * Filter distributions without packages.
      *
      * @param string $base
-     * @param array $distributions
+     * @param array  $distributions
+     *
      * @return array
      */
     protected function checkNotEmpty($base, $distributions)

@@ -4,7 +4,6 @@ namespace Ivan1986\DebBundle\Command;
 
 use Ivan1986\DebBundle\Entity\Repository;
 use Ivan1986\DebBundle\Entity\SysPackage;
-use Ivan1986\DebBundle\Model\GpgLoader;
 use Ivan1986\DebBundle\Repository\PackageRepository;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;

@@ -3,7 +3,6 @@
 namespace Ivan1986\DebBundle\Controller;
 
 use Ivan1986\DebBundle\Entity\Repository;
-use Ivan1986\DebBundle\Model\GpgLoader;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;

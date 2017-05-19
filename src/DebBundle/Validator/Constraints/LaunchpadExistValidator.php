@@ -4,7 +4,6 @@ namespace Ivan1986\DebBundle\Validator\Constraints;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Ivan1986\DebBundle\Exception\GpgNotFoundException;
-use Ivan1986\DebBundle\Model\GpgLoader;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 

@@ -20,7 +20,7 @@ return PhpCsFixer\Config::create()
     ))
     ->setFinder(
         PhpCsFixer\Finder::create()
-            ->exclude('var')
+            ->exclude(['var', 'src/DebBundle/apt'])
             ->in(__DIR__)
     )
 ;

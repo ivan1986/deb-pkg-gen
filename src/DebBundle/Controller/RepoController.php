@@ -113,8 +113,9 @@ class RepoController extends Controller
 
     /**
      * @param string $list
-     * @param integer $date
+     * @param int    $date
      * @param string $name
+     *
      * @return string
      */
     private function getRelease($list, $date, $name)
@@ -213,11 +214,12 @@ class RepoController extends Controller
     }
 
     /**
-     * Cache repo files
+     * Cache repo files.
      *
-     * @param string $file
-     * @param string $name
+     * @param string   $file
+     * @param string   $name
      * @param callable $func
+     *
      * @return false|mixed
      */
     protected function cache($file, $name, callable $func)
