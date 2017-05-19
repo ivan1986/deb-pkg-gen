@@ -12,7 +12,7 @@ security:
         in_memory:
             memory:
                 users:
-                    %admins%
+                    "%admins%"
 
     firewalls:
         dev:

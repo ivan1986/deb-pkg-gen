@@ -4,7 +4,6 @@ imports:
     - { resource: services.yml }
 
 framework:
-    #esi:             ~
     translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
@@ -12,7 +11,7 @@ framework:
     csrf_protection: true
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale:  %locale%
+    default_locale:  "%locale%"
     session:
       name:          "sess"
       save_path:     null
@@ -28,16 +27,16 @@ lunetics_locale:
 
 # Twig Configuration
 twig:
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
     globals:
-        version: %version%
-        host: %host%
-        maintainer: %maintainer%
+        version: "%version%"
+        host: "%host%"
+        maintainer: "%maintainer%"
 
 # Assetic Configuration
 assetic:
-    debug:          %kernel.debug%
+    debug:          "%kernel.debug%"
     use_controller: false
     bundles:
       - MopaBootstrapBundle
@@ -55,15 +54,15 @@ doctrine:
         driver:   pdo_mysql
         host:     localhost
         port:     3306
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
 
     orm:
-        auto_generate_proxy_classes: %kernel.debug%
+        auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
 
 doctrine_cache:
@@ -98,12 +97,12 @@ mopa_bootstrap:
     menu: ~
 
 four_labs_gamp:
-    tracking_id: %gaAcc%
+    tracking_id: "%gaAcc%"
     sandbox: true
 
 endroid_google_analytics:
     trackers:
-        default: %gaAcc%
+        default: "%gaAcc%"
 
 fos_rest:
     view:
@@ -117,7 +116,7 @@ jms_serializer:
 
 nelmio_api_doc:
     sandbox:
-        endpoint: http://%host%
+        endpoint: "http://%host%"
 
 services:
     fos_user.entity_manager:
