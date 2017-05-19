@@ -2,7 +2,7 @@
 
 namespace Ivan1986\DebBundle\Controller;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
 use Ivan1986\DebBundle\Entity\PpaRepository;
 use Ivan1986\DebBundle\Entity\Repository;
@@ -24,13 +24,16 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class RepositoryController extends Controller
 {
-    /** @var ObjectManager */
+    /** @var EntityManager */
     private $em;
 
-    public function setContainer(ContainerInterface $container = null)
+    /**
+     * RepositoryController constructor.
+     * @param EntityManager $em
+     */
+    public function __construct(EntityManager $em)
     {
-        parent::setContainer($container);
-        $this->em = $this->getDoctrine()->getManager();
+        $this->em = $em;
     }
 
     /**

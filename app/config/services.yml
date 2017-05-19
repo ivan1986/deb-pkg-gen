@@ -1,0 +1,35 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+      # automatically injects dependencies in your services
+      autowire: false
+      # automatically registers your services as commands, event subscribers, etc.
+      autoconfigure: true
+      # this means you cannot fetch services directly from the container via $container->get()
+      # if you need to do this, you can override this setting on individual services
+      public: false
+
+  # makes classes in src/AppBundle available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  Ivan1986\DebBundle\:
+      resource: '../../src/DebBundle/*'
+      # you can exclude directories or files
+      # but if a service is unused, it's removed anyway
+      exclude: '../../src/DebBundle/{Entity,Repository}'
+
+  # controllers are imported separately to make sure they're public
+  # and have a tag that allows actions to type-hint services
+  Ivan1986\DebBundle\Controller\:
+      resource: '../../src/DebBundle/Controller'
+      public: true
+      autowire: true
+      tags: ['controller.service_arguments']
+      calls:
+        - [setContainer, ['@service_container']]
+
+  Doctrine\ORM\EntityManager:
+      alias: doctrine.orm.entity_manager
+      public: false
+  Doctrine\Common\Persistence\ObjectManager:
+      alias: doctrine.orm.default_entity_manager
+      public: false
