@@ -21,9 +21,9 @@ class DefaultController extends Controller
     {
         return [
             'repositories' => $this->getDoctrine()
-                ->getRepository('Ivan1986DebBundle:Repository')->count(),
+                ->getRepository('Ivan1986DebBundle:Repository')->count([]),
             'users' => $this->getDoctrine()
-                ->getRepository('Ivan1986DebBundle:User')->count(),
+                ->getRepository('Ivan1986DebBundle:User')->count([]),
         ];
     }
 
