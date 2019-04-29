@@ -23,7 +23,7 @@ class RepositoryRepository extends EntityRepository
         return $this->createQueryBuilder('r');
     }
 
-    public function count()
+    public function count(array $criteria)
     {
         return $this->createQueryBuilder('r')
             ->select('COUNT(r)')->getQuery()->getSingleScalarResult();

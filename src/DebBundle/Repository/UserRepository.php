@@ -22,7 +22,7 @@ class UserRepository extends EntityRepository
             ->getQuery();
     }
 
-    public function count()
+    public function count(array $criteria)
     {
         return $this->createQueryBuilder('r')
             ->select('COUNT(r)')->getQuery()->getSingleScalarResult();
