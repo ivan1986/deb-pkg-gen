@@ -15,13 +15,13 @@
   },
   "config": {
     "platform": {
-      "php": "7.0"
+      "php": "7.3"
     },
     "preferred-install": "source",
     "discard-changes": true
   },
   "require": {
-    "php": "~7.0",
+    "php": "~7.3",
     "ext-xml": "*",
     "ext-gnupg": "*",
     "doctrine/orm": "^2.5",
@@ -37,7 +37,7 @@
     "sensio/framework-extra-bundle": "~3",
     "sonata-project/doctrine-orm-admin-bundle": "~3.0",
     "sonata-project/easy-extends-bundle": "~2.1",
-    "sonata-project/user-bundle": "dev-master",
+    "sonata-project/user-bundle": "~4.0",
     "sonata-project/exporter": "~1.7",
     "sonata-project/core-bundle": "~3.3",
     "stof/doctrine-extensions-bundle": "~1.2",
@@ -95,9 +95,6 @@
     "patches": {
       "mopa/bootstrap-bundle": {
         "path fix": "patch/mopa-bootstrap.patch"
-      },
-      "consolidation/robo": {
-        "interface": "patch/robo-implements.patch"
       }
     }
   }
