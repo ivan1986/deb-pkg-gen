@@ -44,7 +44,7 @@ assetic:
       - Ivan1986DebBundle
     filters:
         cssrewrite: ~
-        compass:
+        scssphp:
           apply_to: "\\.s[a|c]ss$"
 
 # Doctrine Configuration

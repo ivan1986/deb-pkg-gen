@@ -2,7 +2,7 @@
 {% block title %}Welcome!{% endblock %}
 {% block head_style %}
     {{ parent() }}
-    {% stylesheets filter="compass" "@Ivan1986DebBundle/Resources/assets/css/main.scss" %}
+    {% stylesheets filter="scssphp" "@Ivan1986DebBundle/Resources/assets/css/main.scss" %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 {% endblock head_style %}
