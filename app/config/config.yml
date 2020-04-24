@@ -33,6 +33,8 @@ twig:
         version: "%version%"
         host: "%host%"
         maintainer: "%maintainer%"
+    form_themes:
+      - 'bootstrap_4_layout.html.twig'
 
 # Assetic Configuration
 assetic:
