@@ -44,7 +44,7 @@
     "symfony/assetic-bundle": "~2.8",
     "symfony/monolog-bundle": "~3.0",
     "symfony/swiftmailer-bundle": "~2.5",
-    "symfony/symfony": "3.4.x-dev",
+    "symfony/symfony": "~3.4",
     "twig/twig": "^2.9",
     "twig/extensions": "~1.4",
     "mopa/bootstrap-bundle": "~3.1",
@@ -56,7 +56,7 @@
     "guzzlehttp/guzzle": "^6.2",
     "doctrine/doctrine-cache-bundle": "^1.3",
     "cweagans/composer-patches": "~1",
-    "leafo/scssphp": "~0.7"
+    "scssphp/scssphp": "~0.7"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "~2.1",
@@ -92,8 +92,8 @@
       "file": "app/config/parameters.yml"
     },
     "patches": {
-      "mopa/bootstrap-bundle": {
-        "path fix": "patch/mopa-bootstrap.patch"
+      "kriswallsmith/assetic": {
+        "fix class": "patch/scss.patch"
       }
     }
   }

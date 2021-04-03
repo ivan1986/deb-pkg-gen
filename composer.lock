@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8190fc2f1adbf9bb23fed6b6f0b62110",
+    "content-hash": "e40ca8eda447dd60bf57ab83ef88848c",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -7165,7 +7165,7 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "3.4.x-dev",
+            "version": "v3.4.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
@@ -7317,7 +7317,7 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony/symfony/issues",
-                "source": "https://github.com/symfony/symfony/tree/3.4"
+                "source": "https://github.com/symfony/symfony/tree/v3.4.47"
             },
             "funding": [
                 {
@@ -9045,9 +9045,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "symfony/symfony": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
